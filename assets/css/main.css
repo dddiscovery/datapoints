@@ -1,0 +1,51 @@
+body {
+    margin-top: 54px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.divider {
+    width: 1px;
+    height: 64px;
+    background-color: #000;
+    margin: 0 20px;
+}
+
+.datapoints-logo {
+    height: 64px;
+    width: auto;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-top: 45px;
+}
+
+nav a {
+    color: #011f5b;
+    font-family: 'Crimson Text', serif;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 158px;
+}
+
+nav a:hover {
+    color: #fd4736;
+}
+
+.divider-line {
+    width: 100%;
+    height: 3px;
+    background-color: #011f5b;
+    margin-top: 18px;
+}
