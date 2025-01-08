@@ -1,0 +1,27 @@
+{
+  "name": "dddi_dp_blog",
+  "version": "1.0.0",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/tailwind.compiled.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuxinlg/DDDI_DP_Blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yuxinlg/DDDI_DP_Blog/issues"
+  },
+  "homepage": "https://github.com/yuxinlg/DDDI_DP_Blog#readme",
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2"
+  }
+}

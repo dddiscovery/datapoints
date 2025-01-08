@@ -1,65 +1,297 @@
-.slideshow-container {
+/* Global Styles */
+body {
+    margin-top: 3rem;
+    font-family: 'Crimson Text', serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem;
     width: 100%;
-    height: 100%;
-    position: relative;
+    flex-wrap: wrap;
 }
 
+.divider {
+    width: 0.1rem;
+    height: 4rem;
+    background-color: #011f5b;
+    margin: 0 1.25rem;
+}
+
+.datapoints-logo {
+    height: auto;
+    width: min(240px, 30vw);
+}
+
+.DDDI-logo {
+    height: auto;
+    width: min(300px, 35vw);
+    max-height: 55px;
+}
+
+.nav-link {
+    color: #011f5b;
+    text-decoration: none;
+    margin: 0 1.25rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: bold;
+    transition: color 0.3s;
+    font-family: 'Crimson Text', serif;
+}
+
+.nav-link:hover {
+    color: #fc4375;
+}
+
+.divider-line {
+    width: 100%;
+    height: 0.2rem;
+    background-color: #011f5b;
+    margin-top: 0.625rem;
+}
+
+/* Slideshow Styles */
 .mySlides {
-    width: 972px;
-    height: 270px;
-    margin: 18px auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 972/270;
 }
 
-.mySlides img {
-    width: 972px;
-    height: 270px;
-    object-fit: cover;
+@keyframes fade {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
-.slide-caption {
+.slideshow-container {
+    width: min(972px, 95vw);
+    height: auto;
+    position: relative;
+    margin: 0.3rem auto;
+}
+
+.slideshow-text {
     position: absolute;
     bottom: 0;
     right: 0;
-    background-color: rgba(105, 130, 27, 0.8);
-    width: 972px;
-    height: 40px;
-    padding: 0;
+    background-color: rgba(1, 31, 91, 0.8);
+    width: 100%;
+    height: auto;
+    min-height: 2.5rem;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    box-sizing: border-box;
 }
 
-.slide-caption p {
-    margin: 0 20px 0 0;
-    font-family: 'Crimson Text', serif;
+.slideshow-text p {
+    margin: 0 1.25rem;
     font-weight: bold;
-    font-size: 18px;
+    font-size: clamp(0.875rem, 1.5vw, 0.938rem);
     color: white;
+    font-family: 'Crimson Text', serif;
+    text-align: right;
 }
 
-.about-section {
+/* Content Section */
+.content-section-blue {
     width: 100%;
-    height: 600px;
     background-color: rgba(1, 31, 91, 0.1);
-    margin-top: 20px;
+    margin-top: 1.25rem;
+    position: relative;
+    min-height: fit-content;
+    height: auto;
+    padding: 1.125rem 0.625rem;
+    box-sizing: border-box;
 }
 
-.about-title {
-    position: absolute;
-    top: 18px;
-    margin-left: 780px;
+.content-section-white {
+    width: 100%;
+    background-color: white;
+    margin-top: 1.25rem;
+    position: relative;
+    min-height: fit-content;
+    height: auto;
+    padding: 1.125rem 0.625rem;
+    box-sizing: border-box;
+}
+
+.content-container {
+    display: flex;
+    margin-top: 18px;
+}
+
+.section-title {
+    position: relative;
     color: #011f5b;
-    font-family: 'Crimson Text', serif;
     font-weight: bold;
-    font-size: 26px;
+    font-size: clamp(1.25rem, 2vw, 1.375rem);
+    text-align: left;
+    width: min(972px, 95vw);
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.about-content {
-    width: 898px;
+.content-text {
+    width: 100%;
+    max-width: 898px;
     margin: 0 auto;
-    padding-top: 54px;
     color: #011f5b;
-    font-family: 'Crimson Text', serif;
-    font-size: 18px;
+    font-size: clamp(0.875rem, 1.5vw, 0.938rem);
     line-height: 1.5;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+/* Blog Post Styles */
+.content-container {
+    display: flex;
+    margin-top: 18px;
+}
+
+.blog-image {
+    flex-shrink: 0;
+}
+
+.blog-image img {
+    width: 180px;
+    height: 126px;
+    object-fit: cover;
+}
+
+.blog-content {
+    margin-left: 12px;
+    margin-top: 0;
+    flex-grow: 1;
+}
+
+.blog-title {
+    margin: 0;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-family: 'Crimson Text', serif;
+    cursor: pointer;
+    line-height: 1.2;
+}
+
+
+.blog-title-link {
+    text-decoration: none;
+    color: #011f5b;
+    padding: 0;
+}
+
+
+.blog-title a {
+    color: #011f5b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-title a:hover {
+    color: #fc4375;
+}
+
+.blog-meta {
+    margin: 8px 0;
+    color: #666;
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+}
+
+.blog-description {
+    margin: 8px 0;
+    color: #011f5b;
+    font-size: clamp(0.75rem, 1.3vw, 0.875rem);
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Contact Section Styles */
+.contact-container {
+    width: min(898px, 95vw);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.contact-column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-text {
+    margin-top: 12px;
+    padding: 0;
+}
+
+.contact-email {
+    margin-top: 18px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 12px;
+    position: relative;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-icon {
+    width: 21px;
+    height: 21px;
+    color: #011f5b;
+}
+
+.social-link {
+    text-decoration: none;
+    color: #011f5b;
+    font-size: clamp(0.75rem, 1.2vw, 0.813rem);
+}
+
+.social-link:hover {
+    color: #fc4375;  /* Optional: adds hover effect matching your site's style */
+}
+
+.follow-title {
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.flex-container {
+    display: flex;
+    max-width: 972px;
+    margin: 0 auto;
+    padding-left: 3.25rem;
+}
+
+.width-70 {
+    width: 70%;
+}
+
+.width-30 {
+    width: 30%;
+    padding-left: -1rem; 
+}
+
+#subscribe-button {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    display: block;
+    position: relative;
+    top: 0;
 }

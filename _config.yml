@@ -26,6 +26,11 @@ github_username:  jekyll
 markdown: kramdown
 theme: minima
 
+plugins:
+  - jekyll-postcss
+
+postcss:
+  cache: false
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
