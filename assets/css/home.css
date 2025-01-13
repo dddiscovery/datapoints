@@ -110,11 +110,13 @@ body {
 }
 
 .slideshow-text p {
+    @apply font-sans font-thin
+}
+
+.slideshow-text p {
     margin: 0 1.25rem;
-    font-weight: bold;
     font-size: clamp(0.875rem, 1.5vw, 0.938rem);
     color: white;
-    font-family: 'Crimson Text', serif;
     text-align: right;
 }
 
@@ -307,7 +309,6 @@ body {
 
 .follow-title {
     font-weight: bold;
-    margin-top: 12px;
 }
 
 .flex-container {
