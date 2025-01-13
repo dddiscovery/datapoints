@@ -1,16 +1,34 @@
+---
+---
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 /* Global Styles */
 body {
-    margin-top: 3rem;
+    margin-top: 2rem;
     font-family: 'Crimson Text', serif;
 }
 
-.header {
+.logos {
+    margin-left: 2rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.3rem;
+    justify-content: left;
+    padding: 0rem;
     width: 100%;
     flex-wrap: wrap;
+}
+
+.header {
+    @apply md:sticky top-0
+}
+
+.header {
+    z-index: 1000;
+    background-color: #FFFFFF;
 }
 
 .divider {
@@ -32,13 +50,16 @@ body {
 }
 
 .nav-link {
+    @apply font-sans font-semibold
+}
+
+.nav-link {
     color: #011f5b;
     text-decoration: none;
+    padding-top: 0.5rem;
     margin: 0 1.25rem;
     font-size: clamp(1rem, 2vw, 1.25rem);
-    font-weight: bold;
     transition: color 0.3s;
-    font-family: 'Crimson Text', serif;
 }
 
 .nav-link:hover {
@@ -47,7 +68,7 @@ body {
 
 .divider-line {
     width: 100%;
-    height: 0.2rem;
+    height: 0.1rem;
     background-color: #011f5b;
     margin-top: 0.625rem;
 }
@@ -127,15 +148,22 @@ body {
 }
 
 .section-title {
+    @apply font-serif font-black
+}
+
+.section-title {
     position: relative;
     width: min(972px, 95vw);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 0px;
     box-sizing: border-box;
     color: #011f5b;
-    font-weight: bold;
-    font-size: clamp(1.25rem, 2vw, 1.375rem);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
     text-align: left;
+}
+
+.content-text {
+    @apply font-sans
 }
 
 .content-text {
@@ -145,8 +173,12 @@ body {
     color: #011f5b;
     font-size: clamp(0.875rem, 1.5vw, 0.938rem);
     line-height: 1.5;
-    padding: 0 1rem;
+    padding: 0 0rem;
     box-sizing: border-box;
+}
+
+.content-text p {
+    padding: 0.3rem 0;
 }
 
 /* Blog Post Styles */
@@ -235,6 +267,7 @@ body {
 
 .contact-text {
     margin-top: 12px;
+    margin-bottom: 12px;
     padding: 0;
 }
 
