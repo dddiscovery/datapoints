@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+.header {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.datapoints-logo {
+  margin-top: 18px;
+  height: auto;
+  width: min(240px, 30vw);
+}
+
+.content-section-blue {
+  width: 100%;
+  background-color: rgba(1, 31, 91, 0.1);
+  padding: 2rem 0.625rem;
+  text-align: center;
+}
+
+.blog-title {
+  color: #011f5b;
+  font-family: 'Source Serif Pro', serif;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.title-underline {
+  width: 100%;
+  max-width: 600px;
+  height: 2px;
+  background-color: #990000;
+  margin: 5px auto;
+}
+
+.blog-description {
+  color: #011f5b;
+  font-family: 'Source Serif Pro', serif;
+  font-size: 1.25em;
+  max-width: 800px;
+  margin: 20px auto;
+  line-height: 1.5;
+}
+
+.author-section {
+  font-family: 'Source Serif Pro', serif;
+  color: #666666;
+  font-size: 0.875em;
+}
+
+.author-section a {
+  text-decoration: underline;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.author-section a:hover {
+  color: #fc4375;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.date-divider {
+  width: calc(100% - 90%);
+  height: 2px;
+  background-color: rgba(1, 31, 91, 0.7);
+}
+
+.post-date {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.125em;
+  color: #011f5b;
+  margin: 15px 0;
+}
+
+/* Main part layout */
+.main {
+  display: flex;
+  max-width: 1400px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+  gap: 2rem;
+}
+
+.author-info {
+  flex: 1;
+  margin-right: -0.5rem;
+}
+
+.author-container {
+  flex: 1;
+  margin-right: -0.5rem;
+  margin-bottom: 1.5625rem;
+}
+
+.blog-content {
+  flex: 3;
+}
+
+.about-post {
+  flex: 1;
+}
+
+.vertical-divider {
+  width: 1px;
+  border-left: 1px dashed rgba(153,0,0,0.8);
+}
+
+.author-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 20px;
+}
+
+.author-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-name {
+  font-family: 'Source Serif Pro', serif;
+  font-size: 1.25em;
+  font-weight: bold;
+  color: #011f5b;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.author-title {
+  font-family: 'Source Serif Pro', serif;
+  font-size: 0.875em;
+  color: #666666;
+  margin: 0;
+  text-align: center;
+}
+
+.author-info {
+  margin-right: 1.875rem;
+}
+
+/* About this post */
+.about-post-title {
+  color: #990000;
+  font-size: 1.25em;
+  font-weight: bold;
+  font-family: 'Crimson Text', serif;
+}
+
+.about-post-text {
+  font-size: 1.125em;
+  font-weight: 400;
+  color: #011f5b;
+  margin-top: -0.3125rem;
+  text-indent: 1rem;
+}
+
+.source-code-link {
+  color: #990000;
+  text-decoration: underline;
+}
+
+.about-post-underline {
+  max-width: 25rem;
+  margin-top: 1.25rem;
+  background-color: rgba(1, 31, 91, 0.7);
+  height: 0.0625rem;
+}
+
+.social-share {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.social-icon {
+  width: 21px;
+  height: 21px;
+  transition: stroke 0.3s ease;
+}
+
+.social-share svg {
+  stroke: #011f5b;
+}
+
+.social-share svg:hover {
+  stroke: #fc4375;
+}
+
+.stay-tuned {
+  font-size: 1.125em;
+  text-align: left;
+  color: rgba(1, 31, 91, 0.8);
+}
+
+.email-input {
+  height: 1.5rem;
+  margin: 0.25rem auto;
+  width: calc(100% - 1.125em); 
+  background-color: #f9fafb;  /* bg-gray-50 */
+  border: 1px solid #d1d5db;  /* border-gray-300 */
+  color: #111827;  /* text-gray-900 */
+  font-size: 0.875rem;  /* text-sm */
+  border-radius: 0.5rem;  /* rounded-lg */
+  padding: 0.625rem;  /* p-2.5 */
+}
+
+.email-input:focus {
+  outline: none;
+  border-color: #fc4375;  /* focus:border-blue-500 */
+  box-shadow: 0 0 0 2px rgba(252, 67, 117, 0.7);  /* focus:ring-fc4375 */
+}
+
+.subscribe-button {
+  height: 32px;
+  margin-top: 8px;
+  color: white;
+  font-size: 0.875rem;  /* text-sm */
+  font-weight: 500;     /* font-medium */
+  padding: 0.625rem 1.25rem;  /* px-5 py-2.5 */
+  border-radius: 0.5rem;  /* rounded-lg */
+  margin-right: 0.5rem;  /* me-2 */
+  margin-bottom: 0.5rem; /* mb-2 */
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(to bottom right, #ec4899, #fb923c);  /* from-pink-500 to-orange-400 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subscribe-button:hover {
+  background: linear-gradient(to bottom left, #ec4899, #fb923c);  /* hover:bg-gradient-to-bl */
+}
+
+.subscribe-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2);  /* focus:ring-4 focus:ring-pink-200 */
+}

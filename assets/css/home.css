@@ -1,3 +1,8 @@
+/* Basic styles for home page */
+.home-content {
+    padding: 20px;
+  }
+
 /* Global Styles */
 body {
     margin-top: 3rem;

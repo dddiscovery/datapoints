@@ -1,7 +1,21 @@
 ---
-layout: blog
-title: Data Points Home
+layout: default
 ---
 
-<h1>Hello World</h1>
-<p>This is a test.</p>
+<!-- Your existing home page content -->
+<div class="home-content">
+  <!-- Debug section to list all posts -->
+  <div style="background: #f0f0f0; padding: 20px; margin: 20px;">
+    <h2>Debug - All Posts:</h2>
+    <ul>
+    {% for post in site.posts %}
+      <li>
+        Post: {{ post.title }} <br>
+        URL: <a href="{{ post.url | relative_url }}">{{ post.url }}</a> <br>
+        Date: {{ post.date | date: "%Y-%m-%d" }} <br>
+        Layout: {{ post.layout }}
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
