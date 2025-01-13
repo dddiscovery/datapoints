@@ -49,3 +49,6 @@ nav a:hover {
     background-color: #011f5b;
     margin-top: 18px;
 }
+
+/* Your CSS imports here */
+@import "home";

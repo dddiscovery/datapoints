@@ -33,6 +33,7 @@ GEM
       webrick (>= 1.0)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
+    jekyll-postcss (0.5.0)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
     jekyll-seo-tag (2.8.0)
@@ -75,6 +76,7 @@ PLATFORMS
 DEPENDENCIES
   jekyll (~> 3.10.0)
   jekyll-feed
+  jekyll-postcss
   jekyll-seo-tag
   kramdown-parser-gfm
   minima

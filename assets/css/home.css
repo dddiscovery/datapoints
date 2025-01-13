@@ -123,24 +123,25 @@ body {
 .content-container {
     display: flex;
     margin-top: 18px;
+    padding: 0;
 }
 
 .section-title {
     position: relative;
+    width: min(972px, 95vw);
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
     color: #011f5b;
     font-weight: bold;
     font-size: clamp(1.25rem, 2vw, 1.375rem);
     text-align: left;
-    width: min(972px, 95vw);
-    margin: 0 auto;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 .content-text {
-    width: 100%;
-    max-width: 898px;
-    margin: 0 auto;
+    width: 972px;
+    margin-left: auto;
+    margin-right: auto;
     color: #011f5b;
     font-size: clamp(0.875rem, 1.5vw, 0.938rem);
     line-height: 1.5;
@@ -154,37 +155,40 @@ body {
     margin-top: 18px;
 }
 
-.blog-image {
-    flex-shrink: 0;
-}
-
-.blog-image img {
-    width: 180px;
-    height: 126px;
-    object-fit: cover;
-}
-
-.blog-content {
-    margin-left: 12px;
-    margin-top: 0;
-    flex-grow: 1;
-}
-
-.blog-title {
+.blog-content-section {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
     margin: 0;
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
-    font-family: 'Crimson Text', serif;
-    cursor: pointer;
-    line-height: 1.2;
-}
-
-
-.blog-title-link {
-    text-decoration: none;
-    color: #011f5b;
     padding: 0;
 }
 
+.blog-image {
+    flex: 0 0 auto;
+    width: 40%;
+}
+
+.blog-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.blog-content {
+    flex: 1;
+    padding: 8px 0;
+}
+
+.blog-title {
+    margin: 0 0 12px 0;
+}
+
+.blog-title-link {
+    color: #011f5b;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
 
 .blog-title a {
     color: #011f5b;
@@ -197,20 +201,21 @@ body {
 }
 
 .blog-meta {
-    margin: 8px 0;
     color: #666;
-    font-family: 'Roboto', sans-serif;
-    font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+    font-size: 0.875rem;
+    margin-bottom: 8px;
 }
 
 .blog-description {
-    margin: 8px 0;
-    color: #011f5b;
-    font-size: clamp(0.75rem, 1.3vw, 0.875rem);
+    color: #333;
     line-height: 1.5;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    max-width: 100%;
+}
+
+.email-subscribe-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;  /* Ensure full width */
 }
 
 /* Contact Section Styles */
@@ -276,16 +281,19 @@ body {
     display: flex;
     max-width: 972px;
     margin: 0 auto;
-    padding-left: 3.25rem;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin-top: 5px;
 }
 
 .width-70 {
     width: 70%;
+    padding: 0;
 }
 
 .width-30 {
     width: 30%;
-    padding-left: -1rem; 
+    padding: 0;
 }
 
 #subscribe-button {
@@ -295,3 +303,14 @@ body {
     position: relative;
     top: 0;
 }
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 75px;
+    margin-top: 18px;
+}
+
+
