@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/tailwind.compiled.css' | relative_url }}">
+    <!--    <link rel="stylesheet" href="{{ '/assets/css/tailwind.compiled.css' | relative_url }}"> -->
     <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
     <link rel="stylesheet" href="/assets/css/home.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
 </head>
 <body>
-    <div class="header">
+    <div class="logos">
         <a href="https://web.sas.upenn.edu/data-science/">
             <img src="{{ '/assets/images/logo/DDDI Logo/PennSAS-DDD_logo.png' | relative_url }}" alt="DDDI Logo" class="DDDI-logo">
         </a>
@@ -18,16 +18,18 @@
         <img src="{{ '/assets/images/logo/DP_logo_d.png' | relative_url }}" alt="DP Logo" class="datapoints-logo">
     </div>
     
+    <div class="header">
     <nav class="main-nav">
         <a href="#about-section" class="nav-link">About</a>
         <a href="#blog-section" class="nav-link">Blog</a>
         <a href="#guide-section" class="nav-link">How to Contribute</a>
         <a href="#contact-section" class="nav-link">Contact us</a>
     </nav>
-
     <div class="divider-line"></div>
+    </div>
 
-    <div class="slideshow-container">
+
+<!--    <div class="slideshow-container">
         <div class="mySlides fade">
             <img src="{{ '/assets/images/picture/sample1.jpg' | relative_url }}" style="width: 972px; height: 270px; object-fit: cover;">
             <div class="slideshow-text">
@@ -46,6 +48,7 @@
                 <p>Join our community of researchers and share your data-driven insights with the world.</p>
             </div>
         </div>
+-->
         
         <!-- Next and previous buttons -->
         <a class="slide-button"  id="prev-button" onclick="plusSlides(-1)" style="cursor: pointer; position: absolute; top: 50%; left: 10px; transform: translateY(-50%); color: white; font-weight: bold; font-size: 24px; user-select: none;">&#10094;</a>
@@ -141,10 +144,12 @@
         <div id="guide-section" class="section-title">How to Contribute</div>
         <div class="content-text">
             <p>Ready to contribute to Data Points? Here's how to get started:</p>
-            <p>1. Choose a compelling aspect of your research that can be effectively communicated through visuals and concise writing.</p>
-            <p>2. Draft a brief outline focusing on one key insight or methodology that would interest fellow researchers.</p>
-            <p>3. Work with our team to develop engaging visualizations and refine your narrative.</p>
-            <p>4. Submit your draft for collaborative editing and technical review.</p>
+	    <ol class="ps-5 mt-1 mb-2 space-y-1 list-decimal list-inside">
+              <li>Choose a compelling aspect of your research that can be effectively communicated through visuals and concise writing.</li>
+              <li>Draft a brief outline focusing on one key insight or methodology that would interest fellow researchers.</li>
+              <li>Work with our team to develop engaging visualizations and refine your narrative.</li>
+              <li>Submit your draft for collaborative editing and technical review.</li>
+	    </ol>
             <p>Contact us at [email] to discuss your ideas or submit a proposal. We look forward to featuring your work!</p>
         </div>
     </div>
