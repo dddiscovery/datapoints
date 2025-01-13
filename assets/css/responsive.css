@@ -1,0 +1,485 @@
+/* Tablet Devices (768px to 1024px) */
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .nav-links {
+    padding: 0 20px;
+  }
+
+  .content-section {
+    padding: 40px 20px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .content-text {
+    width: min(972px, 95vw);
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+}
+
+/* Mobile Devices (up to 767px) */
+@media screen and (max-width: 767px) {
+  .nav-links {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .header {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .button {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .main-nav {
+    width: 100%;
+    gap: 15px;
+    padding: 0 5px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .slideshow-text {
+    font-size: 11px;
+    line-height: 1.3;
+    padding: 8px;
+  }
+
+  .blog-and-subscribe-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .blog-section,
+  .subscribe-section {
+    width: 100%;
+    margin: 0;
+  }
+
+  #blog-section {
+    display: block !important;
+  }
+
+  .blog-container {
+    display: block !important;
+    width: 100%;
+  }
+
+  .blog-content,
+  .subscribe-content {
+    display: block !important;
+    width: 100% !important;
+    margin: 20px 0 !important;
+  }
+
+  .flex-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+    width: 100% !important;
+  }
+
+  .width-70,
+  .width-30 {
+    width: 100% !important;
+  }
+
+  .blog-sub-line {
+    width: 80% !important;
+    height: 2px !important;
+    transform: rotate(0deg) !important;
+    margin: 10px 0 !important;
+  }
+
+  .blog-content-section {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden !important;
+  }
+
+  .blog-image {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .blog-image img {
+    width: 100% !important;
+    height: auto !important;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+    display: block !important;
+  }
+
+  .blog-content {
+    width: 100% !important;
+    padding: 16px !important;
+    margin: 0 !important;
+  }
+
+  .blog-title {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    color: #1f2937 !important;
+  }
+
+  .blog-meta {
+    font-size: 0.875rem !important;
+    color: #6b7280 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .blog-description {
+    font-size: 0.875rem !important;
+    color: #4b5563 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .blog-title-link {
+    color: #1f2937 !important;
+    text-decoration: none !important;
+  }
+
+  .blog-title-link:hover {
+    color: #111827 !important;
+  }
+
+  /* Reset the original flex container */
+  .flex-container {
+    display: none !important;  /* Hide the original container */
+  }
+
+  /* Create mobile-specific layout */
+  .content-section-white.blog-and-subscribe-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+  }
+
+  /* Style the blog card */
+  .blog-content-section {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 80vw !important;
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* Horizontal line */
+  .blog-sub-line {
+    width: 80% !important;
+    height: 2px !important;
+    transform: rotate(0deg) !important;
+    margin: 0 !important;
+  }
+
+  /* Subscribe section */
+  .subscribe-section {
+    width: 80vw !important;
+    margin: 0 !important;
+  }
+
+  /* Content container adjustments */
+  .content-container {
+    width: 80vw !important;
+  }
+
+  /* Debug styles to see containers */
+  .content-section-white {
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .blog-and-subscribe-container {
+    display: block !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .flex-container {
+    display: block !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .content-container {
+    display: block !important;
+    width: 80vw !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+  }
+
+  .blog-content-section {
+    display: block !important;
+    width: 100% !important;
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden !important;
+    margin: 20px 0 !important;
+  }
+
+  .blog-image {
+    width: 100% !important;
+  }
+
+  .blog-image img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  .blog-content {
+    padding: 16px !important;
+  }
+
+  .blog-sub-line {
+    width: 80% !important;
+    height: 2px !important;
+    margin: 20px auto !important;
+    transform: none !important;
+  }
+
+  .subscribe-section {
+    width: 80vw !important;
+    margin: 20px auto !important;
+    display: block !important;
+  }
+
+  /* Reset any potential interfering styles */
+  .width-70,
+  .width-30 {
+    width: auto !important;
+  }
+
+  .section-title-container {
+    width: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .section-underline {
+    width: 100% !important;
+    margin-top: 3px !important;
+  }
+
+  /* Make the line width match the text width */
+  .section-title {
+    width: min(972px, 90vw) !important;
+    margin: 0 auto !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+  }
+
+  .section-title-container {
+    display: inline-flex !important;
+  }
+
+  /* Add styles for content sections */
+  .content-section,
+  .content-section-white,
+  .container,
+  body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  /* Ensure all text containers are properly constrained */
+  .content-section p,
+  .content-section-white p,
+  .section-title,
+  .content-container {
+    max-width: min(972px, 90vw) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+    padding: 0 15px !important;
+  }
+
+  /* Content text responsive adjustments */
+  .content-text {
+    width: min(972px, 90vw) !important;
+    margin: 0 auto !important;
+    padding: 0 15px !important;
+    box-sizing: border-box !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+  }
+
+  /* Container adjustments */
+  .content-section,
+  .content-section-white {
+    width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Ensure paragraphs inside content-text wrap properly */
+  .content-text p {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Adjust blog and subscribe container alignment */
+  .blog-content-section {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+    left: 0 !important;
+  }
+
+  .subscribe-section {
+    width: 100% !important;
+    margin: 20px 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure consistent container widths */
+  .blog-and-subscribe-container {
+    width: 100% !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Update content container to match title alignment */
+  .content-container {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 20px !important;  /* Match the padding of your title container */
+  }
+
+  /* Adjust subscribe content alignment */
+  .subscribe-content {
+    width: 80vw !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Ensure the content inside subscribe section aligns with blog card */
+  .subscribe-section .section-title,
+  .subscribe-section .email-subscription-container {
+    padding-left: 16px !important;  /* Match blog card's padding */
+    padding-right: 16px !important;
+  }
+}
+
+/* Small Mobile Devices (up to 480px) */
+@media screen and (max-width: 480px) {
+  .container {
+    width: 95%;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .main-nav {
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 10px;
+  }
+
+  .slideshow-text {
+    font-size: 9px;
+    line-height: 1.2;
+    padding: 6px;
+  }
+}
+
+/* For devices with high pixel density screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  img {
+    /* Ensure high-res images look crisp */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    .email-icon {
+        color: #9ca3af;
+    }
+
+    .email-input {
+        background-color: #374151;
+        border-color: #4b5563;
+        color: white;
+    }
+
+    .subscribe-button {
+        background-color: #2563eb;
+    }
+
+    .subscribe-button:hover {
+        background-color: #1d4ed8;
+    }
+}
