@@ -29,7 +29,7 @@
 .title-underline {
   width: 100%;
   max-width: 600px;
-  height: 2px;
+  height: 0.1875rem;
   background-color: #990000;
   margin: 5px auto;
 }
@@ -68,7 +68,8 @@
 
 .date-divider {
   width: calc(100% - 90%);
-  height: 2px;
+  margin: 0.875rem auto;  /* centers the line and adds vertical spacing */
+  height:  0.125rem;
   background-color: rgba(1, 31, 91, 0.7);
 }
 
@@ -83,7 +84,7 @@
 .main {
   display: flex;
   max-width: 1400px;
-  margin: 2rem auto 0;
+  margin: 3rem auto 0;
   padding: 0 1rem;
   gap: 2rem;
 }
