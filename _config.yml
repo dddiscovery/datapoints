@@ -17,8 +17,8 @@ title: Data Points
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   DDDI's Technical Blog Series
-baseurl: "/DDDI_DP_Blog"  # if this is your repository name
-url: ""
+baseurl: ""  # empty for local development
+url: ""      # empty for local development
 permalink: /:year/:month/:day/:title/
 twitter_username: jekyllrb
 github_username:  jekyll
@@ -46,4 +46,14 @@ postcss:
 #   - vendor/ruby/
 
 # Add these to prevent missing file errors
-exclude: ['favicon.ico']
+exclude: [
+  "README.md",
+  "Gemfile",
+  "Gemfile.lock"
+]
+
+# Add to your existing config
+include: 
+  - "favicon.ico"
+  - ".htaccess"
+  - "_pages"
