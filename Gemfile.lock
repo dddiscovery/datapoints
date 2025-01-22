@@ -10,8 +10,7 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
-    ffi (1.17.0)
-    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x64-mingw-ucrt)
     forwardable-extended (2.6.0)
     http_parser.rb (0.8.0)
     i18n (1.14.6)
@@ -33,7 +32,7 @@ GEM
       webrick (>= 1.0)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
-    jekyll-postcss (0.5.0)
+    jekyll-postcss-v2 (1.0.2)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
     jekyll-seo-tag (2.8.0)
@@ -67,16 +66,19 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2025.1)
+      tzinfo (>= 1.0.0)
     webrick (1.9.1)
 
 PLATFORMS
-  arm64-darwin-24
-  ruby
+  x64-mingw-ucrt
 
 DEPENDENCIES
   jekyll (~> 3.10.0)
   jekyll-feed
-  jekyll-postcss
+  jekyll-postcss-v2
   jekyll-seo-tag
   kramdown-parser-gfm
   minima
