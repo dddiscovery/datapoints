@@ -590,11 +590,21 @@
     font-size: 0.9rem;
   }
 
+  /* Style both vertical dividers */
   .vertical-divider {
-    width: 85%;
-    height: 1px;
-    margin: 15px auto;
-    background-color: #e5e7eb;
+    display: block;  /* Ensure divider is visible */
+    transform: rotate(90deg);
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+    /* Specific order for dividers */
+  .vertical-divider:nth-of-type(1) {
+    order: 1.5;  /* Position between author-info and blog-content */
+  }
+  
+  .vertical-divider:nth-of-type(2) {
+    order: 2.5;  /* Position between blog-content and about-post */
   }
 
   .author-container {
@@ -633,6 +643,23 @@
   .link-button {
     padding: 6px 12px;
     font-size: 0.85rem;
+  }
+
+  /* Style both vertical dividers */
+  .vertical-divider {
+    display: block;  /* Ensure divider is visible */
+    transform: rotate(90deg);
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+    /* Specific order for dividers */
+  .vertical-divider:nth-of-type(1) {
+    order: 1.5;  /* Position between author-info and blog-content */
+  }
+  
+  .vertical-divider:nth-of-type(2) {
+    order: 2.5;  /* Position between blog-content and about-post */
   }
 }
 
