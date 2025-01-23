@@ -1,0 +1,108 @@
+---
+layout: blog
+title: "Where is the Information in Data?"
+subtitle: "...and what does it look like?"
+authors: ["[Kieran Murphy](https://www.kieranamurphy.com/)"]
+author_pic: ["/assets/images/authors/K.A.Murphy.jpeg"]
+author_title: ["Information theory/Machine learning/Physics postdoc"]
+date: 2025-01-13
+permalink: /Where-is-the-Information-in-Data/
+---
+
+#### Where is the information in the bikeshare dataset?
+
+We've focused on small-scale examples so that we could visualize as much as possible.
+Let's move on to a real world dataset, a classic for evaluating interpretable machine learning methods.
+
+*Bikeshare*<a class='citestart' key='bikeshare'></a> is a dataset containing hourly bike rentals in Washington, D.C. in 2011 and 2012, combined with a handful of weather descriptors at each point in time.
+The goal is to predict the number of bikes rented given time and weather information, and to shed light on the learned relationship.
+
+Our source variables $X\_i$ are the time and weather descriptors.
+Some, like temperature and humidity, are continuous variables.
+Others are categorical, including the season and the hour of the day.
+We want to identify&mdash;out of all of the variation in these descriptors&mdash;the specific bits that are most connected with bike rentals.
+Where do you think the information resides?
+
+We ran the optimization offline, but you can also run it yourself with the code on <a href="https://github.com/distributed-information-bottleneck/distributed-information-bottleneck.github.io">github</a>. 
+
+<div class='sticky-container'>
+<div class='tabular-decomp row sticky'></div>
+
+The optimal information allocations are shown above, and there's a lot to note.
+
+The <digits>hour</digits> feature is by far the most important, which is fairly intuitive. 
+The dataset includes rentals in the middle of the night, which must be very different than in the middle of the day. 
+<digits>temperature</digits> is important and contributes a growing share as the total information increases.
+By contrast, <digits>year</digits> and <digits>working day?</digits> contribute their partial bit early and then saturate. 
+<digits>wind</digits> and <digits>apparent temperature</digits> contribute almost nothing, with the latter presumably because we've already gotten information from the <digits>temperature</digits> feature.
+
+For reference, interpretable methods that are based on linear combinations of the features (e.g., Neural Additive Models<a class='citestart' key='nam'></a>) achieve RMSEs around 100.
+For a fully nonlinear processing of the features, we need only 7 bits of information to do better.
+**We don't mind that the predictive model is a black box: our source of interpretability is the localization of information in the features.**
+
+**What are the specific bits of variation in the different features?**
+Below are distinguishability matrices for the twelve features as a function of the total information extracted.
+The matrices visualize the distinctions between feature values that are passed along to the predictive model&mdash;as in the earlier example&mdash;and are agnostic to the dimensionality of the embedding space (16 for each feature, in this case).
+The matrix entries are white if the feature values are indistinguishable (same as when the posterior distributions coincided in the above example) and blue depending on the degree of distinguishability.<a class='footstart' key='bhat'></a>
+
+</div>
+
+<div class="container">
+  <div class='compression-level-slider'></div>
+</div>
+<div class='distinguishability-mats row' width="50"></div>
+
+The auxiliary variables select the distinctions among feature values that are worth communicating to the predictive model.
+The single most relevant bit in all the features resides in the <digits>hour</digits> feature and roughly groups the hours of the day into nighttime, commuting hours, and everything else.
+
+The most relevant four bits include further refined <digits>hour</digits> information to distinguish between the morning and evening commutes, the year, whether it's a workday, and a rough categorization of <digits>temperature</digits> as hotter or colder than around 15C.
+
+Given the full spectrum of relevant bits, we can gradually widen our focus, starting with the simplest relationship and working toward using all of the variation in the source variables.
+
+<a class='footend' key='bhat'></a> 
+Specifically, we use the [Bhattacharyya coefficient](https://en.wikipedia.org/wiki/Bhattacharyya_distance) between the embedding distributions, which is 1 when they perfectly overlap (white) and 0 when they have no overlap (dark blue).
+Like the relevant KL divergence terms, the Bhattacharyya coefficient is straightforward to compute when everything is a Gaussian.
+
+### References
+
+<a class='citeend' key='bikeshare'></a> [UCI machine learning repository](https://archive.ics.uci.edu/)
+Dua, D., & Graff, C. (2017).
+
+<a class='citeend' key='nam'></a> [Neural additive models: Interpretable machine learning with neural nets](https://arxiv.org/abs/2004.13912)
+Agarwal, R., Melnick, L., Frosst, N., Zhang, X., Lengerich, B., Caruana, R., & Hinton, G. (NeurIPS 2021).
+
+<link rel='stylesheet' href='/assets/km/footnote_v2.css'>
+<link rel='stylesheet' href='/assets/km/citation_v2.css'>
+<link rel='stylesheet' href='/assets/km/style.css'>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  }
+};
+</script>
+<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+<script defer src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/mathtex-script-type.min.js' integrity='sha384-jiBVvJ8NGGj5n7kJaiWwWp9AjC+Yh8rhZY3GtAX8yU28azcLgoRo4oukO87g7zDT' crossorigin='anonymous'></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party_km/d3_.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party_km/d3-scale-chromatic.v1.min.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party_km/npyjs-global.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party_km/swoopy-drag.js'></script>
+
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/footnote_v2.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/citation_v2.js'></script>
+
+
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/util.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/init-input-sliders.js'></script>
+
+<link rel='stylesheet' href='/assets/post_assets/2025-01-13-Kieran-Murphy/km/tabular/style.css'>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/tabular/init.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/tabular/init-distinguishability.js'></script>
+
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/init-info-plane.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/init-animate-steps.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/init-embed-vis.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/km/init-swoopy.js'></script>
