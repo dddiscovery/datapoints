@@ -220,6 +220,7 @@ body {
 
 .blog-title {
     margin: 0 0 12px 0;
+    font-family: Optima, sans-serif;
 }
 
 .blog-title-link {
@@ -243,11 +244,24 @@ body {
     color: #666;
     font-size: 0.875rem;
     margin-bottom: 8px;
+    font-family: sans-serif;
 }
+
+.blog-meta a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-meta a:hover {
+    color: #fc4375;
+}
+
 
 .blog-description {
     color: #333;
     line-height: 1.5;
+    font-family: Optima, sans-serif;
 }
 
 .email-subscribe-container {
@@ -396,4 +410,3 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
     width: 972px;
     height: 270px;
 }
-

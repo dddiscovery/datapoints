@@ -47,13 +47,13 @@
           <img src="{{ page.author_pic[0] | relative_url }}" alt="Author Picture">
         {% endif %}
       </div>
-      <h2 class="author-name">{{ page.authors[0] | split: '[' | last | split: ']' | first }}</h2>
+      <h2 class="author-name"><a href="{{ page.authors[0] | split: '(' | last | split: ')' | first }}">{{ page.authors[0] | split: '[' | last | split: ']' | first }}</a></h2>
       <p class="author-title">{{ page.author_title[0] }}</p>
     </div>
 
     <div class="author-container">
       <div class="author-pic">
-        {% if page.author_pic %}
+        {% if page.author_pic[1] %}
           <img src="{{ page.author_pic[1] | relative_url }}" alt="Author Picture">
         {% endif %}
       </div>
