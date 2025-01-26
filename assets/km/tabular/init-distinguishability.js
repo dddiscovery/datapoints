@@ -42,7 +42,7 @@ window.initDistinguishability = async function({sel, state}) {
     state.distSVGs[featureInd].append('g')
       .translate([matWidth/2, matWidth+16])
       .append('text.axis-label')
-      .text(state.featureLabels[featureInd])
+      .text(state.featureLabels[state.feature_inds_used[featureInd]])
       .at({textAnchor: 'middle', fill: '#000'})
     
     state.distSVGs[featureInd].selectAll()
@@ -54,7 +54,6 @@ window.initDistinguishability = async function({sel, state}) {
       .attr("width", distX.bandwidth() )
       .attr("height", distY.bandwidth() )
       .style("fill", function(d) { return util.distinguishabilityColorMap(d[2])} )
-
 
     if (state.featureValueLabels[featureInd].length > 0) {
         yAxisGen = d3.axisLeft(distY).tickPadding(-2)

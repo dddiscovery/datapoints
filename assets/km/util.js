@@ -27,7 +27,7 @@ window.util = (function(){
     }
 
     // var res = await fetch('data/'+path)
-    var res = await fetch('/assets/km/data/'+path)
+    var res = await fetch('/assets/km/data/dddi\ post/'+path)
 
     if (type == 'csv'){
       var parsed = d3.csvParse(await res.text())
@@ -132,31 +132,6 @@ window.util = (function(){
     return rv
   }
 
-  function titleFmt(str){
-    return str
-      .replace('hidden_embed_w', 'W_input')
-      .replace('out_embed_t_w', 'W_output')
-      .replace('hidden_w', 'W_input')
-      .replace('out_w', 'W_output')
-      .replace('hidden_dft', 'dft_W_input')
-      .replace('out_dft', 'dft_W_output')
-      .replace('dft_out_embed_w', 'dft_W_output')
-      .replace('hidden_size', 'num_neurons')
-      .replace('train_size', 'num_train')
-      // .replace('w_inproj', 'w_in-projᵀ')
-      .replace('w_inproj', 'W_in-proj')
-      .replace('w_outproj', 'W_out-proj')
-  }
-
-  function keyFmt(str){
-    return str
-      .replace('hidden_size', 'Num Neurons')
-      .replace('train_size', 'Train Examples')
-      .replace('weight_decay', 'Weight Decay')
-      .replace('embed_size', 'Neurons')
-      .replace('learning_rate', 'Learning Rate')
-  }
-
   function addAria(array){
     array.forEach(d => {
       d3.select(d.selector).at({role: 'graphics-document', 'aria-label': d.label})
@@ -178,11 +153,7 @@ window.util = (function(){
     return minIndex;
 }
 
-  return {indexOfMinDistance, getFile, color, colors, distinguishabilityColorMap, addAxisLabel, ggPlot, ggPlotUpdate, sleep, npy2tfSlice, transpose, initRenderAll, titleFmt, keyFmt, addAria}
+  return {indexOfMinDistance, getFile, color, colors, distinguishabilityColorMap, addAxisLabel, ggPlot, ggPlotUpdate, sleep, npy2tfSlice, transpose, initRenderAll, addAria}
 
 })()
-
-// window.initStorms?.()
-// window.initTabular?.()
-
 

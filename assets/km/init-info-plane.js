@@ -19,7 +19,7 @@ window.initInfoPlane = async function({sel, state, isBig=true, lossLabel, width=
         .attr("transform", `translate(${actualWidth},0)`) 
         .call(c.y2Axis) 
         
-  c.x.domain([0, 16])
+  c.x.domain([0, state.info_max_display])
   c.y.domain([0, 200])  // change this for diff datasets; could create a plotting params json for each dataset
 
   c.yAxis.ticks(isBig ? 5 : 3)
@@ -53,7 +53,6 @@ window.initInfoPlane = async function({sel, state, isBig=true, lossLabel, width=
   distortionPathSel.at({d: line.y(d => c.y(d[d.length-1]))(state.info_decomp)})
 
   const inputFeatures = d3.range(state.info_decomp[0].length-2)
-
   // var textSel = c.svg.append('g.axis').append('text')
   //     .st({fill: 'k', fontWeight: 800, fontSize: 15})
   //     .at({x: c.width - 150, y: 30, dy: '.33em'})
@@ -129,37 +128,10 @@ window.initInfoPlane = async function({sel, state, isBig=true, lossLabel, width=
   function placeText(featureIndex) {
     var sel = d3.select(this)
     sel.at({x: c.width + 75, y: c.height/2 - 100 + featureIndex*20}) //, dy: '.33em'})
-    sel.text(state.featureLabels[featureIndex])
+    sel.text(state.featureLabels[state.feature_inds_used[featureIndex]])
   }
 
 }
-  
-// The label below the dotted line that follows the cursor... don't think we need this
-// var hoverTick = c.svg.select('.x .tick')
-//   .select(function(){ return this.parentNode.insertBefore(this.cloneNode(true), this.nextSibling) })
-//   .st({opacity: 1}).classed('step-path', 1)
-//   .raise()
-
-// hoverTick.select('text').st({fill: '#000', fontWeight: 500})
-// hoverTick.select('path').at({d: 'M 0 0 V ' + -c.height, stroke: '#000', strokeDasharray: '3 2'})
-
-// state.renderAll.step.fns.push(d => {
-//   var step = state.stepIndex*state.hyper.save_every
-
-//   hoverTick.translate(c.x(step), 0)
-//   hoverTick.select('text').text(d3.format(',')(step))
-// })
-
-// c.svg.append('rect')
-//   .at({width: c.width, height: c.height + 30, fillOpacity: 0})
-//   .on('mousemove touchmove', function(){
-//     d3.event.preventDefault()
-
-//     // last training run missing on some models
-//     var mouseX = d3.clamp(0, d3.mouse(this)[0], c.width - .1)
-//     state.stepIndex = Math.floor(c.x.clamp(1).invert(mouseX)) // state.hyper.save_every)
-//     state.renderAll.step()
-//   })
 
 window.initTabular?.()
 

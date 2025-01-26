@@ -9,41 +9,37 @@ date: 2025-01-13
 permalink: /2025/01/13/blogpage/
 ---
 
-#### Where is the information in the bikeshare dataset?
+Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within.  What sorts of things could you learn?  What would the illuminated information even look like?
 
-We've focused on small-scale examples so that we could visualize as much as possible.
-Let's move on to a real world dataset, a classic for evaluating interpretable machine learning methods.
+My research is about building such a device with machine learning, and then finding ways to make what it finds interpretable. 
+In this post, we'll dig into a small example where you try to predict the number of bike rentals in a given hour based on a couple time descriptors, derived from the classic *Bikeshare* dataset<a class='citestart' key='bikeshare'></a>.  Rather than using the full set of 12 descriptors, we'll pick four to make things simpler.  The four are:
 
-*Bikeshare*<a class='citestart' key='bikeshare'></a> is a dataset containing hourly bike rentals in Washington, D.C. in 2011 and 2012, combined with a handful of weather descriptors at each point in time.
-The goal is to predict the number of bikes rented given time and weather information, and to shed light on the learned relationship.
+- the season (winter, spring, summer, or fall)
+- the year the data was collected (2011 or 2012)
+- the hour of the day
+- the day of the week
 
-Our source variables `$X_i$` are the time and weather descriptors.
-Some, like temperature and humidity, are continuous variables.
-Others are categorical, including the season and the hour of the day.
-We want to identify&mdash;out of all of the variation in these descriptors&mdash;the specific bits that are most connected with bike rentals.
-Where do you think the information resides?
+The dataset is a bunch of records of these four descriptors along with the number of bikes rented.
+Inside the dataset is information about the relationship between the descriptors' values and bike rentals, and this information is what we are after.
+By *information* we mean a quantity from the formalism of information theory, but you can think of it as a clue that allows for better predictions.
 
-We ran the optimization offline, but you can also run it yourself with the code on <a href="https://github.com/distributed-information-bottleneck/distributed-information-bottleneck.github.io">github</a>. 
+Let's point our special device at the dataset, and illuminate the information!  You can hover over each descriptor to highlight the colored curve that it corresponds to.
 
 <div class='sticky-container'>
 <div class='tabular-decomp row sticky'></div>
 
-The optimal information allocations are shown above, and there's a lot to note.
+<br/>
 
-The <digits>hour</digits> feature is by far the most important, which is fairly intuitive. 
-The dataset includes rentals in the middle of the night, which must be very different than in the middle of the day. 
-<digits>temperature</digits> is important and contributes a growing share as the total information increases.
-By contrast, <digits>year</digits> and <digits>working day?</digits> contribute their partial bit early and then saturate. 
-<digits>wind</digits> and <digits>apparent temperature</digits> contribute almost nothing, with the latter presumably because we've already gotten information from the <digits>temperature</digits> feature.
+At first glance, this might not look like what you’d imagine 'information' to be. Where are the sharp distinctions or clear insights? Don’t worry, what you’re seeing is just the beginning. Let’s break it down.
 
-For reference, interpretable methods that are based on linear combinations of the features (e.g., Neural Additive Models<a class='citestart' key='nam'></a>) achieve RMSEs around 100.
-For a fully nonlinear processing of the features, we need only 7 bits of information to do better.
-**We don't mind that the predictive model is a black box: our source of interpretability is the localization of information in the features.**
+The plot above is about a spectrum of predictive models, and each model uses a different amount of information about the input descriptors to do the best possible job predicting the number of bikes rented in a given hour.  On the left hand side of the plot is a model that uses no information, and its error (in black) is the worst of the models in the spectrum.  On the right hand side is a model that uses around 10 bits of information, and its error is the best we can attain with these four descriptors.  Along the way, machine learning extracts information in order of importance to the relationship between the descriptors and the number of bike rentals.  In other words, asking "where is the information in the dataset?" is best answered with a prioritization of details: "Something is the most important information, then another thing, and then something else." <br/><br/>
+ 
+So, what is the most important information?  The colored curves show the amount of information extracted from each input descriptor.  The green curve displays the amount of information (with the scale shown on the right vertical axis) pulled from the hour of the day, and we can tell it has the most information about bike rentals.  Then the other three descriptors contribute later and to a lesser degree, with season being the next most important after hour.  That's pretty interesting already, but is there more to the story?<br/><br/>
 
-**What are the specific bits of variation in the different features?**
-Below are distinguishability matrices for the twelve features as a function of the total information extracted.
-The matrices visualize the distinctions between feature values that are passed along to the predictive model&mdash;as in the earlier example&mdash;and are agnostic to the dimensionality of the embedding space (16 for each feature, in this case).
-The matrix entries are white if the feature values are indistinguishable (same as when the posterior distributions coincided in the above example) and blue depending on the degree of distinguishability.<a class='footstart' key='bhat'></a>
+To dig deeper will require recognizing that information allows you to make distinctions between things.  An example of a partial piece of information about the hour of the day would tell you whether it's morning or afternoon; from this, a model trying to predict bike rentals would be able to distinguish 8am from 8pm, but could not distinguish 7pm from 8pm.  
+Without being able to make that distinction, the model would have to output the same prediction for all hours of the afternoon.  With more information, the predictions can become more fine-grained.<br/><br/>
+
+Below we show the information extracted from the four descriptors in terms of distinctions between their values, as a function of the total information extracted.  The distinctions are between pairs of inputs, so there is a square for the ability to distinguish winter from spring, another to distinguish winter from summer, and so on.  Entries are white if the feature values are indistinguishable, meaning no information was passed along to distinguish the values, and shades of blue depending on the degree of distinguishability.<a class='footstart' key='bhat'></a><br/><br/>
 
 </div>
 
@@ -52,16 +48,28 @@ The matrix entries are white if the feature values are indistinguishable (same a
 </div>
 <div class='distinguishability-mats row' width="50"></div>
 
-The auxiliary variables select the distinctions among feature values that are worth communicating to the predictive model.
-The single most relevant bit in all the features resides in the <digits>hour</digits> feature and roughly groups the hours of the day into nighttime, commuting hours, and everything else.
+The most relevant information in all the descriptors is about the hour of the day, and roughly groups the hours of the day into nighttime, commuting hours, and everything else.
 
-The most relevant four bits include further refined <digits>hour</digits> information to distinguish between the morning and evening commutes, the year, whether it's a workday, and a rough categorization of <digits>temperature</digits> as hotter or colder than around 15C.
+The next most relevant information (found by sliding the bar to the right) distinguishes winter from the warmer months, distinguishes the two years of data from each other, and distinguishes the weekend from the weekdays.  These specific distinctions are the information lying inside the data about the relationship between time and bike rentals. 
 
-Given the full spectrum of relevant bits, we can gradually widen our focus, starting with the simplest relationship and working toward using all of the variation in the source variables.
+Eventually, more nuanced details from the descriptors is selected, and then it becomes easier to interpret what is left *indistinguishable*: spring from fall, the hours from 2am-6am, and the days Tuesday-Thursday.
+
+### Parting thoughts
+
+Data is essentially just a bunch of variation, and one of the central challenges in data science is finding the right variation to focus on.  In this example, the right variation was that which was most informative about bike rentals.
+Machine learning identified the information for us, guiding our focus and allowing for our own mental modeling to kick in.
+
+We focused on a small example with only four descriptors and a single output value to predict, but localizing information can scale gracefully to much larger problems, and less straightforward prediction setups.
+If you're interested in learning more, check out the longer post that this one came from: [Where is the information in data?](https://murphyka.github.io/information_explorable/), and/or our publications on the topic:
+
+
+<a class="paper-title-link" href="https://arxiv.org/abs/2211.17264">Interpretability with full complexity by constraining feature information (ICLR 2023)</a> 
+
+<a class="paper-title-link" href="https://www.pnas.org/doi/abs/10.1073/pnas.2312988121">Information decomposition in complex systems via machine learning (PNAS 2024)</a> 
+
 
 <a class='footend' key='bhat'></a> 
-Specifically, we use the [Bhattacharyya coefficient](https://en.wikipedia.org/wiki/Bhattacharyya_distance) between the embedding distributions, which is 1 when they perfectly overlap (white) and 0 when they have no overlap (dark blue).
-Like the relevant KL divergence terms, the Bhattacharyya coefficient is straightforward to compute when everything is a Gaussian.
+Specifically, we use the [Bhattacharyya coefficient](https://en.wikipedia.org/wiki/Bhattacharyya_distance) between the probability distributions of these values in representation space, and it is 1 when the representations perfectly overlap (white) and 0 when they have no overlap (dark blue).
 
 ### References
 
@@ -95,6 +103,3 @@ Agarwal, R., Melnick, L., Frosst, N., Zhang, X., Lengerich, B., Caruana, R., & H
 <script src='/assets/km/tabular/init-distinguishability.js'></script>
 
 <script src='/assets/km/init-info-plane.js'></script>
-<script src='/assets/km/init-animate-steps.js'></script>
-<script src='/assets/km/init-embed-vis.js'></script>
-<script src='/assets/km/init-swoopy.js'></script> 
