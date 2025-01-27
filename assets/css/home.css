@@ -38,19 +38,19 @@ body {
 
 .divider {
     width: 0.1rem;
-    height: 4rem;
+    height: 3rem;
     background-color: #011f5b;
     margin: 0 1.25rem;
 }
 
 .datapoints-logo {
     height: auto;
-    width: min(240px, 30vw);
+    width: min(200px, 30vw);
 }
 
 .DDDI-logo {
     height: auto;
-    width: min(300px, 35vw);
+    width: min(210px, 35vw);
     max-height: 55px;
 }
 
