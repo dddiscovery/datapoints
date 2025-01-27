@@ -6,7 +6,8 @@ authors: ["[Kieran Murphy](https://www.kieranamurphy.com/)"]
 author_pic: ["/assets/images/authors/K.A.Murphy.jpeg"]
 author_title: ["Information theory/Machine learning/Physics postdoc"]
 date: 2025-01-13
-permalink: /2025/01/13/blogpage/
+permalink: /Where-is-the-Information-in-Data/
+
 ---
 
 Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within.  What sorts of things could you learn?  What would the illuminated information even look like?
