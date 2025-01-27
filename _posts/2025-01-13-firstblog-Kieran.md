@@ -30,7 +30,7 @@ Let's point our special device at the dataset, and illuminate the information!  
 
 <br/>
 
-At first glance, this might not look like what you’d imagine 'information' to be. Where are the sharp distinctions or clear insights? Don’t worry, what you’re seeing is just the beginning. Let’s break it down.
+At first glance, this might not look like what you’d imagine 'information' to be. Where are the sharp distinctions or clear insights? Don’t worry, what you’re seeing is just the beginning. Let’s break it down. <br/><br/>
 
 The plot above is about a spectrum of predictive models, and each model uses a different amount of information about the input descriptors to do the best possible job predicting the number of bikes rented in a given hour.  On the left hand side of the plot is a model that uses no information, and its error (in black) is the worst of the models in the spectrum.  On the right hand side is a model that uses around 10 bits of information, and its error is the best we can attain with these four descriptors.  Along the way, machine learning extracts information in order of importance to the relationship between the descriptors and the number of bike rentals.  In other words, asking "where is the information in the dataset?" is best answered with a prioritization of details: "Something is the most important information, then another thing, and then something else." <br/><br/>
  
@@ -60,7 +60,7 @@ Data is essentially just a bunch of variation, and one of the central challenges
 Machine learning identified the information for us, guiding our focus and allowing for our own mental modeling to kick in.
 
 We focused on a small example with only four descriptors and a single output value to predict, but localizing information can scale gracefully to much larger problems, and less straightforward prediction setups.
-If you're interested in learning more, check out the longer post that this one came from: [Where is the information in data?](https://murphyka.github.io/information_explorable/), and/or our publications on the topic:
+If you're interested in learning more, check out the longer post that this one came from: [Where is the information in data?](https://murphyka.github.io/information_explorable/), and our publications on the topic:
 
 
 <a class="paper-title-link" href="https://arxiv.org/abs/2211.17264">Interpretability with full complexity by constraining feature information (ICLR 2023)</a> 
@@ -79,27 +79,26 @@ Dua, D., & Graff, C. (2017).
 <a class='citeend' key='nam'></a> [Neural additive models: Interpretable machine learning with neural nets](https://arxiv.org/abs/2004.13912)
 Agarwal, R., Melnick, L., Frosst, N., Zhang, X., Lengerich, B., Caruana, R., & Hinton, G. (NeurIPS 2021).
 
-<link rel='stylesheet' href='/assets/km/footnote_v2.css'>
-<link rel='stylesheet' href='/assets/km/citation_v2.css'>
-<link rel='stylesheet' href='/assets/km/style.css'>
+<link rel='stylesheet' href='/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.css'>
+<link rel='stylesheet' href='/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.css'>
+<link rel='stylesheet' href='/assets/post_assets/2025-01-13-Kieran-Murphy/style.css'>
 
 <script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
 <script defer src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/mathtex-script-type.min.js' integrity='sha384-jiBVvJ8NGGj5n7kJaiWwWp9AjC+Yh8rhZY3GtAX8yU28azcLgoRo4oukO87g7zDT' crossorigin='anonymous'></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-<script src='/assets/third_party_km/d3_.js'></script>
-<script src='/assets/third_party_km/d3-scale-chromatic.v1.min.js'></script>
-<script src='/assets/third_party_km/npyjs-global.js'></script>
-<script src='/assets/third_party_km/swoopy-drag.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3_.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3-scale-chromatic.v1.min.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/npyjs-global.js'></script>
 
-<script src='/assets/km/footnote_v2.js'></script>
-<script src='/assets/km/citation_v2.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.js'></script>
 
 
-<script src='/assets/km/util.js'></script>
-<script src='/assets/km/init-input-sliders.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/util.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/init-input-sliders.js'></script>
 
-<link rel='stylesheet' href='/assets/km/tabular/style.css'>
-<script src='/assets/km/tabular/init.js'></script>
-<script src='/assets/km/tabular/init-distinguishability.js'></script>
+<link rel='stylesheet' href='/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/style.css'>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init-distinguishability.js'></script>
 
-<script src='/assets/km/init-info-plane.js'></script>
+<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/init-info-plane.js'></script>
