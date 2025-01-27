@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}DDDI DataPoints</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+    
+    <!-- Meta tags -->
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}DDDI DataPoints Blog{% endif %}">
+    <meta name="author" content="{% if page.author %}{{ page.author }}{% else %}DDDI{% endif %}">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="{{ '/' | relative_url }}" class="site-title">DDDI DataPoints</a>
+            <div class="nav-links">
+                <a href="{{ '/' | relative_url }}">Home</a>
+                <a href="{{ '/about' | relative_url }}">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {{ content }}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; {{ site.time | date: '%Y' }} DDDI DataPoints. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
