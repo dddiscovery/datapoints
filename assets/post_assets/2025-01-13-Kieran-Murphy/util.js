@@ -26,8 +26,7 @@ window.util = (function(){
       return data[slug]
     }
 
-    // var res = await fetch('data/'+path)
-    var res = await fetch('/assets/km/data/dddi\ post/'+path)
+    var res = await fetch('/assets/post_assets/2025-01-13-Kieran-Murphy/data/'+path)
 
     if (type == 'csv'){
       var parsed = d3.csvParse(await res.text())
