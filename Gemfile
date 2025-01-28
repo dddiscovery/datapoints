@@ -14,4 +14,4 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "webrick"
 
 # Add this line to your Gemfile
-gem 'jekyll-postcss'
+gem 'jekyll-postcss-v2'

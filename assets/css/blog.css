@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
 
 .header {
@@ -19,11 +23,11 @@
 }
 
 .blog-title {
-  color: #011f5b;
-  font-family: 'Source Serif Pro', serif;
+  font-family: Optima, sans-serif;
+  font-weight: 600;
   font-size: 2em;
-  font-weight: bold;
   margin-bottom: 10px;
+  color: #011f5b;
 }
 
 .title-underline {
@@ -36,7 +40,7 @@
 
 .blog-description {
   color: #011f5b;
-  font-family: 'Source Serif Pro', serif;
+  font-family: Optima, sans-serif;
   font-size: 1.25em;
   max-width: 800px;
   margin: 20px auto;
@@ -44,9 +48,9 @@
 }
 
 .author-section {
-  font-family: 'Source Serif Pro', serif;
+  font-family: Optima, sans-serif;
   color: #666666;
-  font-size: 0.875em;
+  font-size: 0.925em;
 }
 
 .author-section a {
@@ -128,16 +132,25 @@
 }
 
 .author-name {
-  font-family: 'Source Serif Pro', serif;
+  font-family: Optima, sans-serif;
   font-size: 1.25em;
   font-weight: bold;
-  color: #011f5b;
   margin: 0 0 8px 0;
   text-align: center;
 }
 
+.author-name a {
+  color: #011f5b;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.author-name a:hover {
+  color: #fc4357;
+}
+
 .author-title {
-  font-family: 'Source Serif Pro', serif;
+  font-family: Optima, sans-serif;
   font-size: 0.875em;
   color: #666666;
   margin: 0;
@@ -153,7 +166,7 @@
   color: #990000;
   font-size: 1.25em;
   font-weight: bold;
-  font-family: 'Crimson Text', serif;
+  font-family: Optima, sans-serif;
 }
 
 .about-post-text {
@@ -162,11 +175,17 @@
   color: #011f5b;
   margin-top: -0.3125rem;
   text-indent: 1rem;
+  font-family: 'Crimson Text', serif;
 }
 
 .source-code-link {
   color: #990000;
   text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.source-code-link:hover {
+  color: #fc4357;
 }
 
 .about-post-underline {
@@ -188,7 +207,6 @@
   height: 21px;
   transition: stroke 0.3s ease;
 }
-
 .social-share svg {
   stroke: #011f5b;
 }
@@ -247,3 +265,11 @@
   outline: none;
   box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2);  /* focus:ring-4 focus:ring-pink-200 */
 }
+
+.blog-content {
+  font-family: Palatino, URW Palladio L, serif;
+  font-size: 1.125rem; /* 15px */
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+

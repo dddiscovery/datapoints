@@ -6,6 +6,29 @@
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        processHtmlClass: 'tex2jax_process'
+      },
+      startup: {
+        pageReady: function() {
+          return MathJax.startup.defaultPageReady();
+        }
+      }
+    };
+  </script>
+  <script id="MathJax-script" async 
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
 </head>
 
 <body>
@@ -47,13 +70,13 @@
           <img src="{{ page.author_pic[0] | relative_url }}" alt="Author Picture">
         {% endif %}
       </div>
-      <h2 class="author-name">{{ page.authors[0] | split: '[' | last | split: ']' | first }}</h2>
+      <h2 class="author-name"><a href="{{ page.authors[0] | split: '(' | last | split: ')' | first }}">{{ page.authors[0] | split: '[' | last | split: ']' | first }}</a></h2>
       <p class="author-title">{{ page.author_title[0] }}</p>
     </div>
 
     <div class="author-container">
       <div class="author-pic">
-        {% if page.author_pic %}
+        {% if page.author_pic[1] %}
           <img src="{{ page.author_pic[1] | relative_url }}" alt="Author Picture">
         {% endif %}
       </div>
@@ -76,7 +99,7 @@
     <!-- About this post content -->
     <h3 class="about-post-title">About this post</h3>
     <p class="about-post-text">
-      Check our source code <a href="https://github.com/yuxinlg/DDDI_DP_Blog.git" class="source-code-link">here</a>
+      Check our source code <a href="https://github.com/dddiscovery/datapoints" class="source-code-link">here</a>
     </p>
 
     <div class="about-post-underline"></div>
