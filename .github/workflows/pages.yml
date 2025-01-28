@@ -26,11 +26,7 @@ jobs:
       - name: Install dependencies
         run: |
           bundle install
-          npm install
-
-      - name: Build Tailwind CSS
-        run: |
-          npx tailwindcss build ./src/styles.css -o ./assets/css/main.css
+          npm install --save-dev
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
