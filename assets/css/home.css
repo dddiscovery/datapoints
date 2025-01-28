@@ -38,19 +38,19 @@ body {
 
 .divider {
     width: 0.1rem;
-    height: 4rem;
+    height: 3rem;
     background-color: #011f5b;
     margin: 0 1.25rem;
 }
 
 .datapoints-logo {
     height: auto;
-    width: min(240px, 30vw);
+    width: min(200px, 30vw);
 }
 
 .DDDI-logo {
     height: auto;
-    width: min(300px, 35vw);
+    width: min(210px, 35vw);
     max-height: 55px;
 }
 
@@ -99,11 +99,22 @@ body {
     margin: 0.3rem auto;
 }
 
+.slide-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: min(972px, 95vw);
+    aspect-ratio: 972/270;
+   /* border: 4px dashed rgba(1, 31, 91, 0.3);
+    border-radius: 8px;*/
+}
+
+
 .slideshow-text {
     position: absolute;
     bottom: 0;
     right: 0;
-    background-color: rgba(1, 31, 91, 0.8);
+    background-color: rgba(1, 31, 91, 0.7);
     width: 100%;
     height: auto;
     min-height: 2.5rem;
@@ -205,11 +216,14 @@ body {
 .blog-image {
     flex: 0 0 auto;
     width: 40%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
 }
 
 .blog-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     border-radius: 4px;
 }
 
@@ -220,6 +234,7 @@ body {
 
 .blog-title {
     margin: 0 0 12px 0;
+    font-family: Optima, sans-serif;
 }
 
 .blog-title-link {
@@ -243,11 +258,24 @@ body {
     color: #666;
     font-size: 0.875rem;
     margin-bottom: 8px;
+    font-family: sans-serif;
 }
+
+.blog-meta a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-meta a:hover {
+    color: #fc4375;
+}
+
 
 .blog-description {
     color: #333;
     line-height: 1.5;
+    font-family: Optima, sans-serif;
 }
 
 .email-subscribe-container {
@@ -396,4 +424,3 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
     width: 972px;
     height: 270px;
 }
-

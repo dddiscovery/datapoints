@@ -1,0 +1,40 @@
+.info-curve{
+  opacity: .4;
+  fill: none;  
+  stroke-width: 8px;
+}
+
+.info-curve.active{
+  opacity: 1;
+  stroke-width: 10px;
+}
+
+.feature-label{
+  font-weight: 200;
+  fill: 'b';
+}
+
+.feature-label.active{
+  font-weight: 800;
+  fill: 'r';
+  text-decoration: underline;
+}
+
+.hidden-step{
+  pointer-events: none;
+}
+
+.hidden-step .step-path{
+  display: none;
+}
+
+.scroll-show div{
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff !important;
+}
+.no-shadow div{
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff !important;
+}
+
+.annotation-container{
+  z-index: 1000;
+}

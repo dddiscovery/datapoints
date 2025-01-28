@@ -31,25 +31,39 @@
 
     <div class="slideshow-container pt-5">
 	    <div class="" id="welcome-message">
-		    <p class="font-sans">Welcome to <b>Data Points</b>, the Data Driven Discovery Initiative's blog series showcasing the discoveries of Penn's data science community.</p>
+		    <!--<p class="font-sans">Welcome to <b>Data Points</b>, the Data Driven Discovery Initiative's blog series showcasing the discoveries of Penn's data science community.</p>-->
+
+<div class="text-center my-12">
+  <h1 class="text-3xl font-serif font-bold tracking-wide text-gray-800 relative">
+    Welcome to
+    <span class="underline decoration-sky-400 decoration-dotted underline-offset-8 decoration-4">
+      Data Points
+    </span>
+  </h1>
+  <p class="text-lg font-light text-gray-600 mt-4 font-sans">
+    A research blog for Penn's data science community.
+  </p>
+</div>
+
 	    </div>
         <div class="mySlides fade mt-5">
 		<!--<img src="{{ '/assets/images/picture/sample1.jpg' | relative_url }}" style="width: 972px; height: 270px; object-fit: cover;">-->
-            <div class="heropattern-overlapping-circles slide-pic"></div>
+            <img src="{{ '/assets/images/picture/explore.jpg' | relative_url }}" class="slide-pic">
             <div class="slideshow-text">
                 <p>Explore research through visual storytelling.</p>
             </div>
         </div>
         <div class="mySlides fade mt-5">
 		<!--<img src="{{ '/assets/images/picture/sample2.jpg' | relative_url }}" style="width: 972px; height: 270px; object-fit: cover;">-->
-            <div class="heropattern-signal slide-pic"></div>
+            <img src="{{ '/assets/images/picture/call_for_participate.jpg' | relative_url }}" class="slide-pic">
             <div class="slideshow-text">
                 <p>Contribute to Data Points!</p>
             </div>
         </div>
         <div class="mySlides fade mt-5">
 		<!--<img src="{{ '/assets/images/picture/sample3.jpg' | relative_url }}" style="width: 972px; height: 270px; object-fit: cover;">-->
-            <div class="heropattern-jigsaw slide-pic"></div>
+         <!--  <div class="heropattern-jigsaw slide-pic"></div>--> 
+            <img src="{{ '/assets/images/picture/join_community.jpg' | relative_url }}" class="slide-pic">
             <div class="slideshow-text">
                 <p>Join our community of researchers and share your data-driven insights with the world.</p>
             </div>
@@ -66,12 +80,13 @@
 
     <div class="content-section-blue" style="padding-top: 18px;">
     	<div class="p-2"></div>
-        <div id="about-section" class="section-title">About</div>
+	<div class="section-title"><a class="anchor" id="about-section" style="display:block; position:relative; top:-70px; visibility:hidden;"></a>About</div>
         <div class="content-text">
-            <p>Data Points highlights innovative discoveries, presented through concise and engaging articles that make complex concepts accessible to a broad audience.  Each post is crafted to highlight domain expertise in creative and compelling ways—whether through a high-level walkthrough of a pivotal figure or diagram, or an interactive, explorable explanation. Inspired by the likes of Kieran's interactive visualizations, Google's research blog series, and VisXai's AI workshops, Data Points invites readers to dive into the forefront of data-driven discovery in just 5–10 minutes.</p>
-            <p>Our team, including staff data scientist Elena Liang, is here to support contributors with both technical and editorial guidance, ensuring that every post is as impactful and polished as the research it represents. Published articles will be shared on DDDI's website, newsletters, and social media platforms, amplifying the reach of your work while boosting your CV with a science communication highlight.</p>
-            <p>Whether you're looking to share your latest breakthrough or brainstorm ideas for compelling visualizations, Data Points is your platform to make your research shine. We're excited to collaborate and bring your ideas to life—reach out to join the conversation!</p>
-        </div>
+            <p class="mt-2 mb-2">
+                <strong>Data Points</strong> showcases the work of Penn’s data science community through concise, engaging articles. Each post takes a complex idea and transforms it into accessible insights in creative and compelling ways—whether through a high-level walkthrough of a key figure, or an interactive, explorable explanation.
+            </p>
+	    <p>Interested in contributing? We can help with technical and editorial guidance so your post is as impactful and polished as the research it represents. Check out <a href="#guide-section" class="font-bold hover:underline decoration-2">How to Contribute</a> - we're excited to collaborate and help bring your ideas to life!</p>
+	</div>
     	<div class="p-3"></div>
     </div>
 
@@ -85,15 +100,13 @@
             <div class="content-container width-70">
                 <div class="blog-content-section">
                     <div class="blog-image">
-                        <a href="https://murphyka.github.io/information_explorable/">
-                            <img src="{{ '/assets/images/picture/sample1.jpg' | relative_url }}" alt="Blog Image">
-                        </a>
+                        <img src="{{ '/assets/images/posts/title-km.jpg' | relative_url }}" alt="Blog Image">
                     </div>
                     <div class="blog-content">
                         <h3 class="blog-title">
-                            <a href="{{ '/2025/01/13/blogpage' | relative_url }}" class="blog-title-link">Where is the information in data?</a>
+                            <a href="{{ '/Where-is-the-Information-in-Data' | relative_url }}" class="blog-title-link">Where is the information in data?</a>
                         </h3>
-                        <p class="blog-meta">By Kieran Murphy and Dani S. Bassett | January 06, 2025</p>
+                        <p class="blog-meta">By <a href="https://www.kieranamurphy.com/">Kieran Murphy</a> | January 13, 2025</p>
                         <p class="blog-description">An interactive tutorial about decomposing variation into distinctions worth making.</p>
                     </div>
                 </div>
@@ -162,7 +175,7 @@
               <li>Work with our team to develop engaging visualizations and refine your narrative.</li>
               <li>Submit your draft for collaborative editing and technical review.</li>
 	    </ol>
-            <p>Contact us at [email] to discuss your ideas or submit a proposal. We look forward to featuring your work!</p>
+	    <p>Contact us at <span class="font-bold">sas-ddd-admin@sas.upenn.edu</span> with subject line "Data Points submission" to discuss your ideas or submit a proposal. We look forward to featuring your work!</p>
         </div>
     	<div class="p-3"></div>
     </div>
@@ -172,11 +185,11 @@
         <div class="content-text">
             <div class="contact-column">
                 <div class="content-text contact-text">
-                    <p class="contact-email">Email: contact@datapoints.upenn.edu</p>
+                    <p class="contact-email">Email: sas-ddd-admin@sas.upenn.edu</p>
                     <p>Data Driven Discovery Initiative (DDDI)<br>
                     3718 Locust Walk<br>
-                        Suite 411<br>
-                        Philadelphia, PA 19104</p>
+                    Suite 411<br>
+                    Philadelphia, PA 19104</p>
                 </div>
             </div>
         </div>
