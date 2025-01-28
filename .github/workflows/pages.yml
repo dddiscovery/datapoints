@@ -33,10 +33,12 @@ jobs:
       - name: Install dependencies
         run: |
           bundle install
-          npm install --save-dev
+          npm install
 
-      - name: Build Jekyll site
-        run: bundle exec jekyll build
+      - name: Build site
+        uses: limjh16/jekyll-action-ts@v2
+        with:
+          enable_cache: true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
