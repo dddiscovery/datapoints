@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://dddiscovery.github.io/datapoints/feed.xml" rel="self" type="application/atom+xml" /><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" /><updated>2025-01-28T19:07:09+00:00</updated><id>https://dddiscovery.github.io/datapoints/feed.xml</id><title type="html">Data Points</title><subtitle>DDDI&apos;s Technical Blog Series</subtitle><entry><title type="html">your post title</title><link href="https://dddiscovery.github.io/datapoints/Your-Post-Title/" rel="alternate" type="text/html" title="your post title" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-22T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/post-temp</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/Your-Post-Title/"><![CDATA[]]></content><author><name>[author 1](https://author home page/)</name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Where is the information in data?</title><link href="https://dddiscovery.github.io/datapoints/Where-is-the-Information-in-Data/" rel="alternate" type="text/html" title="Where is the information in data?" /><published>2025-01-13T00:00:00+00:00</published><updated>2025-01-13T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Kieran-Murphy</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/Where-is-the-Information-in-Data/"><![CDATA[<p>Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within.  What sorts of things could you learn?  What would the illuminated information even look like?</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://dddiscovery.github.io/datapoints/feed.xml" rel="self" type="application/atom+xml" /><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" /><updated>2025-01-28T19:43:02+00:00</updated><id>https://dddiscovery.github.io/datapoints/feed.xml</id><title type="html">Data Points</title><subtitle>DDDI&apos;s Technical Blog Series</subtitle><entry><title type="html">your post title</title><link href="https://dddiscovery.github.io/datapoints/Your-Post-Title/" rel="alternate" type="text/html" title="your post title" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-22T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/post-temp</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/Your-Post-Title/"><![CDATA[]]></content><author><name>[author 1](https://author home page/)</name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Where is the information in data?</title><link href="https://dddiscovery.github.io/datapoints/Where-is-the-Information-in-Data/" rel="alternate" type="text/html" title="Where is the information in data?" /><published>2025-01-13T00:00:00+00:00</published><updated>2025-01-13T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Kieran-Murphy</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/Where-is-the-Information-in-Data/"><![CDATA[<p>Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within.  What sorts of things could you learn?  What would the illuminated information even look like?</p>
 
 <p>My research is about building such a device with machine learning, and then finding ways to make what it finds interpretable. 
 In this post, we’ll dig into a small example where you try to predict the number of bike rentals in a given hour based on a couple time descriptors, derived from the classic <em>Bikeshare</em> dataset<a class="citestart" key="bikeshare"></a>.  Rather than using the full set of 12 descriptors, we’ll pick four to make things simpler.  The four are:</p>
@@ -68,11 +68,11 @@ Dua, D., &amp; Graff, C. (2017).</p>
 <p><a class="citeend" key="nam"></a> <a href="https://arxiv.org/abs/2004.13912">Neural additive models: Interpretable machine learning with neural nets</a>
 Agarwal, R., Melnick, L., Frosst, N., Zhang, X., Lengerich, B., Caruana, R., &amp; Hinton, G. (NeurIPS 2021).</p>
 
-<link rel="stylesheet" href="/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.css" />
+<link rel="stylesheet" href="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.css" />
 
-<link rel="stylesheet" href="/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.css" />
+<link rel="stylesheet" href="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.css" />
 
-<link rel="stylesheet" href="/assets/post_assets/2025-01-13-Kieran-Murphy/style.css" />
+<link rel="stylesheet" href="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/style.css" />
 
 <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -80,24 +80,24 @@ Agarwal, R., Melnick, L., Frosst, N., Zhang, X., Lengerich, B., Caruana, R., &am
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3_.js"></script>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3_.js"></script>
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3-scale-chromatic.v1.min.js"></script>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3-scale-chromatic.v1.min.js"></script>
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/npyjs-global.js"></script>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/npyjs-global.js"></script>
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.js"></script>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.js"></script>
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.js"></script>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.js"></script>
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/util.js"></script>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/util.js"></script>
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/init-input-sliders.js"></script>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/init-input-sliders.js"></script>
 
-<link rel="stylesheet" href="/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/style.css" />
+<link rel="stylesheet" href="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/style.css" />
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init.js"></script>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init.js"></script>
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init-distinguishability.js"></script>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init-distinguishability.js"></script>
 
-<script src="/assets/post_assets/2025-01-13-Kieran-Murphy/init-info-plane.js"></script>]]></content><author><name>[Kieran Murphy](https://www.kieranamurphy.com/)</name></author><summary type="html"><![CDATA[Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within. What sorts of things could you learn? What would the illuminated information even look like?]]></summary></entry><entry><title type="html">Home</title><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" title="Home" /><published>2024-12-31T00:00:00+00:00</published><updated>2024-12-31T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/homepage</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/"><![CDATA[]]></content><author><name></name></author><summary type="html"><![CDATA[]]></summary></entry></feed>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/init-info-plane.js"></script>]]></content><author><name>[Kieran Murphy](https://www.kieranamurphy.com/)</name></author><summary type="html"><![CDATA[Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within. What sorts of things could you learn? What would the illuminated information even look like?]]></summary></entry><entry><title type="html">Home</title><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" title="Home" /><published>2024-12-31T00:00:00+00:00</published><updated>2024-12-31T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/homepage</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/"><![CDATA[]]></content><author><name></name></author><summary type="html"><![CDATA[]]></summary></entry></feed>
