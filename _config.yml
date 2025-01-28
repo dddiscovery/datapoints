@@ -29,10 +29,6 @@ markdown: kramdown
 
 plugins:
   - jekyll-postcss-v2
-  - jekyll-tailwindcss
-
-exclude:
-  - vendor/
 
 postcss:
   cache: false
