@@ -19,7 +19,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7'
+          ruby-version: '3.1'
           bundler-cache: false
 
       - name: Setup Node
@@ -33,12 +33,10 @@ jobs:
       - name: Install dependencies
         run: |
           bundle install
-          npm install
+          bundle exec npm install --save-dev
 
       - name: Build site
-        uses: limjh16/jekyll-action-ts@v2
-        with:
-          enable_cache: true
+        run: bundle exec jekyll build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
