@@ -15,3 +15,4 @@ gem "webrick"
 
 # Add this line to your Gemfile
 gem 'jekyll-postcss-v2'
+gem 'jekyll-tailwindcss'
