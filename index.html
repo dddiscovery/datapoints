@@ -1,21 +1,225 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!--    <link rel="stylesheet" href="/datapoints/assets/css/tailwind.compiled.css"> -->
+    <link rel="stylesheet" href="/datapoints/assets/css/home.css">
+    <link rel="stylesheet" href="/datapoints/assets/css/responsive.css">
+</head>
+<body>
+    <div class="logos">
+        <a href="https://web.sas.upenn.edu/data-science/">
+            <img src="/datapoints/assets/images/logo/DDDI%20Logo/PennSAS-DDD_logo.png" alt="DDDI Logo" class="DDDI-logo">
+        </a>
+        <div class="divider"></div>
+        <img src="/datapoints/assets/images/logo/DP_logo_d.png" alt="DP Logo" class="datapoints-logo">
+    </div>
+    
+    <div class="header">
+    <nav class="main-nav">
+        <a href="#about-section" class="nav-link">About</a>
+        <a href="#blog-section" class="nav-link">Blog</a>
+        <a href="#guide-section" class="nav-link">How to Contribute</a>
+        <a href="#contact-section" class="nav-link">Contact us</a>
+    </nav>
+    <div class="divider-line"></div>
+    </div>
 
-<!-- Your existing home page content -->
-<div class="home-content">
-  <!-- Debug section to list all posts -->
-  <div style="background: #f0f0f0; padding: 20px; margin: 20px;">
-    <h2>Debug - All Posts:</h2>
-    <ul>
-    {% for post in site.posts %}
-      <li>
-        Post: {{ post.title }} <br>
-        URL: <a href="{{ post.url | relative_url }}">{{ post.url }}</a> <br>
-        Date: {{ post.date | date: "%Y-%m-%d" }} <br>
-        Layout: {{ post.layout }}
-      </li>
-    {% endfor %}
-    </ul>
-  </div>
+
+    <div class="slideshow-container pt-5">
+	    <div class="" id="welcome-message">
+		    <!--<p class="font-sans">Welcome to <b>Data Points</b>, the Data Driven Discovery Initiative's blog series showcasing the discoveries of Penn's data science community.</p>-->
+
+<div class="text-center my-12">
+  <h1 class="text-3xl font-serif font-bold tracking-wide text-gray-800 relative">
+    Welcome to
+    <span class="underline decoration-sky-400 decoration-dotted underline-offset-8 decoration-4">
+      Data Points
+    </span>
+  </h1>
+  <p class="text-lg font-light text-gray-600 mt-4 font-sans">
+    A research blog for Penn's data science community.
+  </p>
 </div>
+
+	    </div>
+        <div class="mySlides fade mt-5">
+		<!--<img src="/datapoints/assets/images/picture/sample1.jpg" style="width: 972px; height: 270px; object-fit: cover;">-->
+            <img src="/datapoints/assets/images/picture/explore.jpg" class="slide-pic">
+            <div class="slideshow-text">
+                <p>Explore research through visual storytelling.</p>
+            </div>
+        </div>
+        <div class="mySlides fade mt-5">
+		<!--<img src="/datapoints/assets/images/picture/sample2.jpg" style="width: 972px; height: 270px; object-fit: cover;">-->
+            <img src="/datapoints/assets/images/picture/call_for_participate.jpg" class="slide-pic">
+            <div class="slideshow-text">
+                <p>Contribute to Data Points!</p>
+            </div>
+        </div>
+        <div class="mySlides fade mt-5">
+		<!--<img src="/datapoints/assets/images/picture/sample3.jpg" style="width: 972px; height: 270px; object-fit: cover;">-->
+         <!--  <div class="heropattern-jigsaw slide-pic"></div>--> 
+            <img src="/datapoints/assets/images/picture/join_community.jpg" class="slide-pic">
+            <div class="slideshow-text">
+                <p>Join our community of researchers and share your data-driven insights with the world.</p>
+            </div>
+        </div>
+        
+        <!-- Next and previous buttons -->
+        <a class="slide-button"  id="prev-button" onclick="plusSlides(-1)" style="cursor: pointer; position: absolute; top: 50%; left: 10px; transform: translateY(-50%); color: black; font-weight: bold; font-size: 24px; user-select: none;">&#10094;</a>
+        <a class="slide-button" id="next-button" onclick="plusSlides(1)" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%); color: black; font-weight: bold; font-size: 24px; user-select: none;">&#10095;</a>
+        
+    
+        </div>
+    </div>
+    <div class="p-2"></div>
+
+    <div class="content-section-blue" style="padding-top: 18px;">
+    	<div class="p-2"></div>
+	<div class="section-title"><a class="anchor" id="about-section" style="display:block; position:relative; top:-70px; visibility:hidden;"></a>About</div>
+        <div class="content-text">
+            <p class="mt-2 mb-2">
+                <strong>Data Points</strong> showcases the work of Penn’s data science community through concise, engaging articles. Each post takes a complex idea and transforms it into accessible insights in creative and compelling ways—whether through a high-level walkthrough of a key figure, or an interactive, explorable explanation.
+            </p>
+	    <p>Interested in contributing? We can help with technical and editorial guidance so your post is as impactful and polished as the research it represents. Check out <a href="#guide-section" class="font-bold hover:underline decoration-2">How to Contribute</a> - we're excited to collaborate and help bring your ideas to life!</p>
+	</div>
+    	<div class="p-3"></div>
+    </div>
+
+    <div class="content-section-white blog-and-subscribe-container">
+        <div id="blog-section" class="section-title">Blog</div>
+        </div>
+        
+        <!-- Modified flex container structure -->
+        <div class="flex-container justify-between gap-8" id="blog-and-subscribe-flex">
+            <!-- Blog card container -->
+            <div class="content-container width-70">
+                <div class="blog-content-section">
+                    <div class="blog-image">
+                        <img src="/datapoints/assets/images/posts/title-km.jpg" alt="Blog Image">
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">
+                            <a href="/datapoints/Where-is-the-Information-in-Data" class="blog-title-link">Where is the information in data?</a>
+                        </h3>
+                        <p class="blog-meta">By <a href="https://www.kieranamurphy.com/">Kieran Murphy</a> | January 13, 2025</p>
+                        <p class="blog-description">An interactive tutorial about decomposing variation into distinctions worth making.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="w-px bg-[#011f5b] self-stretch mx-0 blog-sub-line"></div>
+
+            <!-- Subscribe section -->
+            <div class="content-container width-30 subscribe-section">
+                <div class="content-text subscribe-content">
+                    
+                    <p class="follow-title">Follow us</p>
+                    <div class="social-links">
+                        <div class="social-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="social-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                            </svg>
+                            <span><a href="https://web.sas.upenn.edu/data-science/news-events/" class="social-link">DDDI News</a></span>
+                        </div>
+                        <div class="social-item">
+                            <img src="/datapoints/assets/images/logo/Bluesky_Logo.png" alt="Bluesky Logo" class="social-icon">
+                            <span><a href="https://bsky.app/profile/upenndddi.bsky.social" class="social-link">@upenndddi.bsky.social</a></span>
+                        </div>
+                        <div class="social-item">
+                            <img src="/datapoints/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png" alt="LinkedIn Logo" class="social-icon" style="width: 24px; height: 20px;">
+                            <span class="social-link">Data Points DDDI</span>
+                        </div>
+                    </div>
+
+                    <!-- Email subscription container -->
+                    <p class="follow-title mt-5 mb-1">Mailing list</p>
+                    <div class="flex items-center gap-2" id="email-subscription-container" style="align-items: stretch;">
+                      <!-- Input field wrapper -->
+                      <div class="relative flex-grow" id="input-wrapper">
+                        <!-- Email icon container -->
+                        <div class="absolute inset-y-0 left-0 flex items-center ps-3.5 pointer-events-none" id="email-icon-container" style="top: 35%; transform: translateY(-50%);">
+                          <!-- Email icon SVG -->
+                          <svg class="w-3 h-3 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16" id="email-icon">
+                            <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
+                            <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
+                          </svg>
+                        </div>
+                        <input type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-[#fc4375] focus:border-[#fc4375] hover:border-[#fc4375] block w-full ps-8 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#fc4375] dark:focus:border-[#fc4375] focus:outline-none" placeholder="name@upenn.edu" onclick="this.style.borderColor='#fc4375'" style="height: 32px;">
+                      </div>
+                      <!-- Subscribe button -->
+                      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:ring-[#fc4375] font-medium rounded-lg text-xs px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-[#fc4375] inline-flex items-center" id="subscribe-button" style="height: 32px;">Subscribe</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+    	<div class="p-3"></div>
+    </div>
+
+    <div class="content-section-blue">
+    	<div class="p-3"></div>
+        <div id="guide-section" class="section-title">How to Contribute</div>
+        <div class="content-text">
+            <p>Ready to contribute to Data Points? Here's how to get started:</p>
+	    <ol class="ps-5 mt-1 mb-2 space-y-1 list-decimal list-inside">
+              <li>Choose a compelling aspect of your research that can be effectively communicated through visuals and concise writing.</li>
+              <li>Draft a brief outline focusing on one key insight or methodology that would interest fellow researchers.</li>
+              <li>Work with our team to develop engaging visualizations and refine your narrative.</li>
+              <li>Submit your draft for collaborative editing and technical review.</li>
+	    </ol>
+	    <p>Contact us at <span class="font-bold">sas-ddd-admin@sas.upenn.edu</span> with subject line "Data Points submission" to discuss your ideas or submit a proposal. We look forward to featuring your work!</p>
+        </div>
+    	<div class="p-3"></div>
+    </div>
+
+    <div class="content-section-white">
+        <div id="contact-section" class="section-title">Contact us</div>
+        <div class="content-text">
+            <div class="contact-column">
+                <div class="content-text contact-text">
+                    <p class="contact-email">Email: sas-ddd-admin@sas.upenn.edu</p>
+                    <p>Data Driven Discovery Initiative (DDDI)<br>
+                    3718 Locust Walk<br>
+                    Suite 411<br>
+                    Philadelphia, PA 19104</p>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) { 
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
+            
+            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+            for (i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active", ""); }
+            
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+    </script>
+</body>
+</html>
+
