@@ -80,26 +80,26 @@ Dua, D., & Graff, C. (2017).
 <a class='citeend' key='nam'></a> [Neural additive models: Interpretable machine learning with neural nets](https://arxiv.org/abs/2004.13912)
 Agarwal, R., Melnick, L., Frosst, N., Zhang, X., Lengerich, B., Caruana, R., & Hinton, G. (NeurIPS 2021).
 
-<link rel='stylesheet' href='/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.css'>
-<link rel='stylesheet' href='/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.css'>
-<link rel='stylesheet' href='/assets/post_assets/2025-01-13-Kieran-Murphy/style.css'>
+<link rel='stylesheet' href='{{ "/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.css" | relative_url }}'>
+<link rel='stylesheet' href='{{ "/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.css" | relative_url }}'>
+<link rel='stylesheet' href='{{ "/assets/post_assets/2025-01-13-Kieran-Murphy/style.css" | relative_url }}'>
 
 <script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
 <script defer src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/mathtex-script-type.min.js' integrity='sha384-jiBVvJ8NGGj5n7kJaiWwWp9AjC+Yh8rhZY3GtAX8yU28azcLgoRo4oukO87g7zDT' crossorigin='anonymous'></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3_.js'></script>
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3-scale-chromatic.v1.min.js'></script>
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/npyjs-global.js'></script>
 
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.js'></script>
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.js'></script>
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3_.js' | relative_url }}"></script>
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3-scale-chromatic.v1.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/npyjs-global.js' | relative_url }}"></script>
 
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.js' | relative_url }}"></script>
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.js' | relative_url }}"></script>
 
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/util.js'></script>
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/init-input-sliders.js'></script>
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/util.js' | relative_url }}"></script>
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/init-input-sliders.js' | relative_url }}"></script>
 
-<link rel='stylesheet' href='/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/style.css'>
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init.js'></script>
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init-distinguishability.js'></script>
+<link rel='stylesheet' href="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/style.css' | relative_url }}">
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init.js' | relative_url }}"></script>
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init-distinguishability.js' | relative_url }}"></script>
 
-<script src='/assets/post_assets/2025-01-13-Kieran-Murphy/init-info-plane.js'></script>
+<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/init-info-plane.js' | relative_url }}"></script>
