@@ -148,7 +148,7 @@ ngrok allows you to access your local development site from any device, regardle
 ## GitHub Pages Deployment
 
 ### Build Process
-When you push changes to the `main` branch, it triggers an automated build process:
+After completing all content and styling, pushing changes to the `main` branch triggers an automated build process.
 
 1. **GitHub Action**
    - A GitHub Action called "Deploy Jekyll Site" is triggered
@@ -167,6 +167,8 @@ When you push changes to the `main` branch, it triggers an automated build proce
   - Invalid front matter in posts
   - Missing required files
   - Incorrect file paths
+  - Build timeout or resource limits exceeded
+  - CSS or JavaScript not loading properly
 
 ### Important Notes
 - Only changes pushed to `main` trigger the build process
