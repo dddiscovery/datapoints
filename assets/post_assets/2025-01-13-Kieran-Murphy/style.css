@@ -131,59 +131,6 @@ animate span{
   margin-right: 2px;
 }
 
-
-
-.annotation-container{
-  position: absolute;
-  pointer-events: none;
-/*  font-size: 12px;*/
-}
-.annotation-container.is-draggable{
-  pointer-events: all;
-}
-
-.annotation-container path{
-  stroke: #000;
-  fill:  none;
-}
-
-.annotation-container div{
-/*  font-style: italic;*/
-  font-family: sans-serif;
-  padding: 2px;
-  padding-right: 5px;
-  line-height: 1.05em;
-  font-size: 14px;
-  /*outline:  1px solid #000;*/
-  /*background: yellow;*/
-}
-
-.annotation-container svg{
-  position: relative;
-}
-
-.annotation-container div ni{
-  display: inline-block;
-  font-family: sans-serif;
-  font-style: normal;
-  font-size: 10px;
-}
-
-
-.annotation-container div, .overlay-chart-label{
-  text-shadow: 0 1px 0 #F1F3F4, 1px 0 0 #F1F3F4, 0 -1px 0 #F1F3F4, -1px 0 0 #F1F3F4;
-  user-select: none;
-}
-
-
-
-.inline-train{
-  border-bottom: 2px solid var(--color-train);  
-}
-.inline-test{
-  border-bottom: 2px solid var(--color-test);  
-}
-
 .tooltip-footnote img{
   margin: 0px auto;
   display: block;
