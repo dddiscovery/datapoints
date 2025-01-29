@@ -13,7 +13,7 @@ permalink: /Where-is-the-Information-in-Data/
 Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within.  What sorts of things could you learn?  What would the illuminated information even look like?
 
 My research is about building such a device with machine learning, and then finding ways to make what it finds interpretable. 
-In this post, we'll dig into a small example where you try to predict the number of bike rentals in a given hour based on a couple time descriptors, derived from the classic *Bikeshare* dataset<a class='citestart' key='bikeshare'></a>.  Rather than using the full set of 12 descriptors, we'll pick four to make things simpler.  The four are:
+In this post, we'll dig into a small example where you try to predict the number of bike rentals in a given hour based on a couple time descriptors, derived from the classic [*Bikeshare* dataset](https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset).  Rather than using the full set of 12 descriptors, we'll pick four to make things simpler.  The four are:
 
 - the season (winter, spring, summer, or fall)
 - the year the data was collected (2011 or 2012)
@@ -72,34 +72,26 @@ If you're interested in learning more, check out the longer post that this one c
 <a class='footend' key='bhat'></a> 
 Specifically, we use the [Bhattacharyya coefficient](https://en.wikipedia.org/wiki/Bhattacharyya_distance) between the probability distributions of these values in representation space, and it is 1 when the representations perfectly overlap (white) and 0 when they have no overlap (dark blue).
 
-### References
-
-<a class='citeend' key='bikeshare'></a> [UCI machine learning repository](https://archive.ics.uci.edu/)
-Dua, D., & Graff, C. (2017).
-
-<a class='citeend' key='nam'></a> [Neural additive models: Interpretable machine learning with neural nets](https://arxiv.org/abs/2004.13912)
-Agarwal, R., Melnick, L., Frosst, N., Zhang, X., Lengerich, B., Caruana, R., & Hinton, G. (NeurIPS 2021).
-
-<link rel='stylesheet' href='{{ "/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.css" | relative_url }}'>
-<link rel='stylesheet' href='{{ "/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.css" | relative_url }}'>
-<link rel='stylesheet' href='{{ "/assets/post_assets/2025-01-13-Kieran-Murphy/style.css" | relative_url }}'>
+<link rel='stylesheet' href='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.css'>
+<link rel='stylesheet' href='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.css'>
+<link rel='stylesheet' href='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/style.css'>
 
 <script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
 <script defer src='https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/mathtex-script-type.min.js' integrity='sha384-jiBVvJ8NGGj5n7kJaiWwWp9AjC+Yh8rhZY3GtAX8yU28azcLgoRo4oukO87g7zDT' crossorigin='anonymous'></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3_.js'></script>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3-scale-chromatic.v1.min.js'></script>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/npyjs-global.js'></script>
 
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3_.js' | relative_url }}"></script>
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/d3-scale-chromatic.v1.min.js' | relative_url }}"></script>
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/third_party/npyjs-global.js' | relative_url }}"></script>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.js'></script>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.js'></script>
 
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/footnote_v2.js' | relative_url }}"></script>
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/citation_v2.js' | relative_url }}"></script>
 
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/util.js' | relative_url }}"></script>
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/init-input-sliders.js' | relative_url }}"></script>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/util.js'></script>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/init-input-sliders.js'></script>
 
-<link rel='stylesheet' href="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/style.css' | relative_url }}">
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init.js' | relative_url }}"></script>
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init-distinguishability.js' | relative_url }}"></script>
+<link rel='stylesheet' href='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/style.css'>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init.js'></script>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init-distinguishability.js'></script>
 
-<script src="{{ '/assets/post_assets/2025-01-13-Kieran-Murphy/init-info-plane.js' | relative_url }}"></script>
+<script src='/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/init-info-plane.js'></script>
