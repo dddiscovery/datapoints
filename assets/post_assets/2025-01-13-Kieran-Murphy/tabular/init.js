@@ -10,24 +10,35 @@ window.initTabular = async function(){
   state.renderAll = util.initRenderAll(['compressionLevel', 'curveHighlighter'])
   
   // Grab the information decomp and the distinguishability matrices
-  state.feature_inds_used = [0, 1, 3, 5]
+  state.feature_inds_used = [1, 0, 5, 3]
+  feature_inds_ordered = [0, 1, 3, 5]
+  reordering_annoyance = [1, 0, 3, 2]
+
+  state.numberFeatures = state.feature_inds_used.length
+
   state.info_max_display = 10
-  fileAppendix = '_' + state.feature_inds_used.join("")
+  fileAppendix = '_' + feature_inds_ordered.join("")
   var almostParsedDecomp = await util.getFile(state.runPath + `_info_decomp${fileAppendix}.npy`)
   // stone age reshape
   var decompShape = almostParsedDecomp.shape
   var decompData = almostParsedDecomp.data
   var parsedDecomp = [];
-  var i = 0;
   state.infoLevels = []
   state.rmseLevels = []
-  for (l = decompData.length + 1; (i + decompShape[1]) < l; i += decompShape[1]) {
-      parsedDecomp.push(decompData.slice(i, i + decompShape[1]));
-      // if ((Math.floor(i/decompShape[1]) % 2) == 0) { // only if inds were skipped when saving the compression mats
-      state.infoLevels.push(decompData[i+4])
-      state.rmseLevels.push(decompData[i+5])
-      // }
+  for (i = 0; (i + decompShape[1]) <= decompData.length; i += decompShape[1]) {
+    reordered_row = []
+    for (let featureInd = 0; featureInd < state.numberFeatures; featureInd++) {
+      reordered_row.push(decompData[i+reordering_annoyance[featureInd]])
+    }
+    reordered_row.push(decompData[i+4])
+    reordered_row.push(decompData[i+5])
+    parsedDecomp.push(reordered_row);
+    state.infoLevels.push(decompData[i+4])
+    state.rmseLevels.push(decompData[i+5])
+    // }
   }
+  state.info_decomp = parsedDecomp
+
   state.infoLevels = state.infoLevels.reverse() 
   state.rmseLevels = state.rmseLevels.reverse()
 
@@ -37,7 +48,6 @@ window.initTabular = async function(){
   }
   state.infoLevels = state.infoLevels.slice(0, stop_ind+1)
   state.rmseLevels = state.rmseLevels.slice(0, stop_ind+1)
-  state.info_decomp = parsedDecomp
 
   state.featureLabels = ['season', 'year', 'month', 'hour', 'holiday?', 'day of week', 'working day?', 'weather', 'temperature', 'apparent temp.', 'humidity', 'wind']
   window.initInfoPlane({
@@ -48,9 +58,8 @@ window.initTabular = async function(){
 
   state.distMatrices = []
   state.displayFeatureVals = []
-  state.numberFeatures = state.feature_inds_used.length
-  for (let featureInd=0; featureInd<state.numberFeatures; featureInd++) {
-
+  for (let featureIndInd=0; featureIndInd<state.numberFeatures; featureIndInd++) {
+    featureInd = reordering_annoyance[featureIndInd]
     distMat = await util.getFile(state.runPath + `_feature${featureInd}_mats${fileAppendix}.npy`)
     
     matShape = distMat.shape
