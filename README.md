@@ -145,6 +145,36 @@ ngrok allows you to access your local development site from any device, regardle
 - Free tier has some limitations
 - For security, only share URLs with trusted collaborators
 
+## GitHub Pages Deployment
+
+### Build Process
+After completing all content and styling, pushing changes to the `main` branch triggers an automated build process.
+
+1. **GitHub Action**
+   - A GitHub Action called "Deploy Jekyll Site" is triggered
+   - You can monitor the build at: https://github.com/dddiscovery/datapoints/actions
+2. **Build Time**
+   - The build process takes a few minutes to complete
+   - You can track progress in the Actions tab
+   - A green checkmark ✅ indicates successful deployment
+3. **Deployment**
+   - The built site is automatically pushed to the `gh-pages` branch
+   - Once deployed, your changes will be live at: https://dddiscovery.github.io/datapoints
+
+### Troubleshooting
+- If the build fails (red ❌), check the Actions tab for error details
+- Common issues include:
+  - Invalid front matter in posts
+  - Missing required files
+  - Incorrect file paths
+  - Build timeout or resource limits exceeded
+  - CSS or JavaScript not loading properly
+
+### Important Notes
+- Only changes pushed to `main` trigger the build process
+- The build configuration lives in `.github/workflows/pages.yml`
+- Wait for the green checkmark before checking your changes on the live site
+
 ## Artwork Credits
 
 The blog features artwork from the public domain as title images for posts:
