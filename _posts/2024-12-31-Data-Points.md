@@ -1,5 +1,5 @@
 ---
 layout: home
-title: "DataPoints"
+title: "Data Points"
 permalink: /
 ---
