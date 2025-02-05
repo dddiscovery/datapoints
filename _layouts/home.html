@@ -29,6 +29,7 @@ title: Data Points
         <a href="#about-section" class="nav-link">About</a>
         <a href="#blog-section" class="nav-link">Blog</a>
         <a href="#guide-section" class="nav-link">How to Contribute</a>
+        <a href="#people-section" class="nav-link">People</a>
         <a href="#contact-section" class="nav-link">Contact us</a>
     </nav>
     <div class="divider-line"></div>
@@ -143,7 +144,7 @@ title: Data Points
                         </div>
                     </div>
 
-                    <!-- Email subscription container 
+                    <!-- Email subscription container  -->
                     <p class="follow-title mt-5 mb-1">Mailing list</p>
                     <div class="flex items-center gap-2" id="email-subscription-container" style="align-items: stretch;">
                       
@@ -160,7 +161,7 @@ title: Data Points
                       </div>
                       
                       <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:ring-[#fc4375] font-medium rounded-lg text-xs px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-[#fc4375] inline-flex items-center" id="subscribe-button" style="height: 32px;">Subscribe</button>
-                    </div> -->
+                    </div>
 
 
                 </div>
@@ -187,6 +188,65 @@ title: Data Points
     </div>
 
     <div class="content-section-white">
+        <div id="people-section" class="section-title">People</div>
+        <div class="authors-section">
+            <div class="authors-container">
+                <div class="people-sub-title">Editorial Team</div>
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="{{ '/assets/images/authors/K.A.Murphy.jpeg' | relative_url }}" alt="K.A. Murphy">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name"><a href="https://www.kieranamurphy.com/">Kieran Murphy</a></div>
+                        <div class="author-title">Content Editor</div>
+                        <div class="author-fellowship">AI x Science Fellow</div>
+                    </div>
+                </div>
+
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="{{ '/assets/images/authors/MelanieSegado.jpeg' | relative_url }}" alt="Melanie Segado">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name"><a href="https://sites.google.com/view/melaniesegado">Melanie Segado</a></div>
+                        <div class="author-title">Content Editor</div>
+                        <div class="author-fellowship">AI x Science Fellow</div>
+                    </div>
+                </div>
+
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="{{ '/assets/images/authors/YuxinL.jpeg' | relative_url }}" alt="Yuxin L">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name"><a href="https://github.com/yuxinlg">Yuxin Liang</a></div>
+                        <div class="author-title">Web Designer</div>
+                        <div class="author-fellowship">Data Scientist @DDDI</div>
+                        
+                    </div>
+                </div>
+
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="{{ '/assets/images/authors/ColinTwomey.jpeg' | relative_url }}" alt="Colin Twomey">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name"><a href="https://www.sas.upenn.edu/~crtwomey/">Colin Twomey</a></div>
+                        <div class="author-title">Managing Editor</div>
+                        <div class="author-fellowship">Executive Director @DDDI</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="scroll-indicator">
+                <div class="scroll-indicator-bar"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-section-blue">
         <div id="contact-section" class="section-title">Contact us</div>
         <div class="content-text">
             <div class="contact-column">
@@ -226,6 +286,7 @@ title: Data Points
             slides[slideIndex-1].style.display = "block";
             dots[slideIndex-1].className += " active";
         }
+
     </script>
 </body>
 </html>
