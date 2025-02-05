@@ -46,17 +46,27 @@
     <h1 class="blog-title">{{ page.title }}</h1>
     <div class="title-underline"></div>
     <p class="blog-description">{{ page.subtitle }}</p>
-    <div class="author-section">
-      By
-      {% for author in page.authors %}
-        {% if forloop.last and forloop.length > 1 %}
-          and <a href="{{ author | split: '(' | last | split: ')' | first }}">{{ author | split: '[' | last | split: ']' | first }}</a>
-        {% elsif forloop.last %}
-          <a href="{{ author | split: '(' | last | split: ')' | first }}">{{ author | split: '[' | last | split: ']' | first }}</a>
-        {% else %}
-          <a href="{{ author | split: '(' | last | split: ')' | first }}">{{ author | split: '[' | last | split: ']' | first }}</a>,
-        {% endif %}
-      {% endfor %}
+    
+    <div style="display: flex; justify-content: center; gap: 1rem; align-items: center;">
+      <div class="author-section">
+        By
+        {% for author in page.authors %}
+          {% if forloop.last and forloop.length > 1 %}
+            and <a href="{{ author | split: '(' | last | split: ')' | first }}">{{ author | split: '[' | last | split: ']' | first }}</a>
+          {% elsif forloop.last %}
+            <a href="{{ author | split: '(' | last | split: ')' | first }}">{{ author | split: '[' | last | split: ']' | first }}</a>
+          {% else %}
+            <a href="{{ author | split: '(' | last | split: ')' | first }}">{{ author | split: '[' | last | split: ']' | first }}</a>,
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <span style="color: #666666;">·</span>
+
+      <div class="reading-time-container">
+        {% include reading-time.html %}
+      </div>
+      
     </div>
   </div>
 
@@ -65,6 +75,7 @@
   {{ page.date | date: "%B %d, %Y" }}
   <div class="date-divider"></div>
 </div>
+
 
 <div class="main">
   <div class="author-info">
@@ -111,12 +122,12 @@
     <h3 class="about-post-title">Share this post</h3>
     <div class="social-share">
       <!-- Bluesky -->
-      <a href="https://bsky.app/intent/compose?text=%F0%9F%8C%9F%20Dive%20into%20data-driven%20discoveries!%0A%0ACheck%20out%20this%20fascinating%20scientific%20post%20from%20DDDI%20(@upenndddi.bsky.social)%2C%20packed%20with%20fun%20and%20interactive%20visualizations%20that%20make%20exploration%20a%20breeze.%20%F0%9F%9A%80%F0%9F%93%8A%0A%0A%F0%9F%94%97%20{{ site.url }}{{ page.url }}%0A%0A%23Science%20%23DataVisualization%20%23Exploration%20%23DDDI" target="_blank" rel="noopener noreferrer">
+      <a href="https://bsky.app/intent/compose?text={{ page.summary | url_encode }}%0A%0ADive%20in%3A%20https://dddiscovery.github.io/datapoints{{ page.permalink }}%0A%0AFrom%20DDDI%27s%20series%20scientific%20posts%0A%0A@upenndddi.bsky.social" target="_blank" rel="noopener noreferrer">
         <img src="{{ '/assets/images/logo/Bluesky_Logo.png' | relative_url }}" alt="Share on Bluesky" class="social-icon">
       </a>
       
       <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}&summary=%F0%9F%8C%9F%20Unlock%20insights%20through%20data-driven%20exploration!%0A%0AWe%20at%20DDDI%20are%20excited%20to%20share%20our%20latest%20scientific%20post%2C%20featuring%20engaging%20and%20interactive%20visualizations%20that%20bring%20complex%20ideas%20to%20life.%20Whether%20you%27re%20a%20data%20enthusiast%20or%20just%20curious%20about%20the%20world%2C%20there%27s%20something%20here%20for%20everyone.%20%F0%9F%9A%80%F0%9F%93%8A%0A%0AExplore%20the%20post%20and%20let%20us%20know%20your%20thoughts!%0A%0A%23DataScience%20%23Visualization%20%23Innovation%20%23DDDI%20%23Exploration" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://dddiscovery.github.io/datapoints{{ page.permalink }}&title={{ page.title | url_encode }}" target="_blank" rel="noopener noreferrer">
         <img src="{{ '/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png' | relative_url }}" alt="Share on LinkedIn" class="social-icon" style="width: 30px; height: 25px;">
       </a>
 
@@ -130,7 +141,7 @@
 
     <div class="about-post-underline"></div>
 
-    <!-- Email subscription container 
+    <!-- Email subscription container -->
     <h3 class="about-post-title stay-tuned">Stay tuned for our latest post</h3>
     <form>
       <input 
@@ -140,7 +151,7 @@
         aria-describedby="helper-text-explanation" 
         placeholder="name@flowbite.com">
     </form>
-    <button type="button" class="subscribe-button" id="subscribe-button">Subscribe!</button> -->
+    <button type="button" class="subscribe-button" id="subscribe-button">Subscribe!</button> 
 
     <script>
       function copyPageUrl() {
