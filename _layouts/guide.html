@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/guide.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+
+</head>  
+
+
+<body>
+    <div class="header">
+      <a href="{{ '/' | relative_url }}">
+        <img src="{{ '/assets/images/logo/DP_logo_d.png' | relative_url }}" alt="Datapoints Logo" class="datapoints-logo">
+      </a>
+    </div>
+
+    <div class="content-section-pink">
+        <h1 class="page-title">{{ page.title }}</h1>
+       
+        <div class="title-underline"></div>
+        
+        <div class="author-section">
+        <p>By <a href="{{ '/#people-section' | relative_url }}">Editorial team</a></p>
+        </div>
+
+    </div>
+
+    <div class="content-section-white">
+        <div class="guide-container">
+            <!-- Left side: Table of Contents -->
+            <div class="guide-sidebar">
+                <div class="guide-toc">
+                    <h2>Table of Contents</h2>
+                    <ul>
+                        <li><a href="#github-repo">GitHub Repo</a>
+                            <ul>
+                                <li><a href="#local-setup">Setting Up Local Environment</a></li>
+                                <li><a href="#branches">Working with Branches</a></li>
+                                <li><a href="#template">Using Blog Template</a></li>
+                                <li><a href="#git-resources">Git Resources</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#blog-inspirations">Blog Inspirations</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right side: Main Content -->
+            <div class="guide-content">
+                {{ content }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this before closing </body> -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Hide all content sections initially except the first one
+        const sections = document.querySelectorAll('.guide-content > section');
+        sections.forEach((section, index) => {
+            if (index !== 0) section.style.display = 'none';
+        });
+
+        // Add click handlers to TOC links
+        document.querySelectorAll('.guide-toc a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                
+                // Hide all sections
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show clicked section
+                document.getElementById(targetId).style.display = 'block';
+                
+                // Remove active class from all links
+                document.querySelectorAll('.guide-toc a').forEach(l => {
+                    l.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Update URL without scrolling
+                history.pushState(null, '', `#${targetId}`);
+            });
+        });
+
+        // Set initial active state based on URL hash
+        const hash = window.location.hash;
+        if (hash) {
+            const activeLink = document.querySelector(`.guide-toc a[href="${hash}"]`);
+            if (activeLink) activeLink.classList.add('active');
+        } else {
+            // Set first link as active by default
+            document.querySelector('.guide-toc a').classList.add('active');
+        }
+    });
+    </script>
+</body>
+</html>
