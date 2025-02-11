@@ -46,7 +46,7 @@
 .author-section {
     font-family: Optima, sans-serif;
     color: #666666;
-    font-size: 1em;
+    font-size: 1.125em;
 } 
 
 .author-section a {
@@ -150,16 +150,40 @@
     text-align: left;
 }
 
+.guide-content h4 {
+    font-family: Optima, sans-serif;
+    font-size: 1.25rem;
+    color: rgba(1, 31, 91, 0.9);
+    margin: 2rem 0 1rem 0;
+    text-align: left;
+}
+
+.guide-content h4 {
+    font-family: Optima, sans-serif;
+    font-size: 1.125rem;
+    color: rgba(1, 31, 91, 0.9);
+    margin: 2rem 0 1rem 0;
+    text-align: left;
+}
+
 .guide-content p {
     margin-bottom: 1rem;
     line-height: 1.6;
+    font-size: 1.125rem;
+    font-family: Palatino, URW Palladio L, serif;
+
 }
 
 .guide-content ul, .guide-content ol {
     margin-left: 1.5rem;
     margin-bottom: 1rem;
     font-family: Palatino, URW Palladio L, serif;
-    font-size: 1rem;
+    font-size: 1.125rem;
+}
+
+.guide-content li {
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
 }
 
 .guide-content code {
@@ -168,6 +192,14 @@
     border-radius: 4px;
     font-family: monospace;
     font-size: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    margin: 0 0.2rem;
+}
+
+.guide-content li code {
+    margin-bottom: 2px;
 }
 
 .guide-content pre {
@@ -176,6 +208,45 @@
     margin: 1rem 0;
     border-radius: 4px;
     overflow-x: auto;
+    white-space: pre;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    width: 100%;
+}
+
+.guide-content pre code {
+    padding: 0 1rem;
+    display: inline-block;
+    min-width: 100%;
     font-size: 1rem;
 }
-  
+
+.credits-container {
+    max-height: 500px;          /* Set maximum height */
+    overflow-y: auto;           /* Enable vertical scrolling */
+    padding: 1rem;              /* Add inner spacing */
+    border: 1px solid rgba(252, 67, 117, 0.2);  /* Light border */
+    border-radius: 8px;         /* Rounded corners */
+    background: #fafafa;        /* Light background */
+    margin: 1rem 0;             /* Vertical spacing */
+}
+
+/* Style the scrollbar for webkit browsers */
+.credits-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.credits-container::-webkit-scrollbar-track {
+    background: rgba(1, 31, 91, 0.1);
+    border-radius: 4px;
+}
+
+.credits-container::-webkit-scrollbar-thumb {
+    background: rgba(1, 31, 91, 0.5);
+    border-radius: 4px;
+}
+
+.credits-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(1, 31, 91, 0.1);
+}
