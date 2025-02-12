@@ -575,3 +575,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 #mc_embed_signup #mc-embedded-subscribe.button:hover {
     border: 2px solid #fc4375 !important;
 }
+
+#mc_embed_shell {
+    margin-left: -1.25rem;
+}
