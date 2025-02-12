@@ -269,6 +269,10 @@
   border: 2px solid #011f5b !important;
 }
 
+#mc_embed_shell {
+  margin-left: -1.25rem;
+}
+
 .blog-content {
   font-family: Palatino, URW Palladio L, serif;
   font-size: 1.125rem; /* 15px */
