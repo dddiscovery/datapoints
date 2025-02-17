@@ -158,14 +158,6 @@
     text-align: left;
 }
 
-.guide-content h4 {
-    font-family: Optima, sans-serif;
-    font-size: 1.125rem;
-    color: rgba(1, 31, 91, 0.9);
-    margin: 2rem 0 1rem 0;
-    text-align: left;
-}
-
 .guide-content p {
     margin-bottom: 1rem;
     line-height: 1.6;
@@ -207,12 +199,13 @@
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 4px;
-    overflow-x: auto;
+    overflow: hidden;
     white-space: pre;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9rem;
     line-height: 1.4;
     width: 100%;
+
 }
 
 .guide-content pre code {
@@ -220,6 +213,7 @@
     display: inline-block;
     min-width: 100%;
     font-size: 1rem;
+    overflow: hidden;
 }
 
 .credits-container {
@@ -250,3 +244,77 @@
 .credits-container::-webkit-scrollbar-thumb:hover {
     background: rgba(1, 31, 91, 0.1);
 }
+
+/* Table styles */
+table {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+table th {
+    font-size: 1.2rem;
+    border-bottom: 2px solid #666666;  
+    padding-bottom: 8px; 
+    font-family: Palatino, URW Palladio L, serif;
+    text-align: center;
+    width: 20%;
+    text-shadow: 0 0 10px rgba(58, 143, 183); /* Pink halo effect */
+}
+
+table th:last-child {
+    width: 80%;
+}
+
+table td {
+    font-size: 1.1rem;
+    padding: 10px;
+    font-family: Georgia, serif;
+    text-align: center;	
+}
+
+table td:last-child {
+    text-align: left;	
+}
+
+/* Dropdown button (hidden by default on large screens) */
+.toc-dropdown-btn {
+    display: none;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    border: 1px solid rgba(252, 67, 117, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.25rem;
+    font-family: Gill Sans, sans-serif;
+    color: #011f5b;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 768px) {
+    .toc-dropdown-btn {
+        display: block;
+    }
+
+    .guide-container {
+        flex-direction: column;
+    }
+
+    .guide-sidebar {
+        display: none;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .guide-sidebar.show {
+        display: block;
+    }
+
+    .guide-content {
+        width: 100%;
+    }
+}
+
+
