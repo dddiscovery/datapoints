@@ -35,6 +35,9 @@
     </div>
 
     <div class="content-section-white">
+        <!-- Add dropdown button for mobile -->
+        <button class="toc-dropdown-btn">Table of Contents ▼</button>
+        
         <div class="guide-container">
             <!-- Left side: Table of Contents -->
             <div class="guide-sidebar">
@@ -54,7 +57,8 @@
 
                         <li><a href="#blog-inspirations">Blog Inspirations</a>
                             <ul>
-                                <li><a href="#creative-viz">Creative VIsualization</a></li>
+                                <li><a href="#creative-viz">Creative Visualization</a></li>
+                                <li><a href="#scientific-journals">Scientific Journals</a></li>
                             </ul>
                         </li>
 
@@ -80,13 +84,41 @@
         // Get all content sections
         const contentSections = document.querySelectorAll('.guide-content section[id]');
         
+        // Add dropdown button functionality
+        const dropdownBtn = document.querySelector('.toc-dropdown-btn');
+        const guideSidebar = document.querySelector('.guide-sidebar');
+        
+        dropdownBtn.addEventListener('click', function() {
+            guideSidebar.classList.toggle('show');
+            // Update arrow direction only
+            this.textContent = this.textContent.endsWith('∨') ? 
+                this.textContent.replace('∨', '∧') : this.textContent.replace('∧', '∨');
+        });
+
+        // Close dropdown when clicking a link (mobile)
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    guideSidebar.classList.remove('show');
+                    // Update dropdown text to show selected section
+                    dropdownBtn.textContent = this.textContent + ' ∨';
+                }
+            });
+        });
+        
         // Function to update active state
         function updateActiveState() {
             const hash = window.location.hash || '#github-repo'; // Default to first section
             
             // Update TOC highlighting
             tocLinks.forEach(link => {
-                link.classList.toggle('active', link.getAttribute('href') === hash);
+                if (link.getAttribute('href') === hash) {
+                    link.classList.add('active');
+                    // Update dropdown text to show current section
+                    dropdownBtn.textContent = link.textContent + ' ∨';
+                } else {
+                    link.classList.remove('active');
+                }
             });
             
             // Update visible content

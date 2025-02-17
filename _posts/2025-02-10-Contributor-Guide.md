@@ -232,7 +232,16 @@ After completing all content and styling, pushing changes to the `main` branch t
 
 <section id="git-resources" markdown="1">
 ### Git Resources
-<!-- Git resources content -->
+
+Lost in the land of commits and how git works 🤯? Here's your survival guide to version control.
+
+| Resource | Description |
+|----------|-------------|
+| [GitHub Docs](https://docs.github.com/en/get-started) | The official GitHub documentation - comprehensive, clear, and constantly updated.|
+| [Pro Git Book](https://git-scm.com/book/en/v2) | Free book covering everything from Git basics to advanced usage.|
+| [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials) | Covers Git workflows, branching, rebasing, and best practices.|
+
+
 </section>
 
 <section id="blog-inspirations" markdown="1">
@@ -250,6 +259,29 @@ We'd love to hear about any inspiring resource that could benefit our community!
 
 <section id="creative-viz" markdown="1">
 ### Creative VIsualization
+
+Cool examples of how to turn data and complex ideas into engaging visuals and stories. These sites show how to make your research pop with creative, interactive elements.
+
+| Resource | Description |
+|----------|-------------|
+| [VISxAI](https://visxai.io/) | A workshop showcasing creative ways to explain AI through interactive visualizations. |
+| [The Pudding](https://pudding.cool/) | Visual essays that turn data into delightful stories.|
+| [Seeing Theory](https://seeing-theory.brown.edu/index.html) | A stunning visual journey through statistics and probability.|
+
+
+
+</section>
+
+<section id="scientific-journals" markdown="1">
+### Scientific Journals
+Science with style - research that reads like a page-turner. A collection of blogs and publications that nail the sweet spot between rigorous research and engaging storytelling. <span style='text-decoration:line-through;font-size:1.125rem;font-family:Palatino,URW Palladio L,serif;color:#666666'>Because let's face it - most academic papers are a cure for insomnia!</span>
+
+
+| Resource | Description |
+|----------|-------------|
+| [Distill](https://distill.pub/) | A pioneer in interactive ML explanations.|
+| [PAIR Explorables](https://pair.withgoogle.com/explorables/) | Google's collection of interactive essays that make ML concepts tangible. |
+| [Quanta Magazine](https://www.quantamagazine.org/) | A blog series explores cutting-edge science and mathematics through in-depth, accessible journalism.|
 
 </section>
 
