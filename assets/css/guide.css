@@ -192,6 +192,10 @@
 
 .guide-content li code {
     margin-bottom: 2px;
+    overflow-x: auto;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .guide-content pre {
@@ -199,21 +203,19 @@
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 4px;
-    overflow: hidden;
+    overflow-x: auto;
     white-space: pre;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9rem;
     line-height: 1.4;
     width: 100%;
-
 }
 
 .guide-content pre code {
-    padding: 0 1rem;
+    padding: 0;
     display: inline-block;
     min-width: 100%;
     font-size: 1rem;
-    overflow: hidden;
 }
 
 .credits-container {
@@ -314,6 +316,29 @@ table td:last-child {
 
     .guide-content {
         width: 100%;
+    }
+
+    .guide-content pre {
+        margin: 1rem -1rem;
+        padding: 1rem;
+        border-radius: 0;
+    }
+
+    .guide-content pre code {
+        padding: 0;
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    .guide-content code {
+        overflow-x: auto;
+    }
+    
+    .guide-content li code {
+        white-space: pre;
+        overflow-x: auto;
+  /*      max-width: calc(100vw - 4rem); /* Account for list indentation and padding */
+        display: inline-block;
     }
 }
 
