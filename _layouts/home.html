@@ -41,40 +41,21 @@ title: Data Points
 		    <!--<p class="font-sans">Welcome to <b>Data Points</b>, the Data Driven Discovery Initiative's blog series showcasing the discoveries of Penn's data science community.</p>-->
 
 <div class="text-center my-12">
-  <h1 class="text-3xl font-serif font-bold tracking-wide text-gray-800 relative">
-    Welcome to
-    <span class="underline decoration-sky-400 decoration-dotted underline-offset-8 decoration-4">
-      Data Points
-    </span>
+  <h1 class="welcome-message">
+    {{ page.welcome_message | newline_to_br }}
   </h1>
-  <p class="text-lg font-light text-gray-600 mt-4 font-sans">
-    A research blog for Penn's data science community.
-  </p>
 </div>
 
 	    </div>
+        {% for slide in page.slides %}
         <div class="mySlides fade mt-5">
 		<!--<img src="{{ '/assets/images/picture/sample1.jpg' | relative_url }}" style="width: 972px; height: 270px; object-fit: cover;">-->
-            <img src="{{ '/assets/images/picture/explore.jpg' | relative_url }}" class="slide-pic">
+            <img src="{{ slide.image | relative_url }}" class="slide-pic">
             <div class="slideshow-text">
-                <p>Explore research through visual storytelling.</p>
+                <p>{{ slide.text }}</p>
             </div>
         </div>
-        <div class="mySlides fade mt-5">
-		<!--<img src="{{ '/assets/images/picture/sample2.jpg' | relative_url }}" style="width: 972px; height: 270px; object-fit: cover;">-->
-            <img src="{{ '/assets/images/picture/call_for_participate.jpg' | relative_url }}" class="slide-pic">
-            <div class="slideshow-text">
-                <p>Contribute to Data Points!</p>
-            </div>
-        </div>
-        <div class="mySlides fade mt-5">
-		<!--<img src="{{ '/assets/images/picture/sample3.jpg' | relative_url }}" style="width: 972px; height: 270px; object-fit: cover;">-->
-         <!--  <div class="heropattern-jigsaw slide-pic"></div>--> 
-            <img src="{{ '/assets/images/picture/join_community.jpg' | relative_url }}" class="slide-pic">
-            <div class="slideshow-text">
-                <p>Join our community of researchers and share your data-driven insights with the world.</p>
-            </div>
-        </div>
+        {% endfor %}
         
         <!-- Next and previous buttons -->
         <a class="slide-button"  id="prev-button" onclick="plusSlides(-1)" style="cursor: pointer; position: absolute; top: 50%; left: 10px; transform: translateY(-50%); color: black; font-weight: bold; font-size: 24px; user-select: none;">&#10094;</a>
@@ -89,10 +70,7 @@ title: Data Points
     	<div class="p-2"></div>
 	<div class="section-title"><a class="anchor" id="about-section" style="display:block; position:relative; top:-70px; visibility:hidden;"></a>About</div>
         <div class="content-text">
-            <p class="mt-2 mb-2">
-                <strong>Data Points</strong> showcases the work of Penn's data science community through concise, engaging articles. Each post takes a complex idea and transforms it into accessible insights in creative and compelling ways—whether through a high-level walkthrough of a key figure, or an interactive, explorable explanation.
-            </p>
-	    <p>Interested in contributing? We can help with technical and editorial guidance so your post is as impactful and polished as the research it represents. Check out <a href="#guide-section" class="font-bold hover:underline decoration-2">How to Contribute</a> - we're excited to collaborate and help bring your ideas to life!</p>
+            {{ page.about | markdownify }}
 	</div>
     	<div class="p-3"></div>
     </div>
@@ -107,14 +85,14 @@ title: Data Points
             <div class="content-container width-70">
                 <div class="blog-content-section">
                     <div class="blog-image">
-                        <img src="{{ '/assets/images/posts/title-km.jpg' | relative_url }}" alt="Blog Image">
+                        <img src="{{ page.featured_post.image | relative_url }}" alt="Blog Image">
                     </div>
                     <div class="blog-content">
                         <h3 class="blog-title">
-                            <a href="{{ '/Where-is-the-Information-in-Data' | relative_url }}" class="blog-title-link">Where is the information in data?</a>
+                            <a href="{{ page.featured_post.url | relative_url }}" class="blog-title-link">{{ page.featured_post.title }}</a>
                         </h3>
-                        <p class="blog-meta">By <a href="https://www.kieranamurphy.com/">Kieran Murphy</a> | February 03, 2025</p>
-                        <p class="blog-description">An interactive tutorial about decomposing variation into distinctions worth making.</p>
+                        <p class="blog-meta">By <a href="{{ page.featured_post.author_url }}">{{ page.featured_post.author }}</a> | {{ page.featured_post.date }}</p>
+                        <p class="blog-description">{{ page.featured_post.description }}</p>
                     </div>
                 </div>
             </div>
@@ -127,20 +105,20 @@ title: Data Points
                 <div class="content-text subscribe-content" style="padding-left: 0;">
                     <p class="follow-title">Follow us</p>
                     <div class="social-links">
+                        {% for link in page.social_links %}
                         <div class="social-item">
+                            {% if forloop.first %}
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="social-icon">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
                             </svg>
-                            <span><a href="https://web.sas.upenn.edu/data-science/news-events/" class="social-link">DDDI News</a></span>
-                        </div>
-                        <div class="social-item">
+                            {% elsif forloop.index == 2 %}
                             <img src="{{ '/assets/images/logo/Bluesky_Logo.png' | relative_url }}" alt="Bluesky Logo" class="social-icon">
-                            <span><a href="https://bsky.app/profile/upenndddi.bsky.social" class="social-link">@upenndddi.bsky.social</a></span>
-                        </div>
-                        <div class="social-item">
+                            {% else %}
                             <img src="{{ '/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png' | relative_url }}" alt="LinkedIn Logo" class="social-icon" style="width: 24px; height: 20px;">
-                            <span><a href="https://linkedin.com/company/upenn-data-driven-discovery" class="social-link">Data Points DDDI</a></span>
+                            {% endif %}
+                            <span><a href="{{ link.url }}" class="social-link">{{ link.name }}</a></span>
                         </div>
+                        {% endfor %}
                     </div>
 
                 <!-- Email subscription container with updated alignment -->
@@ -199,16 +177,9 @@ title: Data Points
     	<div class="p-3"></div>
         <div id="guide-section" class="section-title">How to Contribute</div>
         <div class="content-text">
-            <p>Ready to contribute to Data Points? Here's how to get started:</p>
-	    <ol class="ps-5 mt-1 mb-2 space-y-1 list-decimal list-inside">
-              <li>Choose a compelling aspect of your research that can be effectively communicated through visuals and concise writing.</li>
-              <li>Draft a brief outline focusing on one key insight or methodology that would interest fellow researchers.</li>
-              <li>Work with our team to develop engaging visualizations and refine your narrative.</li>
-              <li>Submit your draft for collaborative editing and technical review.</li>
-	    </ol>
-	    <p>Contact us at <span class="font-bold">sas-ddd-admin@sas.upenn.edu</span> with subject line "Data Points submission" to discuss your ideas or submit a proposal. We look forward to featuring your work!</p>
-        <p> For more details, check out our <a href="{{ '/contributor-guide' | relative_url }}" class="font-bold" style="text-decoration: none; transition: all 0.2s ease-in-out;" onmouseover="this.style.color='#fc4375'" onmouseout="this.style.color=''">Contributor Guide</a>.
-        </p>
+            {% capture guide_content %}{{ page.contribute_guide }}{% endcapture %}
+            {{ guide_content | markdownify }}
+            <p>For more details, check out our <a href="{{ '/contributor-guide' | relative_url }}"><span><b>Contributor Guide</b></span></a>.</p>
         </div>
     	<div class="p-3"></div>
     </div>
@@ -218,50 +189,18 @@ title: Data Points
         <div class="authors-section">
             <div class="authors-container">
                 <div class="people-sub-title">Editorial Team</div>
+                {% for member in page.team %}
                 <div class="author-card">
                     <div class="author-image">
-                        <img src="{{ '/assets/images/authors/K.A.Murphy.jpeg' | relative_url }}" alt="K.A. Murphy">
+                        <img src="{{ member.image | relative_url }}" alt="{{ member.name }}">
                     </div>
                     <div class="author-info">
-                        <div class="author-name"><a href="https://www.kieranamurphy.com/">Kieran Murphy</a></div>
-                        <div class="author-title">Content Editor</div>
-                        <div class="author-fellowship">AI x Science Fellow</div>
+                        <div class="author-name"><a href="{{ member.url }}">{{ member.name }}</a></div>
+                        <div class="author-title">{{ member.title }}</div>
+                        <div class="author-fellowship">{{ member.fellowship }}</div>
                     </div>
                 </div>
-
-                <div class="author-card">
-                    <div class="author-image">
-                        <img src="{{ '/assets/images/authors/MelanieSegado.jpeg' | relative_url }}" alt="Melanie Segado">
-                    </div>
-                    <div class="author-info">
-                        <div class="author-name"><a href="https://sites.google.com/view/melaniesegado">Melanie Segado</a></div>
-                        <div class="author-title">Content Editor</div>
-                        <div class="author-fellowship">AI x Science Fellow</div>
-                    </div>
-                </div>
-
-                <div class="author-card">
-                    <div class="author-image">
-                        <img src="{{ '/assets/images/authors/YuxinL.jpeg' | relative_url }}" alt="Yuxin L">
-                    </div>
-                    <div class="author-info">
-                        <div class="author-name"><a href="https://github.com/yuxinlg">Yuxin Liang</a></div>
-                        <div class="author-title">Web Designer</div>
-                        <div class="author-fellowship">Data Scientist @DDDI</div>
-                        
-                    </div>
-                </div>
-
-                <div class="author-card">
-                    <div class="author-image">
-                        <img src="{{ '/assets/images/authors/ColinTwomey.jpeg' | relative_url }}" alt="Colin Twomey">
-                    </div>
-                    <div class="author-info">
-                        <div class="author-name"><a href="https://www.sas.upenn.edu/~crtwomey/">Colin Twomey</a></div>
-                        <div class="author-title">Managing Editor</div>
-                        <div class="author-fellowship">Executive Director @DDDI</div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
 
@@ -273,18 +212,13 @@ title: Data Points
     </div>
 
     <div class="content-section-blue">
-        <div id="contact-section" class="section-title">Contact us</div>
+        <div class="p-3"></div>
+        <div id="contact-section" class="section-title">Contact Us</div>
         <div class="content-text">
-            <div class="contact-column">
-                <div class="content-text contact-text">
-                    <p class="contact-email">Email: sas-ddd-admin@sas.upenn.edu</p>
-                    <p>Data Driven Discovery Initiative (DDDI)<br>
-                    3718 Locust Walk<br>
-                    Suite 411<br>
-                    Philadelphia, PA 19104</p>
-                </div>
-            </div>
+            <p class="contact-text"><a href="mailto:{{ page.contact.email }}">{{ page.contact.email }}</a></p>
+            <p class="contact-text">{{ page.contact.address | newline_to_br }}</p>
         </div>
+        <div class="p-3"></div>
     </div>
             
     <script>
