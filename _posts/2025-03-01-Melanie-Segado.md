@@ -23,8 +23,70 @@ Infants are really difficult to analyze from a computer’s perspective. They te
 
 Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. **Vision transformers**, originally developed for image classification, excel in video analysis due to their ability to capture relationships between multiple points within a frame as well as long-range dependencies across frames. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLabs, make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources.
 
-## Let's take a look at the two side-by-side 
 
+<div class="video-container">
+    <video id="video1" src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4" autoplay loop muted></video>
+    <video id="video2" class="video-overlay" src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4" autoplay loop muted></video>
+    <div class="slider" id="slider"></div>
+</div>
+
+<script>
+    const slider = document.getElementById('slider');
+    const videoOverlay = document.getElementById('video2');
+    const container = document.querySelector('.video-container');
+
+    const video1 = document.getElementById('video1');
+    const video2 = document.getElementById('video2');
+
+    video1.addEventListener('play', () => video2.play());
+    video1.addEventListener('pause', () => video2.pause());
+    video1.addEventListener('seeked', () => (video2.currentTime = video1.currentTime));
+
+    slider.addEventListener('mousedown', () => {
+        document.addEventListener('mousemove', moveSlider);
+        document.addEventListener('mouseup', () => {
+            document.removeEventListener('mousemove', moveSlider);
+        });
+    });
+
+    function moveSlider(e) {
+        let rect = container.getBoundingClientRect();
+        let position = ((e.clientX - rect.left) / rect.width) * 100;
+        position = Math.max(0, Math.min(100, position));
+        slider.style.left = position + '%';
+        videoOverlay.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
+    }
+</script>
+
+<style>
+    .video-container {
+        position: relative;
+        width: 600px;
+        height: 400px;
+        overflow: hidden;
+    }
+
+    video {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 4px;
+        height: 100%;
+        background: white;
+        cursor: ew-resize;
+    }
+
+    .video-overlay {
+        clip-path: inset(0 50% 0 0);
+    }
+</style>
 
 
 ## Impact and Future Directions
