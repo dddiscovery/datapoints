@@ -78,7 +78,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => {
-        var video = document.getElementById("test-video");
+        var video = document.getElementById("video-compare-container");
 
         if (!video) {
             console.error("Video element not found!");
