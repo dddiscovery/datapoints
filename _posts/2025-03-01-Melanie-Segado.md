@@ -35,9 +35,14 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
       <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm" type="video/webm">
     </video>
   </div>
+  <!-- Initial Center Line with Arrows -->
+  <div id="initial-line">
+    <div class="arrow" id="left-arrow">◀</div>
+    <div class="arrow" id="right-arrow">▶</div>
+  </div>
   <div id="slider-line">
-    <div id="left-arrow">◀</div>
-    <div id="right-arrow">▶</div>
+    <div class="arrow" id="dynamic-left-arrow">◀</div>
+    <div class="arrow" id="dynamic-right-arrow">▶</div>
   </div>
 </div>
 
@@ -83,6 +88,19 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     cursor: pointer;
   }
 
+  /* Initial Center Line */
+  #initial-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px;
+    height: 100%;
+    background: white;
+    transform: translateX(-50%);
+    z-index: 10;
+    transition: opacity 0.3s ease-in-out;
+  }
+
   /* Vertical Slider Line */
   #slider-line {
     position: absolute;
@@ -90,13 +108,13 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     width: 3px;
     height: 100%;
     background: white;
-    pointer-events: none; /* Allows interaction with videos */
+    pointer-events: none;
     z-index: 10;
-    display: none; /* Initially hidden */
+    display: none;
   }
 
   /* Arrow Styles */
-  #left-arrow, #right-arrow {
+  .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -106,27 +124,36 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     background: rgba(0, 0, 0, 0.5);
     padding: 5px;
     border-radius: 50%;
-    pointer-events: none; /* Ensures clicks pass through */
+    pointer-events: none;
   }
 
-  #left-arrow {
+  #left-arrow, #dynamic-left-arrow {
     left: -20px;
   }
 
-  #right-arrow {
+  #right-arrow, #dynamic-right-arrow {
     right: -20px;
   }
+
+  /* Position the arrows for the initial line */
+  #left-arrow {
+    left: -30px;
+  }
+
+  #right-arrow {
+    right: -30px;
+  }
+
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     var videoContainer = document.getElementById("video-compare-container"),
-        video1 = document.getElementById("video1"), // Background video
-        video2 = document.getElementById("video2"), // Clipped video
+        video1 = document.getElementById("video1"),
+        video2 = document.getElementById("video2"),
         videoClipper = document.getElementById("video-clipper"),
+        initialLine = document.getElementById("initial-line"),
         sliderLine = document.getElementById("slider-line"),
-        leftArrow = document.getElementById("left-arrow"),
-        rightArrow = document.getElementById("right-arrow"),
         pauseBtn = document.getElementById("pause-btn");
 
     if (!video1 || !video2) {
@@ -151,7 +178,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Track Mouse Movement to Adjust Clipper Width and Show Vertical Line
+    // Hide initial line when user interacts
+    videoContainer.addEventListener("mouseenter", function () {
+        initialLine.style.opacity = "0"; // Fade out initial line
+    });
+
+    videoContainer.addEventListener("mouseleave", function () {
+        initialLine.style.opacity = "1"; // Fade it back in when mouse leaves
+    });
+
+    // Track Mouse Movement to Adjust Clipper Width and Show Dynamic Line
     videoContainer.addEventListener("mousemove", function (e) {
         var rect = videoContainer.getBoundingClientRect(),
             position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
@@ -161,17 +197,13 @@ document.addEventListener("DOMContentLoaded", function () {
             video2.style.width = ((100 / position) * 100) + "%";
             video2.style.zIndex = 3;
 
-            // Show and move the vertical line
+            // Show and move the dynamic vertical line
             sliderLine.style.display = "block";
             sliderLine.style.left = e.pageX - rect.left + "px";
-
-            // Position arrows
-            leftArrow.style.left = "-20px";
-            rightArrow.style.left = "10px";
         }
     });
 
-    // Hide the vertical line when mouse leaves the container
+    // Hide dynamic line when mouse leaves
     videoContainer.addEventListener("mouseleave", function () {
         sliderLine.style.display = "none";
     });
