@@ -24,101 +24,62 @@ Infants are really difficult to analyze from a computer’s perspective. They te
 Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. **Vision transformers**, originally developed for image classification, excel in video analysis due to their ability to capture relationships between multiple points within a frame as well as long-range dependencies across frames. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLabs, make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources.
 
 
-<div class="video-container">
-    <video id="video1" src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4" autoplay loop muted></video>
-    <video id="video2" class="video-overlay" src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4" autoplay loop muted></video>
-    <div class="slider" id="slider"></div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const slider = document.getElementById('slider');
-        const videoOverlay = document.getElementById('video2');
-        const container = document.querySelector('.video-container');
-
-        const video1 = document.getElementById('video1');
-        const video2 = document.getElementById('video2');
-
-        function setContainerSize() {
-            const rect = video1.getBoundingClientRect();
-            container.style.width = `${rect.width}px`;
-            container.style.height = `${rect.height}px`;
-        }
-
-        video1.addEventListener('loadedmetadata', setContainerSize);
-        video2.addEventListener('loadedmetadata', setContainerSize);
-        window.addEventListener('resize', setContainerSize);
-
-        // Sync video playback
-        video1.addEventListener('play', () => video2.play());
-        video1.addEventListener('pause', () => video2.pause());
-        video1.addEventListener('seeked', () => (video2.currentTime = video1.currentTime));
-
-        // Enable dragging functionality
-        let isDragging = false;
-
-        slider.addEventListener('mousedown', (event) => {
-            isDragging = true;
-            document.addEventListener('mousemove', moveSlider);
-        });
-
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            document.removeEventListener('mousemove', moveSlider);
-        });
-
-        function moveSlider(event) {
-            if (!isDragging) return;
-
-            let rect = container.getBoundingClientRect();
-            let position = ((event.clientX - rect.left) / rect.width) * 100;
-            position = Math.max(0, Math.min(100, position));
-
-            slider.style.left = position + '%';
-            videoOverlay.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
-        }
-    });
-</script>
+<div id="video-compare-container">
+  <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/dirty.jpg">
+    <source src=../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4>
+    <source src=../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4>
+  </video>
+ <div id="video-clipper">
+    <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/clean.jpg">
+      <source src=../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4>
+      <source src=../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4>
+    </video>
+  </div>
+	</div>
 
 <style>
-    .video-container {
-        position: relative;
-        overflow: hidden;
-        border: 2px solid white;
-        display: inline-block;
-        user-select: none;
-    }
-
-    .video-wrapper {
-        position: relative;
-    }
-
-    video {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    .video-overlay {
-        width: 100%;
-        overflow: hidden;
-        clip-path: inset(0 50% 0 0);
-    }
-
-    .slider {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 4px;
-        height: 100%;
-        background: white;
-        cursor: ew-resize;
-        z-index: 10;
-        transition: none;
-    }
+#video-compare-container {
+    display: inline-block;
+    line-height: 0;
+    position: relative;
+    width: 100%;
+    padding-top: 42.3%;
+}
+#video-compare-container > video {
+    width: 100%;
+    position: absolute;
+    top: 0; height: 100%;
+}
+#video-clipper {
+    width: 50%; position: absolute;
+    top: 0; bottom: 0;
+    overflow: hidden;
+}
+#video-clipper video {
+    width: 200%;
+    position: absolute;
+    height: 100%;
+}
 </style>
 
+<script>
+    function trackLocation(e) {
+        var rect = videoContainer.getBoundingClientRect(),
+            position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
+        if (position <= 100) { 
+            videoClipper.style.width = position + "%";
+            clippedVideo.style.width = ((100 / position) * 100) + "%";
+            clippedVideo.style.zIndex = 3;
+        }
+    }
+    var videoContainer = document.getElementById("video-compare-container"),
+        videoClipper = document.getElementById("video-clipper"),
+        clippedVideo = videoClipper.getElementsByTagName("video")[0];
+
+    videoContainer.addEventListener("mousemove", trackLocation, false);
+    videoContainer.addEventListener("touchstart", trackLocation, false);
+    videoContainer.addEventListener("touchmove", trackLocation, false);
+</script>
 
 ## Impact and Future Directions
 
