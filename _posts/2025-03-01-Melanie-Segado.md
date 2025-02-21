@@ -26,13 +26,14 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 
 <div id="video-compare-container">
   <video loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.jpg">
-    <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4" type="video/mp4">
-    <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.webm" type="video/webm">
+      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4" type="video/mp4">
+      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm" type="video/webm">
   </video>
  <div id="video-clipper">
     <video loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.jpg">
-      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4" type="video/mp4">
-      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm" type="video/webm">
+
+      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4" type="video/mp4">
+      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.webm" type="video/webm">
     </video>
   </div>
 </div>
@@ -74,9 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
     videoContainer.addEventListener("touchstart", trackLocation, false);
     videoContainer.addEventListener("touchmove", trackLocation, false);
 
-    mainVideo.play()
-    clippedVideo.play()
-    
+    // mainVideo.play()
+    // clippedVideo.play()
+
     function trackLocation(e) {
         var rect = videoContainer.getBoundingClientRect(),
             position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
