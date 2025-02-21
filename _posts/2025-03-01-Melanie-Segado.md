@@ -23,31 +23,19 @@ Infants are really difficult to analyze from a computer’s perspective. They te
 
 Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. **Vision transformers**, originally developed for image classification, excel in video analysis due to their ability to capture relationships between multiple points within a frame as well as long-range dependencies across frames. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLabs, make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources.
 
-<div id="video-compare-container">
-  <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/dirty.jpg">
-    <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.mp4">
-    <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.webm">
-  </video>
- <div id="video-clipper">
-    <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/clean.jpg">
-      <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.mp4">
-      <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.webm">
-    </video>
-  </div>
-	</div>
 
-<!-- <div id="video-compare-container">
+<div id="video-compare-container">
   <video loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.jpg">
-    <source src=../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4 type="video/mp4">
-    <source src=../assets/post_assets/2025-03-01-Melanie-Segado/openpose.webm type="video/webm">
+    <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4" type="video/mp4">
+    <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.webm" type="video/webm">
   </video>
  <div id="video-clipper">
     <video loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.jpg">
-      <source src=../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4 type="video/mp4">
-      <source src=../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm type="video/webm">
+      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4" type="video/mp4">
+      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm" type="video/webm">
     </video>
   </div>
-	</div> -->
+	</div>
 
 <style>
 
@@ -76,49 +64,26 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(() => {
-        var video = document.getElementById("video-compare-container");
+document.addEventListener("DOMContentLoaded", function () {
+    var videoContainer = document.getElementById("video-compare-container"),
+        videoClipper = document.getElementById("video-clipper"),
+        clippedVideo = videoClipper.getElementsByTagName("video")[0];
 
-        if (!video) {
-            console.error("Video element not found!");
-            return;
+    videoContainer.addEventListener("mousemove", trackLocation, false);
+    videoContainer.addEventListener("touchstart", trackLocation, false);
+    videoContainer.addEventListener("touchmove", trackLocation, false);
+
+    function trackLocation(e) {
+        var rect = videoContainer.getBoundingClientRect(),
+            position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
+
+        if (position <= 100) { 
+            videoClipper.style.width = position + "%";
+            clippedVideo.style.width = ((100 / position) * 100) + "%";
+            clippedVideo.style.zIndex = 3;
         }
-
-        console.log("Video found!");
-
-        video.addEventListener("loadeddata", function() {
-            console.log("Video loaded successfully!");
-        });
-
-        video.addEventListener("play", function() {
-            console.log("Video is playing");
-            video.removeAttribute("poster"); // Hide the poster
-        });
-
-        video.play(); // Try to force play on load
-    }, 500); // Delay execution slightly to ensure elements are loaded
+    }
 });
-// document.addEventListener("DOMContentLoaded", function () {
-//     var videoContainer = document.getElementById("video-compare-container"),
-//         videoClipper = document.getElementById("video-clipper"),
-//         clippedVideo = videoClipper.getElementsByTagName("video")[0];
-
-//     videoContainer.addEventListener("mousemove", trackLocation, false);
-//     videoContainer.addEventListener("touchstart", trackLocation, false);
-//     videoContainer.addEventListener("touchmove", trackLocation, false);
-
-//     function trackLocation(e) {
-//         var rect = videoContainer.getBoundingClientRect(),
-//             position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
-
-//         if (position <= 100) { 
-//             videoClipper.style.width = position + "%";
-//             clippedVideo.style.width = ((100 / position) * 100) + "%";
-//             clippedVideo.style.zIndex = 3;
-//         }
-//     }
-// });
 </script>
 
 ## Impact and Future Directions
