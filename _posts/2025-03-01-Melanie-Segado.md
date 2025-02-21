@@ -35,6 +35,8 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
       <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm" type="video/webm">
     </video>
   </div>
+    <div id="slider-line"></div> <!-- Vertical white line -->
+
 </div>
 
 <style>
@@ -61,6 +63,16 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     position: absolute;
     height: 100%;
 }
+  #slider-line {
+    position: absolute;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: white;
+    pointer-events: none; /* Allows interaction with videos */
+    z-index: 10;
+    display: none; /* Initially hidden */
+  }
 </style>
 
 <script>
