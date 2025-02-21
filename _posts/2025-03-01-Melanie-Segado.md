@@ -25,13 +25,13 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 
 <div id="video-compare-container">
   <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/dirty.jpg">
-    <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.mp4>
-    <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.webm>
+    <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.mp4">
+    <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.webm">
   </video>
  <div id="video-clipper">
     <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/clean.jpg">
-      <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.mp4>
-      <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.webm>
+      <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.mp4">
+      <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.webm">
     </video>
   </div>
 	</div>
