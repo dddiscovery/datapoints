@@ -99,6 +99,8 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     });
 
     video.play(); // Try to force play on load
+
+    });
 // document.addEventListener("DOMContentLoaded", function () {
 //     var videoContainer = document.getElementById("video-compare-container"),
 //         videoClipper = document.getElementById("video-clipper"),
