@@ -36,8 +36,6 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     </video>
   </div>
     <div id="slider-line"></div> <!-- Vertical white line -->
-    <div id="left-arrow">◀</div>
-    <div id="right-arrow">▶</div>
 </div>
 
 <style>
@@ -75,27 +73,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     display: none; /* Initially hidden */
   }
 
-  /* Arrow Styles */
-  #left-arrow, #right-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: white;
-    font-weight: bold;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px;
-    border-radius: 50%;
-    pointer-events: none; /* Ensures clicks pass through */
-  }
 
-  #left-arrow {
-    left: -20px;
-  }
-
-  #right-arrow {
-    right: -20px;
-  }
 </style>
 
 <script>
