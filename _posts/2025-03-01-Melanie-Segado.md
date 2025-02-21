@@ -61,8 +61,8 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 <style>
     .video-container {
         position: relative;
-        width: 600px;
-        height: 400px;
+        width: 1200px;
+        height: 600px;
         overflow: hidden;
     }
 
