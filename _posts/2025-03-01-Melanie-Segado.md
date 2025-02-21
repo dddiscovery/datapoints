@@ -25,12 +25,12 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 
 
 <div id="video-compare-container">
-  <video loop autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.jpg">
+  <video loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.jpg">
     <source src=../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4>
     <source src=../assets/post_assets/2025-03-01-Melanie-Segado/openpose.webm>
   </video>
  <div id="video-clipper">
-    <video loop autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.jpg">
+    <video loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.jpg">
       <source src=../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4>
       <source src=../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm>
     </video>
