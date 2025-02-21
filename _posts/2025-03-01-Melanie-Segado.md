@@ -36,7 +36,8 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     </video>
   </div>
     <div id="slider-line"></div> <!-- Vertical white line -->
-
+    <div id="left-arrow">◀</div>
+    <div id="right-arrow">▶</div>
 </div>
 
 <style>
