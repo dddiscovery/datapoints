@@ -35,7 +35,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
       <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm" type="video/webm">
     </video>
   </div>
-	</div>
+</div>
 
 <style>
 
@@ -68,11 +68,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var videoContainer = document.getElementById("video-compare-container"),
         videoClipper = document.getElementById("video-clipper"),
         clippedVideo = videoClipper.getElementsByTagName("video")[0];
+        mainVideo = videoContainer.getElementsByTagName("video")[0];
 
     videoContainer.addEventListener("mousemove", trackLocation, false);
     videoContainer.addEventListener("touchstart", trackLocation, false);
     videoContainer.addEventListener("touchmove", trackLocation, false);
 
+    mainVideo.play()
+    clippedVideo.play()
+    
     function trackLocation(e) {
         var rect = videoContainer.getBoundingClientRect(),
             position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
