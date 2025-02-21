@@ -29,6 +29,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     <video id="video2" class="video-overlay" src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4" autoplay loop muted></video>
     <div class="slider" id="slider"></div>
 </div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const slider = document.getElementById('slider');
@@ -38,24 +39,43 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
         const video1 = document.getElementById('video1');
         const video2 = document.getElementById('video2');
 
+        function setContainerSize() {
+            const rect = video1.getBoundingClientRect();
+            container.style.width = `${rect.width}px`;
+            container.style.height = `${rect.height}px`;
+        }
+
+        video1.addEventListener('loadedmetadata', setContainerSize);
+        video2.addEventListener('loadedmetadata', setContainerSize);
+        window.addEventListener('resize', setContainerSize);
+
         // Sync video playback
         video1.addEventListener('play', () => video2.play());
         video1.addEventListener('pause', () => video2.pause());
         video1.addEventListener('seeked', () => (video2.currentTime = video1.currentTime));
 
-        slider.addEventListener('mousedown', () => {
+        // Enable dragging functionality
+        let isDragging = false;
+
+        slider.addEventListener('mousedown', (event) => {
+            isDragging = true;
             document.addEventListener('mousemove', moveSlider);
-            document.addEventListener('mouseup', () => {
-                document.removeEventListener('mousemove', moveSlider);
-            });
         });
 
-        function moveSlider(e) {
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.removeEventListener('mousemove', moveSlider);
+        });
+
+        function moveSlider(event) {
+            if (!isDragging) return;
+
             let rect = container.getBoundingClientRect();
-            let position = ((e.clientX - rect.left) / rect.width) * 100;
+            let position = ((event.clientX - rect.left) / rect.width) * 100;
             position = Math.max(0, Math.min(100, position));
+
             slider.style.left = position + '%';
-            videoOverlay.style.width = position + '%';
+            videoOverlay.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
         }
     });
 </script>
@@ -63,29 +83,27 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 <style>
     .video-container {
         position: relative;
-        width: 100%;
-        max-width: 800px;
-        height: 450px;
         overflow: hidden;
         border: 2px solid white;
+        display: inline-block;
+        user-select: none;
     }
 
     .video-wrapper {
         position: relative;
-        width: 100%;
-        height: 100%;
     }
 
     video {
         position: absolute;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .video-overlay {
-        width: 50%;
+        width: 100%;
         overflow: hidden;
+        clip-path: inset(0 50% 0 0);
     }
 
     .slider {
@@ -97,6 +115,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
         background: white;
         cursor: ew-resize;
         z-index: 10;
+        transition: none;
     }
 </style>
 
