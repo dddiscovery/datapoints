@@ -21,47 +21,69 @@ Infants are really difficult to analyze from a computer’s perspective. They te
 
 ## From Foundation Models to Vision Transformers
 
-Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. **Vision transformers**, originally developed for image classification, excel in video analysis due to their ability to capture relationships between multiple points within a frame as well as long-range dependencies across frames. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLabs, make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources.
+Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. **Vision transformers**, originally developed for image classification, excel in video analysis due to their ability to capture relationships between multiple points within a frame as well as long-range dependencies across frames. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLab's [MMPose](https://mmpose.readthedocs.io/en/latest/overview.html), make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources.
 
 
 <div id="video-compare-container">
-    <video loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.jpg">
-      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4" type="video/mp4">
-      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.webm" type="video/webm">
+  <video id="video1" loop muted autoplay poster="openpose.jpg">
+    <source src="openpose_trimmed.mp4" type="video/mp4">
+    <source src="openpose_trimmed.webm" type="video/webm">
   </video>
- <div id="video-clipper">
-  <video loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.jpg">
-      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.mp4" type="video/mp4">
-      <source src="../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm" type="video/webm">
+  <div id="video-clipper">
+    <video id="video2" loop muted autoplay poster="vitposeh.jpg">
+      <source src="vitposeh_trimmed.mp4" type="video/mp4">
+      <source src="vitposeh_trimmed.webm" type="video/webm">
     </video>
   </div>
-    <div id="slider-line"></div> <!-- Vertical white line -->
+  <div id="slider-line">
+    <div id="left-arrow">◀</div>
+    <div id="right-arrow">▶</div>
+  </div>
 </div>
 
-<style>
+<!-- Pause Button -->
+<button id="pause-btn">Pause</button>
 
-#video-compare-container {
+<style>
+  #video-compare-container {
     display: inline-block;
     line-height: 0;
     position: relative;
     width: 100%;
     padding-top: 42.3%;
-}
-#video-compare-container > video {
+  }
+
+  #video-compare-container > video {
     width: 100%;
     position: absolute;
-    top: 0; height: 100%;
-}
-#video-clipper {
-    width: 50%; position: absolute;
-    top: 0; bottom: 0;
+    top: 0;
+    height: 100%;
+  }
+
+  #video-clipper {
+    width: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
     overflow: hidden;
-}
-#video-clipper video {
+  }
+
+  #video-clipper video {
     width: 200%;
     position: absolute;
     height: 100%;
-}
+  }
+
+  /* Style the Pause Button */
+  #pause-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  /* Vertical Slider Line */
   #slider-line {
     position: absolute;
     top: 0;
@@ -73,38 +95,86 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     display: none; /* Initially hidden */
   }
 
+  /* Arrow Styles */
+  #left-arrow, #right-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 50%;
+    pointer-events: none; /* Ensures clicks pass through */
+  }
 
+  #left-arrow {
+    left: -20px;
+  }
+
+  #right-arrow {
+    right: -20px;
+  }
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     var videoContainer = document.getElementById("video-compare-container"),
+        video1 = document.getElementById("video1"), // Background video
+        video2 = document.getElementById("video2"), // Clipped video
         videoClipper = document.getElementById("video-clipper"),
         sliderLine = document.getElementById("slider-line"),
+        leftArrow = document.getElementById("left-arrow"),
+        rightArrow = document.getElementById("right-arrow"),
+        pauseBtn = document.getElementById("pause-btn");
 
-        clippedVideo = videoClipper.getElementsByTagName("video")[0];
-        mainVideo = videoContainer.getElementsByTagName("video")[0];
+    if (!video1 || !video2) {
+        console.error("Error: One or more videos are missing.");
+        return;
+    }
 
-    videoContainer.addEventListener("mousemove", trackLocation, false);
-    videoContainer.addEventListener("touchstart", trackLocation, false);
-    videoContainer.addEventListener("touchmove", trackLocation, false);
+    // Ensure both videos play initially
+    video1.play();
+    video2.play();
 
-    // mainVideo.play()
-    // clippedVideo.play()
+    // Pause and Play Functionality
+    pauseBtn.addEventListener("click", function () {
+        if (video1.paused || video2.paused) {
+            video1.play();
+            video2.play();
+            pauseBtn.textContent = "Pause";
+        } else {
+            video1.pause();
+            video2.pause();
+            pauseBtn.textContent = "Play";
+        }
+    });
 
-    function trackLocation(e) {
+    // Track Mouse Movement to Adjust Clipper Width and Show Vertical Line
+    videoContainer.addEventListener("mousemove", function (e) {
         var rect = videoContainer.getBoundingClientRect(),
             position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
 
         if (position <= 100) { 
             videoClipper.style.width = position + "%";
-            clippedVideo.style.width = ((100 / position) * 100) + "%";
-            clippedVideo.style.zIndex = 3;
+            video2.style.width = ((100 / position) * 100) + "%";
+            video2.style.zIndex = 3;
 
+            // Show and move the vertical line
             sliderLine.style.display = "block";
             sliderLine.style.left = e.pageX - rect.left + "px";
+
+            // Position arrows
+            leftArrow.style.left = "-20px";
+            rightArrow.style.left = "10px";
         }
-    }
+    });
+
+    // Hide the vertical line when mouse leaves the container
+    videoContainer.addEventListener("mouseleave", function () {
+        sliderLine.style.display = "none";
+    });
 });
 </script>
 
