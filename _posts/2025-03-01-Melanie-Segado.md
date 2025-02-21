@@ -47,9 +47,23 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 </div>
 
 <!-- Pause Button -->
-<button id="pause-btn">Pause</button>
+<button id="pause-btn" class="cute-button">Pause</button>
 
 <style>
+
+  .cute-button{
+    background:rgb(23, 235, 242); /* Soft turquoise */
+    border: none;
+    padding: 12px 24px;
+    border-radius: 20px; /* Makes it rounded */
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+
   #video-compare-container {
     display: inline-block;
     line-height: 0;
@@ -121,7 +135,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     font-size: 18px;
     color: white;
     font-weight: bold;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0);
     padding: 5px;
     border-radius: 50%;
     pointer-events: none;
