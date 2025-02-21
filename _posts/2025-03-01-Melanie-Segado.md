@@ -79,6 +79,8 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 document.addEventListener("DOMContentLoaded", function () {
     var videoContainer = document.getElementById("video-compare-container"),
         videoClipper = document.getElementById("video-clipper"),
+        sliderLine = document.getElementById("slider-line"),
+
         clippedVideo = videoClipper.getElementsByTagName("video")[0];
         mainVideo = videoContainer.getElementsByTagName("video")[0];
 
@@ -97,6 +99,9 @@ document.addEventListener("DOMContentLoaded", function () {
             videoClipper.style.width = position + "%";
             clippedVideo.style.width = ((100 / position) * 100) + "%";
             clippedVideo.style.zIndex = 3;
+
+            sliderLine.style.display = "block";
+            sliderLine.style.left = e.pageX - rect.left + "px";
         }
     }
 });
