@@ -76,31 +76,29 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 </style>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(() => {
+        var video = document.getElementById("test-video");
 
-    document.addEventListener("DOMContentLoaded", function() {
-    var video = document.getElementById("test-video");
+        if (!video) {
+            console.error("Video element not found!");
+            return;
+        }
 
-    if (!video) {
-        console.error("Video element not found!");
-        return;
-    }
+        console.log("Video found!");
 
-    video.addEventListener("loadeddata", function() {
-        console.log("Video loaded successfully!");
-    });
+        video.addEventListener("loadeddata", function() {
+            console.log("Video loaded successfully!");
+        });
 
-    video.addEventListener("error", function() {
-        console.error("Error loading video");
-    });
+        video.addEventListener("play", function() {
+            console.log("Video is playing");
+            video.removeAttribute("poster"); // Hide the poster
+        });
 
-    video.addEventListener("play", function() {
-        console.log("Video is playing");
-        video.removeAttribute("poster"); // Hide the poster
-    });
-
-    video.play(); // Try to force play on load
-
-    });
+        video.play(); // Try to force play on load
+    }, 500); // Delay execution slightly to ensure elements are loaded
+});
 // document.addEventListener("DOMContentLoaded", function () {
 //     var videoContainer = document.getElementById("video-compare-container"),
 //         videoClipper = document.getElementById("video-clipper"),
