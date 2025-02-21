@@ -26,13 +26,13 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 
 <div id="video-compare-container">
   <video id="video1" loop muted autoplay poster="openpose.jpg">
-    <source src="openpose_trimmed.mp4" type="video/mp4">
-    <source src="openpose_trimmed.webm" type="video/webm">
+    <source src="openpose.mp4" type="video/mp4">
+    <source src="openpose.webm" type="video/webm">
   </video>
   <div id="video-clipper">
     <video id="video2" loop muted autoplay poster="vitposeh.jpg">
-      <source src="vitposeh_trimmed.mp4" type="video/mp4">
-      <source src="vitposeh_trimmed.webm" type="video/webm">
+      <source src="vitposeh.mp4" type="video/mp4">
+      <source src="vitposeh.webm" type="video/webm">
     </video>
   </div>
   <div id="slider-line">
