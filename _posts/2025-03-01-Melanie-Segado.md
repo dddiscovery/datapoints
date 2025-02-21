@@ -23,8 +23,20 @@ Infants are really difficult to analyze from a computer’s perspective. They te
 
 Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. **Vision transformers**, originally developed for image classification, excel in video analysis due to their ability to capture relationships between multiple points within a frame as well as long-range dependencies across frames. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLabs, make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources.
 
-
 <div id="video-compare-container">
+  <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/dirty.jpg">
+    <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.mp4>
+    <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.webm>
+  </video>
+ <div id="video-clipper">
+    <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/clean.jpg">
+      <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.mp4>
+      <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.webm>
+    </video>
+  </div>
+	</div>
+
+<!-- <div id="video-compare-container">
   <video loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.jpg">
     <source src=../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4 type="video/mp4">
     <source src=../assets/post_assets/2025-03-01-Melanie-Segado/openpose.webm type="video/webm">
@@ -35,9 +47,10 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
       <source src=../assets/post_assets/2025-03-01-Melanie-Segado/vitposeh.webm type="video/webm">
     </video>
   </div>
-	</div>
+	</div> -->
 
 <style>
+
 #video-compare-container {
     display: inline-block;
     line-height: 0;
