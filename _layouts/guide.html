@@ -36,13 +36,23 @@
 
     <div class="content-section-white">
         <!-- Add dropdown button for mobile -->
-        <button class="toc-dropdown-btn">Table of Contents ▼</button>
+        <button class="toc-dropdown-btn">
+            <img src="{{ '/favicon.ico' | relative_url }}" alt="Datapoints Logo" class="nav-logo">
+            Table of Contents ▼
+        </button>
         
         <div class="guide-container">
             <!-- Left side: Table of Contents -->
             <div class="guide-sidebar">
                 <div class="guide-toc">
-                    <h2>Table of Contents</h2>
+                    <h2>
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <a href="{{ '/' | relative_url }}">
+                                <img src="{{ '/favicon.ico' | relative_url }}" alt="Datapoints Logo" class="nav-logo">
+                            </a>
+                            Table of Contents
+                        </span>
+                    </h2>
                     <ul>
                         <li><a href="#github-repo">GitHub Repo</a>
                             <ul>
@@ -132,6 +142,46 @@
         
         // Update on hash change
         window.addEventListener('hashchange', updateActiveState);
+
+        // Add copy button to all pre elements
+        document.querySelectorAll('pre').forEach(function(pre) {
+            // Create button
+            const button = document.createElement('button');
+            button.className = 'copy-button';
+            button.textContent = 'Copy';
+            
+            // Add button to pre
+            pre.style.position = 'relative';
+            pre.appendChild(button);
+            
+            // Add click handler
+            button.addEventListener('click', function() {
+                // Get text content
+                const code = pre.querySelector('code') || pre;
+                const text = code.textContent;
+                
+                // Copy text
+                navigator.clipboard.writeText(text).then(function() {
+                    // Visual feedback
+                    button.textContent = 'Copied!';
+                    button.classList.add('copied');
+                    
+                    // Reset after 2 seconds
+                    setTimeout(function() {
+                        button.textContent = 'Copy';
+                        button.classList.remove('copied');
+                    }, 2000);
+                }).catch(function(err) {
+                    console.error('Failed to copy text: ', err);
+                    button.textContent = 'Error';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(function() {
+                        button.textContent = 'Copy';
+                    }, 2000);
+                });
+            });
+        });
     });
     
     </script>

@@ -200,15 +200,45 @@
 
 .guide-content pre {
     background: #f5f5f5;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 4px;
-    overflow-x: auto;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 6px;
+  /*  overflow-x: auto; */
     white-space: pre;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 1rem;
+    line-height: 1.6;
     width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* Copy button styles */
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-family: Optima, sans-serif;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #fff;
+    color: #fc4375;
+    border-color: #fc4375;
+}
+
+.copy-button.copied {
+    background: white;
+    color: #011f5b;
+    border-color: #011f5b;
 }
 
 .guide-content pre code {
@@ -260,7 +290,6 @@ table th {
     font-family: Palatino, URW Palladio L, serif;
     text-align: center;
     width: 20%;
-    text-shadow: 0 0 10px rgba(58, 143, 183); /* Pink halo effect */
 }
 
 table th:last-child {
@@ -340,6 +369,16 @@ table td:last-child {
   /*      max-width: calc(100vw - 4rem); /* Account for list indentation and padding */
         display: inline-block;
     }
+}
+
+.nav-logo {
+    height: 35px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.toc-dropdown-btn .nav-logo {
+    height: 20px; /* Slightly smaller for the button */
 }
 
 
