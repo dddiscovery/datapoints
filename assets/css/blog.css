@@ -261,8 +261,8 @@
   background: linear-gradient(to bottom right, #ec4899, #fb923c) !important;
   display: flex;
   font-family: Optima, sans-serif !important;
-  border: 1px solid transparent !important;
-  border-radius: 10px !important; /* Added rounded corners */
+  border: 2px solid transparent !important;
+  border-radius: 10px !important;
 }
 
 #mc_embed_signup #mc-embedded-subscribe.button:hover {

@@ -13,7 +13,7 @@ The Datapoints blog is built on GitHub, providing a collaborative platform for o
 
 Whether you're writing your first post or maintaining existing content, understanding our GitHub workflow will help ensure a smooth contribution process. Let's get started!
 
-<img src="{{ '/assets/images/picture/git-repo.jpg' | relative_url }}" alt="GitHub Repository" style="max-width: 100%; height: auto;">
+<img src="{{ '/assets/images/picture/git-repo.jpg' | relative_url }}" alt="GitHub Repository" style="max-width: 75%; height: auto; display: block; margin-left: auto; margin-right: auto;">
 </section>
 
 <section id="project-structure" markdown="1">
@@ -103,8 +103,27 @@ Static assets organized in three main categories:
 
 #### Prerequisites
 1. **Install Ruby**
-   - Download and install Ruby from [RubyInstaller](https://rubyinstaller.org/)
-   - Verify installation: `ruby -v`
+   - For Windows:
+     - Download and install Ruby from [RubyInstaller](https://rubyinstaller.org/)
+     - Verify installation: `ruby -v`
+   - For macOS:
+     - Ruby comes pre-installed, but it's recommended to use a version manager
+     - Install Homebrew if not already installed:
+       ```bash
+       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+       ```
+     - Install rbenv:
+       ```bash
+       brew install rbenv
+       rbenv init
+       ```
+     - Install Ruby:
+       ```bash
+       rbenv install 3.2.0
+       rbenv global 3.2.0
+       ```
+     - Verify installation: `ruby -v`
+
 2. **Install Jekyll and Bundler**
    ```bash
    gem install jekyll bundler
@@ -126,15 +145,29 @@ Static assets organized in three main categories:
    ```
 
 #### Common Issues
-- If you get permission errors during gem installation, try:
-  ```bash
-  gem install jekyll bundler --user-install
-  ```
-- If `bundle install` fails, try:
-  ```bash
-  bundle update
-  bundle install
-  ```
+- **Permission Errors During Installation**
+  - Try installing gems with the `--user-install` flag
+  - Check directory permissions for your gem folder
+
+- **Bundle Install Failures**
+  - Run bundle update first
+  - Clean and reinstall dependencies
+  - Check for conflicting gem versions
+
+- **Ruby Version Conflicts**
+  - Ensure Ruby version matches requirements (3.2.0 recommended)
+  - Use version managers (rbenv/RVM) to switch Ruby versions
+  - Check Jekyll compatibility with your Ruby version
+
+- **Port Already in Use**
+  - Check for other running Jekyll instances
+  - Try different port number
+  - Restart your terminal
+
+- **Missing Dependencies**
+  - Install required system libraries
+  - Check Gemfile for missing entries
+  - Verify development headers are installed
 
 #### Preview Across Devices (Using ngrok)
 

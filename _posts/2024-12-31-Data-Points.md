@@ -3,8 +3,7 @@ layout: home
 title: "Data Points"
 permalink: /
 
-welcome_message: |
-  Welcome to Data Points
+welcome_describe: |
   A research blog for Penn's data science community.
 
 slides:
@@ -20,14 +19,23 @@ about: |
 
   Interested in contributing? We can help with technical and editorial guidance so your post is as impactful and polished as the research it represents. Check out **[How to Contribute](#guide-section)** - we're excited to collaborate and help bring your ideas to life!
 
-featured_post:
-  image: /assets/images/posts/title-km.jpg
-  title: Where is the information in data?
-  url: /Where-is-the-Information-in-Data
-  author: Kieran Murphy
-  author_url: https://www.kieranamurphy.com/
-  date: February 03, 2025
-  description: An interactive tutorial about decomposing variation into distinctions worth making.
+featured_posts:
+# from the latest post to the oldest post
+#  - image: /assets/images/posts/title-sample.jpg
+#    title: Another Featured Post
+#    url: /another-post
+#    author: Another Author
+#    author_url: https://example.com
+#    date: March 01, 2025
+#    description: Description of another featured post.
+  - image: /assets/images/posts/title-km.jpg
+    title: Where is the information in data?
+    url: /Where-is-the-Information-in-Data
+    author: Kieran Murphy
+    author_url: https://www.kieranamurphy.com/
+    date: February 03, 2025
+    description: An interactive tutorial about decomposing variation into distinctions worth making.
+
 
 social_links:
   - name: DDDI News
@@ -48,26 +56,22 @@ contribute_guide: |
   Contact us at **sas-ddd-admin@sas.upenn.edu** with subject line "Data Points submission" to discuss your ideas or submit a proposal. We look forward to featuring your work!
 
 
-team:
+Editorial_team:
   - name: Kieran Murphy
     url: https://www.kieranamurphy.com/
     image: /assets/images/authors/K.A.Murphy.jpeg
-    title: Content Editor
     fellowship: AI x Science Fellow
   - name: Melanie Segado
     url: https://sites.google.com/view/melaniesegado
     image: /assets/images/authors/MelanieSegado.jpeg
-    title: Content Editor
     fellowship: AI x Science Fellow
   - name: Yuxin Liang
     url: https://github.com/yuxinlg
     image: /assets/images/authors/YuxinL.jpeg
-    title: Web Designer
     fellowship: Data Scientist @DDDI
   - name: Colin Twomey
     url: https://www.sas.upenn.edu/~crtwomey/
     image: /assets/images/authors/ColinTwomey.jpeg
-    title: Managing Editor
     fellowship: Executive Director @DDDI
 
 contact:
