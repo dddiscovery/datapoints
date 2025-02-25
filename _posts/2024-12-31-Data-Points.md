@@ -4,7 +4,7 @@ title: "Data Points"
 permalink: /
 
 welcome_describe: |
-  A research blog for Penn's data science community.
+  A blog for Penn's data science community.
 
 slides:
   - image: /assets/images/picture/explore.jpg
@@ -59,19 +59,19 @@ contribute_guide: |
 Editorial_team:
   - name: Kieran Murphy
     url: https://www.kieranamurphy.com/
-    image: /assets/images/authors/K.A.Murphy.jpeg
+    image: /assets/images/authors/kieran_murphy.jpg
     fellowship: AI x Science Fellow
   - name: Melanie Segado
     url: https://sites.google.com/view/melaniesegado
-    image: /assets/images/authors/MelanieSegado.jpeg
+    image: /assets/images/authors/melanie_segado.jpg
     fellowship: AI x Science Fellow
   - name: Yuxin Liang
     url: https://github.com/yuxinlg
-    image: /assets/images/authors/YuxinL.jpeg
+    image: /assets/images/authors/yuxin_liang.jpg
     fellowship: Data Scientist @DDDI
   - name: Colin Twomey
     url: https://www.sas.upenn.edu/~crtwomey/
-    image: /assets/images/authors/ColinTwomey.jpeg
+    image: /assets/images/authors/colin_twomey.jpg
     fellowship: Executive Director @DDDI
 
 contact:
