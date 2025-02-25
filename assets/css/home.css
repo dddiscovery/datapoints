@@ -86,9 +86,10 @@ body {
 
 .welcome-describe {
     font-family: Optima, sans-serif;	
-    font-size: 2rem;
-    animation: typing 3s steps(40, end),
-               colorChange 0.5s steps(40, end) forwards;
+    font-size: 1.2rem;
+    color: rgba(50, 50, 50, 0.0);
+    animation: colorChange 0.5s steps(40, end) forwards;
+    animation-delay: 0.5s;
 }
 
 @keyframes typing {
@@ -97,8 +98,8 @@ body {
 }
 
 @keyframes colorChange {
-    from { color: #011feb; }
-    to { color: rgba(1, 31, 91, 0.85); }
+    from { color: rgba(50, 50, 50, 0.0); }
+    to { color: rgba(50, 50, 50, 1.0); }
 }
 
 /* Slideshow Styles */
@@ -454,10 +455,12 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 .author-image {
     position: relative;  /* For proper shadow rendering */
     border-radius: 50%;  /* Make container circular */
-    box-shadow: 
+ /*   box-shadow: 
         0 0 5px #011feb,
-        0 0 10px #fc4375;
+        0 0 10px #fc4375; */
     margin-top: 25px; 
+    box-sizing: border-box;
+    border: 6px solid rgba(1, 31, 91, 0.1);
 }
 
 .author-image img {
@@ -486,8 +489,9 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 }
 
 .authors-container {
+    justify-content: center;
     display: flex;
-    gap: 2.5%;
+    gap: 0%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
