@@ -236,10 +236,31 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 
 To get a sense of how much data goes into pre-training a model, let's look specifically at ViTPose. Use the buttons below to get a sense of how much data was used to train the model before it was used to detect the pose of the infant in the video. 
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <div style="width: 100px; height: 100px; background-color: lightblue;">
+<!-- Large Square (JFT-300M) -->
+<div style="width: 100px; height: 100px; background-color: lightblue; position: relative;">
+    <!-- Small Square (Initially Hidden) -->
+    <div id="small-square" 
+        style="width: 0px; height: 0px; background-color: red; position: absolute; bottom: 5px; right: 5px; display: none;">
     </div>
 </div>
+
+<!-- Button to Show the Fraction Square -->
+<button onclick="showFraction()">Show Fraction</button>
+
+<script>
+    function showFraction() {
+        const largeSize = 300000000;  // JFT-300M
+        const smallSize = 250000;     // 250K
+
+        const fraction = Math.sqrt(smallSize / largeSize); // Scale based on area
+        const newSize = 100 * fraction; // Scale relative to the large square (100px)
+
+        const smallSquare = document.getElementById("small-square");
+        smallSquare.style.width = newSize + "px";
+        smallSquare.style.height = newSize + "px";
+        smallSquare.style.display = "block"; // Make it visible
+    }
+</script>
 
 ## Impact and Future Directions
 
