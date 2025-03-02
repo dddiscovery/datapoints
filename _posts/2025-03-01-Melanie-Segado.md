@@ -250,7 +250,7 @@ To get a sense of how much data goes into pre-training a model, let's look speci
         }
     </style>
 
-
+<div class="square"></div>
 
 ## Impact and Future Directions
 
