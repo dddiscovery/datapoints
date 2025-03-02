@@ -17,15 +17,11 @@ Not long ago, extracting insights from video data required building custom compu
 
 Let’s consider a concrete example of where this can be useful. Subtle patterns in infant movement during the first months of life can help predict neurodevelopmental disorders such as **cerebral palsy** – a lifelong condition affecting balance and motor control. While clinicians excel at picking up these patterns, they don’t always get to see infants until they’re much older, and so infants miss out on a critical window of neuroplasticity where rehabilitation would be most helpful. However, videos of infants can be easily recorded using everyday tools like cell-phone cameras and their movements can be analyzed using computer vision, paving the way for the development of low-cost clinical tools that can be implemented at scale.
 
-Infants are really difficult to analyze from a computer’s perspective. They tend to bunch up into complicated shapes (occluding their own limbs in the process),and they are often wearing clothes that look a lot like the blankets they’re laying on. A common strategy in computer vision is to pre-train a model on a related dataset, for instance on videos of adults, but in this case adults have very different proportions than infants, and are usually upright and walking around whereas infants are typically laying down and moving very differently than adults. To overcome these difficulties, researchers either had to train custom models for infant pose tracking, or fine-tuning existing algorithms, both of which required lots of time spent annotating videos. While this approach can work well within a research group, it makes it difficult for researchers to build on eachother's work.
+A big barrier to developing these tools has been the fact that infants are really difficult to analyze from a computer’s perspective. They tend to bunch up into complicated shapes (occluding their own limbs in the process),and they are often wearing clothes that look a lot like the blankets they’re laying on. To overcome these difficulties, researchers either had to train custom models for infant pose tracking, or fine-tuning existing algorithms, both of which required lots of time spent annotating videos. But look at how much things have improved over the past 7 years! 
 
-## The opportunities of foundation models 
+## How do big datasets help?
 
-Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLab's [MMPose](https://mmpose.readthedocs.io/en/latest/overview.html), make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources. It's hard to overstate just how rapidly this landscape is shifting. To give an example, the first year of my postdoc was spent optimizing algorithms for infant pose estimation by carefully curating a database of difficult-to-detect poses, annotating them by hand, and training an algirhtm to improve its performance. While I certainly made progress towards improving algorithm performance, none of them performed as well as a a model called ViTPose, which performed better off-the-shelf than any of the custom models I had been working to train. And while fine-tuning could almost certainly improve performance of this algirhtm as well, the ability to get precise skeletal tracking without the need to finetune significantly lowers the barrier to entry for research groups with interesting questions and datasets that may lack the technical expertise (or time and resources) to devote to building a custom model. 
-
-Take a look at the video below and move the slider back and forth to see just how much algorithm performance has improved over the past 8 years! On the bottom layer (when the slider is all the way to the left) is a model called OpenPose, which was a game-changer when it released in 2015. The model pictured here is a newer version of that algorithm released in 2017, and finetuned on 47K frames of annotated infant poses. While it performs very well when the infants limbs are clearly visible, it fails in spots where the relevant parts of the image are covered by objects like the crib. 
-
-The model overlayed on top (when the slider is all the way to the right) is ViTPose-H, a model pre-trained on vast amounts of image data, fine-tuned on a large amount of adult-human pose data, and not fine-tuned at all on infant data. As you can see, it does much better at capturing the overal shape of the infant's pose, even when the information is occluded. 
+Take a look at the video below and move the slider back and forth to compare the performance algorithm from the not-so-distant past (2017) with one from 2023, on a fully ai-generated video of an infant.  
 
 <div id="video-compare-container">
   <video id="video1" loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.jpg">
@@ -227,11 +223,70 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-## Why do vision transformers work so well 
+On the bottom layer (when the slider is all the way to the left) is a model called OpenPose, which was a game-changer in the field when it released in 2015. The specific model shown here was pre-trained on 64K images, and finetuned on 47K annotated frames of infant video. While it performs very well when the infant's limbs are clearly visible, it fails in spots where the relevant parts of the image are covered by objects like the crib. This is because it's relying on finding parts of the image that _look like specific joints_ (e.g., knees). When they're occluded, the algorithm fails.  
 
-**Vision transformers**, originally developed for image classification, excel in image analysis due to their ability to capture not just local information in a frame, but also dependencies between multiple points. In the case of the infant video, the older algorthm relies on pixels in each frame that look like a knee to be able to detect that the infant's knee is in the video. Because the knees are often hidden behind the crib, the algorthm has no way of correctly annotating them even if it's really good at detecting knees! In contrast, the vision-transformer algorithm has learned not just what a knee looks like, but also that human poses typically have knees, and that they are at a straight line out from the hip, and then connect to the ankle. These algorithms are therefore much more robust at tracking poses with occluded body parts.      
+The model overlayed on top (when the slider is all the way to the right) is ViTPose-H, a model pre-trained on vast amounts of image data (300M labelled images), fine-tuned on a much smaller dataset of human poses (250K), and not fine-tuned at all on infant data. As you can see, it does much better at capturing the overal shape of the infant's pose, even when the information is occluded, despite not having been trained on infants. This not only has it been trained on more data, it also uses a modern achitechture called a **Visiion Transformer** that enables it to learn not just _what specific joints look like_, but also _their spatial relationship_ to other joints (e.g., hips and ankles) and other parts of the image. 
+
+## Why would these models help "accelerate science"? 
+
+Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLab's [MMPose](https://mmpose.readthedocs.io/en/latest/overview.html), make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources. It's hard to overstate just how rapidly this landscape has shifted. To give an example, the first year of my postdoc was spent optimizing algorithms for infant pose estimation by carefully curating a database of difficult-to-detect poses, annotating them by hand, and training an algorithm to improve its performance. While I made progress, ViTPose performed better off-the-shelf than any of the custom models I had been working on. The ability to get precise pose tracking without the need to fine-tune significantly lowers the barrier to entry for research groups with interesting questions and datasets that may lack the technical expertise (or time and resources) to devote to fine-tuning a custom model. 
+
+## How much data is in a "massive dataset"
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+To get a sense of how much data goes into pre-training a model, let's look specifically at ViTPose. Use the buttons below to get a sense of how much data was used to train the model before it was used to detect the pose of the infant in the video. 
+
+<style>
+    body { font-family: Arial, sans-serif; }
+    svg { width: 100vw; height: 100vh; background: #f0f0f0; }
+    text { font-size: 14px; fill: white; font-weight: bold; text-anchor: middle; alignment-baseline: middle; }
+</style>
+
+<script>
+    const datasets = [
+        { name: "JFT-300M", size: 300000000, color: "#1f77b4" },
+        { name: "ImageNet-21k", size: 14000000, color: "#ff7f0e" },
+        { name: "ImageNet-1k", size: 1300000, color: "#2ca02c" },
+        { name: "MSCOCO-Human", size: 330000, color: "#d62728" }
+    ];
+
+    const width = window.innerWidth, height = window.innerHeight;
+    const svg = d3.select("#viz").attr("viewBox", `0 0 ${width} ${height}`);
+    const zoom = d3.zoom().scaleExtent([1, 100]).on("zoom", (event) => {
+        container.attr("transform", event.transform);
+    });
+
+    svg.call(zoom);
+    const container = svg.append("g");
+
+    datasets.forEach((d, i) => {
+        const scale = Math.sqrt(d.size) / Math.sqrt(datasets[0].size);
+        const rectSize = width * scale;
+        const xOffset = (width - rectSize) / 2;
+        const yOffset = (height - rectSize) / 2;
+
+        container.append("rect")
+            .attr("x", xOffset)
+            .attr("y", yOffset)
+            .attr("width", rectSize)
+            .attr("height", rectSize)
+            .attr("fill", d.color)
+            .attr("stroke", "#000")
+            .attr("stroke-width", 2)
+            .on("mouseover", function() { d3.select(this).attr("opacity", 0.8); })
+            .on("mouseout", function() { d3.select(this).attr("opacity", 1); });
+
+        container.append("text")
+            .attr("x", xOffset + rectSize / 2)
+            .attr("y", yOffset + rectSize / 2)
+            .text(d.name);
+    });
+
+</script>
+
+
 
 ## Impact and Future Directions
 
-The rise of *off-the-shelf* AI models marks a significant shift in the ease with which researchers can integrate state of the art tools into their research. **Vision transformers for movement analysis** are just one example of how accessible AI tools can help push the boundaries of disease detection and treatment. As these resources become even more widely available, the future holds breakthroughs that will benefit patients worldwide.
+The rise of *off-the-shelf* AI models marks a significant shift in the ease with which researchers can integrate state-of-the-art tools into their research. **Vision transformers for movement analysis** are just one example of how accessible AI tools can help push the boundaries of disease detection and treatment. As these resources become even more widely available, the future holds breakthroughs that will benefit patients worldwide.
 
