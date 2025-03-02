@@ -157,14 +157,6 @@ Take a look at the video below and move the slider back and forth to compare the
     right: -30px;
   }
 
-  #square {
-    width: 100px;  /* Set width */
-    height: 100px; /* Set height */
-    background-color: #1f77b4; /* Blue color */
-    position: relative; /* Ensures proper placement */
-    margin: 20px auto; /* Centers it horizontally */
-  }
-
 </style>
 
 <script>
@@ -244,8 +236,10 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 
 To get a sense of how much data goes into pre-training a model, let's look specifically at ViTPose. Use the buttons below to get a sense of how much data was used to train the model before it was used to detect the pose of the infant in the video. 
 
-
-<div class="square"></div>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="width: 100px; height: 100px; background-color: lightblue;">
+    </div>
+</div>
 
 ## Impact and Future Directions
 
