@@ -237,52 +237,18 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 To get a sense of how much data goes into pre-training a model, let's look specifically at ViTPose. Use the buttons below to get a sense of how much data was used to train the model before it was used to detect the pose of the infant in the video. 
 
 <style>
-    body { font-family: Arial, sans-serif; }
-    svg { width: 100vw; height: 100vh; background: #f0f0f0; }
-    text { font-size: 14px; fill: white; font-weight: bold; text-anchor: middle; alignment-baseline: middle; }
-</style>
-
-<script>
-    const datasets = [
-        { name: "JFT-300M", size: 300000000, color: "#1f77b4" },
-        { name: "ImageNet-21k", size: 14000000, color: "#ff7f0e" },
-        { name: "ImageNet-1k", size: 1300000, color: "#2ca02c" },
-        { name: "MSCOCO-Human", size: 330000, color: "#d62728" }
-    ];
-
-    const width = window.innerWidth, height = window.innerHeight;
-    const svg = d3.select("#viz").attr("viewBox", `0 0 ${width} ${height}`);
-    const zoom = d3.zoom().scaleExtent([1, 100]).on("zoom", (event) => {
-        container.attr("transform", event.transform);
-    });
-
-    svg.call(zoom);
-    const container = svg.append("g");
-
-    datasets.forEach((d, i) => {
-        const scale = Math.sqrt(d.size) / Math.sqrt(datasets[0].size);
-        const rectSize = width * scale;
-        const xOffset = (width - rectSize) / 2;
-        const yOffset = (height - rectSize) / 2;
-
-        container.append("rect")
-            .attr("x", xOffset)
-            .attr("y", yOffset)
-            .attr("width", rectSize)
-            .attr("height", rectSize)
-            .attr("fill", d.color)
-            .attr("stroke", "#000")
-            .attr("stroke-width", 2)
-            .on("mouseover", function() { d3.select(this).attr("opacity", 0.8); })
-            .on("mouseout", function() { d3.select(this).attr("opacity", 1); });
-
-        container.append("text")
-            .attr("x", xOffset + rectSize / 2)
-            .attr("y", yOffset + rectSize / 2)
-            .text(d.name);
-    });
-
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Square</title>
+    <style>
+        .square {
+            width: 100px;  /* Set width */
+            height: 100px; /* Set height */
+            background-color: #1f77b4; /* Blue color */
+            position: relative; /* Ensures proper placement */
+            margin: 20px auto; /* Centers it horizontally */
+        }
+    </style>
 
 
 
