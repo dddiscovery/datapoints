@@ -264,7 +264,7 @@ To get a sense of how much data goes into pre-training a model, let's look speci
     <div id="jft300m" class="dataset" style="width: 100%; height: 100%;">
         JFT-300M<br>(300M images)
     </div>
-    <div id="imagenet21k" class="dataset" style="width: 22.36%; height: 22.36%; top: 0; left: 0;">
+    <div id="imagenet21k" class="dataset" style="width: 22.36%; height: 22.36%; bottom: 0; right: 0;">
         ImageNet-21k<br>(14M images)
     </div>
     <div id="imagenet1k" class="dataset" style="width: 6.63%; height: 6.63%; bottom: 0; right: 0;">
