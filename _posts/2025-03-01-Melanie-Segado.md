@@ -237,14 +237,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 To get a sense of how much data goes into pre-training a model, let's look specifically at ViTPose. Use the buttons below to get a sense of how much data was used to train the model before it was used to detect the pose of the infant in the video. 
 
 <style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f0f0f0;
-    }
+
     #container {
         position: relative;
         width: 600px;
