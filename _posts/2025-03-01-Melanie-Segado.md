@@ -5,7 +5,7 @@ subtitle: "analyzing small datasets with models trained on big datasets"
 authors: ["[Melanie Segado]()"]
 author_pic: ["/assets/images/authors/S_McD.jpeg"]
 author_title: ["Machine learning/Movement/Healthcare"]
-date: 2025-02-03
+date: 2025-03-06
 permalink: /off-the-shelf-ai/
 
 ---
@@ -233,6 +233,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 
 ## How much data is in a "massive dataset"
 
+To get a sense of just how much data goes into pre-training a foundation model that can then be quickly fine-tuned for specialzed applications, let's take a look at the relative scale of a few of the datasets that went into training the models used for pose-tracking in the videos above. 
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
