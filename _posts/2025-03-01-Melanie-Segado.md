@@ -232,84 +232,62 @@ The model overlayed on top (when the slider is all the way to the right) is ViTP
 Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLab's [MMPose](https://mmpose.readthedocs.io/en/latest/overview.html), make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources. It's hard to overstate just how rapidly this landscape has shifted. To give an example, the first year of my postdoc was spent optimizing algorithms for infant pose estimation by carefully curating a database of difficult-to-detect poses, annotating them by hand, and training an algorithm to improve its performance. While I made progress, ViTPose performed better off-the-shelf than any of the custom models I had been working on. The ability to get precise pose tracking without the need to fine-tune significantly lowers the barrier to entry for research groups with interesting questions and datasets that may lack the technical expertise (or time and resources) to devote to fine-tuning a custom model. 
 
 ## How much data is in a "massive dataset"
+
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
-To get a sense of how much data goes into pre-training a model, let's look specifically at ViTPose. Use the buttons below to get a sense of how much data was used to train the model before it was used to detect the pose of the infant in the video. 
-
 <style>
-        #container {
-            position: relative;
-            width: 600px;
-            height: 600px;
-            border: 2px solid #333;
-            overflow: hidden;
-        }
-        .dataset {
-            position: absolute;
-            background-color: rgba(0, 123, 255, 0.7);
-            border: 1px solid #0056b3;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            text-align: center;
-            transition: transform 0.5s ease-in-out;
-            cursor: pointer;
-        }
-        .layout {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        #buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        button {
-            padding: 10px;
-            font-size: 14px;
-            cursor: pointer;
-            background-color: #0073e6;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #005bb5;
-        }
-        #container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            border: 2px solid #333;
-            overflow: hidden;
-        }
-        .dataset {
-            position: absolute;
-            background-color: rgba(0, 123, 255, 0.7);
-            border: 1px solid #0056b3;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 10px;
-            text-align: center;
-        }
-
-        #info-box {
-            margin-top: 20px;
-            padding: 10px;
-            width: 320px;
-            text-align: center;
-            font-size: 14px;
-            background: white;
-            border: 1px solid #ccc;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-        }
-    </style>
+    #container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border: 2px solid #333;
+        overflow: hidden;
+    }
+    .dataset {
+        position: absolute;
+        background-color: rgba(0, 123, 255, 0.7);
+        border: 1px solid #0056b3;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+        text-align: center;
+    }
+    .layout {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    #buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    button {
+        padding: 10px;
+        font-size: 14px;
+        cursor: pointer;
+        background-color: #0073e6;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+    button:hover {
+        background-color: #005bb5;
+    }
+    #info-box {
+        margin-top: 20px;
+        padding: 10px;
+        width: 320px;
+        text-align: center;
+        font-size: 14px;
+        background: white;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+</style>
 
 <div class="layout">
     <!-- Sidebar Buttons -->
@@ -437,7 +415,6 @@ To get a sense of how much data goes into pre-training a model, let's look speci
     // Initialize view
     resetView();
 </script>
-
 
 ## Impact and Future Directions
 
