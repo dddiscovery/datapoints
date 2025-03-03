@@ -297,6 +297,18 @@ To get a sense of how much data goes into pre-training a model, let's look speci
             font-size: 10px;
             text-align: center;
         }
+
+        #info-box {
+            margin-top: 20px;
+            padding: 10px;
+            width: 320px;
+            text-align: center;
+            font-size: 14px;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
     </style>
 
 <div class="layout">
@@ -313,20 +325,60 @@ To get a sense of how much data goes into pre-training a model, let's look speci
     <div id="container"></div>
 </div>
 
+<!-- Dynamic Textbox Below -->
+<div id="info-box">Click a button to explore dataset sizes.</div>
+
 <script>
     const datasets = [
-        { id: "jft300m", name: "JFT-300M", size: 300000000, width: 300, color: "#1f77b4", children: ["mscoco"] },
-        { id: "mscoco", name: "MS COCO", size: 330000, width: 10, color: "#ff7f0e", children: ["mscoco-person"] },
-        { id: "mscoco-person", name: "MS COCO-Person", size: 250000, width: 9, color: "#d62728", children: ["infant-frames"] },
-        { id: "infant-frames", name: "Infant Frames", size: 47000, width: 5, color: "#2ca02c", children: [] }
+        { 
+            id: "jft300m", name: "JFT-300M", size: 300000000, width: 300, color: "#1f77b4", children: ["mscoco"], 
+            descriptions: [
+                "JFT-300M is a massive dataset with 300 million images, used to train powerful AI models.",
+                "Google’s proprietary dataset is used in training vision transformers (ViTs).",
+                "JFT-300M is significantly larger than ImageNet and enables better generalization."
+            ] 
+        },
+        { 
+            id: "mscoco", name: "MS COCO", size: 330000, width: 10, color: "#ff7f0e", children: ["mscoco-person"], 
+            descriptions: [
+                "MS COCO is a dataset with 330K images, used for object detection and segmentation.",
+                "MS COCO includes labeled images with 80 different object categories.",
+                "It is widely used in pose estimation and object detection benchmarks."
+            ] 
+        },
+        { 
+            id: "mscoco-person", name: "MS COCO-Person", size: 250000, width: 9, color: "#d62728", children: ["infant-frames"], 
+            descriptions: [
+                "MS COCO-Person is a subset of COCO focused on human annotations, with 250K images.",
+                "This subset is often used for training human pose estimation models.",
+                "It contains annotations for keypoints, making it ideal for body tracking."
+            ] 
+        },
+        { 
+            id: "infant-frames", name: "Infant Frames", size: 47000, width: 5, color: "#2ca02c", children: [], 
+            descriptions: [
+                "47K hand-annotated infant movement frames, used for research in early diagnosis.",
+                "This dataset supports AI-driven clinical assessments of early motor development.",
+                "Infant movement analysis helps predict neurodevelopmental conditions."
+            ] 
+        }
     ];
+
+    let textIndex = {}; // Store which text index is currently displayed
 
     function drawDatasets(parentId, parentSize) {
         const container = document.getElementById("container");
+        const infoBox = document.getElementById("info-box");
         container.innerHTML = ""; // Clear container before redrawing
 
         let parentDataset = datasets.find(d => d.id === parentId);
         let scaleFactor = 300 / parentSize;
+
+        // Cycle text index
+        if (!textIndex[parentId]) textIndex[parentId] = 0;
+        let descriptions = parentDataset.descriptions;
+        infoBox.innerText = descriptions[textIndex[parentId]];
+        textIndex[parentId] = (textIndex[parentId] + 1) % descriptions.length; // Move to next text
 
         // Draw the selected dataset at full size
         let parentDiv = document.createElement("div");
@@ -360,7 +412,9 @@ To get a sense of how much data goes into pre-training a model, let's look speci
 
     function resetView() {
         const container = document.getElementById("container");
+        const infoBox = document.getElementById("info-box");
         container.innerHTML = ""; // Clear container
+        infoBox.innerText = "Click a button to explore dataset sizes."; // Reset text
 
         datasets.forEach(dataset => {
             let div = document.createElement("div");
@@ -377,22 +431,14 @@ To get a sense of how much data goes into pre-training a model, let's look speci
             container.appendChild(div);
         });
 
-        // Add the JFT-300M as the background (full size)
-        let jftDiv = document.createElement("div");
-        jftDiv.classList.add("dataset");
-        jftDiv.id = "jft300m";
-        jftDiv.style.width = "300px";
-        jftDiv.style.height = "300px";
-        jftDiv.style.backgroundColor = "#1f77b4";
-        jftDiv.style.zIndex = "-1";
-        jftDiv.innerHTML = `JFT-300M<br>(300M images)`;
-
-        container.appendChild(jftDiv);
+        textIndex = {}; // Reset cycling index
     }
 
     // Initialize view
     resetView();
 </script>
+
+
 ## Impact and Future Directions
 
 The rise of *off-the-shelf* AI models marks a significant shift in the ease with which researchers can integrate state-of-the-art tools into their research. **Vision transformers for movement analysis** are just one example of how accessible AI tools can help push the boundaries of disease detection and treatment. As these resources become even more widely available, the future holds breakthroughs that will benefit patients worldwide.
