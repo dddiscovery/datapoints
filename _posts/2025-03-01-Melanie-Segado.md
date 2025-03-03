@@ -280,7 +280,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
     #info-box {
         margin-top: 20px;
         padding: 10px;
-        width: 320px;
+        width: 600px;
         text-align: center;
         font-size: 14px;
         background: white;
@@ -330,7 +330,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
         { 
             id: "infant-frames", name: "Infant Frames", size: 47000, width: 5, color: "#2ca02c", children: [], 
             descriptions: [
-                "47K hand-annotated infant movement frames, used to finetune the OpenPose algorithm."
+                "47K hand-annotated infant movement frames, used to finetune the OpenPose algorithm. This dataset highlights the small scale of data available for many specialized applications."
             ] 
         }
     ];
