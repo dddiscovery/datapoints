@@ -257,75 +257,96 @@ To get a sense of how much data goes into pre-training a model, let's look speci
             transition: transform 0.5s ease-in-out;
             cursor: pointer;
         }
-</style>
-<div id="container">
-    <div id="jft300m" class="dataset" style="width: 100%; height: 100%;">
-        JFT-300M<br>(300M images)
-    </div>
-    <div id="mscoco" class="dataset" style="width: 3.32%; height: 3.32%; bottom: 10px; left: 10px;">
-        MS COCO<br>(330K images)
-    </div>
-    <div id="mscoco-person" class="dataset" style="width: 2.9%; height: 2.9%; bottom: 15px; left: 15px; background-color: #ff7f0e;">
-        MS COCO-Person<br>(250K images)
-    </div>
-    <div id="infant-frames" class="dataset" style="width: 1.25%; height: 1.25%; bottom: 20px; left: 20px; background-color: #d62728;">
-        Infant Frames<br>(47K images)
-    </div>
-</div>
+<div id="container"></div>
 
 <script>
-    let zoomedIn = false;
-    let currentZoomTarget = null;
+    const datasets = [
+        { id: "jft300m", name: "JFT-300M", size: 300000000, width: 600, color: "#1f77b4", children: ["mscoco"] },
+        { id: "mscoco", name: "MS COCO", size: 330000, width: 20, color: "#ff7f0e", children: ["mscoco-person"] },
+        { id: "mscoco-person", name: "MS COCO-Person", size: 250000, width: 18, color: "#d62728", children: ["infant-frames"] },
+        { id: "infant-frames", name: "Infant Frames", size: 47000, width: 10, color: "#2ca02c", children: [] }
+    ];
 
-    document.querySelectorAll(".dataset").forEach(item => {
-        item.addEventListener("click", () => {
-            const container = document.getElementById("container");
-            const containerSize = container.clientWidth;
+    let originalState = true;
+    
+    function drawDatasets(parentId, parentSize) {
+        const container = document.getElementById("container");
+        container.innerHTML = ""; // Clear container before redrawing
 
-            // Get the clicked dataset's size
-            const datasetSize = item.clientWidth;
+        let parentDataset = datasets.find(d => d.id === parentId);
+        let scaleFactor = 600 / parentSize;
 
-            // Calculate how much to scale this dataset to fill the container
-            const scaleFactor = containerSize / datasetSize;
+        // Draw the selected dataset at full size
+        let parentDiv = document.createElement("div");
+        parentDiv.classList.add("dataset");
+        parentDiv.id = parentDataset.id;
+        parentDiv.style.width = "600px";
+        parentDiv.style.height = "600px";
+        parentDiv.style.backgroundColor = parentDataset.color;
+        parentDiv.innerHTML = `${parentDataset.name}<br>(${parentDataset.size.toLocaleString()} images)`;
+        parentDiv.onclick = () => resetView(); // Clicking resets
 
-            // If already zoomed in on this dataset, reset all to original positions
-            if (zoomedIn && currentZoomTarget === item) {
-                resetZoom();
-                return;
-            }
+        container.appendChild(parentDiv);
 
-            // Otherwise, zoom in
-            zoomedIn = true;
-            currentZoomTarget = item;
+        // Draw the child datasets inside
+        parentDataset.children.forEach(childId => {
+            let childDataset = datasets.find(d => d.id === childId);
+            let childSize = childDataset.width * scaleFactor;
+            
+            let childDiv = document.createElement("div");
+            childDiv.classList.add("dataset");
+            childDiv.id = childDataset.id;
+            childDiv.style.width = `${childSize}px`;
+            childDiv.style.height = `${childSize}px`;
+            childDiv.style.backgroundColor = childDataset.color;
+            childDiv.style.bottom = "10px";
+            childDiv.style.left = "10px";
+            childDiv.innerHTML = `${childDataset.name}<br>(${childDataset.size.toLocaleString()} images)`;
+            childDiv.onclick = (e) => {
+                e.stopPropagation();
+                drawDatasets(childId, childDataset.width);
+            };
 
-            document.querySelectorAll(".dataset").forEach(d => {
-                if (d.clientWidth <= datasetSize) {
-                    // Only scale smaller datasets
-                    d.style.transform = `scale(${scaleFactor})`;
-                    d.style.zIndex = "10"; // Bring to front
-                    d.style.left = "0";
-                    d.style.top = "0";
-                    d.style.bottom = "auto";
-                    d.style.right = "auto";
-                }
-            });
-        });
-    });
-
-    function resetZoom() {
-        zoomedIn = false;
-        currentZoomTarget = null;
-        document.querySelectorAll(".dataset").forEach(d => {
-            d.style.transform = "scale(1)";
-            d.style.zIndex = "1";
-            d.style.left = "";
-            d.style.top = "";
-            d.style.bottom = "";
-            d.style.right = "";
+            container.appendChild(childDiv);
         });
     }
-</script>
 
+    function resetView() {
+        const container = document.getElementById("container");
+        container.innerHTML = ""; // Clear container
+
+        datasets.forEach(dataset => {
+            let div = document.createElement("div");
+            div.classList.add("dataset");
+            div.id = dataset.id;
+            div.style.width = `${dataset.width}px`;
+            div.style.height = `${dataset.width}px`;
+            div.style.backgroundColor = dataset.color;
+            div.style.position = "absolute";
+            div.style.bottom = "10px";
+            div.style.left = "10px";
+            div.innerHTML = `${dataset.name}<br>(${dataset.size.toLocaleString()} images)`;
+
+            div.onclick = () => drawDatasets(dataset.id, dataset.width);
+            container.appendChild(div);
+        });
+
+        // Add the JFT-300M as the background (full size)
+        let jftDiv = document.createElement("div");
+        jftDiv.classList.add("dataset");
+        jftDiv.id = "jft300m";
+        jftDiv.style.width = "600px";
+        jftDiv.style.height = "600px";
+        jftDiv.style.backgroundColor = "#1f77b4";
+        jftDiv.style.zIndex = "-1";
+        jftDiv.innerHTML = `JFT-300M<br>(300M images)`;
+
+        container.appendChild(jftDiv);
+    }
+
+    // Initialize view
+    resetView();
+</script>
 ## Impact and Future Directions
 
 The rise of *off-the-shelf* AI models marks a significant shift in the ease with which researchers can integrate state-of-the-art tools into their research. **Vision transformers for movement analysis** are just one example of how accessible AI tools can help push the boundaries of disease detection and treatment. As these resources become even more widely available, the future holds breakthroughs that will benefit patients worldwide.
