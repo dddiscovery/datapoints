@@ -233,6 +233,7 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 
 ## How much data is in a "massive dataset"
 
+
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
 <style>
@@ -311,33 +312,25 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
         { 
             id: "jft300m", name: "JFT-300M", size: 300000000, width: 300, color: "#1f77b4", children: ["mscoco"], 
             descriptions: [
-                "JFT-300M is a massive dataset with 300 million images, used to train powerful AI models.",
-                "Google’s proprietary dataset is used in training vision transformers (ViTs).",
-                "JFT-300M is significantly larger than ImageNet and enables better generalization."
+                "JFT-300M is a massive dataset with 300 million images, used to train powerful AI models. Google’s proprietary dataset is used in training vision transformers (ViTs), which can then be fine-tuned for tasks like pose estimation."
             ] 
         },
         { 
             id: "mscoco", name: "MS COCO", size: 330000, width: 10, color: "#ff7f0e", children: ["mscoco-person"], 
             descriptions: [
-                "MS COCO is a dataset with 330K images, used for object detection and segmentation.",
-                "MS COCO includes labeled images with 80 different object categories.",
-                "It is widely used in pose estimation and object detection benchmarks."
+                "MS COCO is a dataset with 330K images, used for object detection and segmentation. The dataset contains labelled images with 80 different object categories inlcluding humans with keypoint annotations. It is widely used in pose estimation and object detection benchmarks"
             ] 
         },
         { 
             id: "mscoco-person", name: "MS COCO-Person", size: 250000, width: 9, color: "#d62728", children: ["infant-frames"], 
             descriptions: [
-                "MS COCO-Person is a subset of COCO focused on human annotations, with 250K images.",
-                "This subset is often used for training human pose estimation models.",
-                "It contains annotations for keypoints, making it ideal for body tracking."
+                "MS COCO-Person is a subset of COCO focused on human annotations, with 250K images. It contains annotations for keypoints, making it essential for training and testing pose-estimation algorithms. This was used to train the OpenPose model visualized above, and to fine-tune ViTPose"
             ] 
         },
         { 
             id: "infant-frames", name: "Infant Frames", size: 47000, width: 5, color: "#2ca02c", children: [], 
             descriptions: [
-                "47K hand-annotated infant movement frames, used for research in early diagnosis.",
-                "This dataset supports AI-driven clinical assessments of early motor development.",
-                "Infant movement analysis helps predict neurodevelopmental conditions."
+                "47K hand-annotated infant movement frames, used to finetune the OpenPose algorithm."
             ] 
         }
     ];
