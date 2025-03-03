@@ -238,24 +238,25 @@ To get a sense of how much data goes into pre-training a model, let's look speci
 
 <style>
 
-    #container {
-        position: relative;
-        width: 600px;
-        height: 600px;
-        border: 2px solid #333;
-        overflow: hidden;
-    }
-    .dataset {
-        position: absolute;
-        background-color: rgba(0, 123, 255, 0.7);
-        border: 1px solid #0056b3;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-        text-align: center;
-    }
+        #container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border: 2px solid #333;
+            overflow: hidden;
+        }
+        .dataset {
+            position: absolute;
+            background-color: rgba(0, 123, 255, 0.7);
+            border: 1px solid #0056b3;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            text-align: center;
+            transition: transform 0.5s ease-in-out;
+        }
 </style>
 
 
@@ -264,7 +265,7 @@ To get a sense of how much data goes into pre-training a model, let's look speci
     <div id="jft300m" class="dataset" style="width: 100%; height: 100%;">
         JFT-300M<br>(300M images)
     </div>
-    <div id="imagenet21k" class="dataset" style="width: 22.36%; height: 22.36%; bottom: 0; right: 0;">
+    <div id="imagenet21k" class="dataset" style="width: 22.36%; height: 22.36%; top: 0; left: 0;">
         ImageNet-21k<br>(14M images)
     </div>
     <div id="imagenet1k" class="dataset" style="width: 6.63%; height: 6.63%; bottom: 0; right: 0;">
@@ -274,6 +275,26 @@ To get a sense of how much data goes into pre-training a model, let's look speci
         MS COCO<br>(330K images)
     </div>
 </div>
+
+<script>
+    document.querySelectorAll(".dataset").forEach(item => {
+        item.addEventListener("click", () => {
+            // Reset all other elements
+            document.querySelectorAll(".dataset").forEach(d => {
+                d.style.transform = "scale(1)"; 
+                d.style.zIndex = "1"; 
+            });
+
+            // Toggle zoom effect
+            if (item.style.transform === "scale(1.5)") {
+                item.style.transform = "scale(1)";
+            } else {
+                item.style.transform = "scale(1.5)"; 
+                item.style.zIndex = "10"; // Bring to front
+            }
+        });
+    });
+</script>
 
 
 ## Impact and Future Directions
