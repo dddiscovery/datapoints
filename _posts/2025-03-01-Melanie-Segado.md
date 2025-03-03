@@ -5,7 +5,7 @@ subtitle: "analyzing small datasets with models trained on big datasets"
 authors: ["[Melanie Segado]()"]
 author_pic: ["/assets/images/authors/S_McD.jpeg"]
 author_title: ["Machine learning/Movement/Healthcare"]
-date: 2025-03-06
+date: 2025-02-05
 permalink: /off-the-shelf-ai/
 
 ---
