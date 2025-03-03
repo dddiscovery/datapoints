@@ -259,43 +259,47 @@ To get a sense of how much data goes into pre-training a model, let's look speci
         }
 </style>
 
-
-
 <div id="container">
     <div id="jft300m" class="dataset" style="width: 100%; height: 100%;">
         JFT-300M<br>(300M images)
     </div>
-    <div id="imagenet21k" class="dataset" style="width: 22.36%; height: 22.36%; top: 0; left: 0;">
-        ImageNet-21k<br>(14M images)
-    </div>
-    <div id="imagenet1k" class="dataset" style="width: 6.63%; height: 6.63%; bottom: 0; right: 0;">
-        ImageNet-1k<br>(1.3M images)
-    </div>
-    <div id="mscoco" class="dataset" style="width: 3.32%; height: 3.32%; bottom: 0; left: 0;">
+    <div id="mscoco" class="dataset" style="width: 3.32%; height: 3.32%; bottom: 10px; left: 10px;">
         MS COCO<br>(330K images)
+    </div>
+    <div id="mscoco-person" class="dataset" style="width: 2.9%; height: 2.9%; bottom: 15px; left: 15px; background-color: #ff7f0e;">
+        MS COCO-Person<br>(250K images)
+    </div>
+    <div id="infant-frames" class="dataset" style="width: 1.25%; height: 1.25%; bottom: 20px; left: 20px; background-color: #d62728;">
+        Infant Frames<br>(47K images)
     </div>
 </div>
 
 <script>
     document.querySelectorAll(".dataset").forEach(item => {
         item.addEventListener("click", () => {
+            const container = document.getElementById("container");
+            const containerSize = container.clientWidth;
+
             // Reset all other elements
             document.querySelectorAll(".dataset").forEach(d => {
-                d.style.transform = "scale(1)"; 
-                d.style.zIndex = "1"; 
+                d.style.transform = "scale(1)";
+                d.style.zIndex = "1";
             });
 
+            // Calculate how much to scale this dataset to fill the container
+            const datasetSize = item.clientWidth;
+            const scaleFactor = containerSize / datasetSize;
+
             // Toggle zoom effect
-            if (item.style.transform === "scale(1.5)") {
+            if (item.style.transform === `scale(${scaleFactor})`) {
                 item.style.transform = "scale(1)";
             } else {
-                item.style.transform = "scale(1.5)"; 
+                item.style.transform = `scale(${scaleFactor})`;
                 item.style.zIndex = "10"; // Bring to front
             }
         });
     });
 </script>
-
 
 ## Impact and Future Directions
 
