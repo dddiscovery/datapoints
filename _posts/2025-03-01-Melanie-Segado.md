@@ -257,6 +257,8 @@ To get a sense of how much data goes into pre-training a model, let's look speci
             transition: transform 0.5s ease-in-out;
             cursor: pointer;
         }
+
+</style>
 <div id="container"></div>
 
 <script>
