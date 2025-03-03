@@ -257,36 +257,85 @@ To get a sense of how much data goes into pre-training a model, let's look speci
             transition: transform 0.5s ease-in-out;
             cursor: pointer;
         }
+        .layout {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        #buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button {
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+        #container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 2px solid #333;
+            overflow: hidden;
+        }
+        .dataset {
+            position: absolute;
+            background-color: rgba(0, 123, 255, 0.7);
+            border: 1px solid #0056b3;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            text-align: center;
+        }
+    </style>
 
-</style>
-<div id="container"></div>
+<div class="layout">
+    <!-- Sidebar Buttons -->
+    <div id="buttons">
+        <button onclick="drawDatasets('jft300m', 300)">JFT-300M (300M images)</button>
+        <button onclick="drawDatasets('mscoco', 10)">MS COCO (330K images)</button>
+        <button onclick="drawDatasets('mscoco-person', 9)">MS COCO-Person (250K images)</button>
+        <button onclick="drawDatasets('infant-frames', 5)">Infant Frames (47K images)</button>
+        <button onclick="resetView()">Reset</button>
+    </div>
+
+    <!-- Visualization Container -->
+    <div id="container"></div>
+</div>
 
 <script>
     const datasets = [
-        { id: "jft300m", name: "JFT-300M", size: 300000000, width: 600, color: "#1f77b4", children: ["mscoco"] },
-        { id: "mscoco", name: "MS COCO", size: 330000, width: 20, color: "#ff7f0e", children: ["mscoco-person"] },
-        { id: "mscoco-person", name: "MS COCO-Person", size: 250000, width: 18, color: "#d62728", children: ["infant-frames"] },
-        { id: "infant-frames", name: "Infant Frames", size: 47000, width: 10, color: "#2ca02c", children: [] }
+        { id: "jft300m", name: "JFT-300M", size: 300000000, width: 300, color: "#1f77b4", children: ["mscoco"] },
+        { id: "mscoco", name: "MS COCO", size: 330000, width: 10, color: "#ff7f0e", children: ["mscoco-person"] },
+        { id: "mscoco-person", name: "MS COCO-Person", size: 250000, width: 9, color: "#d62728", children: ["infant-frames"] },
+        { id: "infant-frames", name: "Infant Frames", size: 47000, width: 5, color: "#2ca02c", children: [] }
     ];
 
-    let originalState = true;
-    
     function drawDatasets(parentId, parentSize) {
         const container = document.getElementById("container");
         container.innerHTML = ""; // Clear container before redrawing
 
         let parentDataset = datasets.find(d => d.id === parentId);
-        let scaleFactor = 600 / parentSize;
+        let scaleFactor = 300 / parentSize;
 
         // Draw the selected dataset at full size
         let parentDiv = document.createElement("div");
         parentDiv.classList.add("dataset");
         parentDiv.id = parentDataset.id;
-        parentDiv.style.width = "600px";
-        parentDiv.style.height = "600px";
+        parentDiv.style.width = "300px";
+        parentDiv.style.height = "300px";
         parentDiv.style.backgroundColor = parentDataset.color;
         parentDiv.innerHTML = `${parentDataset.name}<br>(${parentDataset.size.toLocaleString()} images)`;
-        parentDiv.onclick = () => resetView(); // Clicking resets
 
         container.appendChild(parentDiv);
 
@@ -301,13 +350,9 @@ To get a sense of how much data goes into pre-training a model, let's look speci
             childDiv.style.width = `${childSize}px`;
             childDiv.style.height = `${childSize}px`;
             childDiv.style.backgroundColor = childDataset.color;
-            childDiv.style.bottom = "10px";
-            childDiv.style.left = "10px";
+            childDiv.style.bottom = "5px";
+            childDiv.style.left = "5px";
             childDiv.innerHTML = `${childDataset.name}<br>(${childDataset.size.toLocaleString()} images)`;
-            childDiv.onclick = (e) => {
-                e.stopPropagation();
-                drawDatasets(childId, childDataset.width);
-            };
 
             container.appendChild(childDiv);
         });
@@ -325,11 +370,10 @@ To get a sense of how much data goes into pre-training a model, let's look speci
             div.style.height = `${dataset.width}px`;
             div.style.backgroundColor = dataset.color;
             div.style.position = "absolute";
-            div.style.bottom = "10px";
-            div.style.left = "10px";
+            div.style.bottom = "5px";
+            div.style.left = "5px";
             div.innerHTML = `${dataset.name}<br>(${dataset.size.toLocaleString()} images)`;
 
-            div.onclick = () => drawDatasets(dataset.id, dataset.width);
             container.appendChild(div);
         });
 
@@ -337,8 +381,8 @@ To get a sense of how much data goes into pre-training a model, let's look speci
         let jftDiv = document.createElement("div");
         jftDiv.classList.add("dataset");
         jftDiv.id = "jft300m";
-        jftDiv.style.width = "600px";
-        jftDiv.style.height = "600px";
+        jftDiv.style.width = "300px";
+        jftDiv.style.height = "300px";
         jftDiv.style.backgroundColor = "#1f77b4";
         jftDiv.style.zIndex = "-1";
         jftDiv.innerHTML = `JFT-300M<br>(300M images)`;
