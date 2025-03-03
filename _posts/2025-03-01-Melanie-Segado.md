@@ -236,31 +236,52 @@ Foundation models, pre-trained on massive datasets, have transformed AI applicat
 
 To get a sense of how much data goes into pre-training a model, let's look specifically at ViTPose. Use the buttons below to get a sense of how much data was used to train the model before it was used to detect the pose of the infant in the video. 
 
-<!-- Large Square (JFT-300M) -->
-<div style="width: 100px; height: 100px; background-color: lightblue; position: relative;">
-    <!-- Small Square (Initially Hidden) -->
-    <div id="small-square" 
-        style="width: 0px; height: 0px; background-color: red; position: absolute; bottom: 5px; right: 5px; display: none;">
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+    #container {
+        position: relative;
+        width: 600px;
+        height: 600px;
+        border: 2px solid #333;
+        overflow: hidden;
+    }
+    .dataset {
+        position: absolute;
+        background-color: rgba(0, 123, 255, 0.7);
+        border: 1px solid #0056b3;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        text-align: center;
+    }
+</style>
+
+
+
+<div id="container">
+    <div id="jft300m" class="dataset" style="width: 100%; height: 100%;">
+        JFT-300M<br>(300M images)
+    </div>
+    <div id="imagenet21k" class="dataset" style="width: 22.36%; height: 22.36%; top: 0; left: 0;">
+        ImageNet-21k<br>(14M images)
+    </div>
+    <div id="imagenet1k" class="dataset" style="width: 6.63%; height: 6.63%; bottom: 0; right: 0;">
+        ImageNet-1k<br>(1.3M images)
+    </div>
+    <div id="mscoco" class="dataset" style="width: 3.32%; height: 3.32%; bottom: 0; left: 0;">
+        MS COCO<br>(330K images)
     </div>
 </div>
 
-<!-- Button to Show the Fraction Square -->
-<button onclick="showFraction()">Show Fraction</button>
-
-<script>
-    function showFraction() {
-        const largeSize = 300000000;  // JFT-300M
-        const smallSize = 250000;     // 250K
-
-        const fraction = Math.sqrt(smallSize / largeSize); // Scale based on area
-        const newSize = 100 * fraction; // Scale relative to the large square (100px)
-
-        const smallSquare = document.getElementById("small-square");
-        smallSquare.style.width = newSize + "px";
-        smallSquare.style.height = newSize + "px";
-        smallSquare.style.display = "block"; // Make it visible
-    }
-</script>
 
 ## Impact and Future Directions
 
