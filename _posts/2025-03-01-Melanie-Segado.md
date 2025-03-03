@@ -258,7 +258,6 @@ To get a sense of how much data goes into pre-training a model, let's look speci
             cursor: pointer;
         }
 </style>
-
 <div id="container">
     <div id="jft300m" class="dataset" style="width: 100%; height: 100%;">
         JFT-300M<br>(300M images)
@@ -275,30 +274,56 @@ To get a sense of how much data goes into pre-training a model, let's look speci
 </div>
 
 <script>
+    let zoomedIn = false;
+    let currentZoomTarget = null;
+
     document.querySelectorAll(".dataset").forEach(item => {
         item.addEventListener("click", () => {
             const container = document.getElementById("container");
             const containerSize = container.clientWidth;
 
-            // Reset all other elements
-            document.querySelectorAll(".dataset").forEach(d => {
-                d.style.transform = "scale(1)";
-                d.style.zIndex = "1";
-            });
+            // Get the clicked dataset's size
+            const datasetSize = item.clientWidth;
 
             // Calculate how much to scale this dataset to fill the container
-            const datasetSize = item.clientWidth;
             const scaleFactor = containerSize / datasetSize;
 
-            // Toggle zoom effect
-            if (item.style.transform === `scale(${scaleFactor})`) {
-                item.style.transform = "scale(1)";
-            } else {
-                item.style.transform = `scale(${scaleFactor})`;
-                item.style.zIndex = "10"; // Bring to front
+            // If already zoomed in on this dataset, reset all to original positions
+            if (zoomedIn && currentZoomTarget === item) {
+                resetZoom();
+                return;
             }
+
+            // Otherwise, zoom in
+            zoomedIn = true;
+            currentZoomTarget = item;
+
+            document.querySelectorAll(".dataset").forEach(d => {
+                if (d.clientWidth <= datasetSize) {
+                    // Only scale smaller datasets
+                    d.style.transform = `scale(${scaleFactor})`;
+                    d.style.zIndex = "10"; // Bring to front
+                    d.style.left = "0";
+                    d.style.top = "0";
+                    d.style.bottom = "auto";
+                    d.style.right = "auto";
+                }
+            });
         });
     });
+
+    function resetZoom() {
+        zoomedIn = false;
+        currentZoomTarget = null;
+        document.querySelectorAll(".dataset").forEach(d => {
+            d.style.transform = "scale(1)";
+            d.style.zIndex = "1";
+            d.style.left = "";
+            d.style.top = "";
+            d.style.bottom = "";
+            d.style.right = "";
+        });
+    }
 </script>
 
 ## Impact and Future Directions
