@@ -221,13 +221,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-On the bottom layer (when the slider is all the way to the left) is a model called OpenPose, which was a game-changer in the field when it released in 2015. The specific model shown here was pre-trained on 64K images, and finetuned on 47K annotated frames of infant video. While it performs very well when the infant's limbs are clearly visible, it fails in spots where the relevant parts of the image are covered by objects like the crib. This is because it's relying on finding parts of the image that _look like specific joints_ (e.g., knees). When they're occluded, the algorithm fails.  
+On the bottom layer (when the slider is all the way to the left) is a model called [OpenPose](https://doi.org/10.48550/arXiv.1812.08008), which was a game-changer in the field when it released. The specific model shown here was pre-trained on 64K images, and finetuned on 47K annotated frames of infant video. While it performs very well when the infant's limbs are clearly visible, it fails in spots where the relevant parts of the image are covered by objects like the crib. This is because it's relying on finding parts of the image that _look like specific joints_ (e.g., knees). When they're occluded, the algorithm fails.  
 
-The model overlayed on top (when the slider is all the way to the right) is ViTPose-H, a model pre-trained on vast amounts of image data (300M labelled images), fine-tuned on a much smaller dataset of human poses (250K), and not fine-tuned at all on infant data. As you can see, it does much better at capturing the overall shape of the infant's pose, even when the information is occluded, despite not having been trained on infants. This not only has it been trained on more data, it also uses a modern achitechture called a **Vision Transformer** that enables it to learn not just _what specific joints look like_, but also _their spatial relationship_ to other joints (e.g., hips and ankles) and other parts of the image. 
+The model overlayed on top (when the slider is all the way to the right) is [ViTPose-H](https://doi.org/10.48550/arXiv.2204.12484), a model pre-trained on vast amounts of image data (300M labelled images), fine-tuned on a much smaller dataset of human poses (250K), and not fine-tuned at all on infant data. As you can see, it does much better at capturing the overall shape of the infant's pose, even when the information is occluded, despite not having been trained on infants. This not only has it been trained on more data, it also uses a modern achitechture called a **[Vision Transformer](https://doi.org/10.48550/arXiv.2010.11929)** that enables it to learn not just _what specific joints look like_, but also _their spatial relationship_ to other joints (e.g., hips and ankles) and other parts of the image. 
 
 ## Why would these models help "accelerate science"? 
 
-Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLab's [MMPose](https://mmpose.readthedocs.io/en/latest/overview.html), make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources. It's hard to overstate just how rapidly this landscape has shifted. To give an example, the first year of my postdoc was spent optimizing algorithms for infant pose estimation by carefully curating a database of difficult-to-detect poses, annotating them by hand, and training an algorithm to improve its performance. While I made progress, ViTPose performed better off-the-shelf than any of the custom models I had been working on. The ability to get precise pose tracking without the need to train models significantly lowers the barrier to entry for research groups with interesting questions and small, specialized datasets. 
+Foundation models, pre-trained on massive datasets, have transformed AI applications—from large language models to computer vision. Platforms like [HuggingFace](https://huggingface.co/) that host pre-trained models, and user-friendly tools like OpenMMLab's [MMPose](https://mmpose.readthedocs.io/en/latest/overview.html), make these powerful tools easily accessible. By fine-tuning pre-trained models with domain-specific data, or even using them straight *off the shelf*, researchers can achieve meaningful insights with far less effort and fewer resources. It's hard to overstate just how rapidly this landscape has evolved. To give an example, the first year of my postdoc was spent optimizing algorithms for infant pose estimation by carefully curating a database of difficult-to-detect poses, annotating them by hand, and training an algorithm to improve its performance. While I made progress, ViTPose performed better off-the-shelf than any of the custom models I had been working on. The ability to get precise pose tracking without the need to train models significantly lowers the barrier to entry for research groups with interesting questions and small, specialized datasets. 
 
 ## How much data is in a "massive dataset"
 
@@ -311,7 +311,7 @@ To get a sense of just how much data goes into pre-training a foundation model t
         { 
             id: "jft300m", name: "JFT-300M", size: 300000000, width: 300, color: "#1f77b4", children: ["mscoco"], 
             descriptions: [
-                "JFT-300M is a massive dataset with 300 million images, used to train powerful AI models. Google’s proprietary dataset is used in training vision transformers (ViTs), which can then be fine-tuned for tasks like pose estimation."
+                "JFT-300M is a massive dataset with 300 million images, used to train powerful AI models. Google’s proprietary dataset is used in training vision transformers, which can then be fine-tuned for tasks like pose estimation."
             ] 
         },
         { 
@@ -411,4 +411,9 @@ To get a sense of just how much data goes into pre-training a foundation model t
 ## Impact and Future Directions
 
 The rise of *off-the-shelf* AI models marks a significant shift in the ease with which researchers can integrate state-of-the-art tools into their research. **Vision transformers for movement analysis** are just one example of how accessible AI tools can help push the boundaries of disease detection and treatment. As these resources become even more widely available, the future holds breakthroughs that will benefit patients worldwide.
+
+If you want to see how we've been able to put this approach to use, check out our pre-prints! 
+<a class="paper-title-link" href="https://doi.org/10.1101/2025.02.10.25322007"> Data-Driven Early Prediction of Cerebral Palsy Using AutoML and interpretable kinematic features (medRxiv)</a> 
+
+<a class="paper-title-link" href="https://doi.org/10.1101/2024.11.06.24316844"> Assessing infant risk of cerebral palsy with video-based motion tracking (medRxiv)</a> 
 
