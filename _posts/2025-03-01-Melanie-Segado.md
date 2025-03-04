@@ -72,7 +72,6 @@ Take a look at the video below and move the slider back and forth to compare the
     padding: 5px 10px;
     border-radius: 4px;
 }
-
   .cute-button{
     background:rgb(23, 235, 242); /* Soft turquoise */
     border: none;
@@ -86,13 +85,18 @@ Take a look at the video below and move the slider back and forth to compare the
     transition: all 0.3s ease;
   }
 
-  #video-compare-container {
+  /* #video-compare-container {
     display: inline-block;
     line-height: 0;
     position: relative;
     width: 100%;
     padding-top: 42.3%;
-  }
+  } */
+
+   #video-compare-container {
+    position: relative;
+    display: inline-block;
+}
 
   #video-compare-container > video {
     width: 100%;
