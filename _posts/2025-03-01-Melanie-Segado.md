@@ -178,6 +178,15 @@ document.addEventListener("DOMContentLoaded", function () {
     video1.play();
     video2.play();
 
+    // Function to resync videos without playing
+    function resyncVideos() {
+        if (video1.paused && video2.paused) { 
+            var currentTime = Math.min(video1.currentTime, video2.currentTime);
+            video1.currentTime = currentTime;
+            video2.currentTime = currentTime;
+        }
+    }
+    
     // Pause and Play Functionality
     pauseBtn.addEventListener("click", function () {
         if (video1.paused || video2.paused) {
@@ -189,20 +198,10 @@ document.addEventListener("DOMContentLoaded", function () {
             video2.pause();
             pauseBtn.textContent = "Play";
         }
+
+        resyncVideos()
     });
-    // Function to resync videos without playing
-    function resyncVideos() {
-        if (video1.paused && video2.paused) { 
-            var currentTime = Math.min(video1.currentTime, video2.currentTime);
-            video1.currentTime = currentTime;
-            video2.currentTime = currentTime;
-        }
-    }
-        // Automatically resync whenever a video is paused
-    video1.addEventListener("pause", resyncVideos);
-    video2.addEventListener("pause", resyncVideos);
-    video1.addEventListener("play", resyncVideos);
-    video2.addEventListener("play", resyncVideos);
+
 
     // Hide initial line when user interacts
     videoContainer.addEventListener("mouseenter", function () {
