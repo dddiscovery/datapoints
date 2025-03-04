@@ -176,34 +176,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to resync videos while keeping playback state
     function resyncVideos() {
-        var currentTime = Math.min(video1.currentTime, video2.currentTime);
-        var wasPlaying1 = !video1.paused;
-        var wasPlaying2 = !video2.paused;
 
         // Force both videos to the same timestamp
-        video1.currentTime = currentTime;
-        video2.currentTime = currentTime;
+        video1.currentTime = video1.currentTime;
+        video2.currentTime = video1.currentTime;
 
-        // Ensure playback resumes if they were playing
-        if (wasPlaying1) video1.play();
-        if (wasPlaying2) video2.play();
     }
-
-    // Sync videos when either video is paused or played
-    video1.addEventListener("pause", resyncVideos);
-    video2.addEventListener("pause", resyncVideos);
-    video1.addEventListener("play", resyncVideos);
-    video2.addEventListener("play", resyncVideos);
 
     // Pause and Play Functionality (Button)
     pauseBtn.addEventListener("click", function () {
         if (video1.paused || video2.paused) {
+            resyncVideos();
             video1.play();
             video2.play();
             pauseBtn.textContent = "Pause";
         } else {
             video1.pause();
             video2.pause();
+            resyncVideos();
             pauseBtn.textContent = "Play";
         }
     });
