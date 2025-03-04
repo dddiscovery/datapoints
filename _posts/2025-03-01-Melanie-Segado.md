@@ -174,20 +174,20 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Ensure both videos play initially
-    video1.play();
-    video2.play();
-
-    // Function to resync videos without playing
+    // Function to resync videos
     function resyncVideos() {
-        if (video1.paused && video2.paused) { 
-            var currentTime = Math.min(video1.currentTime, video2.currentTime);
-            video1.currentTime = currentTime;
-            video2.currentTime = currentTime;
-        }
+        var currentTime = Math.min(video1.currentTime, video2.currentTime);
+        video1.currentTime = currentTime;
+        video2.currentTime = currentTime;
     }
-    
-    // Pause and Play Functionality
+
+    // Sync videos when either video is paused or played
+    video1.addEventListener("pause", resyncVideos);
+    video2.addEventListener("pause", resyncVideos);
+    video1.addEventListener("play", resyncVideos);
+    video2.addEventListener("play", resyncVideos);
+
+    // Pause and Play Functionality (Button)
     pauseBtn.addEventListener("click", function () {
         if (video1.paused || video2.paused) {
             video1.play();
@@ -198,10 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
             video2.pause();
             pauseBtn.textContent = "Play";
         }
-
-        resyncVideos()
     });
-
 
     // Hide initial line when user interacts
     videoContainer.addEventListener("mouseenter", function () {
@@ -233,6 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sliderLine.style.display = "none";
     });
 });
+
 </script>
 
 On the bottom layer (when the slider is all the way to the left) is a model called [OpenPose](https://doi.org/10.48550/arXiv.1812.08008), which was a game-changer in the field when it released. The specific model shown here was pre-trained on 64K images, and finetuned on 47K annotated frames of infant video. While it performs very well when the infant's limbs are clearly visible, it fails in spots where the relevant parts of the image are covered by objects like the crib. This is because it's relying on finding parts of the image that _look like specific joints_ (e.g., knees). When they're occluded, the algorithm fails.  
