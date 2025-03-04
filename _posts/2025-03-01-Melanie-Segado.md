@@ -45,6 +45,7 @@ Take a look at the video below and move the slider back and forth to compare the
 
 <!-- Pause Button -->
 <button id="pause-btn" class="cute-button">Pause</button>
+<button id="resync-btn" class="cute-button">Re-Sync</button>
 
 <style>
 
@@ -159,22 +160,24 @@ Take a look at the video below and move the slider back and forth to compare the
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    var videoContainer = document.getElementById("video-compare-container"),
-        video1 = document.getElementById("video1"),
+    var video1 = document.getElementById("video1"),
         video2 = document.getElementById("video2"),
-        videoClipper = document.getElementById("video-clipper"),
-        initialLine = document.getElementById("initial-line"),
-        sliderLine = document.getElementById("slider-line"),
-        pauseBtn = document.getElementById("pause-btn");
+        pauseBtn = document.getElementById("pause-btn"),
+        resyncBtn = document.getElementById("resync-btn");
 
     if (!video1 || !video2) {
         console.error("Error: One or more videos are missing.");
         return;
     }
 
-    // Ensure both videos play initially
-    video1.play();
-    video2.play();
+    // Resync Functionality
+    resyncBtn.addEventListener("click", function () {
+        var currentTime = Math.min(video1.currentTime, video2.currentTime);
+        video1.currentTime = currentTime;
+        video2.currentTime = currentTime;
+        video1.play();
+        video2.play();
+    });
 
     // Pause and Play Functionality
     pauseBtn.addEventListener("click", function () {
@@ -188,6 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
             pauseBtn.textContent = "Play";
         }
     });
+});
+
 
     // Hide initial line when user interacts
     videoContainer.addEventListener("mouseenter", function () {
