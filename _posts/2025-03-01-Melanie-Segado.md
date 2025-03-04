@@ -22,10 +22,6 @@ A big barrier to developing these tools has been the fact that infants are reall
 Take a look at the video below and move the slider back and forth to compare the performance algorithm from the not-so-distant past (2017) with one from 2023, on a fully ai-generated video of an infant.  
 
 <div id="video-compare-container">
-    <div id="compare-labels">
-        <span class="label left-label">← 2017</span>
-        <span class="label right-label">2023 →</span>
-    </div>
 
   <video id="video1" loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.jpg">
     <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4" type="video/mp4">
@@ -43,6 +39,8 @@ Take a look at the video below and move the slider back and forth to compare the
     <div class="arrow" id="right-arrow">▶</div>
   </div>
   <div id="slider-line">
+    <div class="year" id="dynamic-year-old">2017</div>
+    <div class="year" id="dynamic-year-new">2023</div>
     <div class="arrow" id="dynamic-left-arrow">◀</div>
     <div class="arrow" id="dynamic-right-arrow">▶</div>
   </div>
@@ -54,24 +52,6 @@ Take a look at the video below and move the slider back and forth to compare the
 
 
 <style>
-#video-labels {
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 15px;
-    pointer-events: none; /* Allows interaction with the video */
-}
-
-.label {
-    font-size: 16px;
-    font-weight: bold;
-    color: black;
-    background: rgba(0, 0, 0, 0);
-    padding: 5px 10px;
-    border-radius: 4px;
-}
   .cute-button{
     background:rgb(23, 235, 242); /* Soft turquoise */
     border: none;
@@ -161,7 +141,19 @@ Take a look at the video below and move the slider back and forth to compare the
     border-radius: 50%;
     pointer-events: none;
   }
-
+ .year{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0);
+    padding: 5px;
+    border-radius: 50%;
+    pointer-events: none;
+ }
+ 
   #left-arrow, #dynamic-left-arrow {
     left: -20px;
   }
