@@ -22,6 +22,11 @@ A big barrier to developing these tools has been the fact that infants are reall
 Take a look at the video below and move the slider back and forth to compare the performance algorithm from the not-so-distant past (2017) with one from 2023, on a fully ai-generated video of an infant.  
 
 <div id="video-compare-container">
+    <div id="compare-labels">
+        <span class="label left-label">← 2017</span>
+        <span class="label right-label">2023 →</span>
+    </div>
+
   <video id="video1" loop muted autoplay poster="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.jpg">
     <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.mp4" type="video/mp4">
     <source src="../assets/post_assets/2025-03-01-Melanie-Segado/openpose.webm" type="video/webm">
@@ -49,6 +54,24 @@ Take a look at the video below and move the slider back and forth to compare the
 
 
 <style>
+#video-labels {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    pointer-events: none; /* Allows interaction with the video */
+}
+
+.label {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
 
   .cute-button{
     background:rgb(23, 235, 242); /* Soft turquoise */
