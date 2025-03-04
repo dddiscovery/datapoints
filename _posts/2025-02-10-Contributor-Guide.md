@@ -333,6 +333,14 @@ The blog features artwork from the public domain for both title images and other
   - Status: Public Domain
 
 [//]: # "`assets/images/posts/title_km.jpg`"
+
+- *"Cannon Rock"*
+  - Artist: Winslow Homer
+  - Accession Number: 06.1281
+  - Source: The Metropolitan Museum of Art
+  - Status: Public Domain
+
+[//]: # "`assets/images/posts/title_ms.jpg`"
 </div>
 
 <div class="credits-container" markdown="1">

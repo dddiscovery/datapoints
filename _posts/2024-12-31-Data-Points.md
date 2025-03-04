@@ -21,13 +21,14 @@ about: |
 
 featured_posts:
 # from the latest post to the oldest post
-#  - image: /assets/images/posts/title-sample.jpg
-#    title: Another Featured Post
-#    url: /another-post
-#    author: Another Author
-#    author_url: https://example.com
-#    date: March 01, 2025
-#    description: Description of another featured post.
+  - image: /assets/images/posts/title-ms.jpg
+    title: Accelerating science with 'off-the-shelf' models
+    url: /off-the-shelf-ai
+    author: Melanie Segado
+    author_url: https://sites.google.com/view/melaniesegado
+    date: March 05, 2025
+    description: A visual guide on how foundation models enhance computer vision research with small datasets.
+
   - image: /assets/images/posts/title-km.jpg
     title: Where is the information in data?
     url: /Where-is-the-Information-in-Data
