@@ -177,8 +177,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to resync videos
     function resyncVideos() {
         var currentTime = Math.min(video1.currentTime, video2.currentTime);
+        
+        // Set both videos to the same timestamp
         video1.currentTime = currentTime;
         video2.currentTime = currentTime;
+
+        // Ensure the frame actually updates
+        setTimeout(() => {
+            if (video1.paused && video2.paused) {
+                video1.currentTime = currentTime;
+                video2.currentTime = currentTime;
+            }
+        }, 50);
     }
 
     // Sync videos when either video is paused or played
