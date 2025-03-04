@@ -45,7 +45,7 @@ Take a look at the video below and move the slider back and forth to compare the
 
 <div id="button-container">
     <button id="pause-btn">Pause</button>
-    <button id="resync-btn">Resync</button>
+    <!-- <button id="resync-btn">Resync</button> -->
 </div>
 
 
@@ -206,6 +206,10 @@ document.addEventListener("DOMContentLoaded", function () {
     resyncBtn.addEventListener("click", function () {
         resyncVideos();
     });
+        // Automatically resync whenever a video is paused
+    video1.addEventListener("pause", resyncVideos);
+    video2.addEventListener("pause", resyncVideos);
+
     // Hide initial line when user interacts
     videoContainer.addEventListener("mouseenter", function () {
         initialLine.style.opacity = "0"; // Fade out initial line
