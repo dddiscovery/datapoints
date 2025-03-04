@@ -141,6 +141,7 @@ Take a look at the video below and move the slider back and forth to compare the
     border-radius: 50%;
     pointer-events: none;
   }
+
  .year{
     position: absolute;
     top: 10%;
@@ -154,6 +155,13 @@ Take a look at the video below and move the slider back and forth to compare the
     pointer-events: none;
  }
 
+  #dynamic-year-old{
+    left: -40px;
+
+  }  
+  #dynamic-year-new{
+    right: -40px;
+  }
   #left-arrow, #dynamic-left-arrow {
     left: -20px;
   }
