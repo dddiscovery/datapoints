@@ -174,32 +174,26 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Function to resync videos aggressively
-    function forceResync() {
+    // Function to resync videos while keeping playback state
+    function resyncVideos() {
         var currentTime = Math.min(video1.currentTime, video2.currentTime);
+        var wasPlaying1 = !video1.paused;
+        var wasPlaying2 = !video2.paused;
 
-        // Pause both videos to allow frame syncing
-        video1.pause();
-        video2.pause();
-
-        // Force both videos to jump to the same timestamp
+        // Force both videos to the same timestamp
         video1.currentTime = currentTime;
         video2.currentTime = currentTime;
 
-        // Wait briefly and ensure the videos sync before resuming
-        setTimeout(() => {
-            if (!video1.paused || !video2.paused) {
-                video1.currentTime = currentTime;
-                video2.currentTime = currentTime;
-            }
-        }, 10);
+        // Ensure playback resumes if they were playing
+        if (wasPlaying1) video1.play();
+        if (wasPlaying2) video2.play();
     }
 
     // Sync videos when either video is paused or played
-    video1.addEventListener("pause", forceResync);
-    video2.addEventListener("pause", forceResync);
-    video1.addEventListener("play", forceResync);
-    video2.addEventListener("play", forceResync);
+    video1.addEventListener("pause", resyncVideos);
+    video2.addEventListener("pause", resyncVideos);
+    video1.addEventListener("play", resyncVideos);
+    video2.addEventListener("play", resyncVideos);
 
     // Pause and Play Functionality (Button)
     pauseBtn.addEventListener("click", function () {
@@ -244,6 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sliderLine.style.display = "none";
     });
 });
+
 
 </script>
 
