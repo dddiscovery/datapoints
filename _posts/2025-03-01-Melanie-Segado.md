@@ -156,11 +156,11 @@ Take a look at the video below and move the slider back and forth to compare the
  }
 
   #dynamic-year-old{
-    left: -40px;
+    right: -80px;
 
   }  
   #dynamic-year-new{
-    right: -40px;
+    left: -80px;
   }
   #left-arrow, #dynamic-left-arrow {
     left: -20px;
