@@ -43,9 +43,11 @@ Take a look at the video below and move the slider back and forth to compare the
   </div>
 </div>
 
-<!-- Pause Button -->
-<button id="pause-btn" class="cute-button">Pause</button>
-<button id="resync-btn" class="cute-button">Pause</button>
+<div id="button-container">
+    <button id="pause-btn">Pause</button>
+    <button id="resync-btn">Resync</button>
+</div>
+
 
 <style>
 
@@ -191,13 +193,18 @@ document.addEventListener("DOMContentLoaded", function () {
             pauseBtn.textContent = "Play";
         }
     });
-    // Resync Functionality
+    // Function to resync videos without playing
+    function resyncVideos() {
+        if (video1.paused && video2.paused) { 
+            var currentTime = Math.min(video1.currentTime, video2.currentTime);
+            video1.currentTime = currentTime;
+            video2.currentTime = currentTime;
+        }
+    }
+
+    // Add event listener to resync button
     resyncBtn.addEventListener("click", function () {
-        var currentTime = Math.min(video1.currentTime, video2.currentTime);
-        video1.currentTime = currentTime;
-        video2.currentTime = currentTime;
-        video1.play();
-        video2.play();
+        resyncVideos();
     });
     // Hide initial line when user interacts
     videoContainer.addEventListener("mouseenter", function () {
