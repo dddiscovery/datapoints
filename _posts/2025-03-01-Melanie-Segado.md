@@ -44,8 +44,7 @@ Take a look at the video below and move the slider back and forth to compare the
 </div>
 
 <div id="button-container">
-    <button id="pause-btn">Pause</button>
-    <!-- <button id="resync-btn">Resync</button> -->
+    <button id="pause-btn" class="cute-button">Pause</button>
 </div>
 
 
@@ -169,8 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
         initialLine = document.getElementById("initial-line"),
         sliderLine = document.getElementById("slider-line"),
         pauseBtn = document.getElementById("pause-btn");
-        resyncBtn = document.getElementById("resync-btn");
-
 
     if (!video1 || !video2) {
         console.error("Error: One or more videos are missing.");
@@ -201,14 +198,11 @@ document.addEventListener("DOMContentLoaded", function () {
             video2.currentTime = currentTime;
         }
     }
-
-    // Add event listener to resync button
-    resyncBtn.addEventListener("click", function () {
-        resyncVideos();
-    });
         // Automatically resync whenever a video is paused
     video1.addEventListener("pause", resyncVideos);
     video2.addEventListener("pause", resyncVideos);
+    video1.addEventListener("play", resyncVideos);
+    video2.addEventListener("play", resyncVideos);
 
     // Hide initial line when user interacts
     videoContainer.addEventListener("mouseenter", function () {
