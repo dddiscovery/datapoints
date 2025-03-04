@@ -143,7 +143,7 @@ Take a look at the video below and move the slider back and forth to compare the
   }
  .year{
     position: absolute;
-    top: 50%;
+    top: 10%;
     transform: translateY(-50%);
     font-size: 18px;
     color: white;
@@ -153,7 +153,7 @@ Take a look at the video below and move the slider back and forth to compare the
     border-radius: 50%;
     pointer-events: none;
  }
- 
+
   #left-arrow, #dynamic-left-arrow {
     left: -20px;
   }
