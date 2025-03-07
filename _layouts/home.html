@@ -55,11 +55,15 @@ title: Data Points
 		<!--<img src="{{ '/assets/images/picture/sample1.jpg' | relative_url }}" style="width: 972px; height: 270px; object-fit: cover;">-->
             <img src="{{ slide.image | relative_url }}" class="slide-pic">
             <div class="slideshow-text">
-                <p>{{ slide.text }}</p>
+                {% if slide.url %}
+                <a href="{{ slide.url | relative_url }}">{{ slide.text }}</a>
+                {% else %}
+                     <p>{{ slide.text }}</p>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
-        
+       
         <!-- Next and previous buttons -->
         <a class="slide-button"  id="prev-button" onclick="plusSlides(-1)" style="cursor: pointer; position: absolute; top: 50%; left: 10px; transform: translateY(-50%); color: black; font-weight: bold; font-size: 24px; user-select: none;">&#10094;</a>
         <a class="slide-button" id="next-button" onclick="plusSlides(1)" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%); color: black; font-weight: bold; font-size: 24px; user-select: none;">&#10095;</a>

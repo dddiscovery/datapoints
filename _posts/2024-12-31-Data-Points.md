@@ -8,9 +8,10 @@ welcome_describe: |
 
 slides:
   - image: /assets/images/picture/explore.jpg
-    text: Explore research through visual storytelling.
+    text: Explore the power of data across diverse fields!
+#    url: /Where-is-the-Information-in-Data/
   - image: /assets/images/picture/call_for_participate.jpg
-    text: Contribute to Data Points!
+    text: Share your thoughts and get them posted here at DataPoints!
   - image: /assets/images/picture/join_community.jpg
     text: Join our community of researchers and share your data-driven insights with the world.
 
@@ -21,13 +22,13 @@ about: |
 
 featured_posts:
 # from the latest post to the oldest post
-  - image: /assets/images/posts/title-ms.jpg
-    title: Accelerating science with 'off-the-shelf' models
-    url: /off-the-shelf-ai
-    author: Melanie Segado
-    author_url: https://sites.google.com/view/melaniesegado
-    date: March 05, 2025
-    description: A visual guide on how foundation models enhance computer vision research with small datasets.
+#  - image: /assets/images/posts/title-ms.jpg
+#    title: Accelerating science with 'off-the-shelf' models
+#    url: /off-the-shelf-ai
+#    author: Melanie Segado
+#    author_url: https://sites.google.com/view/melaniesegado
+#    date: March 05, 2025
+#    description: A visual guide on how foundation models enhance computer vision research with small datasets.
 
   - image: /assets/images/posts/title-km.jpg
     title: Where is the information in data?
