@@ -3,7 +3,7 @@ layout: blog
 title: "Accelerating science with 'off-the-shelf' models"
 subtitle: "analyzing small datasets with models trained on big datasets"
 authors: ["[Melanie Segado]()"]
-author_pic: ["/assets/images/authors/S_McD.jpeg"]
+author_pic: ["/assets/images/authors/melanie_segado.jpg"]
 author_title: ["Machine learning/Movement/Healthcare"]
 date: 2025-02-05
 permalink: /off-the-shelf-ai/
