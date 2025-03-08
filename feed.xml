@@ -1,4 +1,540 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://dddiscovery.github.io/datapoints/feed.xml" rel="self" type="application/atom+xml" /><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" /><updated>2025-02-03T15:23:17+00:00</updated><id>https://dddiscovery.github.io/datapoints/feed.xml</id><title type="html">Data Points</title><subtitle>DDDI&apos;s Technical Blog Series</subtitle><entry><title type="html">Where is the information in data?</title><link href="https://dddiscovery.github.io/datapoints/Where-is-the-Information-in-Data/" rel="alternate" type="text/html" title="Where is the information in data?" /><published>2025-02-03T00:00:00+00:00</published><updated>2025-02-03T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Kieran-Murphy</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/Where-is-the-Information-in-Data/"><![CDATA[<p>Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within.  What sorts of things could you learn?  What would the illuminated information even look like?</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://dddiscovery.github.io/datapoints/feed.xml" rel="self" type="application/atom+xml" /><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" /><updated>2025-03-08T03:37:20+00:00</updated><id>https://dddiscovery.github.io/datapoints/feed.xml</id><title type="html">Data Points</title><subtitle>DDDI&apos;s Technical Blog Series</subtitle><entry><title type="html">Contributor Guide</title><link href="https://dddiscovery.github.io/datapoints/contributor-guide/" rel="alternate" type="text/html" title="Contributor Guide" /><published>2025-02-10T00:00:00+00:00</published><updated>2025-02-10T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Contributor-Guide</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/contributor-guide/"><![CDATA[<!-- Content sections -->
+<section id="github-repo">
+  <h2 id="github-repo">GitHub Repo</h2>
+
+  <p>The Datapoints blog is built on GitHub, providing a collaborative platform for our team to create and share data science insights. This guide will walk you through our repository structure, development workflow, and help you set up your local environment for contributing to the blog.</p>
+
+  <p>Whether you’re writing your first post or maintaining existing content, understanding our GitHub workflow will help ensure a smooth contribution process. Let’s get started!</p>
+
+  <p><img src="/datapoints/assets/images/picture/git-repo.jpg" alt="GitHub Repository" style="max-width: 75%; height: auto; display: block; margin-left: auto; margin-right: auto;" /></p>
+</section>
+
+<section id="project-structure">
+  <h3 id="project-structure">Project Structure</h3>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DDDI_DP_Blog/
+├── _layouts/           # Universal HTML layouts for the blog
+├── _posts/            # Blog post content in Markdown
+│   └── YYYY-MM-DD-FirstName-LastName.md
+├── assets/            # Static assets
+│   ├── css/          # Universal CSS files
+│   ├── images/       # Global images
+│   └── post_assets/  # Post-specific assets
+│       └── YYYY-MM-DD-FirstName-LastName/  # Matches .md filename
+└── README.md
+</code></pre></div>  </div>
+
+  <h4 id="directory-details">Directory Details</h4>
+
+  <h5 id="layouts"><code class="language-plaintext highlighter-rouge">_layouts/</code></h5>
+
+  <p>Contains universal HTML layouts used across the blog. These templates define the structure and appearance of different page types.</p>
+
+  <h5 id="posts"><code class="language-plaintext highlighter-rouge">_posts/</code></h5>
+
+  <p>Stores all blog post content in Markdown format.</p>
+  <ul>
+    <li>Naming convention: <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-FirstName-LastName.md</code></li>
+    <li>Example: <code class="language-plaintext highlighter-rouge">2025-01-27-Yuxin-Liang.md</code></li>
+  </ul>
+
+  <h5 id="assets"><code class="language-plaintext highlighter-rouge">assets/</code></h5>
+
+  <p>Static assets organized in three main categories:</p>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">css/</code>: Universal CSS files applied across the site</li>
+    <li><code class="language-plaintext highlighter-rouge">images/</code>: Global images used throughout the blog</li>
+    <li><code class="language-plaintext highlighter-rouge">post_assets/</code>: Post-specific assets
+      <ul>
+        <li>Each post should have its own directory matching the .md filename</li>
+        <li>Example: If your post is <code class="language-plaintext highlighter-rouge">2025-01-27-Yuxin-Liang.md</code>, create <code class="language-plaintext highlighter-rouge">assets/post_assets/2025-01-27-Yuxin-Liang/</code></li>
+        <li>Store all post-specific settings, images, and other assets in this folder</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section id="branches">
+  <h3 id="working-with-branches">Working with Branches</h3>
+
+  <h4 id="branch-structure">Branch Structure</h4>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">main</code>: Production-ready code, final destination for completed posts</li>
+    <li><code class="language-plaintext highlighter-rouge">firstname-lastname-staging</code>: Personal development branch for each author</li>
+  </ul>
+
+  <h4 id="workflow">Workflow</h4>
+  <ol>
+    <li>
+      <p><strong>Create Your Branch</strong></p>
+
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create and switch to your personal staging branch</span>
+git checkout <span class="nt">-b</span> yuxin-liang-staging
+</code></pre></div>      </div>
+    </li>
+    <li>
+      <p><strong>Development Process</strong></p>
+
+      <ul>
+        <li>Make all your changes in your personal staging branch</li>
+        <li>Test locally using Jekyll server</li>
+        <li>Commit changes frequently with clear messages</li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Push to Your Branch</strong></p>
+
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin yuxin-liang-staging
+</code></pre></div>      </div>
+    </li>
+    <li>
+      <p><strong>Final Review</strong></p>
+
+      <ul>
+        <li>Ensure all content is complete</li>
+        <li>Test all interactive elements</li>
+        <li>Verify formatting across devices</li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Merge to Main</strong></p>
+
+      <ul>
+        <li>Only merge to <code class="language-plaintext highlighter-rouge">main</code> when post is complete</li>
+        <li>Create pull request from your branch to <code class="language-plaintext highlighter-rouge">main</code></li>
+        <li>Request review if needed</li>
+      </ul>
+    </li>
+  </ol>
+
+</section>
+
+<section id="local-setup">
+  <h3 id="setting-up-local-environment">Setting Up Local Environment</h3>
+
+  <h4 id="prerequisites">Prerequisites</h4>
+  <ol>
+    <li><strong>Install Ruby</strong>
+      <ul>
+        <li>For Windows:
+          <ul>
+            <li>Download and install Ruby from <a href="https://rubyinstaller.org/">RubyInstaller</a></li>
+            <li>Verify installation: <code class="language-plaintext highlighter-rouge">ruby -v</code></li>
+          </ul>
+        </li>
+        <li>For macOS:
+          <ul>
+            <li>Ruby comes pre-installed, but it’s recommended to use a version manager</li>
+            <li>Install Homebrew if not already installed:
+              <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
+</code></pre></div>              </div>
+            </li>
+            <li>Install rbenv:
+              <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rbenv
+rbenv init
+</code></pre></div>              </div>
+            </li>
+            <li>Install Ruby:
+              <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv <span class="nb">install </span>3.2.0
+rbenv global 3.2.0
+</code></pre></div>              </div>
+            </li>
+            <li>Verify installation: <code class="language-plaintext highlighter-rouge">ruby -v</code></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><strong>Install Jekyll and Bundler</strong>
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll bundler
+</code></pre></div>      </div>
+    </li>
+  </ol>
+
+  <h4 id="getting-started">Getting Started</h4>
+  <ol>
+    <li><strong>Clone the Repository</strong>
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/dddiscovery/datapoints.git
+<span class="nb">cd </span>datapoints
+</code></pre></div>      </div>
+    </li>
+    <li><strong>Install Dependencies</strong>
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div>      </div>
+    </li>
+    <li><strong>Start Local Server</strong>
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div>      </div>
+    </li>
+  </ol>
+
+  <h4 id="common-issues">Common Issues</h4>
+  <ul>
+    <li><strong>Permission Errors During Installation</strong>
+      <ul>
+        <li>Try installing gems with the <code class="language-plaintext highlighter-rouge">--user-install</code> flag</li>
+        <li>Check directory permissions for your gem folder</li>
+      </ul>
+    </li>
+    <li><strong>Bundle Install Failures</strong>
+      <ul>
+        <li>Run bundle update first</li>
+        <li>Clean and reinstall dependencies</li>
+        <li>Check for conflicting gem versions</li>
+      </ul>
+    </li>
+    <li><strong>Ruby Version Conflicts</strong>
+      <ul>
+        <li>Ensure Ruby version matches requirements (3.2.0 recommended)</li>
+        <li>Use version managers (rbenv/RVM) to switch Ruby versions</li>
+        <li>Check Jekyll compatibility with your Ruby version</li>
+      </ul>
+    </li>
+    <li><strong>Port Already in Use</strong>
+      <ul>
+        <li>Check for other running Jekyll instances</li>
+        <li>Try different port number</li>
+        <li>Restart your terminal</li>
+      </ul>
+    </li>
+    <li><strong>Missing Dependencies</strong>
+      <ul>
+        <li>Install required system libraries</li>
+        <li>Check Gemfile for missing entries</li>
+        <li>Verify development headers are installed</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4 id="preview-across-devices-using-ngrok">Preview Across Devices (Using ngrok)</h4>
+
+  <p>ngrok allows you to access your local development site from any device, regardless of network.</p>
+
+  <ol>
+    <li><strong>Start Jekyll Server with Host Settings</strong>
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>datapoints    <span class="c"># Navigate to your project directory</span>
+bundle <span class="nb">exec </span>jekyll serve <span class="nt">--host</span><span class="o">=</span>0.0.0.0 <span class="nt">--baseurl</span><span class="o">=</span><span class="s2">""</span>
+</code></pre></div>      </div>
+      <p>Keep this terminal window open!</p>
+    </li>
+    <li><strong>Start ngrok in New Terminal</strong>
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ngrok http 4000
+</code></pre></div>      </div>
+      <p>Keep this terminal window open too!</p>
+    </li>
+    <li><strong>Get the Public URL</strong>
+      <ul>
+        <li>Look for the ‘Forwarding’ line in ngrok output</li>
+        <li>Use the <code class="language-plaintext highlighter-rouge">https://</code> URL (example: <code class="language-plaintext highlighter-rouge">https://xxxx-xxxx.ngrok-free.app</code>)</li>
+      </ul>
+    </li>
+    <li><strong>Access on Other Devices</strong>
+      <ul>
+        <li>Open the ngrok URL on any device</li>
+        <li>Site will be accessible regardless of network</li>
+        <li>Great for testing responsive design</li>
+        <li>Share URL with collaborators for quick previews</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h4 id="notes">Notes</h4>
+  <ul>
+    <li>ngrok URLs are temporary and change each session</li>
+    <li>Free tier has some limitations</li>
+    <li>For security, only share URLs with trusted collaborators</li>
+  </ul>
+
+</section>
+
+<section id="page-deployment">
+  <h3 id="github-pages-deployment">GitHub Pages Deployment</h3>
+
+  <h4 id="build-process">Build Process</h4>
+
+  <p>After completing all content and styling, pushing changes to the <code class="language-plaintext highlighter-rouge">main</code> branch triggers an automated build process.</p>
+
+  <ol>
+    <li><strong>GitHub Action</strong>
+      <ul>
+        <li>A GitHub Action called “Deploy Jekyll Site” is triggered</li>
+        <li>You can monitor the build at: https://github.com/dddiscovery/datapoints/actions</li>
+      </ul>
+    </li>
+    <li><strong>Build Time</strong>
+      <ul>
+        <li>The build process takes a few minutes to complete</li>
+        <li>You can track progress in the Actions tab</li>
+        <li>A green checkmark ✅ indicates successful deployment</li>
+      </ul>
+    </li>
+    <li><strong>Deployment</strong>
+      <ul>
+        <li>The built site is automatically pushed to the <code class="language-plaintext highlighter-rouge">gh-pages</code> branch</li>
+        <li>Once deployed, your changes will be live at: https://dddiscovery.github.io/datapoints</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h4 id="troubleshooting">Troubleshooting</h4>
+
+  <ul>
+    <li>If the build fails (red ❌), check the Actions tab for error details</li>
+    <li>Common issues include:
+      <ul>
+        <li>Invalid front matter in posts</li>
+        <li>Missing required files</li>
+        <li>Incorrect file paths</li>
+        <li>Build timeout or resource limits exceeded</li>
+        <li>CSS or JavaScript not loading properly</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4 id="important-notes">Important Notes</h4>
+
+  <ul>
+    <li>Only changes pushed to <code class="language-plaintext highlighter-rouge">main</code> trigger the build process</li>
+    <li>The build configuration lives in <code class="language-plaintext highlighter-rouge">.github/workflows/pages.yml</code></li>
+    <li>Wait for the green checkmark before checking your changes on the live site</li>
+  </ul>
+
+</section>
+
+<section id="for-author">
+  <h3 id="ready-set-blog">Ready, Set, Blog!</h3>
+
+  <ol>
+    <li><strong>Create a new branch for your post</strong>
+      <ul>
+        <li>Branch naming convention: <code class="language-plaintext highlighter-rouge">post/YYYY-MM-DD-FirstName-LastName</code></li>
+        <li>Example: <code class="language-plaintext highlighter-rouge">post/2025-01-27-Yuxin-Liang</code></li>
+      </ul>
+    </li>
+    <li><strong>Create your blog post in <code class="language-plaintext highlighter-rouge">_posts/</code> following the naming convention</strong>
+      <ul>
+        <li>Create a new .md file named <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-FirstName-LastName.md</code></li>
+        <li>Use the template in <code class="language-plaintext highlighter-rouge">2025-01-22-post-temp.md</code> as a starting point</li>
+        <li>Write your blog content in Markdown format</li>
+      </ul>
+    </li>
+    <li><strong>Create a matching directory in <code class="language-plaintext highlighter-rouge">assets/post_assets/</code> for your specific assets</strong>
+      <ul>
+        <li>Directory should match your .md filename: <code class="language-plaintext highlighter-rouge">assets/post_assets/YYYY-MM-DD-FirstName-LastName/</code></li>
+        <li>Place all post-specific content (images, CSS, scripts) in this directory</li>
+      </ul>
+    </li>
+    <li><strong>Work on your staging branch</strong>
+      <ul>
+        <li>Make all changes and test locally (follow the local development setup below)</li>
+        <li>Commit your changes regularly with descriptive messages</li>
+      </ul>
+    </li>
+    <li><strong>Review and publish</strong>
+      <ul>
+        <li>Request a review when your post is ready</li>
+        <li>After approval, merge your branch into main</li>
+      </ul>
+    </li>
+  </ol>
+
+</section>
+
+<section id="git-resources">
+  <h3 id="git-resources">Git Resources</h3>
+
+  <p>Lost in the land of commits and how git works 🤯? Here’s your survival guide to version control.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://docs.github.com/en/get-started">GitHub Docs</a></td>
+        <td>The official GitHub documentation - comprehensive, clear, and constantly updated.</td>
+      </tr>
+      <tr>
+        <td><a href="https://git-scm.com/book/en/v2">Pro Git Book</a></td>
+        <td>Free book covering everything from Git basics to advanced usage.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.atlassian.com/git/tutorials">Atlassian Git Tutorials</a></td>
+        <td>Covers Git workflows, branching, rebasing, and best practices.</td>
+      </tr>
+    </tbody>
+  </table>
+
+</section>
+
+<section id="blog-inspirations">
+  <h2 id="blog-inspirations">Blog Inspirations</h2>
+
+  <p>The Datapoints blog aims to make data science accessible, engaging, and visually compelling. We’ve curated a collection of resources that inspire our creative approach to data storytelling and visualization. These exemplary works showcase how complex ideas can be communicated clearly and beautifully.</p>
+
+  <p>Whether you’re looking for visualization ideas, narrative techniques, or interactive elements, these resources will help elevate your blog posts from informative to unforgettable. Let’s explore what makes great data stories!</p>
+
+  <p>We’d love to hear about any inspiring resource that could benefit our community! Share your findings with us, and let’s grow our collection of inspirational resources together.</p>
+
+  <p><img src="/datapoints/assets/images/picture/blog-inspirations.jpg" alt="GitHub Repository" style="max-width: 100%; height: auto;" /></p>
+</section>
+
+<section id="creative-viz">
+  <h3 id="creative-visualization">Creative VIsualization</h3>
+
+  <p>Cool examples of how to turn data and complex ideas into engaging visuals and stories. These sites show how to make your research pop with creative, interactive elements.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://visxai.io/">VISxAI</a></td>
+        <td>A workshop showcasing creative ways to explain AI through interactive visualizations.</td>
+      </tr>
+      <tr>
+        <td><a href="https://pudding.cool/">The Pudding</a></td>
+        <td>Visual essays that turn data into delightful stories.</td>
+      </tr>
+      <tr>
+        <td><a href="https://seeing-theory.brown.edu/index.html">Seeing Theory</a></td>
+        <td>A stunning visual journey through statistics and probability.</td>
+      </tr>
+    </tbody>
+  </table>
+
+</section>
+
+<section id="scientific-journals">
+  <h3 id="scientific-journals">Scientific Journals</h3>
+  <p>Science with style - research that reads like a page-turner. A collection of blogs and publications that nail the sweet spot between rigorous research and engaging storytelling. <span style="text-decoration:line-through;font-size:1.125rem;font-family:Palatino,URW Palladio L,serif;color:#666666">Because let’s face it - most academic papers are a cure for insomnia!</span></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://distill.pub/">Distill</a></td>
+        <td>A pioneer in interactive ML explanations.</td>
+      </tr>
+      <tr>
+        <td><a href="https://pair.withgoogle.com/explorables/">PAIR Explorables</a></td>
+        <td>Google’s collection of interactive essays that make ML concepts tangible.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.quantamagazine.org/">Quanta Magazine</a></td>
+        <td>A blog series explores cutting-edge science and mathematics through in-depth, accessible journalism.</td>
+      </tr>
+    </tbody>
+  </table>
+
+</section>
+
+<section id="art-credits">
+  <h2 id="artwork-credits">Artwork Credits</h2>
+
+  <p>The blog features artwork from the public domain for both title images and other visual elements throughout the site:</p>
+
+  <div class="credits-container">
+
+    <h3 id="title-images">Title Images</h3>
+    <ul>
+      <li><em>“Flecks of Foam”</em>
+        <ul>
+          <li>Artist: Henry Golden Dearth</li>
+          <li>Accession Number: 1963.10.120</li>
+          <li>Source: Chester Dale Collection</li>
+          <li>Status: Public Domain</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><em>“Cannon Rock”</em>
+        <ul>
+          <li>Artist: Winslow Homer</li>
+          <li>Accession Number: 06.1281</li>
+          <li>Source: The Metropolitan Museum of Art</li>
+          <li>Status: Public Domain</li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="credits-container">
+
+    <h3 id="other-images">Other Images</h3>
+    <ul>
+      <li><em>“London Bridge”</em>
+        <ul>
+          <li>Artist: André Derain</li>
+          <li>Accession Number: 195.1952</li>
+          <li>Source: Museum of Modern Art (MoMA)</li>
+          <li>Status: Public Domain</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><em>“The Bathing Hour, Chester, Nova Scotia”</em>
+        <ul>
+          <li>Artist: William James Glackens</li>
+          <li>Accession Number: BF149</li>
+          <li>Source: Barnes Collection</li>
+          <li>Status: Public Domain</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><em>“Jockeys and Race Horses”</em>
+        <ul>
+          <li>Artist: Edgar Degas</li>
+          <li>Accession Number: BF572</li>
+          <li>Source: Barnes Collection</li>
+          <li>Status: Public Domain</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><em>“The Dance Class”</em>
+        <ul>
+          <li>Artist: Edgar Degas</li>
+          <li>Object Number: 1987.47.1</li>
+          <li>Source: The Metropolitan Museum of Art</li>
+          <li>Status: Public Domain</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li><em>“The Monet Family in Their Garden at Argenteuil”</em>
+        <ul>
+          <li>Artist: Edouard Manet</li>
+          <li>Object Number: 1976.201.14</li>
+          <li>Source: The Metropolitan Museum of Art</li>
+          <li>Status: Public Domain</li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+
+  <p><span style="color: #990000"><em>Note: All artwork used as title images are selected from the public domain to ensure proper usage rights.</em></span></p>
+
+</section>]]></content><author><name></name></author><summary type="html"><![CDATA[GitHub Repo]]></summary></entry><entry><title type="html">Where is the information in data?</title><link href="https://dddiscovery.github.io/datapoints/Where-is-the-Information-in-Data/" rel="alternate" type="text/html" title="Where is the information in data?" /><published>2025-02-03T00:00:00+00:00</published><updated>2025-02-03T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Kieran-Murphy</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/Where-is-the-Information-in-Data/"><![CDATA[<p>Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within.  What sorts of things could you learn?  What would the illuminated information even look like?</p>
 
 <p>My research is about building such a device with machine learning, and then finding ways to make what it finds interpretable. 
 In this post, we’ll dig into a small example where you try to predict the rate of bike rentals based on some time descriptors, derived from the classic <a href="https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset"><em>Bikeshare</em> dataset</a>.  Rather than using the full set of 12 descriptors, we’ll pick four to make things simpler.  The four are:</p>
@@ -92,4 +628,4 @@ Specifically, we use the <a href="https://en.wikipedia.org/wiki/Bhattacharyya_di
 
 <script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/tabular/init-distinguishability.js"></script>
 
-<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/init-info-plane.js"></script>]]></content><author><name>[Kieran Murphy](https://www.kieranamurphy.com/)</name></author><summary type="html"><![CDATA[Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within. What sorts of things could you learn? What would the illuminated information even look like?]]></summary></entry><entry><title type="html">your post title</title><link href="https://dddiscovery.github.io/datapoints/Your-Post-Title/" rel="alternate" type="text/html" title="your post title" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-22T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/post-temp</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/Your-Post-Title/"><![CDATA[]]></content><author><name>[author 1](https://author home page/)</name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Data Points</title><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" title="Data Points" /><published>2024-12-31T00:00:00+00:00</published><updated>2024-12-31T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Data-Points</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/"><![CDATA[]]></content><author><name></name></author><summary type="html"><![CDATA[]]></summary></entry></feed>
+<script src="/datapoints/assets/post_assets/2025-01-13-Kieran-Murphy/init-info-plane.js"></script>]]></content><author><name>[Kieran Murphy](https://www.kieranamurphy.com/)</name></author><summary type="html"><![CDATA[Imagine you have a special X-ray-like device that you can point toward a dataset and then it illuminates the information contained within. What sorts of things could you learn? What would the illuminated information even look like?]]></summary></entry><entry><title type="html">your post title</title><link href="https://dddiscovery.github.io/datapoints/Your-Post-Title/" rel="alternate" type="text/html" title="your post title" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-01-22T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/post-temp</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/Your-Post-Title/"><![CDATA[<p>“Your content here”</p>]]></content><author><name>[author 1](https://author home page/)</name></author><summary type="html"><![CDATA[“Your content here”]]></summary></entry><entry><title type="html">Data Points</title><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" title="Data Points" /><published>2024-12-31T00:00:00+00:00</published><updated>2024-12-31T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Data-Points</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/"><![CDATA[]]></content><author><name></name></author><summary type="html"><![CDATA[]]></summary></entry></feed>

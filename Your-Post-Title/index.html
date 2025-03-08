@@ -46,16 +46,27 @@
     <h1 class="blog-title">your post title</h1>
     <div class="title-underline"></div>
     <p class="blog-description">your post subtitle</p>
-    <div class="author-section">
-      By
-      
+    
+    <div style="display: flex; justify-content: center; gap: 1rem; align-items: center;">
+      <div class="author-section">
+        By
         
-          <a href="https://author home page/">author 1</a>,
+          
+            <a href="https://author home page/">author 1</a>,
+          
         
-      
+          
+            and <a href="https://author home page/">author 2</a>
+          
         
-          and <a href="https://author home page/">author 2</a>
+      </div>
+
+      <span style="color: #666666;">·</span>
+
+      <div class="reading-time-container">
         
+
+      </div>
       
     </div>
   </div>
@@ -65,6 +76,7 @@
   January 22, 2025
   <div class="date-divider"></div>
 </div>
+
 
 <div class="main">
   <div class="author-info">
@@ -94,7 +106,7 @@
   <div class="vertical-divider"></div>
 
   <div class="blog-content">
-    
+    <p>“Your content here”</p>
 
   </div>
 
@@ -112,12 +124,12 @@
     <h3 class="about-post-title">Share this post</h3>
     <div class="social-share">
       <!-- Bluesky -->
-      <a href="https://bsky.app/intent/compose?text=%F0%9F%8C%9F%20Dive%20into%20data-driven%20discoveries!%0A%0ACheck%20out%20this%20fascinating%20scientific%20post%20from%20DDDI%20(@upenndddi.bsky.social)%2C%20packed%20with%20fun%20and%20interactive%20visualizations%20that%20make%20exploration%20a%20breeze.%20%F0%9F%9A%80%F0%9F%93%8A%0A%0A%F0%9F%94%97%20https://dddiscovery.github.io/Your-Post-Title/%0A%0A%23Science%20%23DataVisualization%20%23Exploration%20%23DDDI" target="_blank" rel="noopener noreferrer">
+      <a href="https://bsky.app/intent/compose?text=one+sentence+summary+of+your+post%0A%0ADive%20in%3A%20https://dddiscovery.github.io/datapoints/Your-Post-Title/%0A%0AFrom%20DDDI%27s%20series%20scientific%20posts%0A%0A@upenndddi.bsky.social" target="_blank" rel="noopener noreferrer">
         <img src="/datapoints/assets/images/logo/Bluesky_Logo.png" alt="Share on Bluesky" class="social-icon">
       </a>
       
       <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://dddiscovery.github.io/Your-Post-Title/&title=your+post+title&summary=%F0%9F%8C%9F%20Unlock%20insights%20through%20data-driven%20exploration!%0A%0AWe%20at%20DDDI%20are%20excited%20to%20share%20our%20latest%20scientific%20post%2C%20featuring%20engaging%20and%20interactive%20visualizations%20that%20bring%20complex%20ideas%20to%20life.%20Whether%20you%27re%20a%20data%20enthusiast%20or%20just%20curious%20about%20the%20world%2C%20there%27s%20something%20here%20for%20everyone.%20%F0%9F%9A%80%F0%9F%93%8A%0A%0AExplore%20the%20post%20and%20let%20us%20know%20your%20thoughts!%0A%0A%23DataScience%20%23Visualization%20%23Innovation%20%23DDDI%20%23Exploration" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://dddiscovery.github.io/datapoints/Your-Post-Title/&title=your+post+title" target="_blank" rel="noopener noreferrer">
         <img src="/datapoints/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png" alt="Share on LinkedIn" class="social-icon" style="width: 30px; height: 25px;">
       </a>
 
@@ -131,17 +143,47 @@
 
     <div class="about-post-underline"></div>
 
-    <!-- Email subscription container 
-    <h3 class="about-post-title stay-tuned">Stay tuned for our latest post</h3>
-    <form>
-      <input 
-        type="email" 
-        id="email" 
-        class="email-input"
-        aria-describedby="helper-text-explanation" 
-        placeholder="name@flowbite.com">
-    </form>
-    <button type="button" class="subscribe-button" id="subscribe-button">Subscribe!</button> -->
+    <!-- Email subscription container -->
+    <div id="mc_embed_shell">
+      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+      <div id="mc_embed_signup">
+          <form action="https://upenn.us11.list-manage.com/subscribe/post?u=2c41167803243255e2e4a1516&amp;id=424f80b7e7&amp;f_id=000b22e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+              <div id="mc_embed_signup_scroll" style="text-align: left;">
+                  <h2>Stay tuned for our latest post!</h2>
+                  <div class="mc-field-group" style="padding-left: 0;">
+                      <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" placeholder="name@example.com">
+                  </div>
+                  <div hidden="">
+                      <input type="hidden" name="tags" value="8119752">
+                  </div>
+                  <div id="mce-responses" class="clear foot">
+                      <div class="response" id="mce-error-response" style="display: none;"></div>
+                      <div class="response" id="mce-success-response" style="display: none;"></div>
+                  </div>
+                  <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
+                      <input type="text" name="b_2c41167803243255e2e4a1516_424f80b7e7" tabindex="-1" value="">
+                  </div>
+                  <div class="optionalParent">
+                      <div class="clear foot">
+                          <div style="display: flex; align-items: center; gap: 4px; width: 180px;">
+                              <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe" style="margin: 0;">
+                              <span style="color: #666; font-size: 10px !important; line-height: 1; display: inline-block; text-align: right;">powered by</span>
+                              <a href="http://eepurl.com/i0TxZw" title="Mailchimp - email marketing made easy and fun">
+                                  <span style="display: inline-block; border-radius: 4px; padding: 2px;">
+                                      <img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width: 70px; height: auto; display: flex; padding: 2px 0px; justify-content: bottom; align-items: bottom;">
+                                  </span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+      <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+    </div>
+  
 
     <script>
       function copyPageUrl() {
