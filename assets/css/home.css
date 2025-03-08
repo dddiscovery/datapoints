@@ -141,7 +141,7 @@ body {
     background-color: rgba(1, 31, 91, 0.7);
     width: 100%;
     height: auto;
-    min-height: 2.5rem;
+    min-height: 2.75rem;
     padding: 0.5rem;
     display: flex;
     align-items: center;
@@ -154,10 +154,10 @@ body {
 .slideshow-text a {
     font-family: Palatino, URW Palladio L, serif;		
     margin: 0 auto;
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(0.5rem, 2vw, 1rem);
     color: white;
     text-align: center;
-    font-weight: bold;
+    font-weight: normal;
     word-spacing: 0.15em;
 }
 
