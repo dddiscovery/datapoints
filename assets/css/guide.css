@@ -1,0 +1,384 @@
+.header {
+    text-align: center;
+    margin-top: 3rem;
+}
+  
+.datapoints-logo {
+    margin-top: 18px;
+    height: auto;
+    width: min(240px, 30vw);
+}
+
+.content-section-pink {
+    width: 100%;
+    background-color: rgba(255, 204, 204, 0.1);
+    padding: 2rem 0.625rem;
+    text-align: center;
+}
+
+.content-section-white {
+    width: 100%;
+    background-color: white;
+    margin-top: 0;
+    position: relative;
+    min-height: fit-content;
+    height: auto;
+    padding: 1.125rem 0.625rem;
+    box-sizing: border-box;
+}
+
+.page-title {
+    font-family: Optima, sans-serif;
+    font-weight: 600;
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #011f5b;
+}
+
+.title-underline {
+    width: 100%;
+    max-width: 600px;
+    height: 0.1875rem;
+    background-color: #fc4375;
+    margin: 5px auto;
+}
+
+.author-section {
+    font-family: Optima, sans-serif;
+    color: #666666;
+    font-size: 1.125em;
+} 
+
+.author-section a {
+    text-decoration: underline;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+  
+.author-section a:hover {
+    color: #fc4375;
+}
+
+.guide-container {
+    display: flex;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.guide-sidebar {
+    flex: 0 0 350px;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+
+.guide-toc {
+    flex: 0 0 250px;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    line-height: 2.1;
+}
+
+.guide-toc h2 {
+    font-family: Gill Sans, sans-serif;
+    color: #011f5b;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.guide-toc ul {
+    list-style: none;
+    padding: 0;
+    font-family: Optima, sans-serif;
+    font-size: 1.25rem;
+}
+
+.guide-toc ul ul {
+    padding-left: 1.5rem;
+}
+
+.guide-toc li {
+    margin: 0.5rem 0;
+}
+
+.guide-toc a {
+    color: #4a5568;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.guide-toc a:hover {
+    color: #011f5b;
+    text-decoration: underline;
+}
+
+.guide-toc a.active {
+    color: #fc4375;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.guide-content {
+    flex: 1;
+    max-width: 800px;
+}
+
+.guide-content section {
+    transition: opacity 0.3s ease;
+}
+
+.guide-content section:target {
+    display: block;
+}
+
+.guide-content h2 {
+    font-family: Optima, sans-serif;
+    font-size: 1.5rem;
+    color: rgba(1, 31, 91, 0.9);
+    margin: 2rem auto 1rem auto;
+    text-align: center;
+}
+
+.guide-content h3 {
+    font-family: Optima, sans-serif;
+    font-size: 1.5rem;
+    color: rgba(1, 31, 91, 0.9);
+    margin: 2rem 0 1rem 0;
+    text-align: left;
+}
+
+.guide-content h4 {
+    font-family: Optima, sans-serif;
+    font-size: 1.25rem;
+    color: rgba(1, 31, 91, 0.9);
+    margin: 2rem 0 1rem 0;
+    text-align: left;
+}
+
+.guide-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1.125rem;
+    font-family: Palatino, URW Palladio L, serif;
+
+}
+
+.guide-content ul, .guide-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: Palatino, URW Palladio L, serif;
+    font-size: 1.125rem;
+}
+
+.guide-content li {
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+}
+
+.guide-content code {
+    background: #f5f5f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    margin: 0 0.2rem;
+}
+
+.guide-content li code {
+    margin-bottom: 2px;
+    overflow-x: auto;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.guide-content pre {
+    background: #f5f5f5;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 6px;
+  /*  overflow-x: auto; */
+    white-space: pre;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* Copy button styles */
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-family: Optima, sans-serif;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: #fff;
+    color: #fc4375;
+    border-color: #fc4375;
+}
+
+.copy-button.copied {
+    background: white;
+    color: #011f5b;
+    border-color: #011f5b;
+}
+
+.guide-content pre code {
+    padding: 0;
+    display: inline-block;
+    min-width: 100%;
+    font-size: 1rem;
+}
+
+.credits-container {
+    max-height: 500px;          /* Set maximum height */
+    overflow-y: auto;           /* Enable vertical scrolling */
+    padding: 1rem;              /* Add inner spacing */
+    border: 1px solid rgba(252, 67, 117, 0.2);  /* Light border */
+    border-radius: 8px;         /* Rounded corners */
+    background: #fafafa;        /* Light background */
+    margin: 1rem 0;             /* Vertical spacing */
+}
+
+/* Style the scrollbar for webkit browsers */
+.credits-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.credits-container::-webkit-scrollbar-track {
+    background: rgba(1, 31, 91, 0.1);
+    border-radius: 4px;
+}
+
+.credits-container::-webkit-scrollbar-thumb {
+    background: rgba(1, 31, 91, 0.5);
+    border-radius: 4px;
+}
+
+.credits-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(1, 31, 91, 0.1);
+}
+
+/* Table styles */
+table {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+table th {
+    font-size: 1.2rem;
+    border-bottom: 2px solid #666666;  
+    padding-bottom: 8px; 
+    font-family: Palatino, URW Palladio L, serif;
+    text-align: center;
+    width: 20%;
+}
+
+table th:last-child {
+    width: 80%;
+}
+
+table td {
+    font-size: 1.1rem;
+    padding: 10px;
+    font-family: Georgia, serif;
+    text-align: center;	
+}
+
+table td:last-child {
+    text-align: left;	
+}
+
+/* Dropdown button (hidden by default on large screens) */
+.toc-dropdown-btn {
+    display: none;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    border: 1px solid rgba(252, 67, 117, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.25rem;
+    font-family: Gill Sans, sans-serif;
+    color: #011f5b;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 768px) {
+    .toc-dropdown-btn {
+        display: block;
+    }
+
+    .guide-container {
+        flex-direction: column;
+    }
+
+    .guide-sidebar {
+        display: none;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .guide-sidebar.show {
+        display: block;
+    }
+
+    .guide-content {
+        width: 100%;
+    }
+
+    .guide-content pre {
+        margin: 1rem -1rem;
+        padding: 1rem;
+        border-radius: 0;
+    }
+
+    .guide-content pre code {
+        padding: 0;
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    .guide-content code {
+        overflow-x: auto;
+    }
+    
+    .guide-content li code {
+        white-space: pre;
+        overflow-x: auto;
+  /*      max-width: calc(100vw - 4rem); /* Account for list indentation and padding */
+        display: inline-block;
+    }
+}
+
+.nav-logo {
+    height: 35px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.toc-dropdown-btn .nav-logo {
+    height: 20px; /* Slightly smaller for the button */
+}
+
+

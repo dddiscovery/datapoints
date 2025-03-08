@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/guide.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+
+</head>  
+
+
+<body>
+    <div class="header">
+      <a href="{{ '/' | relative_url }}">
+        <img src="{{ '/assets/images/logo/DP_logo_d.png' | relative_url }}" alt="Datapoints Logo" class="datapoints-logo">
+      </a>
+    </div>
+
+    <div class="content-section-pink">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 2rem;">
+            <h1 class="page-title">{{ page.title }}</h1>
+        </div>
+       
+        <div class="title-underline"></div>
+
+        <div class="author-section">
+            <p>By <a href="{{ '/#people-section' | relative_url }}">Editorial team</a></p>
+        </div>
+
+    </div>
+
+    <div class="content-section-white">
+        <!-- Add dropdown button for mobile -->
+        <button class="toc-dropdown-btn">
+            <img src="{{ '/favicon.ico' | relative_url }}" alt="Datapoints Logo" class="nav-logo">
+            Table of Contents ▼
+        </button>
+        
+        <div class="guide-container">
+            <!-- Left side: Table of Contents -->
+            <div class="guide-sidebar">
+                <div class="guide-toc">
+                    <h2>
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <a href="{{ '/' | relative_url }}">
+                                <img src="{{ '/favicon.ico' | relative_url }}" alt="Datapoints Logo" class="nav-logo">
+                            </a>
+                            Table of Contents
+                        </span>
+                    </h2>
+                    <ul>
+                        <li><a href="#github-repo">GitHub Repo</a>
+                            <ul>
+                                <li><a href="#project-structure">Project Structure</a></li>
+                                <li><a href="#branches">Working with Branches</a></li>
+                                <li><a href="#local-setup">Setting Up Local Environment</a></li>
+                                <li><a href="#page-deployment">GitHub Pages Deployment</a></li>
+                                <li><a href="#for-author">🎮 Ready, Set, Blog!</a></li>
+                                <li><a href="#git-resources">Git Resources</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#blog-inspirations">Blog Inspirations</a>
+                            <ul>
+                                <li><a href="#creative-viz">Creative Visualization</a></li>
+                                <li><a href="#scientific-journals">Scientific Journals</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#art-credits">Artwork Credits</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right side: Main Content -->
+            <div class="guide-content">
+                {{ content }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this before closing </body> -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all TOC links
+        const tocLinks = document.querySelectorAll('.guide-toc a');
+        // Get all content sections
+        const contentSections = document.querySelectorAll('.guide-content section[id]');
+        
+        // Add dropdown button functionality
+        const dropdownBtn = document.querySelector('.toc-dropdown-btn');
+        const guideSidebar = document.querySelector('.guide-sidebar');
+        
+        dropdownBtn.addEventListener('click', function() {
+            guideSidebar.classList.toggle('show');
+            // Update arrow direction only
+            this.textContent = this.textContent.endsWith('∨') ? 
+                this.textContent.replace('∨', '∧') : this.textContent.replace('∧', '∨');
+        });
+
+        // Close dropdown when clicking a link (mobile)
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    guideSidebar.classList.remove('show');
+                    // Update dropdown text to show selected section
+                    dropdownBtn.textContent = this.textContent + ' ∨';
+                }
+            });
+        });
+        
+        // Function to update active state
+        function updateActiveState() {
+            const hash = window.location.hash || '#github-repo'; // Default to first section
+            
+            // Update TOC highlighting
+            tocLinks.forEach(link => {
+                if (link.getAttribute('href') === hash) {
+                    link.classList.add('active');
+                    // Update dropdown text to show current section
+                    dropdownBtn.textContent = link.textContent + ' ∨';
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Update visible content
+            contentSections.forEach(section => {
+                section.style.display = '#' + section.id === hash ? 'block' : 'none';
+            });
+        }
+        
+        // Update on page load
+        updateActiveState();
+        
+        // Update on hash change
+        window.addEventListener('hashchange', updateActiveState);
+
+        // Add copy button to all pre elements
+        document.querySelectorAll('pre').forEach(function(pre) {
+            // Create button
+            const button = document.createElement('button');
+            button.className = 'copy-button';
+            button.textContent = 'Copy';
+            
+            // Add button to pre
+            pre.style.position = 'relative';
+            pre.appendChild(button);
+            
+            // Add click handler
+            button.addEventListener('click', function() {
+                // Get text content
+                const code = pre.querySelector('code') || pre;
+                const text = code.textContent;
+                
+                // Copy text
+                navigator.clipboard.writeText(text).then(function() {
+                    // Visual feedback
+                    button.textContent = 'Copied!';
+                    button.classList.add('copied');
+                    
+                    // Reset after 2 seconds
+                    setTimeout(function() {
+                        button.textContent = 'Copy';
+                        button.classList.remove('copied');
+                    }, 2000);
+                }).catch(function(err) {
+                    console.error('Failed to copy text: ', err);
+                    button.textContent = 'Error';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(function() {
+                        button.textContent = 'Copy';
+                    }, 2000);
+                });
+            });
+        });
+    });
+    
+    </script>
+</body>
+</html>
