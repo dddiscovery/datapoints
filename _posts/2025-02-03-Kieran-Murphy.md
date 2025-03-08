@@ -7,6 +7,7 @@ author_pic: ["/assets/images/authors/K.A.Murphy.jpeg"]
 author_title: ["Information theory/Machine learning/Physics postdoc"]
 date: 2025-02-03
 permalink: /Where-is-the-Information-in-Data/
+summary: "Using machine learning to uncover where the most predictive insights hide in data."
 
 ---
 

@@ -204,6 +204,18 @@ The blog features artwork from the public domain as title images for posts:
   - Accession Number: BF572
   - Source: Barnes Collection
   - Status: Public Domain
+- `assets/images/picture/git-repo.jpg`
+   *"The Dance Class"*
+   - Artist: Edgar Degas
+   - Object Number: 1987.47.1
+   - Source: The Metropolitan Museum of Art
+   - Status: Public Domain
+- `assets/images/picture/blog-inspirations.jpg`
+   *"The Monet Family in Their Garden at Argenteuil"*
+   - Artist: Edouard Manet
+   - Object Number: 1976.201.14
+   - Source: The Metropolitan Museum of Art
+   - Status: Public Domain
 
 *Note: All artwork used as title images are selected from the public domain to ensure proper usage rights.*
 

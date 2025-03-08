@@ -50,7 +50,7 @@
 .author-section {
   font-family: Optima, sans-serif;
   color: #666666;
-  font-size: 0.925em;
+  font-size: 1.125em;
 }
 
 .author-section a {
@@ -215,55 +215,62 @@
   stroke: #fc4375;
 }
 
-.stay-tuned {
-  font-size: 1.125em;
-  text-align: left;
-  color: rgba(1, 31, 91, 0.8);
+/* Subscription section */
+
+#mc_embed_signup {
+  background: #fff;
+  clear: left;
+  font: 14px Helvetica, Arial, sans-serif;
+  width: 300px;
 }
 
-.email-input {
-  height: 1.5rem;
-  margin: 0.25rem auto;
-  width: calc(100% - 1.125em); 
-  background-color: #f9fafb;  /* bg-gray-50 */
-  border: 1px solid #d1d5db;  /* border-gray-300 */
-  color: #111827;  /* text-gray-900 */
-  font-size: 0.875rem;  /* text-sm */
-  border-radius: 0.5rem;  /* rounded-lg */
-  padding: 0.625rem;  /* p-2.5 */
+#mc_embed_signup .mc-field-group input {
+  border: 1px solid #011f5b;
+  border-radius: 15px;
+  height: 1.25rem;
 }
 
-.email-input:focus {
-  outline: none;
-  border-color: #fc4375;  /* focus:border-blue-500 */
-  box-shadow: 0 0 0 2px rgba(252, 67, 117, 0.7);  /* focus:ring-fc4375 */
+#mc_embed_signup .mc-field-group input:hover {
+  border: 1px solid #fc4375;
 }
 
-.subscribe-button {
-  height: 32px;
-  margin-top: 8px;
-  color: white;
-  font-size: 0.875rem;  /* text-sm */
-  font-weight: 500;     /* font-medium */
-  padding: 0.625rem 1.25rem;  /* px-5 py-2.5 */
-  border-radius: 0.5rem;  /* rounded-lg */
-  margin-right: 0.5rem;  /* me-2 */
-  margin-bottom: 0.5rem; /* mb-2 */
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(to bottom right, #ec4899, #fb923c);  /* from-pink-500 to-orange-400 */
+#mc_embed_signup .mc-field-group input:invalid {
+  border: 1px solid #fc4375;
+}
+
+#mc_embed_signup_scroll {
+  font-family: Optima, sans-serif;
+  color: #011f5b;
+}
+
+.mc-field-group{
+  margin: 0;
+  padding: 0;
+  color: #fc4375;
+}
+
+#mc_embed_signup_scroll h2 {
+  font-size: 1rem !important;
+  font-family: Optima, sans-serif;
+  color: #011f5b;
+  margin: 0;
+  padding: 0;
+}
+
+#mc_embed_signup #mc-embedded-subscribe.button {
+  background: linear-gradient(to bottom right, #ec4899, #fb923c) !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  font-family: Optima, sans-serif !important;
+  border: 2px solid transparent !important;
+  border-radius: 10px !important;
 }
 
-.subscribe-button:hover {
-  background: linear-gradient(to bottom left, #ec4899, #fb923c);  /* hover:bg-gradient-to-bl */
+#mc_embed_signup #mc-embedded-subscribe.button:hover {
+  border: 2px solid #011f5b !important;
 }
 
-.subscribe-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2);  /* focus:ring-4 focus:ring-pink-200 */
+#mc_embed_shell {
+  margin-left: -1.25rem;
 }
 
 .blog-content {
@@ -273,3 +280,9 @@
   color: #1a1a1a;
 }
 
+.reading-time-container {
+  font-family: Optima, sans-serif;
+  font-size: 1.125rem; 
+  line-height: 1.5;
+  color: #666666;
+}
