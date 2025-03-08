@@ -8,12 +8,12 @@ welcome_describe: |
 
 slides:
   - image: /assets/images/picture/explore.jpg
-    text: Explore the power of data across diverse fields!
+    text: Explore data science across fields
 #    url: /Where-is-the-Information-in-Data/
   - image: /assets/images/picture/call_for_participate.jpg
-    text: Share your thoughts and get them posted here at DataPoints!
+    text: Contribute to Data Points
   - image: /assets/images/picture/join_community.jpg
-    text: Join our community of researchers and share your data-driven insights with the world.
+    text: Join our community of data science researchers
 
 about: |
   **Data Points** showcases the work of Penn's data science community through concise, engaging articles. Each post takes a complex idea and transforms it into accessible insights in creative and compelling ways—whether through a high-level walkthrough of a key figure, or an interactive, explorable explanation.
