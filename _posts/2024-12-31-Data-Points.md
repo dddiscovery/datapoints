@@ -7,13 +7,12 @@ welcome_describe: |
   A blog for Penn's data science community.
 
 slides:
-  - image: /assets/images/picture/explore.jpg
-    text: Explore data science across fields
-#    url: /Where-is-the-Information-in-Data/
-  - image: /assets/images/picture/call_for_participate.jpg
-    text: Contribute to Data Points
-  - image: /assets/images/picture/join_community.jpg
-    text: Join our community of data science researchers
+  - image: /assets/images/posts/title-header-km.png
+#    text: Explore data science across fields
+    url: /Where-is-the-Information-in-Data/
+  - image: /assets/images/posts/title-header-ms.png
+    url: /off-the-shelf-ai
+
 
 about: |
   **Data Points** showcases the work of Penn's data science community through concise, engaging articles. Each post takes a complex idea and transforms it into accessible insights in creative and compelling ways—whether through a high-level walkthrough of a key figure, or an interactive, explorable explanation.
@@ -65,7 +64,7 @@ Editorial_team:
     fellowship: AI x Science Fellow
   - name: Melanie Segado
     url: https://sites.google.com/view/melaniesegado
-    image: /assets/images/authors/melanie_segado.jpg
+    image: /assets/images/authors/MelanieSegado.jpg
     fellowship: AI x Science Fellow
   - name: Yuxin Liang
     url: https://github.com/yuxinlg
