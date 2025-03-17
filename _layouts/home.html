@@ -47,29 +47,26 @@ title: Data Points
   <h1 class="welcome-describe mt-1">
 	  {{ page.welcome_describe | newline_to_br }}
   </h1>
+
 </div>
 
 	    </div>
         {% for slide in page.slides %}
         <div class="mySlides fade mt-5">
-		<!--<img src="{{ '/assets/images/picture/sample1.jpg' | relative_url }}" style="width: 972px; height: 270px; object-fit: cover;">-->
-            <img src="{{ slide.image | relative_url }}" class="slide-pic">
-            <div class="slideshow-text">
-                {% if slide.url %}
-                <a href="{{ slide.url | relative_url }}">{{ slide.text }}</a>
-                {% else %}
-                     <p>{{ slide.text }}</p>
-                {% endif %}
-            </div>
+            {% if slide.url %}
+                <a href="{{ slide.url | relative_url }}">
+                    <img src="{{ slide.image | relative_url }}" class="slide-pic">
+                </a>
+            {% else %}
+                <img src="{{ slide.image | relative_url }}" class="slide-pic">
+            {% endif %}
         </div>
         {% endfor %}
-       
-        <!-- Next and previous buttons -->
-        <a class="slide-button"  id="prev-button" onclick="plusSlides(-1)" style="cursor: pointer; position: absolute; top: 50%; left: 10px; transform: translateY(-50%); color: black; font-weight: bold; font-size: 24px; user-select: none;">&#10094;</a>
-        <a class="slide-button" id="next-button" onclick="plusSlides(1)" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%); color: black; font-weight: bold; font-size: 24px; user-select: none;">&#10095;</a>
         
-    
-        </div>
+        <!-- Add slide buttons -->
+        <a class="slide-button prev-button" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="slide-button next-button" onclick="plusSlides(1)">&#10095;</a>
+    </div>
     </div>
     <div class="p-2"></div>
 
@@ -233,29 +230,40 @@ title: Data Points
             
     <script>
         let slideIndex = 1;
-        showSlides(slideIndex);
+        let slideTimer;
 
         function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) { 
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) { slideIndex = 1; }
-            if (n < 1) { slideIndex = slides.length; }
+            // Clear the existing timer
+            clearTimeout(slideTimer);
             
-            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
-            for (i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active", ""); }
+            // Show the next slide immediately
+            showSlides(slideIndex += n);
+            
+            // Restart the timer
+            startTimer();
+        }
+
+        function startTimer() {
+            clearTimeout(slideTimer);
+            slideTimer = setTimeout(() => plusSlides(1), 3000);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("mySlides");
+            
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
             
             slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
         }
+
+        // Initialize the slideshow
+        showSlides(slideIndex);
+        startTimer();
 
     </script>
 </body>
