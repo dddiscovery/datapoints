@@ -108,7 +108,7 @@ body {
     display: none;
     width: 100%;
     height: auto;
-    aspect-ratio: 972/270;
+    aspect-ratio: 972/230;
     padding-top: 0px;
     margin-top: 0px;
     opacity: 0;  /* Start with opacity 0 */
@@ -131,7 +131,7 @@ body {
     position: relative;
     margin: 0 auto;
     padding-top: 0;
-    margin-top: 0;
+    margin-top: 3rem;
 }
 
 .slide-pic {
@@ -147,11 +147,10 @@ body {
 .slide-button {
     cursor: pointer;
     position: absolute;
-    top: 70%;
+    top: 60%;
     transform: translateY(-50%);
     color: #011f5b;
-    font-weight: bold;
-    font-size: 24px;
+    font-size: 1.25rem;
     user-select: none;
     transition: color 0.3s ease;
 }
