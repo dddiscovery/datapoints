@@ -3,10 +3,11 @@ layout: home
 title: "Data Points"
 permalink: /
 
-welcome_describe: |
-  A blog for Penn's data science community.
+#welcome_describe: |
+#  A blog for Penn's data science community.
 
 slides:
+  - image: /assets/images/posts/title-welcome.png
   - image: /assets/images/posts/title-header-km.png
 #    text: Explore data science across fields
     url: /Where-is-the-Information-in-Data/
