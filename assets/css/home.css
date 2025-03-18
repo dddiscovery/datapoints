@@ -105,12 +105,18 @@ body {
 
 /* Slideshow Styles */
 .mySlides {
-    display: block;
+    display: none;
     width: 100%;
     height: auto;
     aspect-ratio: 972/270;
     padding-top: 0px;
     margin-top: 0px;
+    opacity: 0;  /* Start with opacity 0 */
+}
+
+.mySlides.active {
+    opacity: 1;
+    display: block;
 }
 
 @keyframes fade {
@@ -620,4 +626,19 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 .contribute-guide ol li {
     padding-left: 0.5em;
     margin-bottom: 0.5em;
+}
+
+/* Update the fade animation */
+.fade {
+    animation: fadeEffect 1.5s;
+    opacity: 1;
+}
+
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
