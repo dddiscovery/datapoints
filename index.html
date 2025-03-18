@@ -33,60 +33,39 @@
     </div>
 
 
-    <div class="slideshow-container pt-5">
-	    <div class="" id="welcome-message">
-		    <!--<p class="font-sans">Welcome to <b>Data Points</b>, the Data Driven Discovery Initiative's blog series showcasing the discoveries of Penn's data science community.</p>-->
 
-<div class="text-center my-12">
-  <h1 class="welcome-message">
-    Welcome to <scan class="underline" style="text-decoration-color: #fc4375; text-decoration-style: underline; text-decoration-thickness: 0.1em; text-underline-offset: 0.2em;">Data Points</scan>
-  </h1>
-  <h1 class="welcome-describe mt-1">
-	  A blog for Penn's data science community.<br />
 
-  </h1>
-</div>
-
-	    </div>
+    <div class="slideshow-container pt-5"> 
         
         <div class="mySlides fade mt-5">
-		<!--<img src="/datapoints/assets/images/picture/sample1.jpg" style="width: 972px; height: 270px; object-fit: cover;">-->
-            <img src="/datapoints/assets/images/picture/explore.jpg" class="slide-pic">
-            <div class="slideshow-text">
-                
-                     <p>Explore data science across fields</p>
-                
-            </div>
+            
+                <img src="/datapoints/assets/images/posts/title-welcome.png" class="slide-pic">
+            
         </div>
         
         <div class="mySlides fade mt-5">
-		<!--<img src="/datapoints/assets/images/picture/sample1.jpg" style="width: 972px; height: 270px; object-fit: cover;">-->
-            <img src="/datapoints/assets/images/picture/call_for_participate.jpg" class="slide-pic">
-            <div class="slideshow-text">
-                
-                     <p>Contribute to Data Points</p>
-                
-            </div>
+            
+                <a href="/datapoints/Where-is-the-Information-in-Data/">
+                    <img src="/datapoints/assets/images/posts/title-header-km.png" class="slide-pic">
+                </a>
+            
         </div>
         
         <div class="mySlides fade mt-5">
-		<!--<img src="/datapoints/assets/images/picture/sample1.jpg" style="width: 972px; height: 270px; object-fit: cover;">-->
-            <img src="/datapoints/assets/images/picture/join_community.jpg" class="slide-pic">
-            <div class="slideshow-text">
-                
-                     <p>Join our community of data science researchers</p>
-                
-            </div>
+            
+                <a href="/datapoints/off-the-shelf-ai">
+                    <img src="/datapoints/assets/images/posts/title-header-ms.png" class="slide-pic">
+                </a>
+            
         </div>
         
-       
-        <!-- Next and previous buttons -->
-        <a class="slide-button"  id="prev-button" onclick="plusSlides(-1)" style="cursor: pointer; position: absolute; top: 50%; left: 10px; transform: translateY(-50%); color: black; font-weight: bold; font-size: 24px; user-select: none;">&#10094;</a>
-        <a class="slide-button" id="next-button" onclick="plusSlides(1)" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%); color: black; font-weight: bold; font-size: 24px; user-select: none;">&#10095;</a>
         
-    
-        </div>
+        <!-- Add slide buttons -->
+        <a class="slide-button prev-button" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="slide-button next-button" onclick="plusSlides(1)">&#10095;</a>
     </div>
+
+
     <div class="p-2"></div>
 
     <div class="content-section-blue" style="padding-top: 18px;">
@@ -97,7 +76,7 @@
 
 <p>Interested in contributing? We can help with technical and editorial guidance so your post is as impactful and polished as the research it represents. Check out <strong><a href="#guide-section">How to Contribute</a></strong> - we’re excited to collaborate and help bring your ideas to life!</p>
 
-	</div>
+	    </div>
     	<div class="p-3"></div>
     </div>
 
@@ -265,7 +244,7 @@
                 
                 <div class="author-card">
                     <div class="author-image">
-                        <img src="/datapoints/assets/images/authors/melanie_segado.jpg" alt="Melanie Segado">
+                        <img src="/datapoints/assets/images/authors/MelanieSegado.jpg" alt="Melanie Segado">
                     </div>
                     <div class="author-info">
                         <div class="author-name"><a href="https://sites.google.com/view/melaniesegado">Melanie Segado</a></div>
@@ -325,29 +304,40 @@ Philadelphia, PA 19104<br />
             
     <script>
         let slideIndex = 1;
-        showSlides(slideIndex);
+        let slideTimer;
 
         function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) { 
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) { slideIndex = 1; }
-            if (n < 1) { slideIndex = slides.length; }
+            // Clear the existing timer
+            clearTimeout(slideTimer);
             
-            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
-            for (i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active", ""); }
+            // Show the next slide immediately
+            showSlides(slideIndex += n);
+            
+            // Restart the timer
+            startTimer();
+        }
+
+        function startTimer() {
+            clearTimeout(slideTimer);
+            slideTimer = setTimeout(() => plusSlides(1), 12000);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("mySlides");
+            
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
             
             slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
         }
+
+        // Initialize the slideshow
+        showSlides(slideIndex);
+        startTimer();
 
     </script>
 </body>
