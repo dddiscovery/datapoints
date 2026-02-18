@@ -18,11 +18,12 @@ slides:
 about: |
   **Data Points** showcases the work of Penn's data science community through concise, engaging articles. Each post takes a complex idea and transforms it into accessible insights in creative and compelling ways—whether through a high-level walkthrough of a key figure, or an interactive, explorable explanation.
 
-  Interested in contributing? We can help with technical and editorial guidance so your post is as impactful and polished as the research it represents. Check out **[How to Contribute](#guide-section)** - we're excited to collaborate and help bring your ideas to life!
+  Interested in contributing? We can help with technical and editorial guidance so your post is as impactful and polished as the research it represents. 
+  Check out **[How to Contribute](#guide-section)** - we're excited to collaborate and help bring your ideas to life!
 
 featured_posts:
 # from the latest post to the oldest post
-  - image: /assets/images/posts/title-ms.jpg
+  - image: /assets/images/posts/title_ms_chatgpt.png
     title: Accelerating science with 'off-the-shelf' models
     url: /off-the-shelf-ai
     author: Melanie Segado
@@ -30,7 +31,7 @@ featured_posts:
     date: March 10, 2025
     description: A visual guide on how foundation models enhance computer vision research with small datasets.
 
-  - image: /assets/images/posts/title-km.jpg
+  - image: /assets/images/posts/title_km_chatgpt.png
     title: Where is the information in data?
     url: /Where-is-the-Information-in-Data
     author: Kieran Murphy

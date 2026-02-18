@@ -315,6 +315,8 @@ Science with style - research that reads like a page-turner. A collection of blo
 | [Distill](https://distill.pub/) | A pioneer in interactive ML explanations.|
 | [PAIR Explorables](https://pair.withgoogle.com/explorables/) | Google's collection of interactive essays that make ML concepts tangible. |
 | [Quanta Magazine](https://www.quantamagazine.org/) | A blog series explores cutting-edge science and mathematics through in-depth, accessible journalism.|
+| [Asterisk](https://asteriskmag.com/) | Asterisk is a quarterly journal of clear writing and clear thinking about things that matter.|
+
 
 </section>
 

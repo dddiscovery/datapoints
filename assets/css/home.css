@@ -4,6 +4,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap");
 
 
 /* Basic styles for home page */
@@ -11,17 +12,67 @@
     padding: 20px;
 }
 
+/* EB Garamond font */
+@font-face {
+    font-family: "EB Garamond";
+    src: url("../fonts/EBGaramond-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+@font-face {
+    font-family: "EB Garamond";
+    src: url("../fonts/EBGaramond-Italic-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Faustina font */
+@font-face {
+    font-family: "Faustina";
+    src: url("../fonts/Faustina-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins font */
+@font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../fonts/Poppins-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 /* Global Styles */
 body {
     margin-top: 2rem;
     font-family: 'Crimson Text', serif;
 }
+/* 
+
+
+/* Ensure background is behind all content */
+.home-background-section > * {
+    position: relative;
+    z-index: 1;
+}
 
 .logos {
-    margin-left: 2rem;
+    margin-left: 0;
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     padding: 0rem;
     width: 100%;
     flex-wrap: wrap;
@@ -55,7 +106,8 @@ body {
 }
 
 .nav-link {
-    @apply font-sans font-semibold
+    font-family: "Poppins-SemiBold", "Poppins", Arial, sans-serif !important;
+    font-weight: 600 !important;
 }
 
 .nav-link {
@@ -78,12 +130,12 @@ body {
     margin-top: 0.625rem;
 }
 
-.welcome-message {
+/* .welcome-message {
     font-family: Palatino, URW Palladio L, serif;
     color: #011f5b;
     font-size: 2rem;
-}
-
+} */
+/* 
 .welcome-describe {
     font-family: Optima, sans-serif;	
     font-size: 1.2rem;
@@ -91,7 +143,7 @@ body {
     animation: colorChange 0.5s steps(40, end) forwards;
     animation-delay: 0.5s;
     padding-bottom: 0px;
-}
+} */
 
 @keyframes typing {
     from { clip-path: inset(0 100% 0 0); }
@@ -170,7 +222,8 @@ body {
 /* Content Section */
 .content-section-blue {
     width: 100%;
-    background-color: rgba(1, 31, 91, 0.1);
+    /* background-color: rgba(1, 31, 91, 0.1); */
+    background-color: rgba(1,80,164,0.2);
     margin-top: 1.25rem;
     position: relative;
     min-height: fit-content;
@@ -197,7 +250,8 @@ body {
 }
 
 .section-title {
-    @apply font-serif font-black
+    font-family: "Poppins-SemiBold", "Poppins", Arial, sans-serif !important;
+    font-weight: 600 !important;
 }
 
 .section-title {
@@ -211,9 +265,19 @@ body {
     text-align: left;
 }
 
-.content-text {
+/* .content-text {
     @apply font-sans
+} */
+
+.content-text, .content-text * {
+    font-family: "Faustina", serif !important;
+    /* font-weight: 500; */
 }
+/* 
+.content-text {
+    font-family: 'EB Garamond', serif !important;
+    font-weight: 500;
+} */
 
 .content-text {
     width: 972px;
@@ -224,6 +288,7 @@ body {
     line-height: 1.5;
     padding: 0 0rem;
     box-sizing: border-box;
+    font-weight: 500;
 }
 
 .content-text p {
@@ -265,14 +330,15 @@ body {
 
 .blog-title {
     margin: 0 0 12px 0;
-    font-family: Optima, sans-serif;
+    font-family: 'Poppins', "Poppins", Arial, sans-serif !important;
+    /* font-family: Optima, sans-serif; */
 }
 
 .blog-title-link {
     color: #011f5b;
     text-decoration: none;
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .blog-title a {
@@ -289,7 +355,7 @@ body {
     color: #666;
     font-size: 0.875rem;
     margin-bottom: 8px;
-    font-family: sans-serif;
+    font-family: 'Faustina', serif !important;
 }
 
 .blog-meta a {
@@ -306,7 +372,7 @@ body {
 .blog-description {
     color: #333;
     line-height: 1.5;
-    font-family: Optima, sans-serif;
+    font-family: 'Faustina', serif !important;
 }
 
 .email-subscribe-container {
@@ -375,7 +441,8 @@ body {
 }
 
 .follow-title {
-    font-weight: bold;
+    font-weight: 400;
+    font-family: 'Poppins', "Poppins", Arial, sans-serif !important;
 }
 
 .flex-container {
@@ -479,7 +546,8 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 
 
 .author-info{
-    font-family: Optima, sans-serif;
+    /* font-family: Optima, sans-serif; */
+    font-family: 'Faustina', serif !important;
     color: #011f5b;
     font-size: 1rem;
     text-align: center;
