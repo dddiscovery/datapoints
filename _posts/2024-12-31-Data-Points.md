@@ -25,6 +25,7 @@ featured_posts:
 # from the latest post to the oldest post
   - image: /assets/images/posts/title_ms_chatgpt.png
     title: Accelerating science with 'off-the-shelf' models
+    tag: Data Notes
     url: /off-the-shelf-ai
     author: Melanie Segado
     author_url: https://sites.google.com/view/melaniesegado
@@ -33,6 +34,7 @@ featured_posts:
 
   - image: /assets/images/posts/title_km_chatgpt.png
     title: Where is the information in data?
+    tag: Data Notes
     url: /Where-is-the-Information-in-Data
     author: Kieran Murphy
     author_url: https://www.kieranamurphy.com/
@@ -76,6 +78,9 @@ Editorial_team:
     url: https://www.sas.upenn.edu/~crtwomey/
     image: /assets/images/authors/colin_twomey.jpg
     fellowship: Executive Director @DDDI
+
+contributor:
+  # placeholder
 
 contact:
   email: sas-ddd-admin@sas.upenn.edu

@@ -311,8 +311,8 @@ body {
 
 .blog-image {
     flex: 0 0 auto;
-    width: 40%;
-    aspect-ratio: 4/3;
+    width: 30%;
+    aspect-ratio: 16/9;
     overflow: hidden;
 }
 
@@ -328,9 +328,34 @@ body {
     padding: 8px 0;
 }
 
+.blog-tag-row {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: max-content;
+    gap: 4px;
+    margin: 0 0 8px 0;
+}
+
+.blog-tag {
+    color: #66BAB7;
+    font-family: "Poppins", Arial, sans-serif !important;
+    font-size: 0.75rem;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.blog-tag-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #66BAB7;
+}
+
 .blog-title {
     margin: 0 0 12px 0;
-    font-family: 'Poppins', "Poppins", Arial, sans-serif !important;
+    font-family: "Poppins-SemiBold", Arial, sans-serif !important;
+    font-size: 0.875rem;
     /* font-family: Optima, sans-serif; */
 }
 
@@ -408,6 +433,73 @@ body {
 .contact-email {
     margin-top: 12px;
     font-family: Palatino, URW Palladio L, serif;
+}
+
+/* Contact section subscribe alignment */
+#contact-and-subscribe-flex {
+    align-items: flex-start;
+}
+
+.contact-info-column {
+    flex: 0 0 40%;
+    max-width: 420px;
+}
+
+.contact-info-text {
+    width: 100%;
+    margin: 0;
+    color: #011f5b;
+}
+
+.contact-subscribe-column {
+    margin-left: -60px;
+}
+
+.contact-subscribe-content {
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.follow-links-column,
+.mailing-list-column {
+    flex: 1;
+    min-width: 0;
+}
+
+.mailing-list-column {
+    display: block;
+}
+
+.contact-follow-title {
+    margin: 0 0 8px 0;
+    padding: 0 !important;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.mailing-list-column .contact-follow-title {
+    margin-left: 0;
+}
+
+#contact-and-subscribe-flex .social-links {
+    padding: 0;
+}
+
+.contact-mailchimp-shell {
+    position: relative;
+    margin-left: 0 !important;
+    margin-top: 0;
+}
+
+.mailing-list-column #mc_embed_signup,
+.mailing-list-column #mc_embed_signup_scroll,
+.mailing-list-column .mc-field-group {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
 }
 
 .social-links {
@@ -629,7 +721,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 
 /* Subscription section */
 #mc_embed_signup {
-    background: #fff;
+    background: transparent;
     clear: left;
     font: 14px Helvetica, Arial, sans-serif;
     width: 300px;
@@ -682,6 +774,19 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 
 #mc_embed_shell {
     margin-left: -1.25rem;
+}
+
+/* Keep subscribe block blended with Contact section background */
+#contact-and-subscribe-flex #mc_embed_signup,
+#contact-and-subscribe-flex #mc_embed_signup form,
+#contact-and-subscribe-flex #mc_embed_signup_scroll,
+#contact-and-subscribe-flex #mc_embed_signup .optionalParent,
+#contact-and-subscribe-flex #mc_embed_signup .clear.foot {
+    background-color: transparent !important;
+}
+
+#contact-and-subscribe-flex #mc_embed_signup .mc-field-group input {
+    background-color: transparent !important;
 }
 
 .contribute-guide ol {
