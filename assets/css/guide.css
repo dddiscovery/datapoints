@@ -1,19 +1,74 @@
-.header {
-    text-align: center;
-    margin-top: 3rem;
+/* Fonts for Contact section (match home page) */
+@font-face {
+    font-family: "Faustina";
+    src: url("../fonts/Faustina-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
 }
-  
-.datapoints-logo {
-    margin-top: 18px;
-    height: auto;
-    width: min(240px, 30vw);
+@font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: bold;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Poppins";
+    src: url("../fonts/Poppins-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
-.content-section-pink {
+/* Global styles for guide page */
+body {
+    margin-top: 2rem;
+    /* font-family: 'Crimson Text', serif; */
+}
+
+/* Logo styles */
+.datapoints-logo {
+    height: auto;
+    width: min(200px, 30vw);
+}
+
+.DDDI-logo {
+    height: auto;
+    width: min(210px, 35vw);
+    max-height: 55px;
+}
+
+
+.divider {
+    width: 0.1rem;
+    height: 3rem;
+    background-color: #011f5b;
+    margin: 0 1.25rem;
+}
+
+.logos {
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.content-section-bg-picture {
     width: 100%;
     background-color: rgba(255, 204, 204, 0.1);
+    background-image: url('../images/picture/pbd2020.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 2rem 0.625rem;
     text-align: center;
+    min-height: 10vh;
 }
 
 .content-section-white {
@@ -27,12 +82,24 @@
     box-sizing: border-box;
 }
 
+.content-section-pink {
+    width: 100%;
+    background-color: rgba(255, 204, 204, 0.1);
+    margin-top: 0;
+    position: relative;
+    min-height: fit-content;
+    height: auto;
+    padding: 1.125rem 0.625rem;
+    box-sizing: border-box;
+}
+
 .page-title {
     font-family: Optima, sans-serif;
     font-weight: 600;
     font-size: 2em;
     margin-bottom: 10px;
-    color: #011f5b;
+    /* use geppaku as the color */
+    color: #f6f7f8;
 }
 
 .title-underline {
@@ -45,7 +112,7 @@
 
 .author-section {
     font-family: Optima, sans-serif;
-    color: #666666;
+    color:#f6f7f8;
     font-size: 1.125em;
 } 
 
@@ -93,7 +160,7 @@
     list-style: none;
     padding: 0;
     font-family: Optima, sans-serif;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 .guide-toc ul ul {
@@ -135,8 +202,8 @@
 }
 
 .guide-content h2 {
-    font-family: Optima, sans-serif;
-    font-size: 1.5rem;
+    font-family: "Optima", sans-serif;
+    font-size: 1.25rem;
     color: rgba(1, 31, 91, 0.9);
     margin: 2rem auto 1rem auto;
     text-align: center;
@@ -144,7 +211,7 @@
 
 .guide-content h3 {
     font-family: Optima, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     color: rgba(1, 31, 91, 0.9);
     margin: 2rem 0 1rem 0;
     text-align: left;
@@ -152,7 +219,7 @@
 
 .guide-content h4 {
     font-family: Optima, sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     color: rgba(1, 31, 91, 0.9);
     margin: 2rem 0 1rem 0;
     text-align: left;
@@ -381,4 +448,71 @@ table td:last-child {
     height: 20px; /* Slightly smaller for the button */
 }
 
+/* Contact Us section (align with home page, use content-section-pink) */
+.p-3 {
+    padding: 0.75rem;
+}
+
+.content-section-pink.guide-contact-section {
+    background-color: rgba(255, 204, 204, 0.35);
+    margin-top: 1.25rem;
+}
+
+.guide-contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.guide-contact-title {
+    font-family: "Poppins-SemiBold", "Poppins", Arial, sans-serif !important;
+    font-weight: 600 !important;
+    margin: 0;
+    color: #011f5b;
+    font-size: clamp(1.125rem, 1.6vw, 1.25rem);
+    text-align: left;
+}
+
+.guide-contact-text,
+.guide-contact-text * {
+    font-family: "Faustina", Georgia, serif !important;
+}
+
+.guide-contact-text {
+    width: 100%;
+    margin: 0;
+    color: #011f5b;
+    font-size: clamp(1rem, 1.9vw, 1.15rem);
+    line-height: 1.5;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+
+.guide-contact-text p {
+    padding: 0.3rem 0;
+}
+
+.guide-contact-line {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 0;
+    font-family: Palatino, URW Palladio L, serif;
+    line-height: 0.8;
+}
+
+.guide-contact-text .guide-contact-line:first-of-type {
+    margin-bottom: 0.9rem;
+}
+
+.guide-contact-text a {
+    color: #011f5b;
+    text-decoration: underline;
+}
+
+.guide-contact-text a:hover {
+    color: #fc4375;
+}
 
