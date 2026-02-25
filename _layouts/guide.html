@@ -15,13 +15,18 @@
 
 
 <body>
-    <div class="header">
-      <a href="{{ '/' | relative_url }}">
-        <img src="{{ '/assets/images/logo/DP_logo_d.png' | relative_url }}" alt="Datapoints Logo" class="datapoints-logo">
-      </a>
+    <!-- Logo section, matching home page structure -->
+    <div class="logos">
+        <a href="https://web.sas.upenn.edu/data-science/">
+            <img src="{{ '/assets/images/logo/DDDI Logo/PennSAS-DDD_logo.png' | relative_url }}" alt="DDDI Logo" class="DDDI-logo">
+        </a>
+        <div class="divider"></div>
+        <a href="{{ '/' | relative_url }}">
+            <img src="{{ '/assets/images/logo/DP_logo_blue.png' | relative_url }}" alt="DP Logo" class="datapoints-logo">
+        </a>
     </div>
 
-    <div class="content-section-pink">
+    <div class="content-section-bg-picture">
         <div style="display: flex; align-items: center; justify-content: center; gap: 2rem;">
             <h1 class="page-title">{{ page.title }}</h1>
         </div>
@@ -38,21 +43,15 @@
         <!-- Add dropdown button for mobile -->
         <button class="toc-dropdown-btn">
             <img src="{{ '/favicon.ico' | relative_url }}" alt="Datapoints Logo" class="nav-logo">
-            Table of Contents ▼
+            <span class="toc-button-label">Table of Contents</span>
+            <span class="toc-button-icon">☰</span>
         </button>
         
         <div class="guide-container">
             <!-- Left side: Table of Contents -->
             <div class="guide-sidebar">
                 <div class="guide-toc">
-                    <h2>
-                        <span style="display: flex; align-items: center; gap: 8px;">
-                            <a href="{{ '/' | relative_url }}">
-                                <img src="{{ '/favicon.ico' | relative_url }}" alt="Datapoints Logo" class="nav-logo">
-                            </a>
-                            Table of Contents
-                        </span>
-                    </h2>
+                    <!-- <h2>Table of Contents</h2> -->
                     <ul>
                         <li><a href="#github-repo">GitHub Repo</a>
                             <ul>
@@ -86,6 +85,24 @@
         </div>
     </div>
 
+    {% assign home_page = site.pages | where: "permalink", "/" | first %}
+    {% if home_page == nil or home_page.contact == nil %}
+      {% assign home_page = site.posts | where: "permalink", "/" | first %}
+    {% endif %}
+    {% if home_page.contact %}
+    <div class="content-section-pink guide-contact-section">
+        <div class="p-3"></div>
+        <div class="guide-contact-inner">
+            <div id="contact-section" class="guide-contact-title">Contact Us</div>
+            <div class="guide-contact-text">
+                <p class="guide-contact-line"><a href="mailto:{{ home_page.contact.email }}">{{ home_page.contact.email }}</a></p>
+                <p class="guide-contact-line">{{ home_page.contact.address | newline_to_br }}</p>
+            </div>
+        </div>
+        <div class="p-3"></div>
+    </div>
+    {% endif %}
+
     <!-- Add this before closing </body> -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -96,13 +113,11 @@
         
         // Add dropdown button functionality
         const dropdownBtn = document.querySelector('.toc-dropdown-btn');
+        const dropdownLabel = dropdownBtn.querySelector('.toc-button-label');
         const guideSidebar = document.querySelector('.guide-sidebar');
         
         dropdownBtn.addEventListener('click', function() {
             guideSidebar.classList.toggle('show');
-            // Update arrow direction only
-            this.textContent = this.textContent.endsWith('∨') ? 
-                this.textContent.replace('∨', '∧') : this.textContent.replace('∧', '∨');
         });
 
         // Close dropdown when clicking a link (mobile)
@@ -110,8 +125,8 @@
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) {
                     guideSidebar.classList.remove('show');
-                    // Update dropdown text to show selected section
-                    dropdownBtn.textContent = this.textContent + ' ∨';
+                    // Update dropdown label to show selected section
+                    dropdownLabel.textContent = this.textContent;
                 }
             });
         });
@@ -124,8 +139,8 @@
             tocLinks.forEach(link => {
                 if (link.getAttribute('href') === hash) {
                     link.classList.add('active');
-                    // Update dropdown text to show current section
-                    dropdownBtn.textContent = link.textContent + ' ∨';
+                    // Update dropdown label to show current section
+                    dropdownLabel.textContent = link.textContent;
                 } else {
                     link.classList.remove('active');
                 }
