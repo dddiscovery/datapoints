@@ -15,13 +15,18 @@
 
 
 <body>
-    <div class="header">
-      <a href="/datapoints/">
-        <img src="/datapoints/assets/images/logo/DP_logo_d.png" alt="Datapoints Logo" class="datapoints-logo">
-      </a>
+    <!-- Logo section, matching home page structure -->
+    <div class="logos">
+        <a href="https://web.sas.upenn.edu/data-science/">
+            <img src="/datapoints/assets/images/logo/DDDI%20Logo/PennSAS-DDD_logo.png" alt="DDDI Logo" class="DDDI-logo">
+        </a>
+        <div class="divider"></div>
+        <a href="/datapoints/">
+            <img src="/datapoints/assets/images/logo/DP_logo_blue.png" alt="DP Logo" class="datapoints-logo">
+        </a>
     </div>
 
-    <div class="content-section-pink">
+    <div class="content-section-bg-picture">
         <div style="display: flex; align-items: center; justify-content: center; gap: 2rem;">
             <h1 class="page-title">Contributor Guide</h1>
         </div>
@@ -38,21 +43,15 @@
         <!-- Add dropdown button for mobile -->
         <button class="toc-dropdown-btn">
             <img src="/datapoints/favicon.ico" alt="Datapoints Logo" class="nav-logo">
-            Table of Contents ▼
+            <span class="toc-button-label">Table of Contents</span>
+            <span class="toc-button-icon">☰</span>
         </button>
         
         <div class="guide-container">
             <!-- Left side: Table of Contents -->
             <div class="guide-sidebar">
                 <div class="guide-toc">
-                    <h2>
-                        <span style="display: flex; align-items: center; gap: 8px;">
-                            <a href="/datapoints/">
-                                <img src="/datapoints/favicon.ico" alt="Datapoints Logo" class="nav-logo">
-                            </a>
-                            Table of Contents
-                        </span>
-                    </h2>
+                    <!-- <h2>Table of Contents</h2> -->
                     <ul>
                         <li><a href="#github-repo">GitHub Repo</a>
                             <ul>
@@ -518,6 +517,10 @@ bundle <span class="nb">exec </span>jekyll serve <span class="nt">--host</span><
         <td><a href="https://www.quantamagazine.org/">Quanta Magazine</a></td>
         <td>A blog series explores cutting-edge science and mathematics through in-depth, accessible journalism.</td>
       </tr>
+      <tr>
+        <td><a href="https://asteriskmag.com/">Asterisk</a></td>
+        <td>Asterisk is a quarterly journal of clear writing and clear thinking about things that matter.</td>
+      </tr>
     </tbody>
   </table>
 
@@ -623,6 +626,29 @@ bundle <span class="nb">exec </span>jekyll serve <span class="nt">--host</span><
         </div>
     </div>
 
+    
+    
+    
+    <div class="content-section-pink guide-contact-section">
+        <div class="p-3"></div>
+        <div class="guide-contact-inner">
+            <div id="contact-section" class="guide-contact-title">Contact Us</div>
+            <div class="guide-contact-text">
+                <p class="guide-contact-line"><a href="mailto:sas-ddd-admin@sas.upenn.edu">sas-ddd-admin@sas.upenn.edu</a></p>
+                <p class="guide-contact-line">Data Driven Discovery Initiative (DDDI) <br />
+<br />
+3718 Locust Walk <br />
+<br />
+Suite 411 <br />
+<br />
+Philadelphia, PA 19104<br />
+</p>
+            </div>
+        </div>
+        <div class="p-3"></div>
+    </div>
+    
+
     <!-- Add this before closing </body> -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -633,13 +659,11 @@ bundle <span class="nb">exec </span>jekyll serve <span class="nt">--host</span><
         
         // Add dropdown button functionality
         const dropdownBtn = document.querySelector('.toc-dropdown-btn');
+        const dropdownLabel = dropdownBtn.querySelector('.toc-button-label');
         const guideSidebar = document.querySelector('.guide-sidebar');
         
         dropdownBtn.addEventListener('click', function() {
             guideSidebar.classList.toggle('show');
-            // Update arrow direction only
-            this.textContent = this.textContent.endsWith('∨') ? 
-                this.textContent.replace('∨', '∧') : this.textContent.replace('∧', '∨');
         });
 
         // Close dropdown when clicking a link (mobile)
@@ -647,8 +671,8 @@ bundle <span class="nb">exec </span>jekyll serve <span class="nt">--host</span><
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) {
                     guideSidebar.classList.remove('show');
-                    // Update dropdown text to show selected section
-                    dropdownBtn.textContent = this.textContent + ' ∨';
+                    // Update dropdown label to show selected section
+                    dropdownLabel.textContent = this.textContent;
                 }
             });
         });
@@ -661,8 +685,8 @@ bundle <span class="nb">exec </span>jekyll serve <span class="nt">--host</span><
             tocLinks.forEach(link => {
                 if (link.getAttribute('href') === hash) {
                     link.classList.add('active');
-                    // Update dropdown text to show current section
-                    dropdownBtn.textContent = link.textContent + ' ∨';
+                    // Update dropdown label to show current section
+                    dropdownLabel.textContent = link.textContent;
                 } else {
                     link.classList.remove('active');
                 }
