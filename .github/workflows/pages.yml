@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: |
           bundle install
-          bundle exec npm install --save-dev
+          npm install
 
       - name: Build site
         run: bundle exec jekyll build
