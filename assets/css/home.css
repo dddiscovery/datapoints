@@ -261,8 +261,13 @@ body {
     padding: 0 0px;
     box-sizing: border-box;
     color: #011f5b;
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-size: clamp(1.125rem, 1.6vw, 1.25rem);
     text-align: left;
+}
+
+/* Keep Blog title visible when jumping from nav anchor links */
+#blog-section {
+    scroll-margin-top: 7rem;
 }
 
 /* .content-text {
@@ -284,15 +289,20 @@ body {
     margin-left: auto;
     margin-right: auto;
     color: #011f5b;
-    font-size: clamp(0.875rem, 1.5vw, 0.938rem);
+    font-size: clamp(1rem, 1.9vw, 1.15rem);
     line-height: 1.5;
     padding: 0 0rem;
     box-sizing: border-box;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .content-text p {
     padding: 0.3rem 0;
+}
+
+.about-content,
+.contribute-guide {
+    line-height: 1.5;
 }
 
 /* Blog Post Styles */
@@ -303,16 +313,22 @@ body {
 
 .blog-content-section {
     display: flex;
-    gap: 24px;
+    gap: 20px;
     align-items: flex-start;
-    margin: 0 0 32px 0;
+    margin: 0 0 24px 0;
     padding: 0;
+}
+
+/* Super-thin divider only between featured posts */
+.featured-posts-list .blog-content-section + .blog-content-section {
+    border-top: 1px solid rgba(1, 31, 91, 0.2);
+    padding-top: 16px;
 }
 
 .blog-image {
     flex: 0 0 auto;
-    width: 30%;
-    aspect-ratio: 16/9;
+    width: 28%;
+    aspect-ratio: 1.618 / 1;
     overflow: hidden;
 }
 
@@ -325,7 +341,7 @@ body {
 
 .blog-content {
     flex: 1;
-    padding: 8px 0;
+    padding: 2px 0;
 }
 
 .blog-tag-row {
@@ -333,14 +349,14 @@ body {
     flex-direction: column;
     align-items: flex-start;
     width: max-content;
-    gap: 4px;
-    margin: 0 0 8px 0;
+    gap: 2px;
+    margin: 0 0 6px 0;
 }
 
 .blog-tag {
-    color: #66BAB7;
+    color: #666;
     font-family: "Poppins", Arial, sans-serif !important;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 400;
     white-space: nowrap;
 }
@@ -353,16 +369,16 @@ body {
 }
 
 .blog-title {
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
     font-family: "Poppins-SemiBold", Arial, sans-serif !important;
-    font-size: 0.875rem;
+    font-size: 1.15rem;
     /* font-family: Optima, sans-serif; */
 }
 
 .blog-title-link {
     color: #011f5b;
     text-decoration: none;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 500;
 }
 
@@ -378,14 +394,15 @@ body {
 
 .blog-meta {
     color: #666;
-    font-size: 0.875rem;
-    margin-bottom: 8px;
+    font-size: 0.9125rem;
+    margin: 0 0 6px 0;
     font-family: 'Faustina', serif !important;
 }
 
 .blog-meta a {
     color: #666;
     text-decoration: none;
+    font-size: 0.9125rem;
     transition: color 0.3s ease;
 }
 
@@ -396,8 +413,10 @@ body {
 
 .blog-description {
     color: #333;
-    line-height: 1.5;
+    line-height: 1.35;
+    margin: 0;
     font-family: 'Faustina', serif !important;
+    font-size: 1rem;
 }
 
 .email-subscribe-container {
@@ -428,6 +447,10 @@ body {
     padding: 0;
     font-family: Palatino, URW Palladio L, serif;
     line-height: 0.8;
+}
+
+.contact-email-line {
+    margin-bottom: 0.9rem;
 }
 
 .contact-email {
@@ -472,6 +495,7 @@ body {
 
 .mailing-list-column {
     display: block;
+    margin-left: 24px;
 }
 
 .contact-follow-title {
@@ -525,7 +549,7 @@ body {
 .social-link {
     text-decoration: none;
     color: #011f5b;
-    font-size: clamp(0.75rem, 1.2vw, 0.813rem);
+    font-size: clamp(0.875rem, 1.2vw, 0.813rem);
 }
 
 .social-link:hover {
@@ -703,10 +727,10 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 }
 
 .people-sub-title {
-    font-family: Optima, sans-serif;
+    font-family: 'Poppins', "Poppins", Arial, sans-serif !important;
     color: #011f5b;
-    font-size: 1.25rem;
-    font-weight: bold;
+    font-size: 1.125rem;
+    font-weight: 400;
     text-align: center;
     display: flex;
     align-items: center;
@@ -742,7 +766,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 }
 
 #mc_embed_signup_scroll {
-    font-family: Optima, sans-serif;
+    font-family: 'Poppins', "Poppins", Arial, sans-serif !important;
     color: #011f5b;
 }
 

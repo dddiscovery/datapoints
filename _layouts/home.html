@@ -68,7 +68,7 @@ title: Data Points
     <div class="content-section-blue" style="padding-top: 18px;">
     	<div class="p-2"></div>
 	<div class="section-title"><a class="anchor" id="about-section" style="display:block; position:relative; top:-70px; visibility:hidden;"></a>About</div>
-        <div class="content-text">
+        <div class="content-text about-content">
             {{ page.about | markdownify }}
 	    </div>
     	<div class="p-3"></div>
@@ -80,7 +80,7 @@ title: Data Points
         <!-- Modified flex container structure -->
         <div class="flex-container flex-column gap-8" id="blog-and-subscribe-flex">
             <!-- Blog cards container -->
-            <div class="content-container" style="flex-direction: column;">
+            <div class="content-container featured-posts-list" style="flex-direction: column;">
                 {% for post in page.featured_posts %}
                 <div class="blog-content-section">
                     <div class="blog-image">
@@ -151,7 +151,7 @@ title: Data Points
         <div class="flex-container flex-column gap-8" id="contact-and-subscribe-flex">
             <div class="content-container contact-info-column" style="flex-direction: column;">
                 <div class="contact-info-text">
-                    <p class="contact-text"><a href="mailto:{{ page.contact.email }}">{{ page.contact.email }}</a></p>
+                    <p class="contact-text contact-email-line"><a href="mailto:{{ page.contact.email }}">{{ page.contact.email }}</a></p>
                     <p class="contact-text">{{ page.contact.address | newline_to_br }}</p>
                 </div>
             </div>
