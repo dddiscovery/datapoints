@@ -326,21 +326,21 @@ The blog features artwork from the public domain for both title images and other
 <div class="credits-container" markdown="1">
 
 ### Title Images
-- *"Flecks of Foam"*
-  - Artist: Henry Golden Dearth
-  - Accession Number: 1963.10.120
-  - Source: Chester Dale Collection 
+- *"Stage Curtain: Temple of Fame"*
+  - Artist: Henry Felice Giani
+  - Accession Number: 1901-39-3181
+  - Source: Cooper Hewitt 
   - Status: Public Domain
 
 [//]: # "`assets/images/posts/title_km.jpg`"
 
-- *"Cannon Rock"*
-  - Artist: Winslow Homer
-  - Accession Number: 06.1281
-  - Source: The Metropolitan Museum of Art
+- *"Stag at Sharkey's"*
+  - Artist: George Bellows
+  - Accession Number: 1922.1133
+  - Source: The Cleveland Museum of Art
   - Status: Public Domain
 
-[//]: # "`assets/images/posts/title_ms.jpg`"
+[//]: # "`assets/images/posts/1922.1133_web.jpeg`"
 </div>
 
 <div class="credits-container" markdown="1">

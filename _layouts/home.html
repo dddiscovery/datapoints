@@ -14,6 +14,12 @@ title: Data Points
     <!--    <link rel="stylesheet" href="{{ '/assets/css/tailwind.compiled.css' | relative_url }}"> -->
     <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+
+    <!-- EB Garamond font
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet"> -->
 </head>
 <body>
     <div class="logos">
@@ -21,7 +27,7 @@ title: Data Points
             <img src="{{ '/assets/images/logo/DDDI Logo/PennSAS-DDD_logo.png' | relative_url }}" alt="DDDI Logo" class="DDDI-logo">
         </a>
         <div class="divider"></div>
-        <img src="{{ '/assets/images/logo/DP_logo_d.png' | relative_url }}" alt="DP Logo" class="datapoints-logo">
+        <img src="{{ '/assets/images/logo/DP_logo_blue.png' | relative_url }}" alt="DP Logo" class="datapoints-logo">
     </div>
     
     <div class="header">
@@ -62,7 +68,7 @@ title: Data Points
     <div class="content-section-blue" style="padding-top: 18px;">
     	<div class="p-2"></div>
 	<div class="section-title"><a class="anchor" id="about-section" style="display:block; position:relative; top:-70px; visibility:hidden;"></a>About</div>
-        <div class="content-text">
+        <div class="content-text about-content">
             {{ page.about | markdownify }}
 	    </div>
     	<div class="p-3"></div>
@@ -74,13 +80,19 @@ title: Data Points
         <!-- Modified flex container structure -->
         <div class="flex-container flex-column gap-8" id="blog-and-subscribe-flex">
             <!-- Blog cards container -->
-            <div class="content-container" style="flex-direction: column;">
+            <div class="content-container featured-posts-list" style="flex-direction: column;">
                 {% for post in page.featured_posts %}
                 <div class="blog-content-section">
                     <div class="blog-image">
                         <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
                     </div>
                     <div class="blog-content">
+                        {% if post.tag %}
+                        <div class="blog-tag-row">
+                            <span class="blog-tag">{{ post.tag }}</span>
+                            <span class="blog-tag-line"></span>
+                        </div>
+                        {% endif %}
                         <h3 class="blog-title">
                             <a href="{{ post.url | relative_url }}" class="blog-title-link">{{ post.title }}</a>
                         </h3>
@@ -89,80 +101,6 @@ title: Data Points
                     </div>
                 </div>
                 {% endfor %}
-            </div>
-
-            <!-- Divider -->
-            <div class="w-px bg-[#011f5b] self-stretch mx-0 blog-sub-line"></div>
-
-            <!-- Subscribe section -->
-            <div class="content-container width-30 subscribe-section">
-                <div class="content-text subscribe-content" style="padding-left: 0;">
-                    <p class="follow-title">Follow us</p>
-                    <div class="social-links">
-                        {% for link in page.social_links %}
-                        <div class="social-item">
-                            {% if forloop.first %}
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="social-icon">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
-                            </svg>
-                            {% elsif forloop.index == 2 %}
-                            <img src="{{ '/assets/images/logo/Bluesky_Logo.png' | relative_url }}" alt="Bluesky Logo" class="social-icon">
-                            {% else %}
-                            <img src="{{ '/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png' | relative_url }}" alt="LinkedIn Logo" class="social-icon" style="width: 24px; height: 20px;">
-                            {% endif %}
-                            <span><a href="{{ link.url }}" class="social-link">{{ link.name }}</a></span>
-                        </div>
-                        {% endfor %}
-                    </div>
-
-                <!-- Email subscription container with updated alignment -->
-                <p class="follow-title mt-2">Join the mailing list</p>
-                <div id="mc_embed_shell" style="position: relative; top: -1rem; left: 0.8rem;">
-                    <link href="https://cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-                    <div id="mc_embed_signup">
-                        <form action="https://upenn.us11.list-manage.com/subscribe/post?u=2c41167803243255e2e4a1516&amp;id=424f80b7e7&amp;f_id=000b22e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-                            <div id="mc_embed_signup_scroll" style="text-align: left;">
-                                <div class="mc-field-group" style="padding-left: 0;">
-                                    <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" placeholder="name@example.com">
-                                </div>
-                                <div hidden="">
-                                    <input type="hidden" name="tags" value="8119752">
-                                </div>
-                                <div id="mce-responses" class="clear foot">
-                                    <div class="response" id="mce-error-response" style="display: none;"></div>
-                                    <div class="response" id="mce-success-response" style="display: none;"></div>
-                                </div>
-                                <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                                    /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
-                                    <input type="text" name="b_2c41167803243255e2e4a1516_424f80b7e7" tabindex="-1" value="">
-                                </div>
-                                <div class="optionalParent">
-                                    <div class="clear foot">
-                                        <div style="display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; gap: 4px; width: 220px;">
-                                            <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe" style="margin: 0;">
-                                            <span style="color: #666; font-size: 10px !important; line-height: 1; display: inline-block; text-align: right;">powered by</span>
-                                            <a href="http://eepurl.com/i0TxZw" title="Mailchimp - email marketing made easy and fun">
-                                                <span style="display: -webkit-box; display: -ms-flexbox; display: flex; border-radius: 4px; padding: 2px;">
-                                                    <img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" 
-                                                         alt="Intuit Mailchimp" 
-                                                         style="width: 180px; height: auto; display: -webkit-box; display: -ms-flexbox; display: flex; padding: 2px 0; -webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end; -webkit-box-align: end; -ms-flex-align: end; align-items: flex-end;">
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <script type="text/javascript" src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-                    <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-                </div>
-                  
-
-        
-
-
-
             </div>
         </div>
         </div>
@@ -210,12 +148,86 @@ title: Data Points
     <div class="content-section-blue">
         <div class="p-3"></div>
         <div id="contact-section" class="section-title">Contact Us</div>
-        <div class="content-text">
-            <p class="contact-text"><a href="mailto:{{ page.contact.email }}">{{ page.contact.email }}</a></p>
-            <p class="contact-text">{{ page.contact.address | newline_to_br }}</p>
+        <div class="flex-container flex-column gap-8" id="contact-and-subscribe-flex">
+            <div class="content-container contact-info-column" style="flex-direction: column;">
+                <div class="contact-info-text">
+                    <p class="contact-text contact-email-line"><a href="mailto:{{ page.contact.email }}">{{ page.contact.email }}</a></p>
+                    <p class="contact-text">{{ page.contact.address | newline_to_br }}</p>
+                </div>
+            </div>
+
+            <!-- Subscribe section -->
+            <div class="content-container width-30 subscribe-section contact-subscribe-column">
+                <div class="content-text subscribe-content contact-subscribe-content">
+                    <div class="follow-links-column">
+                        <p class="follow-title contact-follow-title">Follow us</p>
+                        <div class="social-links">
+                            {% for link in page.social_links %}
+                            <div class="social-item">
+                                {% if forloop.first %}
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="social-icon">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                                </svg>
+                                {% elsif forloop.index == 2 %}
+                                <img src="{{ '/assets/images/logo/Bluesky_Logo.png' | relative_url }}" alt="Bluesky Logo" class="social-icon">
+                                {% else %}
+                                <img src="{{ '/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png' | relative_url }}" alt="LinkedIn Logo" class="social-icon" style="width: 24px; height: 20px;">
+                                {% endif %}
+                                <span><a href="{{ link.url }}" class="social-link">{{ link.name }}</a></span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="mailing-list-column">
+                        <p class="follow-title contact-follow-title">Join our mailing list</p>
+                        <div id="mc_embed_shell" class="contact-mailchimp-shell">
+                            <link href="https://cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+                            <div id="mc_embed_signup">
+                                <form action="https://upenn.us11.list-manage.com/subscribe/post?u=2c41167803243255e2e4a1516&amp;id=424f80b7e7&amp;f_id=000b22e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+                                    <div id="mc_embed_signup_scroll" style="text-align: left;">
+                                        <div class="mc-field-group" style="padding-left: 0;">
+                                            <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" placeholder="name@example.com">
+                                        </div>
+                                        <div hidden="">
+                                            <input type="hidden" name="tags" value="8119752">
+                                        </div>
+                                        <div id="mce-responses" class="clear foot">
+                                            <div class="response" id="mce-error-response" style="display: none;"></div>
+                                            <div class="response" id="mce-success-response" style="display: none;"></div>
+                                        </div>
+                                        <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                                            /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
+                                            <input type="text" name="b_2c41167803243255e2e4a1516_424f80b7e7" tabindex="-1" value="">
+                                        </div>
+                                        <div class="optionalParent">
+                                            <div class="clear foot">
+                                                <div style="display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; gap: 4px; width: 220px;">
+                                                    <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe" style="margin: 0;">
+                                                    <span style="color: #666; font-size: 10px !important; line-height: 1; display: inline-block; text-align: right;">powered by</span>
+                                                    <a href="http://eepurl.com/i0TxZw" title="Mailchimp - email marketing made easy and fun">
+                                                        <span style="display: -webkit-box; display: -ms-flexbox; display: flex; border-radius: 4px; padding: 2px;">
+                                                            <img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" 
+                                                                 alt="Intuit Mailchimp" 
+                                                                 style="width: 180px; height: auto; display: -webkit-box; display: -ms-flexbox; display: flex; padding: 2px 0; -webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end; -webkit-box-align: end; -ms-flex-align: end; align-items: flex-end;">
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <script type="text/javascript" src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+                            <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="p-3"></div>
     </div>
+    </section>
             
     <script>
         let slideIndex = 1;

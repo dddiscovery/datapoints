@@ -4,6 +4,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap");
 
 
 /* Basic styles for home page */
@@ -11,17 +12,67 @@
     padding: 20px;
 }
 
+/* EB Garamond font */
+@font-face {
+    font-family: "EB Garamond";
+    src: url("../fonts/EBGaramond-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+@font-face {
+    font-family: "EB Garamond";
+    src: url("../fonts/EBGaramond-Italic-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Faustina font */
+@font-face {
+    font-family: "Faustina";
+    src: url("../fonts/Faustina-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Poppins font */
+@font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../fonts/Poppins-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 /* Global Styles */
 body {
     margin-top: 2rem;
     font-family: 'Crimson Text', serif;
 }
+/* 
+
+
+/* Ensure background is behind all content */
+.home-background-section > * {
+    position: relative;
+    z-index: 1;
+}
 
 .logos {
-    margin-left: 2rem;
+    margin-left: 0;
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     padding: 0rem;
     width: 100%;
     flex-wrap: wrap;
@@ -55,7 +106,8 @@ body {
 }
 
 .nav-link {
-    @apply font-sans font-semibold
+    font-family: "Poppins-SemiBold", "Poppins", Arial, sans-serif !important;
+    font-weight: 600 !important;
 }
 
 .nav-link {
@@ -78,12 +130,12 @@ body {
     margin-top: 0.625rem;
 }
 
-.welcome-message {
+/* .welcome-message {
     font-family: Palatino, URW Palladio L, serif;
     color: #011f5b;
     font-size: 2rem;
-}
-
+} */
+/* 
 .welcome-describe {
     font-family: Optima, sans-serif;	
     font-size: 1.2rem;
@@ -91,7 +143,7 @@ body {
     animation: colorChange 0.5s steps(40, end) forwards;
     animation-delay: 0.5s;
     padding-bottom: 0px;
-}
+} */
 
 @keyframes typing {
     from { clip-path: inset(0 100% 0 0); }
@@ -170,7 +222,8 @@ body {
 /* Content Section */
 .content-section-blue {
     width: 100%;
-    background-color: rgba(1, 31, 91, 0.1);
+    /* background-color: rgba(1, 31, 91, 0.1); */
+    background-color: rgba(1,80,164,0.2);
     margin-top: 1.25rem;
     position: relative;
     min-height: fit-content;
@@ -197,7 +250,8 @@ body {
 }
 
 .section-title {
-    @apply font-serif font-black
+    font-family: "Poppins-SemiBold", "Poppins", Arial, sans-serif !important;
+    font-weight: 600 !important;
 }
 
 .section-title {
@@ -207,27 +261,48 @@ body {
     padding: 0 0px;
     box-sizing: border-box;
     color: #011f5b;
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-size: clamp(1.125rem, 1.6vw, 1.25rem);
     text-align: left;
 }
 
-.content-text {
-    @apply font-sans
+/* Keep Blog title visible when jumping from nav anchor links */
+#blog-section {
+    scroll-margin-top: 7rem;
 }
+
+/* .content-text {
+    @apply font-sans
+} */
+
+.content-text, .content-text * {
+    font-family: "Faustina", serif !important;
+    /* font-weight: 500; */
+}
+/* 
+.content-text {
+    font-family: 'EB Garamond', serif !important;
+    font-weight: 500;
+} */
 
 .content-text {
     width: 972px;
     margin-left: auto;
     margin-right: auto;
     color: #011f5b;
-    font-size: clamp(0.875rem, 1.5vw, 0.938rem);
+    font-size: clamp(1rem, 1.9vw, 1.15rem);
     line-height: 1.5;
     padding: 0 0rem;
     box-sizing: border-box;
+    font-weight: 400;
 }
 
 .content-text p {
     padding: 0.3rem 0;
+}
+
+.about-content,
+.contribute-guide {
+    line-height: 1.5;
 }
 
 /* Blog Post Styles */
@@ -238,16 +313,22 @@ body {
 
 .blog-content-section {
     display: flex;
-    gap: 24px;
+    gap: 20px;
     align-items: flex-start;
-    margin: 0 0 32px 0;
+    margin: 0 0 24px 0;
     padding: 0;
+}
+
+/* Super-thin divider only between featured posts */
+.featured-posts-list .blog-content-section + .blog-content-section {
+    border-top: 1px solid rgba(1, 31, 91, 0.2);
+    padding-top: 16px;
 }
 
 .blog-image {
     flex: 0 0 auto;
-    width: 40%;
-    aspect-ratio: 4/3;
+    width: 28%;
+    aspect-ratio: 1.618 / 1;
     overflow: hidden;
 }
 
@@ -260,19 +341,45 @@ body {
 
 .blog-content {
     flex: 1;
-    padding: 8px 0;
+    padding: 2px 0;
+}
+
+.blog-tag-row {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: max-content;
+    gap: 2px;
+    margin: 0 0 6px 0;
+}
+
+.blog-tag {
+    color: #666;
+    font-family: "Poppins", Arial, sans-serif !important;
+    font-size: 0.7rem;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.blog-tag-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #66BAB7;
 }
 
 .blog-title {
-    margin: 0 0 12px 0;
-    font-family: Optima, sans-serif;
+    margin: 0 0 8px 0;
+    font-family: "Poppins-SemiBold", Arial, sans-serif !important;
+    font-size: 1.15rem;
+    /* font-family: Optima, sans-serif; */
 }
 
 .blog-title-link {
     color: #011f5b;
     text-decoration: none;
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.125rem;
+    font-weight: 500;
 }
 
 .blog-title a {
@@ -287,14 +394,15 @@ body {
 
 .blog-meta {
     color: #666;
-    font-size: 0.875rem;
-    margin-bottom: 8px;
-    font-family: sans-serif;
+    font-size: 0.9125rem;
+    margin: 0 0 6px 0;
+    font-family: 'Faustina', serif !important;
 }
 
 .blog-meta a {
     color: #666;
     text-decoration: none;
+    font-size: 0.9125rem;
     transition: color 0.3s ease;
 }
 
@@ -305,8 +413,10 @@ body {
 
 .blog-description {
     color: #333;
-    line-height: 1.5;
-    font-family: Optima, sans-serif;
+    line-height: 1.35;
+    margin: 0;
+    font-family: 'Faustina', serif !important;
+    font-size: 1rem;
 }
 
 .email-subscribe-container {
@@ -339,9 +449,81 @@ body {
     line-height: 0.8;
 }
 
+.contact-email-line {
+    margin-bottom: 0.9rem;
+}
+
 .contact-email {
     margin-top: 12px;
     font-family: Palatino, URW Palladio L, serif;
+}
+
+/* Contact section subscribe alignment */
+#contact-and-subscribe-flex {
+    align-items: flex-start;
+}
+
+.contact-info-column {
+    flex: 0 0 40%;
+    max-width: 420px;
+}
+
+.contact-info-text {
+    width: 100%;
+    margin: 0;
+    color: #011f5b;
+}
+
+.contact-subscribe-column {
+    margin-left: -60px;
+}
+
+.contact-subscribe-content {
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.follow-links-column,
+.mailing-list-column {
+    flex: 1;
+    min-width: 0;
+}
+
+.mailing-list-column {
+    display: block;
+    margin-left: 24px;
+}
+
+.contact-follow-title {
+    margin: 0 0 8px 0;
+    padding: 0 !important;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.mailing-list-column .contact-follow-title {
+    margin-left: 0;
+}
+
+#contact-and-subscribe-flex .social-links {
+    padding: 0;
+}
+
+.contact-mailchimp-shell {
+    position: relative;
+    margin-left: 0 !important;
+    margin-top: 0;
+}
+
+.mailing-list-column #mc_embed_signup,
+.mailing-list-column #mc_embed_signup_scroll,
+.mailing-list-column .mc-field-group {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
 }
 
 .social-links {
@@ -367,7 +549,7 @@ body {
 .social-link {
     text-decoration: none;
     color: #011f5b;
-    font-size: clamp(0.75rem, 1.2vw, 0.813rem);
+    font-size: clamp(0.875rem, 1.2vw, 0.813rem);
 }
 
 .social-link:hover {
@@ -375,7 +557,8 @@ body {
 }
 
 .follow-title {
-    font-weight: bold;
+    font-weight: 400;
+    font-family: 'Poppins', "Poppins", Arial, sans-serif !important;
 }
 
 .flex-container {
@@ -479,7 +662,8 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 
 
 .author-info{
-    font-family: Optima, sans-serif;
+    /* font-family: Optima, sans-serif; */
+    font-family: 'Faustina', serif !important;
     color: #011f5b;
     font-size: 1rem;
     text-align: center;
@@ -543,10 +727,10 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 }
 
 .people-sub-title {
-    font-family: Optima, sans-serif;
+    font-family: 'Poppins', "Poppins", Arial, sans-serif !important;
     color: #011f5b;
-    font-size: 1.25rem;
-    font-weight: bold;
+    font-size: 1.125rem;
+    font-weight: 400;
     text-align: center;
     display: flex;
     align-items: center;
@@ -561,7 +745,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 
 /* Subscription section */
 #mc_embed_signup {
-    background: #fff;
+    background: transparent;
     clear: left;
     font: 14px Helvetica, Arial, sans-serif;
     width: 300px;
@@ -582,7 +766,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 }
 
 #mc_embed_signup_scroll {
-    font-family: Optima, sans-serif;
+    font-family: 'Poppins', "Poppins", Arial, sans-serif !important;
     color: #011f5b;
 }
 
@@ -614,6 +798,19 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 
 #mc_embed_shell {
     margin-left: -1.25rem;
+}
+
+/* Keep subscribe block blended with Contact section background */
+#contact-and-subscribe-flex #mc_embed_signup,
+#contact-and-subscribe-flex #mc_embed_signup form,
+#contact-and-subscribe-flex #mc_embed_signup_scroll,
+#contact-and-subscribe-flex #mc_embed_signup .optionalParent,
+#contact-and-subscribe-flex #mc_embed_signup .clear.foot {
+    background-color: transparent !important;
+}
+
+#contact-and-subscribe-flex #mc_embed_signup .mc-field-group input {
+    background-color: transparent !important;
 }
 
 .contribute-guide ol {

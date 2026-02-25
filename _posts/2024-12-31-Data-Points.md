@@ -18,25 +18,40 @@ slides:
 about: |
   **Data Points** showcases the work of Penn's data science community through concise, engaging articles. Each post takes a complex idea and transforms it into accessible insights in creative and compelling ways—whether through a high-level walkthrough of a key figure, or an interactive, explorable explanation.
 
-  Interested in contributing? We can help with technical and editorial guidance so your post is as impactful and polished as the research it represents. Check out **[How to Contribute](#guide-section)** - we're excited to collaborate and help bring your ideas to life!
+  Interested in contributing? We can help with technical and editorial guidance so your post is as impactful and polished as the research it represents. 
+  Check out **[How to Contribute](#guide-section)** - we're excited to collaborate and help bring your ideas to life!
 
 featured_posts:
 # from the latest post to the oldest post
-  - image: /assets/images/posts/title-ms.jpg
+
+  # - image: /assets/images/posts/title_km_chatgpt.png
+  #   title: Where is the information in data?
+  #   tag: LLM Notes
+  #   url: /Where-is-the-Information-in-Data
+  #   author: Kieran Murphy
+  #   author_url: https://www.kieranamurphy.com/
+  #   date: February 03, 2025
+  #   description: An interactive tutorial about decomposing variation into distinctions worth making.
+
+  - image: /assets/images/posts/1922.1133_web.jpeg
     title: Accelerating science with 'off-the-shelf' models
+    tag: Data Notes
     url: /off-the-shelf-ai
     author: Melanie Segado
     author_url: https://sites.google.com/view/melaniesegado
     date: March 10, 2025
     description: A visual guide on how foundation models enhance computer vision research with small datasets.
 
-  - image: /assets/images/posts/title-km.jpg
+  - image: /assets/images/posts/Stage_Curtain_ Temple of Fame.jpeg
     title: Where is the information in data?
+    tag: Data Notes
     url: /Where-is-the-Information-in-Data
     author: Kieran Murphy
     author_url: https://www.kieranamurphy.com/
     date: February 03, 2025
     description: An interactive tutorial about decomposing variation into distinctions worth making.
+  
+
 
 
 social_links:
@@ -75,6 +90,9 @@ Editorial_team:
     url: https://www.sas.upenn.edu/~crtwomey/
     image: /assets/images/authors/colin_twomey.jpg
     fellowship: Executive Director @DDDI
+
+contributor:
+  # placeholder
 
 contact:
   email: sas-ddd-admin@sas.upenn.edu
