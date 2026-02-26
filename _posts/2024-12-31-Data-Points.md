@@ -24,14 +24,14 @@ about: |
 featured_posts:
 # from the latest post to the oldest post
 
-  # - image: /assets/images/posts/title_km_chatgpt.png
-  #   title: Where is the information in data?
-  #   tag: LLM Notes
-  #   url: /Where-is-the-Information-in-Data
-  #   author: Kieran Murphy
-  #   author_url: https://www.kieranamurphy.com/
-  #   date: February 03, 2025
-  #   description: An interactive tutorial about decomposing variation into distinctions worth making.
+  - image: /assets/images/posts/cover_yxl_eoir.jpg
+    title: A Workflow for LLM-Augmented Codebook Genration
+    tag: LLM Notes
+    url: /llm-augmented-codebook
+    author: Yuxin Liang
+    author_url: https://www.linkedin.com/in/yuxinliang/
+    date: February 27, 2026
+    description: 'From Data to Documentation: Assisting Codebook Completion with LLMs'
 
   - image: /assets/images/posts/1922.1133_web.jpeg
     title: Accelerating science with 'off-the-shelf' models

@@ -328,13 +328,14 @@ The blog features artwork from the public domain for both title images and other
 <div class="credits-container" markdown="1">
 
 ### Title Images
-- *"Stage Curtain: Temple of Fame"*
-  - Artist: Henry Felice Giani
-  - Accession Number: 1901-39-3181
-  - Source: Cooper Hewitt 
+
+- *"Water-colour of the Battle of the Gods"*
+  - Artist: Unkown
+  - Selfmark: Bodleian Library MS.Chin.c.12(R)
+  - Source: Bodleian Libraries, University of Oxford
   - Status: Public Domain
 
-[//]: # "`assets/images/posts/title_km.jpg`"
+[//]: # "`assets/images/posts/1922.1133_web.jpeg`"
 
 - *"Stag at Sharkey's"*
   - Artist: George Bellows
@@ -343,6 +344,15 @@ The blog features artwork from the public domain for both title images and other
   - Status: Public Domain
 
 [//]: # "`assets/images/posts/1922.1133_web.jpeg`"
+
+
+- *"Stage Curtain: Temple of Fame"*
+  - Artist: Henry Felice Giani
+  - Accession Number: 1901-39-3181
+  - Source: Cooper Hewitt 
+  - Status: Public Domain
+
+[//]: # "`assets/images/posts/Stage_Curtain_ Temple of Fame.jpeg`"
 </div>
 
 <div class="credits-container" markdown="1">
