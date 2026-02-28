@@ -16,9 +16,132 @@ This process can be tedious, especially when a dataset contains many variables d
 
 Large language models (LLMs) can serve as useful assistants in this context. However, just as a human researcher cannot reliably infer variable meanings solely from a dataset without sufficient background knowledge (such as the research domain or source documentation), we should not expect an LLM to do so either. Instead, LLMs are most effective when they are provided with structured context. In this post, I will introduce a workflow for using an LLM to assist with codebook generation when (1) an original codebook exists but provides incomplete information, and (2) additional contextual clues can be drawn from the data itself.
 
-To demonstrate this approach, I use case-level data from the Executive Office for Immigration Review (EOIR), which we worked with as part of a Data Science for Social Good (DSSG) project ([learn more about DSSG here](http://datascience.sas.upenn.edu/programs/dssg/current-dssg-projects)). The goal is to show how an LLM can help generate a more complete codebook when the original documentation lacks key information such as variable definitions, sources, or data types.
+To demonstrate this approach, I use case-level data from the Executive Office for Immigration Review (EOIR), which I worked with as part of a Data Science for Social Good (DSSG) project ([learn more about DSSG here](http://datascience.sas.upenn.edu/programs/dssg/current-dssg-projects)). The goal is to show how an LLM can help generate a more complete codebook when the original documentation lacks key information such as variable definitions, sources, or data types.
+
+<div class="workflow-scroll-panel">
+<div class="workflow-chart">
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">EOIR Database</div>
+        <ul class="workflow-list">
+         <li>Case table</li>
+         <li>Lookup tables</li>
+         <li>Code key</li>
+        </ul>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Selected Dataset</div>
+        <ul class="workflow-list">
+         <li>3,180,981 records</li>
+         <li>70 variables</li>
+        </ul>
+      </div>
+    </div>
+    <div class="workflow-theme">Data Preparation</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-column">
+        <div class="workflow-step">
+          <div class="workflow-step-title">Initial Codebook (Manual)</div>
+          <ul class="workflow-list">
+           <li><code>variable_name</code></li>
+           <li><code>source_table</code></li>
+           <li><code>description</code> (some missing)</li>
+           <li><code>data_type</code> (some missing)</li>
+           <li><code>sample_value</code></li>
+           <li><code>na_value</code></li>
+          </ul>
+        </div>
+        <div class="workflow-arrow">↓</div>
+        <div class="workflow-step">
+          <div class="workflow-step-title" style="color: #fc4357;">Missing metadata remains</div>
+        </div>
+      </div>
+    </div>
+    <div class="workflow-theme">Manual Baseline</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">Inputs to LLM</div>
+        <ul class="workflow-list">
+         <li>SQL selection query</li>
+         <li>First 200 dataset rows</li>
+         <li>Existing code key</li>
+         <li>Manual codebook</li>
+         <li>Explicit DO NOT EDIT rules</li>
+        </ul>
+        </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Prompted LLM Inference</div>
+        <ol class="workflow-list">
+         <li>Fill missing description</li>
+         <li> Fill missing data_type</li>
+         <li>Add <code>llm_flag</code></li>
+         <li>Add <code>llm_explanation</code></li>
+         <li>Preserve all non-missing values</li>
+        </ol>
+      </div>
+    </div>
+    <div class="workflow-theme">Structured LLM Assistance</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-column">
+        <div class="workflow-step">
+          <div class="workflow-step-title">LLM-Modified Codebook vs. Manual Codebook</div>
+          <ul class="workflow-list">
+            <li>Check column names match</li>
+            <li>Check shape</li>
+            <li>Identify rows with differences</li>
+            <li>Confirm only NA fields were edited</li>
+            <li>Count modified rows</li>
+          </ul>
+        </div>
+        <div class="workflow-arrow">↓</div>
+        <div class="workflow-step">
+          <div class="workflow-step-title">Human Review of Flagged Rows</div>
+          <ul class="workflow-list">
+            <li>Evaluate inferred descriptions</li>
+            <li>Verify inferred data types (if modified)</li>
+            <li>Assess llm_explanation logic</li>
+            <li>Approve or revise</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="workflow-theme">LLM-Augmented Codebook</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">Final Codebook</div>
+        <ul class="workflow-list workflow-list-no-bullets">
+          <li>Original metadata</li>
+          <li>+ Completed descriptions</li>
+          <li>+ Completed data types</li>
+          <li>+ LLM flag</li>
+          <li>+ Transparent reasoning column</li>
+        </ul>
+      </div>
+    </div>
+    <div class="workflow-theme">Final Codebook</div>
+  </div>
+</div>
+</div>
+<div class="workflow-caption">Figure 1: Workflow for LLM-Assisted Codebook Generation</div>
 
 The EOIR case data are published by the U.S. Department of Justice’s ([EOIR Library](https://www.justice.gov/eoir/foia-library-0)) and contain records from U.S. immigration court proceedings. The database is organized into multiple tables, each corresponding to a distinct category of information. For example, the case table stores case identifiers and respondent demographic information, while the proceeding table records procedural details and adjudicative outcomes, such as hearing dates and immigration judges’ decisions. In addition to these core tables, the database includes several reference tables that store standardized codes—such as those for geographic locations, judges, and other entities—along with their corresponding full names. Although these reference tables function as lookup tables within the database, we treat them as codebooks in our workflow, as they map coded values (e.g., state abbreviations) to their human-readable meanings.
+
+Because the dataset links demographic characteristics, legal charges, procedural histories, representation status, custody information, and judicial identifiers at the case level, it enables researchers to analyze patterns in immigration adjudication, including variation in removal and asylum outcomes, disparities across courts or judges, the effects of legal representation, and changes in enforcement and case processing over time.
 
 The EOIR Library provides a data code key describing these tables and variables. However, this documentation has two major limitations: first, it was last updated in May 2019; second, it does not include descriptions for every variable present in the database. Given the size of the database, researchers typically extract only the variables relevant to their research questions to reduce computational costs and data-cleaning effort. In our case, we selected 70 variables from 13 tables. The resulting dataset contains 3,180,981 case-level records from 1990 onward and focuses on outcomes related to unauthorized entry, along with personal, migration, legal, criminal, bureaucratic, and judicial characteristics.
 
