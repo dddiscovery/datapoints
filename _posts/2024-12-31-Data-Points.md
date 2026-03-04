@@ -8,11 +8,11 @@ permalink: /
 
 slides:
   - image: /assets/images/posts/title-welcome.png
-  - image: /assets/images/posts/title-header-km.png
+  - image: /assets/images/posts/banner_zrl.png
 #    text: Explore data science across fields
-    url: /Where-is-the-Information-in-Data/
-  - image: /assets/images/posts/title-header-ms.png
-    url: /off-the-shelf-ai
+    url: /dashboards-as-research-deliverables
+  - image: /assets/images/posts/banner_yxl.png
+    url: /llm-augmented-codebook
 
 
 about: |
@@ -23,6 +23,15 @@ about: |
 
 featured_posts:
 # from the latest post to the oldest post
+
+  - image: /assets/images/posts/data_cover_zrl.png
+    title: Turning Fast-moving Crises into Structured, Revisitable Evidence
+    tag: Data Notes
+    url: /dashboards-as-research-deliverables
+    author: Zung-Ru Lin
+    author_url: https://zungru.com/
+    date: March 04, 2026
+    description: 'A narrative essay on how to keep sequence and evidence visible under polarization: turning fast-moving crises into structured, revisitable context'
 
   - image: /assets/images/posts/llm_cover_yxl.png
     title: A Workflow for LLM-Augmented Codebook Genration
@@ -102,7 +111,10 @@ Editorial_team:
     fellowship: Executive Director @DDDI
 
 contributor:
-  # placeholder
+    - name: Zung-Ru Lin
+      url: https://zungru.com/
+      image: /assets/images/authors/zung_ru_lin.png
+      fellowship: Chief Data Scientist & Co-PI of MLP @ PDRI-DevLab
 
 contact:
   email: sas-ddd-admin@sas.upenn.edu

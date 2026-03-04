@@ -1,20 +1,23 @@
 ---
 layout: blog
-title: "Research and Data: A Stream Through the Lens of the Contentious Politics"
-subtitle: "turning fast-moving crises into structured, revisitable evidence: dashboards + information extraction as research deliverables"
+# title: "Research and Data: A Stream Through the Lens of the Contentious Politics"
+title: "Turning Fast-moving Crises into Structured, Revisitable Evidence"
+subtitle: "dashboards + information extraction as research deliverables"
 authors: ["[Zung-Ru Lin](https://zungru.com/)"]
 author_pic: ["/assets/images/authors/zung_ru_lin.png"]
-author_title: ["Co-PI of MLP & Chief Data Scientist @ PDRI-DevLab"]
-date: 2026-03-03
-permalink: /Dashboards-as-Research-Deliverables/
+author_title: ["Chief Data Scientist & Co-PI of MLP @ PDRI-DevLab"]
+date: 2026-03-04
+permalink: /dashboards-as-research-deliverables/
 summary: "A narrative essay on how to keep sequence and evidence visible under polarization: turning fast-moving crises into structured, revisitable context."
 ---
 
+<div class="prelude" markdown="1">
 This post opens with a **social-pressure concern**. In fast, polarized news cycles, interpretation can drift away from chronology, and the first section explains why that matters for public judgment and for research.
 
 It then moves to a concrete **social-good case** from the [Machine Learning for Peace project](https://web.sas.upenn.edu/mlp-devlab/) at [PDRI-DevLab](https://pdri-devlab.upenn.edu/), where multilingual reporting is turned into structured civic and RAI signals and rendered in interactive dashboard views.
 
 The middle sections provide the **technical path** for building an impact-driven artifact with reader-contract design, reproducible pipelines, auditable inputs, and practical tools that keep outputs inspectable and citable.
+</div>
 
 ## From the saddening to the waking: when information performs
 
@@ -167,7 +170,7 @@ My first version is usually plain on purpose: fixed axes when comparing groups, 
 Implementation-wise, there is a spectrum. A static embed (one Plotly/Vega chart embedded in a page) is often enough when your goal is just to read. For a blog or a static site, you can also go a step further with a small JavaScript widget that reads a compact dataset and renders quickly. A lightweight app is useful when your goal is exploration. Streamlit is one approachable option for the latter.[^9][^10] And I use it a lot.
 
 
-<details>
+<details markdown="1">
 <summary>A beginner-friendly Streamlit starter (optional)</summary>
 
 ```python

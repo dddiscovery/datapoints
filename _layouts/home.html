@@ -62,7 +62,6 @@ title: Data Points
         <a class="slide-button next-button" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
-
     <div class="p-2"></div>
 
     <div class="content-section-blue" style="padding-top: 18px;">
@@ -155,6 +154,24 @@ title: Data Points
             <div class="scroll-indicator">
                 <div class="scroll-indicator-bar"></div>
             </div>
+
+            {% if page.contributor and page.contributor.size > 0 %}
+            <div class="people-sub-title">Contributor</div>
+            <div class="authors-container{% if page.contributor.size == 1 %} single-profile{% endif %}">
+                {% for member in page.contributor %}
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="{{ member.image | relative_url }}" alt="{{ member.name }}">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name"><a href="{{ member.url }}">{{ member.name }}</a></div>
+                        <div class="author-title">{{ member.title }}</div>
+                        <div class="author-fellowship">{{ member.fellowship }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
 
         </div>
     </div>
