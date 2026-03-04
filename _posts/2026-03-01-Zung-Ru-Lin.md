@@ -10,46 +10,11 @@ permalink: /Dashboards-as-Research-Deliverables/
 summary: "A narrative essay on how to keep sequence and evidence visible under polarization: turning fast-moving crises into structured, revisitable context."
 ---
 
-<style>
-  .reader-overview {
-    margin: 0.75rem 0 1.15rem;
-    padding: 0.68rem 0.82rem;
-    border: 1px solid rgba(174, 181, 190, 0.55);
-    border-left: 3px solid rgba(132, 142, 155, 0.75);
-    border-radius: 10px;
-    background: rgba(245, 247, 249, 0.74);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    color: #68707a;
-    font-size: 0.88rem;
-    line-height: 1.46;
-  }
+This post opens with a **social-pressure concern**. In fast, polarized news cycles, interpretation can drift away from chronology, and the first section explains why that matters for public judgment and for research.
 
-  .reader-overview p {
-    margin: 0 0 0.4rem;
-  }
+It then moves to a concrete **social-good case** from the [Machine Learning for Peace project](https://web.sas.upenn.edu/mlp-devlab/) at [PDRI-DevLab](https://pdri-devlab.upenn.edu/), where multilingual reporting is turned into structured civic and RAI signals and rendered in interactive dashboard views.
 
-  .reader-overview p:last-child {
-    margin-bottom: 0;
-  }
-
-  .reader-overview .overview-emphasis {
-    color: #5c646f;
-    font-weight: 600;
-  }
-
-  .reader-overview a {
-    color: #5b6776;
-    text-decoration: underline;
-    text-underline-offset: 1px;
-  }
-</style>
-
-<section class="reader-overview" aria-label="Post overview">
-  <p>This post opens with a <span class="overview-emphasis">social-pressure concern</span>. In fast, polarized news cycles, interpretation can drift away from chronology, and the first section explains why that matters for public judgment and for research.</p>
-  <p>It then moves to a concrete <span class="overview-emphasis">social-good case</span> from the <a href="https://web.sas.upenn.edu/mlp-devlab/" target="_blank" rel="noopener">Machine Learning for Peace project</a> at <a href="https://pdri-devlab.upenn.edu/" target="_blank" rel="noopener">PDRI-DevLab</a>, where multilingual reporting is turned into structured civic and RAI signals and rendered in interactive dashboard views.</p>
-  <p>The middle sections provide the <span class="overview-emphasis">technical path</span> for building an impact-driven artifact with reader-contract design, reproducible pipelines, auditable inputs, and practical tools that keep outputs inspectable and citable.</p>
-</section>
+The middle sections provide the **technical path** for building an impact-driven artifact with reader-contract design, reproducible pipelines, auditable inputs, and practical tools that keep outputs inspectable and citable.
 
 ## From the saddening to the waking: when information performs
 
