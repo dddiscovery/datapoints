@@ -571,9 +571,17 @@
   }
 
   .blog-content p {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.65;
     margin: 10px 0;
+  }
+
+  /* Keep code blocks readable on tablet/phone */
+  .blog-content pre,
+  .blog-content pre code,
+  .blog-content code {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
   }
 
   .author-info {
@@ -627,7 +635,16 @@
   }
 
   .blog-content p {
-    font-size: 0.85rem;
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  /* Slightly reduce code font on very small screens */
+  .blog-content pre,
+  .blog-content pre code,
+  .blog-content code {
+    font-size: 0.9rem !important;
+    line-height: 1.45 !important;
   }
 
   .author-container {
@@ -742,8 +759,8 @@
     display: none;
   }
 
-  /* Add horizontal dividers between sections */
-  /* .author-info::before,
+  /* Add horizontal dividers between sections
+  .author-info::before,
   .about-post::before {
     content: '';
     display: block;
@@ -752,7 +769,8 @@
     margin: 2rem auto;
     background-color: rgba(153,0,0,0.8);
   }
-} */
+  */
+}
 
 /* Add this to handle empty author containers */
 .author-container:empty,
