@@ -1,4 +1,384 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://dddiscovery.github.io/datapoints/feed.xml" rel="self" type="application/atom+xml" /><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" /><updated>2026-03-04T01:09:53+00:00</updated><id>https://dddiscovery.github.io/datapoints/feed.xml</id><title type="html">Data Points</title><subtitle>DDDI&apos;s Technical Blog Series</subtitle><entry><title type="html">A Workflow for LLM-Augmented Codebook Genration</title><link href="https://dddiscovery.github.io/datapoints/llm-augmented-codebook/" rel="alternate" type="text/html" title="A Workflow for LLM-Augmented Codebook Genration" /><published>2026-03-03T00:00:00+00:00</published><updated>2026-03-03T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Yuxin-Liang</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/llm-augmented-codebook/"><![CDATA[<p>Imagine you are a social science researcher. One day, you are excited to share a dataset you have collected/digitized/extracted/hand-coded with others in your field. Before doing so, however, you need to prepare a codebook for users who may lack the full research context. This step is particularly important in social science research, where data are often highly context-dependent. A well-prepared codebook explains the definition and source of each variable, provides sample values, and documents how missing values are coded—whether by you or by the original data provider.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://dddiscovery.github.io/datapoints/feed.xml" rel="self" type="application/atom+xml" /><link href="https://dddiscovery.github.io/datapoints/" rel="alternate" type="text/html" /><updated>2026-03-04T14:22:31+00:00</updated><id>https://dddiscovery.github.io/datapoints/feed.xml</id><title type="html">Data Points</title><subtitle>DDDI&apos;s Technical Blog Series</subtitle><entry><title type="html">Turning Fast-moving Crises into Structured, Revisitable Evidence</title><link href="https://dddiscovery.github.io/datapoints/dashboards-as-research-deliverables/" rel="alternate" type="text/html" title="Turning Fast-moving Crises into Structured, Revisitable Evidence" /><published>2026-03-04T00:00:00+00:00</published><updated>2026-03-04T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Zung-Ru-Lin</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/dashboards-as-research-deliverables/"><![CDATA[<div class="prelude">
+  <p>This post opens with a <strong>social-pressure concern</strong>. In fast, polarized news cycles, interpretation can drift away from chronology, and the first section explains why that matters for public judgment and for research.</p>
+
+  <p>It then moves to a concrete <strong>social-good case</strong> from the <a href="https://web.sas.upenn.edu/mlp-devlab/">Machine Learning for Peace project</a> at <a href="https://pdri-devlab.upenn.edu/">PDRI-DevLab</a>, where multilingual reporting is turned into structured civic and RAI signals and rendered in interactive dashboard views.</p>
+
+  <p>The middle sections provide the <strong>technical path</strong> for building an impact-driven artifact with reader-contract design, reproducible pipelines, auditable inputs, and practical tools that keep outputs inspectable and citable.</p>
+</div>
+
+<h2 id="from-the-saddening-to-the-waking-when-information-performs">From the saddening to the waking: when information performs</h2>
+
+<p>We all, at one point, get tired of chasing the news and watching the same event split into incompatible realities. Even when outlets agree on the facts, they sort them into stories that defend a long-term stance across sources. The facts do not disappear, but they arrive packaged with incentives: certainty over doubt, performance over patience, allegiance over curiosity. In polarized environments, information does not only inform; it recruits. It hardens impressions, rewards confirmation, and turns ambiguity into a kind of moral failure. Technology accelerates the process. Feeds optimize for engagement, and generative systems can now assemble plausible narratives at the speed of reaction, long before most readers have had a chance to check the underlying sequence.</p>
+
+<p>The other fatigue is political, not technological. In public argument, a single tactical move can be praised as “effective” even when its ethics, legality, and downstream consequences are murkier. Those consequences arrive asymmetrically: leaders get credit in the short term, while people on the ground absorb the long term. When domestic politics are already polarized and radicalized, this distortion becomes contagious. It trains audiences to treat governance as spectacle and to treat doubt as disloyalty.</p>
+
+<p>So I have started to care less about whose framing wins the hour and more about whether we can still see the sequence underneath it, including what remains uncertain. That is part of why the last days around Iran have felt so clarifying. The same interval gets framed as diplomacy or deterrence, precaution or provocation, even tragedy, depending on where you stand, and allegiance starts doing the work chronology should be doing. I do not think sequence will settle the argument. I think it keeps the argument tethered to time, which is already something.</p>
+
+<p>Put the U.S. incumbent’s political posture in this crisis aside for a moment; this does not require romanticizing Tehran, nor ignoring the long record of repression, proxy warfare, and internal violence under Ali Khamenei. It also does not require pretending that Iranians have not suffered under that system for decades, or that change would be a simple loss. It requires something simpler and more demanding, refusing to let outrage, loyalty, or exhaustion erase the timeline. The timeline does not answer the question, but it keeps us from answering a different one.</p>
+
+<h3 id="underperforms-the-storyline-nobody-sees">Underperforms, the storyline nobody sees</h3>
+
+<p>Then the pace changed. Some of the enabling moves were visible earlier, but as of March 1, 2026, the crisis can be read, at minimum, as a sequence rather than a set of isolated headlines.</p>
+
+<p>On February 5, Reuters summarized how the U.S. position had widened beyond the nuclear file to include Iran’s ballistic missiles, its regional armed networks, and its internal record.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> On February 26, Oman’s mediator described the Geneva talks as making significant progress even as Reuters reported a large U.S. military buildup and growing fear that diplomacy had become the last narrow bridge before war.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> The next day, Reuters reported that one of the administration’s public missile claims was not backed by U.S. intelligence.<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> In fast crises, the public rationale can race ahead of what can be substantiated. That gap matters because it reshapes what escalation feels like “pre-authorized” to different audiences.</p>
+
+<p>By February 28, the story moved from signaling to action. The U.N. Security Council was called into emergency session after U.S. and Israeli strikes on Iran and retaliation across the region.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup> Briefing the Council, the U.N. Secretary-General warned that the exchange posed a grave threat to international peace and security, and urged de-escalation and a return to negotiations.<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">5</a></sup> On March 1, Iranian state media confirmed Ali Khamenei’s death in the strikes. Reuters and AP reported the announcement and the immediate uncertainty around succession.<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">6</a></sup> That same day, Reuters and AP reported protests in Pakistan and Iraq; in Karachi, crowds reached the U.S. consulate and violence left deaths and injuries.<sup id="fnref:7" role="doc-noteref"><a href="#fn:7" class="footnote" rel="footnote">7</a></sup></p>
+
+<p>Putting those steps next to each other does not settle what they mean, but it keeps the order from disappearing. Widened conditions, diplomacy under threat, contested claims, kinetic escalation, emergency diplomacy, leadership shock, and cross-border reaction. Later, once the moment has passed, that order is what lets you revisit the week without rebuilding it from fragments and impressions.</p>
+
+<p>Once that sequence is visible, some public misreadings become easier to spot. People are not necessarily bad at facts; they are often being asked to reason without the timeline. A headline tells them what just happened. It rarely tells them what had already been preparing the ground beneath it, which is one reason diplomacy is interpreted so unevenly. By the time diplomacy becomes visible, it is frequently already encircled by threat, flattened into the language of winners and losers, or filtered through patriotic theater. What vanishes first is chronology. What vanishes second is proportion. And what vanishes with both is judgment.</p>
+
+<p>At that point, it stops being only a complaint about media and becomes a problem of method. If readers are asked to reason without chronology, then the research question is also about representation: what kind of deliverable keeps the record stable enough to revisit, argue with, and learn from after the attention has moved on?</p>
+
+<h2 id="signal-by-signal-actionable-through-__">Signal by signal, actionable through <strong>__</strong></h2>
+
+<p>Many open questions. Once you start thinking this way, you notice how often analysis is really just a fragile personal archive built from bookmarked links, a messy note with dates, a half-remembered sequence reconstructed after the fact. Under speed and polarization, memory is a bad database.</p>
+
+<p>Plus, different readers lean on that stability in different ways. Policymakers need triage on what moved, where, and what it might trigger. Researchers need comparability, a way to ask what this resembles. Practitioners need timing, enough structure to separate noise from an early signal. And everyone else still benefits from the same thing, a shared record that keeps us oriented when the story gets loud.</p>
+
+<p>After years of carrying this belief around, we turned it into a real project, something closer to an instrument than a note. The idea itself won’t hand you a verdict, but it can do what headlines rarely do. One step further, for me as a visual animal, that instrument comes alive as a dashboard, a research-ready place you want to revisit when something feels urgent.</p>
+
+<h3 id="machine-learning-for-peace-civic-space--rai">Machine Learning for Peace: Civic Space + RAI</h3>
+
+<p>This has been the recurring problem behind our work in MLP (Machine Learning for Peace project)<sup id="fnref:8" role="doc-noteref"><a href="#fn:8" class="footnote" rel="footnote">8</a></sup> at PDRI-DevLab. We wanted a way to turn a multilingual flood of reporting into a record you can revisit after the attention has moved on.</p>
+
+<p>Our Civic Space project is built to detect changes in civic space, especially in the Global South and other democracy-fragile settings where institutions can shift quickly and evidence is often scattered. We aim to surface timely, evidence-based signals that help people make sense of contention and institutional change while it is happening, and sometimes before democratic backsliding becomes obvious.</p>
+
+<p>Our RAI (Resurgent Authoritarian Influence) work complements that lens by tracking external influence activity, including diplomatic positioning and other strategic engagement that can shape alignments, partnerships, and security postures over time. Here too, not to over-interpret a single headline; it is to make the pattern of engagement legible enough to revisit and argue with.</p>
+
+<p>Here is what we actually built: a monthly event series and a set of public dashboards. The stream forces consistency (same unit of time, same event families, same country list); the dashboards make it legible enough to use. In practice, that means you can revisit a period and ask: what moved first, what followed, and how did patterns spread across places and event families?</p>
+
+<p>Because the monthly records are consistent most of the time, we can also run an early-warning layer on top of it. It produces likelihood estimates, with an explicit confidence measure, that a country’s civic pressure or external-influence activity will rise in the near term (next 1-6 months), and that the rise is likely to climb toward a local peak. In a real workflow, that reads like: which places are more likely to move higher next month, and which are more likely to be moving into the same regional wave. Those estimates are not necessarily a substitute for judgment; they are a way to allocate attention early and to make the reasoning auditable.</p>
+
+<p>In retrospect, the peak markers in our civic and RAI series often line up with episodes most readers can name, even if they remember them through different politics or different media frames:</p>
+
+<ul>
+  <li><strong>Ukraine</strong>: protest activity is flagged in <code class="language-plaintext highlighter-rouge">2013-12</code> as Euromaidan intensifies; coup-related activity is flagged in <code class="language-plaintext highlighter-rouge">2014-02</code> during the government rupture; diplomatic-statement pressure is flagged in <code class="language-plaintext highlighter-rouge">2014-03</code> as international positioning hardens.</li>
+  <li><strong>Turkey</strong>: coup-related activity is flagged in <code class="language-plaintext highlighter-rouge">2016-07</code>, followed by arrest-related activity flagged in <code class="language-plaintext highlighter-rouge">2016-08</code> as the domestic security response consolidates.</li>
+  <li><strong>Belarus</strong>: protest activity is flagged in <code class="language-plaintext highlighter-rouge">2020-08</code> after the contested election; military-activity pressure is flagged in <code class="language-plaintext highlighter-rouge">2022-02</code> around the start of Russia’s full-scale invasion of Ukraine.</li>
+  <li><strong>Niger</strong>: coup-related activity is flagged in <code class="language-plaintext highlighter-rouge">2023-07</code>, followed by intelligence/counterintelligence in <code class="language-plaintext highlighter-rouge">2023-09</code> and security engagement in <code class="language-plaintext highlighter-rouge">2024-03</code>.</li>
+  <li><strong>Ethiopia</strong>: security mobilization is flagged in <code class="language-plaintext highlighter-rouge">2015-10</code>, then emergency-governance in <code class="language-plaintext highlighter-rouge">2016-10</code> around the state of emergency.</li>
+  <li><strong>Georgia</strong>: election-activity pressure is flagged in <code class="language-plaintext highlighter-rouge">2024-10</code>, followed by protest activity in <code class="language-plaintext highlighter-rouge">2024-11</code>.</li>
+</ul>
+
+<p>I am not trying to claim these cases are the same, or that one society can be reduced to another society’s timeline. But we believe crises do have a habit of rhyming in structure before they rhyme in vocabulary. A surface is useful when it makes that rhyme visible without pretending the stories are interchangeable.</p>
+
+<details>
+<summary>How we approach this? (brief)</summary>
+
+In this project, we ingest about 120 million articles from roughly 400 sources (40+ languages) and represent them as monthly event "scales" across 66 countries (2012-01 to 2025-10 in this interactive view): 20 civic event families and 21 RAI event families.
+Under the hood, we scrape, standardize, machine-translate text with open-source fine-tuned models, classify events with a ModernBERT-based encoder, and run a geoparser (can be down to subnational mentions) with modifier rules and constraints, so that an event's time-and-space scope stays consistent.
+Automating human interpretation isn’t the goal. The goal is to keep time and place stable enough that you can aggregate, visualize, analyze, and revisit an episode without re-litigating the basic scope.
+
+</details>
+
+<p><em>Interactive note: The two windows below are a compact example: one timeline and one map built on our monthly civic/RAI events in time series, with optional event-level peak markers.</em></p>
+
+<div id="mlp-mini-dashboard" data-dashboard-data-url="/datapoints/assets/post_assets/2026-03-01-Zung-Ru-Lin/interactive/dashboard_data.json?v=20260303i">
+  <div class="mlp-dashboard-grid">
+    <section class="mlp-dashboard-card">
+      <div class="mlp-dashboard-head">
+        <h4>Signal Timeline Explorer</h4>
+        <p>Pick 2-3 countries, switch civic/RAI, choose an indicator, and toggle peak markers.</p>
+      </div>
+      <div class="mlp-dashboard-controls">
+        <label for="mlp-metric-select">Dataset</label>
+        <select id="mlp-metric-select">
+          <option value="civic">Civic space</option>
+          <option value="rai">RAI (combined)</option>
+        </select>
+
+        <label for="mlp-surge-event-select">Indicator
+          <span class="mlp-help-wrap" aria-label="Peak marker info" tabindex="0">?
+            <span class="mlp-help-box">Peak markers come from the indicator-level <code>NormShock</code> flag. A marker appears only where that indicator is flagged as a local peak against that country’s baseline.</span>
+          </span>
+        </label>
+        <select id="mlp-surge-event-select"></select>
+
+        <label for="mlp-country-1">Country 1</label>
+        <select id="mlp-country-1"></select>
+
+        <label for="mlp-country-2">Country 2</label>
+        <select id="mlp-country-2"></select>
+
+        <label for="mlp-country-3">Country 3</label>
+        <select id="mlp-country-3"></select>
+
+        <label class="mlp-switch" for="mlp-show-peaks">
+          <input id="mlp-show-peaks" type="checkbox" checked="" />
+          <span>Show peak markers</span>
+        </label>
+      </div>
+      <div id="mlp-ts-window" class="mlp-plot-canvas"></div>
+    </section>
+
+    <section class="mlp-dashboard-card">
+      <div class="mlp-dashboard-head">
+        <h4>Monthly Intensity Map</h4>
+        <p>Use the month slider, or click countries on the map to add them to the timeline.
+          <span class="mlp-help-wrap" aria-label="Map marker info" tabindex="0">?
+            <span class="mlp-help-box">Map fill color shows the selected indicator intensity. X markers show countries where that same indicator’s peak flag is 1 in the selected month.</span>
+          </span>
+        </p>
+      </div>
+      <div class="mlp-map-controls">
+        <label for="mlp-month-slider">Month</label>
+        <input id="mlp-month-slider" type="range" min="0" max="0" value="0" step="1" />
+        <span id="mlp-month-label">-</span>
+        <button id="mlp-play-months" type="button">Play</button>
+        <button id="mlp-latest-month" type="button">Latest</button>
+      </div>
+      <div id="mlp-map-window" class="mlp-plot-canvas"></div>
+    </section>
+  </div>
+  <p id="mlp-dashboard-status" class="mlp-dashboard-status">Loading interactive windows...</p>
+</div>
+
+<link rel="stylesheet" href="/datapoints/assets/post_assets/2026-03-01-Zung-Ru-Lin/interactive/dashboard_windows.css?v=20260303i" />
+
+<script src="/datapoints/assets/post_assets/2026-03-01-Zung-Ru-Lin/interactive/dashboard_windows.js?v=20260303i"></script>
+
+<p>Try the window for a minute. Add a few countries, switch between civic and RAI, and slide through months. When crises move fast, the record shows up as scattered pieces across places, categories, and time. The job is to capture those pieces as stable, referenceable units that you can aggregate, visualize, and revisit later without rebuilding the basics. The next section sketches a generic workflow for building that kind of deliverable on top of your own data.</p>
+
+<h2 id="toolkit-from-fragments-to-research-deliverable">Toolkit: from fragments to research deliverable</h2>
+
+<p><strong>Note:</strong> Some examples use Python and modern ML tooling, but the point is similar in any stack. The goal is a record you can rerun and defend.</p>
+
+<h3 id="1-define-what-the-artifact-is-for">1) Define what the artifact is for</h3>
+
+<h4 id="11-start-with-a-reader-contract">1.1 Start with a reader contract</h4>
+<p>Before writing code, set a one-sentence reader contract. Name the reader, the recurring question, the timescale, and what you are not claiming. For example, “For X, this shows Y by month for Z. It is descriptive, not causal, and it updates on W.” The point is not to sound rigorous; instead, we may avoid accidental overreach when someone asks if this is causal or something even less backed. That single sentence becomes the boundary of the artifact and clarifies what the surface is allowed to ignore.</p>
+
+<h4 id="12-build-one-surface-for-your-question">1.2 Build one surface for your question</h4>
+<p>When someone says they want to see the data (in a visual way), I don’t reach for a feature list. Instead, I reach for the use case, the moment that made them ask for it. Are they trying to see change over time, compare places, or answer the question that always comes next: what else was happening around then? Pick one question from your reader contract and build the smallest surface that can answer it. A timeline plus a map is often a good first pair because it keeps both time and geography in view, and of course, they look good together.</p>
+
+<p>My first version is usually plain on purpose: fixed axes when comparing groups, clear units, hover text that exposes denominators, and a visible “last updated” timestamp. It is not an aesthetic choice as much as an audit choice. An afternoon version can be one table, one time grain, one unit of analysis, and one plot. Aggregate to one row per entity-month (or entity-week), put the raw count and the normalized rate in the hover text, and resist the temptation to add interactivity that you cannot explain. Recurring render issues have also haunted me more times than I can count. If you add marker options (e.g., surge/peak to flag at-scale event-month points), make sure the definition fits in a tooltip, with a simplified descriptive version of the algorithm.</p>
+
+<p>Implementation-wise, there is a spectrum. A static embed (one Plotly/Vega chart embedded in a page) is often enough when your goal is just to read. For a blog or a static site, you can also go a step further with a small JavaScript widget that reads a compact dataset and renders quickly. A lightweight app is useful when your goal is exploration. Streamlit is one approachable option for the latter.<sup id="fnref:9" role="doc-noteref"><a href="#fn:9" class="footnote" rel="footnote">9</a></sup><sup id="fnref:10" role="doc-noteref"><a href="#fn:10" class="footnote" rel="footnote">10</a></sup> And I use it a lot.</p>
+
+<details>
+  <summary>A beginner-friendly Streamlit starter (optional)</summary>
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Save as app.py, then:
+#   pip install streamlit pandas plotly pyarrow
+#   streamlit run app.py
+#
+# This is intentionally generic: upload a table, pick your columns, and explore a timeline.
+</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="n">px</span>
+<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="n">st</span>
+
+
+<span class="n">st</span><span class="p">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">page_title</span><span class="o">=</span><span class="s">"Quick Timeline Explorer"</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">"wide"</span><span class="p">)</span>
+<span class="n">st</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Quick Timeline Explorer"</span><span class="p">)</span>
+<span class="n">st</span><span class="p">.</span><span class="n">caption</span><span class="p">(</span><span class="s">"Upload a CSV/Parquet file, choose the columns, and get a clean interactive timeline."</span><span class="p">)</span>
+
+<span class="n">uploaded</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">file_uploader</span><span class="p">(</span><span class="s">"Upload data"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="p">[</span><span class="s">"csv"</span><span class="p">,</span> <span class="s">"parquet"</span><span class="p">,</span> <span class="s">"pq"</span><span class="p">])</span>
+<span class="k">if</span> <span class="n">uploaded</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="n">st</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Start with a table that has a date column and a numeric column (plus an optional group/entity column)."</span><span class="p">)</span>
+    <span class="n">st</span><span class="p">.</span><span class="n">stop</span><span class="p">()</span>
+
+
+<span class="o">@</span><span class="n">st</span><span class="p">.</span><span class="n">cache_data</span><span class="p">(</span><span class="n">show_spinner</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_upload</span><span class="p">(</span><span class="nb">file</span><span class="p">:</span> <span class="n">st</span><span class="p">.</span><span class="n">runtime</span><span class="p">.</span><span class="n">uploaded_file_manager</span><span class="p">.</span><span class="n">UploadedFile</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="nb">file</span><span class="p">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s">""</span><span class="p">).</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="nb">file</span><span class="p">.</span><span class="n">getvalue</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">name</span><span class="p">.</span><span class="n">endswith</span><span class="p">((</span><span class="s">".parquet"</span><span class="p">,</span> <span class="s">".pq"</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">read_upload</span><span class="p">(</span><span class="n">uploaded</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="n">st</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Preview"</span><span class="p">)</span>
+<span class="n">st</span><span class="p">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">use_container_width</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">st</span><span class="p">.</span><span class="n">sidebar</span><span class="p">:</span>
+    <span class="n">st</span><span class="p">.</span><span class="n">subheader</span><span class="p">(</span><span class="s">"Pick Columns"</span><span class="p">)</span>
+    <span class="n">date_col</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s">"Date column"</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">value_col</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s">"Value column"</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">group_col</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s">"Group column (optional)"</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s">"(none)"</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">))</span>
+
+    <span class="n">st</span><span class="p">.</span><span class="n">subheader</span><span class="p">(</span><span class="s">"Time Grain"</span><span class="p">)</span>
+    <span class="n">grain</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s">"Aggregate to"</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s">"None"</span><span class="p">,</span> <span class="s">"Daily"</span><span class="p">,</span> <span class="s">"Weekly"</span><span class="p">,</span> <span class="s">"Monthly"</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">data</span><span class="p">[</span><span class="n">date_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">date_col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s">"coerce"</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="n">value_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">value_col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s">"coerce"</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">date_col</span><span class="p">,</span> <span class="n">value_col</span><span class="p">]).</span><span class="n">sort_values</span><span class="p">(</span><span class="n">date_col</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">group_col</span> <span class="o">!=</span> <span class="s">"(none)"</span><span class="p">:</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">group_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">group_col</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">choices</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">group_col</span><span class="p">].</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">sidebar</span><span class="p">.</span><span class="n">multiselect</span><span class="p">(</span><span class="s">"Groups (pick up to 3)"</span><span class="p">,</span> <span class="n">choices</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">choices</span><span class="p">[:</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="n">selected</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">selected</span><span class="p">:</span>
+        <span class="n">st</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"Pick at least one group."</span><span class="p">)</span>
+        <span class="n">st</span><span class="p">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">group_col</span><span class="p">].</span><span class="n">isin</span><span class="p">(</span><span class="n">selected</span><span class="p">)]</span>
+
+<span class="k">if</span> <span class="n">grain</span> <span class="o">!=</span> <span class="s">"None"</span><span class="p">:</span>
+    <span class="n">rule</span> <span class="o">=</span> <span class="p">{</span><span class="s">"Daily"</span><span class="p">:</span> <span class="s">"D"</span><span class="p">,</span> <span class="s">"Weekly"</span><span class="p">:</span> <span class="s">"W"</span><span class="p">,</span> <span class="s">"Monthly"</span><span class="p">:</span> <span class="s">"MS"</span><span class="p">}[</span><span class="n">grain</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">group_col</span> <span class="o">!=</span> <span class="s">"(none)"</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">data</span><span class="p">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">date_col</span><span class="p">)</span>
+                <span class="p">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_col</span><span class="p">)[</span><span class="n">value_col</span><span class="p">]</span>
+                <span class="p">.</span><span class="n">resample</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+                <span class="p">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="p">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">data</span><span class="p">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">date_col</span><span class="p">)[</span><span class="n">value_col</span><span class="p">]</span>
+                <span class="p">.</span><span class="n">resample</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+                <span class="p">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="p">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="p">.</span><span class="n">line</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">date_col</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">value_col</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="bp">None</span> <span class="k">if</span> <span class="n">group_col</span> <span class="o">==</span> <span class="s">"(none)"</span> <span class="k">else</span> <span class="n">group_col</span><span class="p">,</span>
+    <span class="n">markers</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span> <span class="n">hovermode</span><span class="o">=</span><span class="s">"x unified"</span><span class="p">)</span>
+<span class="n">st</span><span class="p">.</span><span class="n">plotly_chart</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">use_container_width</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">st</span><span class="p">.</span><span class="n">expander</span><span class="p">(</span><span class="s">"Download filtered data"</span><span class="p">):</span>
+    <span class="n">st</span><span class="p">.</span><span class="n">download_button</span><span class="p">(</span>
+        <span class="s">"Download CSV"</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">),</span>
+        <span class="n">file_name</span><span class="o">=</span><span class="s">"filtered_data.csv"</span><span class="p">,</span>
+        <span class="n">mime</span><span class="o">=</span><span class="s">"text/csv"</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>  </div>
+</details>
+
+<h3 id="2-make-it-reproducible-and-citable">2) Make it reproducible and citable</h3>
+
+<h4 id="21-make-revisits-cheap">2.1 Make revisits cheap</h4>
+<p>Once you put anything public in front of people, the same questions show up sooner or later. Where did this number come from? Can we rerun it after the next data drop? I try to make the answer boringly repeatable. That usually means keeping the deliverables deliberately plain: a raw append-only layer that never overwrites sources, stable IDs for each source item and each run, transformations encoded as code rather than spreadsheet muscle memory, and a data contract that spells out columns, units, and update schedules.<sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">11</a></sup> For many projects, <a href="https://parquet.apache.org/">Apache Parquet</a> + <a href="https://duckdb.org/docs/">DuckDB</a> is a solid base because it stays quick during exploration while still being strict enough to reproduce.</p>
+
+<p>In reality, two things prevent this from turning into wishful thinking. Put a schema check at the end of every transformation step, even if it is only a handful of assertions about types, missingness, and ranges. Then keep a single end-to-end entrypoint, one command that can rebuild the artifacts you publish from scratch, whether that is a Makefile target, a shell script, or a <code class="language-plaintext highlighter-rouge">python -m ...</code> call (“which python” has gotten me more than once). If you can, keep a short changelog and a data dictionary next to the dataset so a future revisit does not turn into guesswork.</p>
+
+<h4 id="22-version-the-moving-parts">2.2 Version the moving parts</h4>
+<p>Pipelines drift in quiet ways. Dependencies change, model checkpoints get swapped, data backfills arrive, and two people can run the same code and produce different artifacts. So treat version control as part of the deliverable. Pin the environment, record the model and data versions, and save the run configuration that produced each published output. This is just so you can tell, later, what code, data, and model produced the numbers on the page.</p>
+
+<h4 id="23-make-evaluation-a-first-class-artifact">2.3 Make evaluation a first-class artifact</h4>
+<p>If the work is research-facing, metrics are part of the record. Save the evaluation set, the scoring script, and the exact model snapshot tied to the numbers you show in papers, memos, or slides. Prefer a small, pre-defined validation task that you rerun whenever the pipeline changes, plus a fixed regression set that catches silent breakage.</p>
+
+<h4 id="24-write-for-the-future-reader">2.4 Write for the future reader</h4>
+<p>A good README is not a tutorial. It is a contract for someone who was not there sitting next to you. Spell out what the artifact measures, what it does not measure, the unit of analysis, update cadence, and how late data is handled. Include a short “reproduce this figure/table” section with the one command that rebuilds the outputs. If you present results publicly, make “Where did this come from?” answerable from the metadata you already record.</p>
+
+<h4 id="25-borrow-building-blocks-then-verify-early">2.5 Borrow building blocks, then verify early</h4>
+<p>When moving fast, the technical side of the work benefits from borrowing proven building blocks and verifying them early. For that, the usual starting points are <a href="https://github.com/">GitHub</a> for code, <a href="https://arxiv.org/">arXiv</a>, and <a href="https://openreview.net/">OpenReview</a> for papers and reviews, <a href="https://paperswithcode.com/">Papers with Code</a> for reproducible baselines, and the <a href="https://huggingface.co/">Hugging Face Hub</a> for model and dataset artifacts. Model cards, licenses, and one small validation pass do most of the risk reduction before anything gets near a production-like workflow.</p>
+
+<h3 id="3-keep-the-inputs-auditable">3) Keep the inputs auditable</h3>
+
+<h4 id="31-standardize-without-losing-provenance">3.1 Standardize without losing provenance</h4>
+<p>Standardization is where many projects stall because “clean” becomes a second kind of chaos, with half-documented transforms, schema drift, and features no one trusts. Different teams start from different modalities, so treat the examples as options, not assumptions.</p>
+
+<p>For text, the canonical object might be JSONL with stable IDs, timestamps, source URLs, and offsets back to the original so citations remain possible. For images, OCR text paired with bounding boxes when text is the evidence, or detected objects with attributes when objects are the evidence. For audio, transcripts with timestamps and speaker segments. For video, keyframes, shot boundaries, and extracted captions. If extraction changes over time, keep a small regression set of representative items to catch silent breakage.</p>
+
+<p>If you work with documents, extraction and OCR are common choke points. Tools like Unstructured can help turn PDFs and HTML into a consistent canonical form,<sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">12</a></sup> and OCR stacks can help with scanned pages and images.<sup id="fnref:13" role="doc-noteref"><a href="#fn:13" class="footnote" rel="footnote">13</a></sup><sup id="fnref:14" role="doc-noteref"><a href="#fn:14" class="footnote" rel="footnote">14</a></sup><sup id="fnref:15" role="doc-noteref"><a href="#fn:15" class="footnote" rel="footnote">15</a></sup></p>
+
+<h3 id="4-optional-extensions">4) Optional extensions</h3>
+
+<h4 id="41-optional-add-ai-grounded-in-evidence">4.1 Optional: add AI, grounded in evidence</h4>
+
+<p>In our MLP project, the dashboard answers the “what” at scale, but the next question is often “what is driving this month.” That is where AI assistance can help, mainly as a bridge from aggregated signals back to the underlying stories. We use GenAI for monthly briefs pulled from surged event-months, short digests that cluster recurring storylines, and a grounded Q&amp;A interface that helps a reader navigate recent documents without pretending to replace analysis. Human validation is still needed before any of it reaches practitioners.</p>
+
+<p>Retrieval can help, but it is only one option and often not the fastest one. Sometimes a simple filter on the relevant country-month, a keyword search, or a curated set of exemplars is enough. When retrieval does make sense, the idea is simple: pull a small set of relevant passages from a corpus and keep summaries or answers anchored to what was actually retrieved. Vector search and RAG-style setups can support that, but they are tools, not defaults (pgvector<sup id="fnref:16" role="doc-noteref"><a href="#fn:16" class="footnote" rel="footnote">16</a></sup>, LlamaIndex query transformations<sup id="fnref:17" role="doc-noteref"><a href="#fn:17" class="footnote" rel="footnote">17</a></sup>).</p>
+
+<p>Use deterministic code for the numbers, and use AI for what it is better at, summarizing text, grouping themes, and pointing readers back to sources. Make it easy to see what documents the system relied on, and what it did not.</p>
+
+<h4 id="42-keep-it-honest-in-public">4.2 Keep it honest in public</h4>
+
+<p>Once a public-facing tool is out in the world, it won’t stay still. Data arrives late, labels change, bug fixes shift counts, and search/retrieval indexes quietly go out of date. A simple habit that may help is to keep a small checklist of the questions people actually ask, what sources you expect to support the answers, and a few errors you never want to ship. Not a benchmark, but a guard against drift turning into confident, wrong prose.</p>
+
+<p>Whatever the stack, publish the basics alongside the visuals: what the system measures and cannot measure, how often it updates (and what “late data” means), and how a reader can trace a claim back to a source. That is how a surface stays a research deliverable instead of becoming another genre of persuasion.</p>
+
+<h2 id="closing-what-we-owe-the-reader">Closing: what we owe the reader</h2>
+
+<p>This kind of public-facing surface should count as a research deliverable because it does more than display results. It makes claims more checkable. For us, when power moves quickly and interpretation turns punitive or theatrical, that commitment matters. It keeps sequence and context intact long enough for judgment to be something more than reaction.</p>
+
+<p>And in chaotic eras, taking the reader seriously does not mean sentimentality. It means refusing to forget that escalation curves and sudden silences in the record are attached to human beings who live downstream of decisions they did not make. If our work helps policymakers decide more responsibly, helps researchers reason more carefully, helps practitioners intervene earlier, and helps readers feel less manipulated by speed, then the surface is not a side product. It is part of what responsible research looks like.</p>
+
+<p>In moments like these, the line between scholarship and loyalty tests can start to blur. Holding to the record, and to the norms that keep it independent, is one quiet way of standing with the people this work is ultimately about.</p>
+
+<p>If you want to explore the live dashboards and project site:</p>
+
+<ul>
+  <li><a href="https://huggingface.co/spaces/zungru/mlp-civic-dashboard">MLP Civic Dashboard</a></li>
+  <li><a href="https://huggingface.co/spaces/zungru/mlp-rai-dashboard">MLP RAI Dashboard</a></li>
+  <li><a href="https://web.sas.upenn.edu/mlp-devlab/">MLP-DevLab @ Penn</a></li>
+</ul>
+
+<h2 id="notes-and-references">Notes and references</h2>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Reuters, <a href="https://www.reuters.com/business/aerospace-defense/iran-crisis-issues-dividing-washington-tehran-2026-02-05/">“What are key issues dividing US and Iran in nuclear talks?”</a>, February 5, 2026. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Reuters, <a href="https://www.reuters.com/world/middle-east/us-iran-nuclear-talks-resume-geneva-against-backdrop-military-threat-2026-02-26/">“US-Iran talks end with no deal but potential signs of progress”</a>, February 26, 2026. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>Reuters, <a href="https://www.reuters.com/business/aerospace-defense/trump-iranian-missile-claim-unsupported-by-us-intelligence-say-sources-2026-02-27/">“Trump Iranian missile claim unsupported by U.S. intelligence, say sources”</a>, February 27, 2026. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>Reuters, <a href="https://www.reuters.com/world/china/un-security-council-meet-saturday-iran-conflict-2026-02-28/">“UN Security Council to meet on Saturday on Iran conflict”</a>, February 28, 2026. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:5" role="doc-endnote">
+      <p>UN Office at Geneva, <a href="https://www.ungeneva.org/en/news-media/news/2026/02/116328/bombing-iran-and-retaliatory-strikes-grave-threat-international">“Bombing of Iran and retaliatory strikes ‘a grave threat to international peace and security’: Guterres”</a>, February 28, 2026. <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:6" role="doc-endnote">
+      <p>Reuters, <a href="https://www.reuters.com/world/middle-east/irans-ali-khamenei-who-based-iron-rule-fiery-hostility-us-israel-dies-86-2026-03-01/">“Iran’s Ali Khamenei, who based iron rule on fiery hostility to US and Israel, dies at 86”</a>, March 1, 2026; AP, <a href="https://apnews.com/article/5b13b69b708c4ed38e8f95f5fb41a597">“Iran’s Supreme Leader Ayatollah Ali Khamenei, who led the Islamic Republic since 1989, is dead at 86”</a>, March 1, 2026. <a href="#fnref:6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:7" role="doc-endnote">
+      <p>Reuters, <a href="https://www.reuters.com/world/asia-pacific/pakistan-police-fire-tear-gas-protesters-outside-us-consulate-reuters-witness-2026-03-01/">“Nine people killed as protests erupt in Pakistan and Iraq over Khamenei’s death”</a>, March 1, 2026; AP, <a href="https://apnews.com/article/a3cc0c3c6f126cc54a657f61d312a203">“At least 22 people killed in Pakistan and Iraq protests over Khamenei’s death”</a>, March 1, 2026. <a href="#fnref:7" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:8" role="doc-endnote">
+      <p>MLP-DevLab @ Penn, <a href="https://web.sas.upenn.edu/mlp-devlab/">Machine Learning for Peace (MLP-DevLab)</a>. <a href="#fnref:8" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:9" role="doc-endnote">
+      <p>Streamlit, <a href="https://docs.streamlit.io/get-started/tutorials/create-an-app">Create an app</a>. <a href="#fnref:9" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:10" role="doc-endnote">
+      <p>Streamlit, <a href="https://docs.streamlit.io/">Documentation</a>. <a href="#fnref:10" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:11" role="doc-endnote">
+      <p>Open Data Contract Standard, <a href="https://bitol-io.github.io/open-data-contract-standard/latest/">Open Data Contract Standard (ODCS)</a>. <a href="#fnref:11" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:12" role="doc-endnote">
+      <p>Unstructured, <a href="https://docs.unstructured.io/open-source/introduction/overview">Open-source overview</a>. <a href="#fnref:12" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:13" role="doc-endnote">
+      <p>PyMuPDF, <a href="https://pymupdf.readthedocs.io/en/latest/recipes-ocr.html">OCR recipe</a>. <a href="#fnref:13" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:14" role="doc-endnote">
+      <p>Kreuzberg, <a href="https://docs.kreuzberg.dev/features/#ocr-optical-character-recognition">Features (OCR)</a>. <a href="#fnref:14" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:15" role="doc-endnote">
+      <p>PaddleOCR, <a href="https://www.paddleocr.ai/latest/en/index.html">Documentation</a>. <a href="#fnref:15" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:16" role="doc-endnote">
+      <p>pgvector, <a href="https://github.com/pgvector/pgvector">pgvector</a>. <a href="#fnref:16" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:17" role="doc-endnote">
+      <p>LlamaIndex, <a href="https://docs.llamaindex.ai/en/stable/optimizing/advanced_retrieval/query_transformations/">Query transformations</a>. <a href="#fnref:17" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>[Zung-Ru Lin](https://zungru.com/)</name></author><summary type="html"><![CDATA[This post opens with a social-pressure concern. In fast, polarized news cycles, interpretation can drift away from chronology, and the first section explains why that matters for public judgment and for research.]]></summary></entry><entry><title type="html">A Workflow for LLM-Augmented Codebook Genration</title><link href="https://dddiscovery.github.io/datapoints/llm-augmented-codebook/" rel="alternate" type="text/html" title="A Workflow for LLM-Augmented Codebook Genration" /><published>2026-03-03T00:00:00+00:00</published><updated>2026-03-03T00:00:00+00:00</updated><id>https://dddiscovery.github.io/datapoints/Yuxin-Liang</id><content type="html" xml:base="https://dddiscovery.github.io/datapoints/llm-augmented-codebook/"><![CDATA[<p>Imagine you are a social science researcher. One day, you are excited to share a dataset you have collected/digitized/extracted/hand-coded with others in your field. Before doing so, however, you need to prepare a codebook for users who may lack the full research context. This step is particularly important in social science research, where data are often highly context-dependent. A well-prepared codebook explains the definition and source of each variable, provides sample values, and documents how missing values are coded—whether by you or by the original data provider.</p>
 
 <p>This process can be tedious, especially when a dataset contains many variables drawn from multiple sources.</p>
 

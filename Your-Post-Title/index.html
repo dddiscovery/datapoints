@@ -100,12 +100,17 @@
       <p class="author-title">author2's title.</p>
     </div>
 
+    <div id="left-toc" class="left-toc left-toc--loading" aria-label="On this page">
+      <div class="left-toc-title">On this page</div>
+      <nav id="left-toc-nav" class="left-toc-nav"></nav>
+    </div>
+    
     
   </div>
 
   <div class="vertical-divider"></div>
 
-  <div class="blog-content">
+  <div class="blog-content post-content">
     <p>“Your content here”</p>
 
   </div>
@@ -208,6 +213,77 @@
       }
 
       document.addEventListener('DOMContentLoaded', function() {
+        function slugify(text) {
+          return text
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+        }
+
+        function ensureId(heading, used) {
+          if (heading.id) {
+            used.add(heading.id);
+            return heading.id;
+          }
+          const base = slugify(heading.textContent || 'section');
+          let id = base || 'section';
+          let i = 2;
+          while (used.has(id) || document.getElementById(id)) {
+            id = (base || 'section') + '-' + i;
+            i += 1;
+          }
+          heading.id = id;
+          used.add(id);
+          return id;
+        }
+
+        const toc = document.getElementById('left-toc');
+        const tocNav = document.getElementById('left-toc-nav');
+        const content = document.querySelector('.post-content');
+        if (toc && tocNav && content) {
+          const headings = Array.from(content.querySelectorAll('h2, h3'))
+            .filter(h => (h.textContent || '').trim().length > 0);
+          if (headings.length) {
+            const usedIds = new Set();
+            headings.forEach(h => ensureId(h, usedIds));
+
+            headings.forEach(h => {
+              const a = document.createElement('a');
+              a.className = 'left-toc-link level-' + h.tagName.toLowerCase();
+              a.href = '#' + h.id;
+              a.textContent = h.textContent.trim();
+              tocNav.appendChild(a);
+            });
+
+            const links = Array.from(tocNav.querySelectorAll('.left-toc-link'));
+            const byId = {};
+            links.forEach(link => {
+              byId[link.getAttribute('href').slice(1)] = link;
+            });
+
+            function setActive(id) {
+              links.forEach(link => link.classList.remove('active'));
+              if (id && byId[id]) byId[id].classList.add('active');
+            }
+
+            const observer = new IntersectionObserver(
+              entries => {
+                const visible = entries
+                  .filter(e => e.isIntersecting)
+                  .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (visible.length) setActive(visible[0].target.id);
+              },
+              { rootMargin: '0px 0px -70% 0px', threshold: 0.1 }
+            );
+
+            headings.forEach(h => observer.observe(h));
+            setActive(headings[0].id);
+            toc.classList.remove('left-toc--loading');
+          }
+        }
+
         document.querySelectorAll('.blog-content pre').forEach(function(pre) {
           const button = document.createElement('button');
           button.className = 'copy-button';

@@ -565,6 +565,9 @@ video {
 .pt-5 {
   padding-top: 1.25rem;
 }
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
 /* Basic styles for home page */
 .home-content {
     padding: 20px;
@@ -1130,7 +1133,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
         0 0 10px #fc4375; */
     margin-top: 25px; 
     box-sizing: border-box;
-    border: 6px solid rgba(1, 31, 91, 0.1);
+    border: 3px solid rgba(1, 31, 91, 0.12);
 }
 .author-image img {
     width: 8rem;
@@ -1141,17 +1144,17 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 }
 .author-info{
     /* font-family: Optima, sans-serif; */
-    font-family: 'Faustina', serif !important;
+    font-family: 'Poppins', sans-serif !important;
     color: #011f5b;
     font-size: 1rem;
     text-align: center;
-    font-weight: 500;
+    font-weight: 400;
 }
 .authors-section {
     width: 972px;
     margin-left: auto;
     margin-right: auto;
-    padding: 1rem 0;
+    padding: 1rem 0 0.25rem;
     position: relative;
     margin-top: 0;
 }
@@ -1164,6 +1167,11 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
     -webkit-overflow-scrolling: touch;
     padding-bottom: 20px; /* Space for scrollbar */
 }
+.authors-container.single-profile {
+    justify-content: center;
+    overflow-x: visible;
+    scroll-snap-type: none;
+}
 .author-card {
     display: flex;
     flex-direction: column;
@@ -1174,7 +1182,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
     width: 200px;
 }
 .author-name {
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 0.25rem;
     font-size: 1.1rem;
 }
@@ -1196,7 +1204,6 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
 }
 .people-sub-title {
     font-family: 'Poppins', "Poppins", Arial, sans-serif !important;
-    color: #011f5b;
     font-size: 1.125rem;
     font-weight: 400;
     text-align: center;
@@ -1205,8 +1212,11 @@ background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox=
     justify-content: center;
     min-height: 100%;
     margin: auto 0;
+    color: #011f5b;
 }
 .author-fellowship {
+    font-family: 'Faustina', serif !important;
+    font-size: 1rem;
     font-style: italic;
 }
 /* Subscription section */

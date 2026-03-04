@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MLP Mini Dashboard Preview</title>
+  <link rel="stylesheet" href="./dashboard_windows.css?v=20260303i">
+</head>
+<body style="margin:0;padding:20px;background:#f8fafc;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+  <main style="max-width:1300px;margin:0 auto;">
+    <h1 style="margin:0 0 6px;font-size:1.45rem;color:#0f172a;">MLP Mini Dashboard (Local Preview)</h1>
+    <p style="margin:0 0 16px;color:#334155;">This preview mirrors the two interactive windows used in the blog post.</p>
+
+    <div id="mlp-mini-dashboard" data-dashboard-data-url="./dashboard_data.json?v=20260303i">
+      <div class="mlp-dashboard-grid">
+        <section class="mlp-dashboard-card">
+          <div class="mlp-dashboard-head">
+            <h4>Signal Timeline Explorer</h4>
+            <p>Pick 2-3 countries, switch civic/RAI, choose an indicator, and toggle peak markers.</p>
+          </div>
+          <div class="mlp-dashboard-controls">
+            <label for="mlp-metric-select">Dataset</label>
+            <select id="mlp-metric-select">
+              <option value="civic">Civic space</option>
+              <option value="rai">RAI (combined)</option>
+            </select>
+
+            <label for="mlp-surge-event-select">Indicator
+              <span class="mlp-help-wrap" aria-label="Peak marker info" tabindex="0">?
+                <span class="mlp-help-box">Peak markers come from the dataset's indicator-level <code>NormShock</code> flag. A marker appears only where that indicator's peak flag is 1 for that country-month.</span>
+              </span>
+            </label>
+            <select id="mlp-surge-event-select"></select>
+
+            <label for="mlp-country-1">Country 1</label>
+            <select id="mlp-country-1"></select>
+
+            <label for="mlp-country-2">Country 2</label>
+            <select id="mlp-country-2"></select>
+
+            <label for="mlp-country-3">Country 3</label>
+            <select id="mlp-country-3"></select>
+
+            <label class="mlp-switch" for="mlp-show-peaks">
+              <input id="mlp-show-peaks" type="checkbox" checked>
+              <span>Show peak markers</span>
+            </label>
+          </div>
+          <div id="mlp-ts-window" class="mlp-plot-canvas"></div>
+        </section>
+
+        <section class="mlp-dashboard-card">
+          <div class="mlp-dashboard-head">
+            <h4>Monthly Intensity Map</h4>
+            <p>Use the month slider, or click countries on the map to add them to the timeline.
+              <span class="mlp-help-wrap" aria-label="Map marker info" tabindex="0">?
+                <span class="mlp-help-box">Map fill color shows the selected indicator intensity. X markers show countries where that same indicator's peak flag is 1 in the selected month.</span>
+              </span>
+            </p>
+          </div>
+          <div class="mlp-map-controls">
+            <label for="mlp-month-slider">Month</label>
+            <input id="mlp-month-slider" type="range" min="0" max="0" value="0" step="1">
+            <span id="mlp-month-label">-</span>
+            <button id="mlp-play-months" type="button">Play</button>
+            <button id="mlp-latest-month" type="button">Latest</button>
+          </div>
+          <div id="mlp-map-window" class="mlp-plot-canvas"></div>
+        </section>
+      </div>
+      <p id="mlp-dashboard-status" class="mlp-dashboard-status">Loading interactive windows...</p>
+    </div>
+  </main>
+
+  <script src="./dashboard_windows.js?v=20260303i"></script>
+</body>
+</html>
