@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/datapoints/favicon.ico">
+
+  <title>A Workflow for LLM-Augmented Codebook Genration</title>
+  <link rel="stylesheet" href="/datapoints/assets/css/blog.css">
+  <link rel="stylesheet" href="/datapoints/assets/css/responsive.css">
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        processHtmlClass: 'tex2jax_process'
+      },
+      startup: {
+        pageReady: function() {
+          return MathJax.startup.defaultPageReady();
+        }
+      }
+    };
+  </script>
+  <script id="MathJax-script" async 
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <a href="/datapoints/">
+      <img src="/datapoints/assets/images/logo/DP_logo_blue.png" alt="Datapoints Logo" class="datapoints-logo">
+    </a>
+  </div>
+
+  <div class="content-section-blue">
+    <h1 class="blog-title">A Workflow for LLM-Augmented Codebook Genration</h1>
+    <div class="title-underline"></div>
+    <p class="blog-description">combining manual curation with targeted LLM inference</p>
+    
+    <div style="display: flex; justify-content: center; gap: 1rem; align-items: center;">
+      <div class="author-section">
+        By
+        
+          
+            <a href="https://www.linkedin.com/in/yuxinliang/">Yuxin Liang</a>
+          
+        
+      </div>
+
+      <span style="color: #666666;">·</span>
+
+      <div class="reading-time-container">
+        
+
+18 min read
+
+      </div>
+      
+    </div>
+  </div>
+
+<div class="date-container">
+  <div class="date-divider"></div>
+  March 03, 2026
+  <div class="date-divider"></div>
+</div>
+
+
+<div class="main">
+  <div class="author-info">
+    <div class="author-container">
+      <div class="author-pic">
+        
+          <img src="/datapoints/assets/images/authors/YuxinL.jpeg" alt="Author Picture">
+        
+      </div>
+      <h2 class="author-name"><a href="https://www.linkedin.com/in/yuxinliang/">Yuxin Liang</a></h2>
+      <p class="author-title">Data Scientist at DDDI</p>
+    </div>
+
+    <div class="author-container">
+      <div class="author-pic">
+        
+      </div>
+      <h2 class="author-name"></h2>
+      <p class="author-title"></p>
+    </div>
+
+    
+  </div>
+
+  <div class="vertical-divider"></div>
+
+  <div class="blog-content">
+    <p>Imagine you are a social science researcher. One day, you are excited to share a dataset you have collected/digitized/extracted/hand-coded with others in your field. Before doing so, however, you need to prepare a codebook for users who may lack the full research context. This step is particularly important in social science research, where data are often highly context-dependent. A well-prepared codebook explains the definition and source of each variable, provides sample values, and documents how missing values are coded—whether by you or by the original data provider.</p>
+
+<p>This process can be tedious, especially when a dataset contains many variables drawn from multiple sources.</p>
+
+<p>Large language models (LLMs) can serve as useful assistants in this context. However, just as a human researcher cannot reliably infer variable meanings solely from a dataset without sufficient background knowledge (such as the research domain or source documentation), we should not expect an LLM to do so either. Instead, LLMs are most effective when they are provided with structured context. In this post, I will introduce a workflow for using an LLM to assist with codebook generation when (1) an original codebook exists but provides incomplete information, and (2) additional contextual clues can be drawn from the data itself.</p>
+
+<p>To demonstrate this approach, I use case-level data from the Executive Office for Immigration Review (EOIR), which I worked with as part of a Data Science for Social Good (DSSG) project (<a href="http://datascience.sas.upenn.edu/programs/dssg/current-dssg-projects">learn more about DSSG here</a>). The goal is to show how an LLM can help generate a more complete codebook when the original documentation lacks key information such as variable definitions, sources, or data types.</p>
+
+<div class="workflow-scroll-panel">
+<div class="workflow-chart">
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">EOIR Database</div>
+        <ul class="workflow-list">
+         <li>Case table</li>
+         <li>Lookup tables</li>
+         <li>Code key</li>
+        </ul>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Selected Dataset</div>
+        <ul class="workflow-list">
+         <li>3,180,981 records</li>
+         <li>70 variables</li>
+        </ul>
+      </div>
+    </div>
+    <div class="workflow-theme">Data Preparation</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-column">
+        <div class="workflow-step">
+          <div class="workflow-step-title">Initial Codebook (Manual)</div>
+          <ul class="workflow-list">
+           <li><code>variable_name</code></li>
+           <li><code>source_table</code></li>
+           <li><code>description</code> (some missing)</li>
+           <li><code>data_type</code> (some missing)</li>
+           <li><code>sample_value</code></li>
+           <li><code>na_value</code></li>
+          </ul>
+        </div>
+        <div class="workflow-arrow">↓</div>
+        <div class="workflow-step">
+          <div class="workflow-step-title" style="color: #fc4357;">Missing metadata remains</div>
+        </div>
+      </div>
+    </div>
+    <div class="workflow-theme">Manual Baseline</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">Inputs to LLM</div>
+        <ul class="workflow-list">
+         <li>SQL selection query</li>
+         <li>First 200 dataset rows</li>
+         <li>Existing code key</li>
+         <li>Manual codebook</li>
+         <li>Explicit DO NOT EDIT rules</li>
+        </ul>
+        </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Prompted LLM Inference</div>
+        <ol class="workflow-list">
+         <li>Fill missing description</li>
+         <li> Fill missing data_type</li>
+         <li>Add <code>llm_flag</code></li>
+         <li>Add <code>llm_explanation</code></li>
+         <li>Preserve all non-missing values</li>
+        </ol>
+      </div>
+    </div>
+    <div class="workflow-theme">Structured LLM Assistance</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-column">
+        <div class="workflow-step">
+          <div class="workflow-step-title">LLM-Modified Codebook vs. Manual Codebook</div>
+          <ul class="workflow-list">
+            <li>Check column names match</li>
+            <li>Check shape</li>
+            <li>Identify rows with differences</li>
+            <li>Confirm only NA fields were edited</li>
+            <li>Count modified rows</li>
+          </ul>
+        </div>
+        <div class="workflow-arrow">↓</div>
+        <div class="workflow-step">
+          <div class="workflow-step-title">Human Review of Flagged Rows</div>
+          <ul class="workflow-list">
+            <li>Evaluate inferred descriptions</li>
+            <li>Verify inferred data types (if modified)</li>
+            <li>Assess llm_explanation logic</li>
+            <li>Approve or revise</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="workflow-theme">LLM-Augmented Codebook</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">Final Codebook</div>
+        <ul class="workflow-list workflow-list-no-bullets">
+          <li>Original metadata</li>
+          <li>+ Completed descriptions</li>
+          <li>+ Completed data types</li>
+          <li>+ LLM flag</li>
+          <li>+ Transparent reasoning column</li>
+        </ul>
+      </div>
+    </div>
+    <div class="workflow-theme">Final Codebook</div>
+  </div>
+</div>
+</div>
+<div class="workflow-caption">Figure 1: Workflow for LLM-Assisted Codebook Generation</div>
+
+<p>The EOIR case data are published by the U.S. Department of Justice’s (<a href="https://www.justice.gov/eoir/foia-library-0">EOIR Library</a>) and contain records from U.S. immigration court proceedings. The database is organized into multiple tables, each corresponding to a distinct category of information. For example, the case table stores case identifiers and respondent demographic information, while the proceeding table records procedural details and adjudicative outcomes, such as hearing dates and immigration judges’ decisions. In addition to these core tables, the database includes several reference tables that store standardized codes—such as those for geographic locations, judges, and other entities—along with their corresponding full names. Although these reference tables function as lookup tables within the database, we treat them as codebooks in our workflow, as they map coded values (e.g., state abbreviations) to their human-readable meanings.</p>
+
+<p>Because the dataset links demographic characteristics, legal charges, procedural histories, representation status, custody information, and judicial identifiers at the case level, it enables researchers to analyze patterns in immigration adjudication, including variation in removal and asylum outcomes, disparities across courts or judges, the effects of legal representation, and changes in enforcement and case processing over time.</p>
+
+<p>The EOIR Library provides a data code key describing these tables and variables. However, this documentation has two major limitations: first, it was last updated in May 2019; second, it does not include descriptions for every variable present in the database. Given the size of the database, researchers typically extract only the variables relevant to their research questions to reduce computational costs and data-cleaning effort. In our case, we selected 70 variables from 13 tables. The resulting dataset contains 3,180,981 case-level records from 1990 onward and focuses on outcomes related to unauthorized entry, along with personal, migration, legal, criminal, bureaucratic, and judicial characteristics.</p>
+
+<p>We performed data extraction using SQL queries. Based on these queries, we manually generated an initial codebook for the 70 selected variables using the existing EOIR data code key. This preliminary codebook contains one row per variable and includes the columns <code class="language-plaintext highlighter-rouge">variable_name</code>, <code class="language-plaintext highlighter-rouge">source_table</code>, <code class="language-plaintext highlighter-rouge">description</code>, <code class="language-plaintext highlighter-rouge">data_type</code>, <code class="language-plaintext highlighter-rouge">sample_value</code>, and <code class="language-plaintext highlighter-rouge">na_value</code> (shows how to code missing value in this variable). When information was missing from the original documentation, we left the corresponding fields blank.</p>
+
+<p>Here is an example of the codebook structure:</p>
+
+<div class="table-scroll-3">
+<table class="table-auto">
+  <thead>
+    <tr>
+      <th>variable_name</th>
+      <th>source_table</th>
+      <th>description</th>
+      <th>data_type</th>
+      <th>sample_value</th>
+      <th>na_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ALIEN_CITY</td>
+      <td>Case</td>
+      <td>Alien address city</td>
+      <td>varchar(15)</td>
+      <td>HIALEAH;LILLINGTON;HALLANDALE</td>
+      <td>No NA</td>
+    </tr>
+    <tr>
+      <td>CHG_STATUS</td>
+      <td>ProceedCharges</td>
+      <td>The decision/finding on the charge</td>
+      <td>varchar(1)</td>
+      <td>;S;S</td>
+      <td>No NA</td>
+    </tr>
+    <tr>
+      <td>BASE_STATE</td>
+      <td>codebook_BaseCity</td>
+      <td> </td>
+      <td> </td>
+      <td>NJ;NJ;NY</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>JUDGE_NAME</td>
+      <td>LookupJudge</td>
+      <td> </td>
+      <td> </td>
+      <td>all missing</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>attorney_flag</td>
+      <td>DERIVED</td>
+      <td> </td>
+      <td> </td>
+      <td>1;1;1</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <td>Nacara</td>
+      <td>LookupAlienNat</td>
+      <td> </td>
+      <td> </td>
+      <td>Y;Y;Y</td>
+      <td>N</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="table-caption">Table 1: Sample Initial Codebook Schema (SQL Extract)</div>
+
+<p>We then designed an LLM prompt to assist with completing the codebook. Specifically, the LLM was instructed to:</p>
+
+<p>(1) infer missing variable descriptions and data types using the existing codebooks, the code key, and the manually generated codebook, and the first 200 rows of the dataset;</p>
+
+<p>(2) flag variables that require human review;</p>
+
+<p>(3) provide a brief explanation of the reasoning behind any inferred information; and</p>
+
+<p>(4) refrain from modifying any non-missing entries in the original codebook.</p>
+
+<p>The intended outcome of the prompting process is for the LLM to extend the manually generated codebook by filling in previously missing values and adding two additional columns, <code class="language-plaintext highlighter-rouge">llm_flag</code> and <code class="language-plaintext highlighter-rouge">llm_explanation</code>.</p>
+
+<p>We used the Claude Sonnet 4 model with a maximum token limit of 15,000. The results were encouraging. In the manual codebook, 19 variables were missing either a description, a data type, or both. Correspondingly, we observed 19 rows where the LLM-generated codebook differed from the manually generated version. After carefully reviewing these differences, we found that the LLM performed well in inferring variable definitions and data types by drawing on multiple sources of information, including variable name patterns, observed sample values, database lookup tables, and the logic embedded in the data extraction queries.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s">""" 
+I need you to generate a codebook from the dataset created from the following query:
+
+SQL Query that creates the dataset:
+```sql
+</span><span class="si">{</span><span class="n">selection_query</span><span class="si">}</span><span class="s">
+```
+
+Dataset information (first 200 rows for context):
+- Shape: </span><span class="si">{</span><span class="n">selected_case</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="n">shape</span><span class="si">}</span><span class="s">
+- Columns: </span><span class="si">{</span><span class="n">selected_case</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="n">columns</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s">
+- Data types: </span><span class="si">{</span><span class="n">selected_case</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="n">dtypes</span><span class="p">.</span><span class="n">to_dict</span><span class="p">()</span><span class="si">}</span><span class="s">
+- Sample data (first 5 rows):
+</span><span class="si">{</span><span class="n">selected_case</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="n">to_string</span><span class="p">()</span><span class="si">}</span><span class="s">
+
+Existing codebooks in the project:
+</span><span class="si">{</span><span class="n">codebooks</span><span class="si">}</span><span class="s">
+
+Among these codebooks, "codebook_main" stores the variable sources (see the `Table` column) and definitions (see the `Definition` column) for most variables in the dataset.
+The other codebooks contain information for specific codes or indices.
+For example, "codebook_lang" stores the mapping between language codes (e.g., 'LANG' in "codebook_main", 'strCode' in "codebook_lang") and their corresponding language names (e.g., code MAJ indicates Mazatek).
+
+Current codebook to edit:
+</span><span class="si">{</span><span class="n">codebook_manual</span><span class="p">.</span><span class="n">to_string</span><span class="p">()</span><span class="si">}</span><span class="s">
+
+TASK:
+1. Review the provided "codebook_manual" DataFrame which contains existing variable metadata
+2. Examine the first 200 rows of the dataset (selected_case) for context about the variables
+3. Reference the existing codebook tables provided above (especially codebook_main)
+4. ONLY edit cells that contain NA values in the `description` and `data_type` columns
+5. Do NOT modify any other columns or any non-NA values
+
+
+Column specifications:
+- variable_name: The column name from the dataframe (should have 70 rows in this codebook since there are 70 variables in the dataframe) - DO NOT EDIT
+- source_table: The table(s) from which this variable originates (based on the SQL query) - DO NOT EDIT
+  Use the table names as they appear in the SQL query. In most cases, this corresponds to the `Table` column in "codebook_main".
+  For example, according to "codebook_main", the variable 'NAT' comes from A_tblCase, but in the query, the dataset is referred to as Case.
+  All table names in the query have had prefixes such as "tbl_", "A_", or "A_tbl" removed from the original codebook_main.
+  Please cross-check and ensure that the table names match those used in the query. All table names are case-sensitive.
+- description: ONLY fill in if currently NA - Match the `Definition` column in "codebook_main" exactly if it is available; if you need to make any changes (e.g., improving expression);
+  if not, append a description inferred from the variable name or from similar variables.
+  This should be a clear definition of what the variable represents.
+- data_type: ONLY fill in if currently NA - Match the `Data Type` column in codebook_main exactly if it is not missing (possible values: "int", "varchar", "bit", "datetime", "char");
+  if missing, infer the data type from the sample values.
+- sample_value: Three non-NA samples (NA values can appear as "&lt;NA&gt;", "None", "N/A", "NaT", "M", "N", or "") from the dataframe, stored as a string separated by semicolons - DO NOT EDIT
+  The values in this column should contain only valid entries or "all missing"; NA expressions should NOT appear here.
+- na_value: The value that represents NA in the dataframe. It can be one of "&lt;NA&gt;", "None", "N/A", "NaT", "M", "N", or "" - DO NOT EDIT
+  If there are no NA values in this variable, mark it as "No NA" or use another appropriate expression.
+- llm_flag: NEW COLUMN to add - Mark as "yes: description" if you filled in description, "yes: data_type" if you filled in data_type,
+  "yes: description; data_type" if you filled in both, or "no" if you made no changes to this row.
+
+Important notes:
+- Only edit NA values in `description` and `data_type` columns
+- Preserve all existing non-NA values exactly as they are
+- Use existing codebook tables for reference when filling in missing information
+- The output should contain ALL columns from the input codebook_manual PLUS the new llm_flag column
+- Cross-reference with "codebook_main" to ensure consistency where applicable
+
+Add one more column: `llm_explanation`
+- `llm_explanation`: If the LLM filled in description, data_type, or any other changed fields, provide a 1–2 sentence explanation of how the LLM inferred the value.
+  - Explain which elements were used (e.g., variable-name patterns, sample values, suffix conventions, analogous variables in existing codebooks, SQL column names, or selection-query patterns—such as those used when creating new variables based on other variables—to infer the new variable according to the query logic and the definitions of related variables).
+  - If the LLM did not modify this row (i.e., llm_flag = "no"), then set llm_explanation to an empty string "".
+
+Return ONLY valid JSON array format with following format (the length of the array should be 70). No markdown, no explanations.
+Example format:
+[
+  {{
+    "variable_name": "IDNCASE",
+    "source_table": "Case",
+    "description": "The primary key for A_tblCase",
+    "data_type": "int",
+    "sample_value": "3630107; 3630108; 3630111",
+    "na_value": "None",
+    "llm_flag": "yes: description",
+    "llm_explanation": " "
+  }},
+  ...
+]
+
+"""</span>
+</code></pre></div></div>
+
+<div class="block-caption">Example prompt</div>
+
+<p>For example, for the variable <code class="language-plaintext highlighter-rouge">JUDGE_NAME</code>, the LLM generated the definition “Name of the immigration judge”, and provided the explanation “inferred from variable name pattern and relationship to judge information in LookupJudge table”. Similarly, for the variable <code class="language-plaintext highlighter-rouge">attorney_flag</code>, which is a constructed variable and does not appear in the original database, the LLM defined it as :Binary indicator whether the alien has attorney representation”, with the explanation “Inferred from CASE WHEN logic in SQL query that creates binary flag based on EOIRAttorneyID presence”.</p>
+
+<p>Notably, the LLM was also able to leverage domain knowledge beyond the database itself while remaining within the appropriate contextual scope. For instance, for the variable <code class="language-plaintext highlighter-rouge">Nacara</code>, the LLM assigned the description “NACARA eligibility indicator” and explained its reasoning as “Inferred from variable name ‘Nacara’ referring to the Nicaraguan Adjustment and Central American Relief Act and sample values showing Y/N indicators”.</p>
+
+<div class="table-scroll-3 table-scroll-wide">
+<table class="table-auto">
+  <thead>
+    <tr>
+      <th>variable_name</th>
+      <th>source_table</th>
+      <th>description</th>
+      <th>data_type</th>
+      <th>sample_value</th>
+      <th>na_value</th>
+      <th>llm_flag</th>
+      <th>llm_explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ALIEN_CITY</td>
+      <td>Case</td>
+      <td>Alien address city</td>
+      <td>varchar(15)</td>
+      <td>HIALEAH;LILLINGTON;HALLANDALE</td>
+      <td>No NA</td>
+      <td>no</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>CHG_STATUS</td>
+      <td>ProceedCharges</td>
+      <td>The decision/finding on the charge</td>
+      <td>varchar(1)</td>
+      <td>;S;S</td>
+      <td>No NA</td>
+      <td>no</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>BASE_STATE</td>
+      <td>codebook_BaseCity</td>
+      <td>Base city state code</td>
+      <td>varchar</td>
+      <td>NJ;NJ;NY</td>
+      <td>None</td>
+      <td>yes: description; data_type</td>
+      <td>Inferred from variable name pattern and relationship to other address-related fields in codebook_BaseCity, with data type matching similar state code fields in the dataset.</td>
+    </tr>
+    <tr>
+      <td>JUDGE_NAME</td>
+      <td>LookupJudge</td>
+      <td>Name of the immigration judge</td>
+      <td>varchar</td>
+      <td>all missing</td>
+      <td>None</td>
+      <td>yes: description; data_type</td>
+      <td>Inferred from variable name pattern and relationship to judge information in LookupJudge table, with varchar data type for name fields.</td>
+    </tr>
+    <tr>
+      <td>attorney_flag</td>
+      <td>DERIVED</td>
+      <td>Binary indicator whether the alien has attorney representation</td>
+      <td>int</td>
+      <td>1;1;1</td>
+      <td>&lt;NA&gt;</td>
+      <td>yes: description; data_type</td>
+      <td>Inferred from CASE WHEN logic in SQL query that creates binary flag based on EOIRAttorneyID presence, with int data type matching the 0/1 values in the CASE statement.</td>
+    </tr>
+    <tr>
+      <td>Nacara</td>
+      <td>LookupAlienNat</td>
+      <td>NACARA eligibility indicator</td>
+      <td>varchar</td>
+      <td>Y;Y;Y</td>
+      <td>N</td>
+      <td>yes: description; data_type</td>
+      <td>Inferred from variable name 'Nacara' referring to the Nicaraguan Adjustment and Central American Relief Act and sample values showing Y/N indicators, with varchar data type for flag fields.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="table-caption">Table 2: Sample LLM-Augmented Codebook </div>
+
+<p>We also tested the same prompt using OpenAI’s GPT-4o mini model, but the results were less satisfactory. In particular, the model modified a substantial amount of information that had been extracted from the original codebook, despite explicit instructions not to change any non-missing values in it.</p>
+
+<p>Several key takeaways emerge from this exercise. First, it is critical to clearly specify what you want the LLM to do. In quantitative social science research, the initial step is often to make variables manipulable and measurable; this principle should also guide prompt design. Clearly enumerating the tasks the LLM is expected to perform, the information it is allowed to reference, and the desired structure of the output is essential for producing reliable and interpretable results.</p>
+
+<p>Second, it is equally important to specify what the LLM should not modify, particularly when the task involves adding or refining information rather than rewriting existing content. We went through several prompt iterations before arriving at the final version. In earlier attempts, even when we instructed the model not to edit columns other than description and data_type, it still altered values in other non-missing columns based on its own internal judgment. Because these decisions are difficult to diagnose in a black-box model, we ultimately found that explicitly and repeatedly stating “DO NOT EDIT” immediately after the column specifications was an effective way to mitigate this issue.</p>
+
+<p>In short, the motivation for this experiment was to avoid spending excessive time manually searching for variable definitions in the data code key and copying them one by one into a codebook. Our initial attempt—asking the LLM to generate a complete codebook from scratch using only the dataset and the code key—proved inefficient and required substantial manual verification. By contrast, combining a traditionally generated codebook with targeted LLM assistance to fill in missing descriptions and metadata appears to be a more practical and reliable approach. This workflow can help researchers, as well as those releasing data as a public good, save time while maintaining transparency and quality. We were encouraged by how well this approach worked in this case and look forward to further exploring how LLMs can contribute to social science research in the future.</p>
+
+<p><span style="color: #666666;">Check the full code for data extraction and codebook preparation (<a href="https://colab.research.google.com/drive/1aZYhG3jpW7TokbfF7-d2wHZi07yhbvCg?usp=sharing">here</a>).</span></p>
+
+
+  </div>
+
+  <div class="vertical-divider"></div>
+
+  <div class="about-post">
+    <!-- About this post content -->
+    <h3 class="about-post-title">About this post</h3>
+    <p class="about-post-text">
+      Check our source code <a href="https://github.com/dddiscovery/datapoints" class="source-code-link">here</a>
+    </p>
+
+    <div class="about-post-underline"></div>
+
+    <h3 class="about-post-title">Share this post</h3>
+    <div class="social-share">
+      <!-- Bluesky -->
+      <a href="https://bsky.app/intent/compose?text=A+structured+workflow+for+completing+metadata+without+surrendering+control.%0A%0ADive%20in%3A%20https://dddiscovery.github.io/datapoints/llm-augmented-codebook/%0A%0AFrom%20DDDI%27s%20series%20scientific%20posts%0A%0A@upenndddi.bsky.social" target="_blank" rel="noopener noreferrer">
+        <img src="/datapoints/assets/images/logo/Bluesky_Logo.png" alt="Share on Bluesky" class="social-icon">
+      </a>
+      
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://dddiscovery.github.io/datapoints/llm-augmented-codebook/&title=A+Workflow+for+LLM-Augmented+Codebook+Genration" target="_blank" rel="noopener noreferrer">
+        <img src="/datapoints/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png" alt="Share on LinkedIn" class="social-icon" style="width: 30px; height: 25px;">
+      </a>
+
+      <!-- Link icon -->
+      <a href="#" onclick="copyPageUrl()" title="Copy link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#011f5b" class="social-icon link-icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+        </svg>
+      </a>
+    </div>
+    <div class="about-post-underline"></div>
+
+    
+    
+    
+    <div class="sidebar-contribute-cta">
+      <a
+        class="sidebar-contribute-button"
+        href="mailto:yuxinlg@upenn.edu?subject=I'd%20like%20to%20contribute%20a%20Data%20Points%20post&body=Hey,%20I%20am%20[your%20name].%0A%0AI%20would%20like%20to%20contribute%20a%20Data%20Points%20blog%20post%20on%20[your%20topic].%0A%0AI%20would%20like%20to%20learn%20more%20about%20the%20process."
+      >
+        Want to contribute a blog post? Email us!
+        <svg class="sidebar-contribute-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="about-post-underline"></div>
+
+    <!-- Email subscription container -->
+    <div id="mc_embed_shell">
+      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+      <div id="mc_embed_signup">
+          <form action="https://upenn.us11.list-manage.com/subscribe/post?u=2c41167803243255e2e4a1516&amp;id=424f80b7e7&amp;f_id=000b22e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+              <div id="mc_embed_signup_scroll" style="text-align: left;">
+                  <h2>Stay tuned for our latest post!</h2>
+                  <div class="mc-field-group" style="padding-left: 0;">
+                      <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" placeholder="name@example.com">
+                  </div>
+                  <div hidden="">
+                      <input type="hidden" name="tags" value="8119752">
+                  </div>
+                  <div id="mce-responses" class="clear foot">
+                      <div class="response" id="mce-error-response" style="display: none;"></div>
+                      <div class="response" id="mce-success-response" style="display: none;"></div>
+                  </div>
+                  <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
+                      <input type="text" name="b_2c41167803243255e2e4a1516_424f80b7e7" tabindex="-1" value="">
+                  </div>
+                  <div class="optionalParent">
+                      <div class="clear foot">
+                          <div style="display: flex; align-items: center; gap: 4px; width: 180px;">
+                              <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe" style="margin: 0;">
+                              <span style="color: #666; font-size: 10px !important; line-height: 1; display: inline-block; text-align: right;">powered by</span>
+                              <a href="http://eepurl.com/i0TxZw" title="Mailchimp - email marketing made easy and fun">
+                                  <span style="display: inline-block; border-radius: 4px; padding: 2px;">
+                                      <img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width: 70px; height: auto; display: flex; padding: 2px 0px; justify-content: bottom; align-items: bottom;">
+                                  </span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+      <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+    </div>
+  
+
+    <script>
+      function copyPageUrl() {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.blog-content pre').forEach(function(pre) {
+          const button = document.createElement('button');
+          button.className = 'copy-button';
+          button.textContent = 'Copy';
+          pre.appendChild(button);
+
+          button.addEventListener('click', function() {
+            const code = pre.querySelector('code') || pre;
+            const text = code.textContent;
+
+            navigator.clipboard.writeText(text).then(function() {
+              button.textContent = 'Copied!';
+              button.classList.add('copied');
+              setTimeout(function() {
+                button.textContent = 'Copy';
+                button.classList.remove('copied');
+              }, 2000);
+            }).catch(function() {
+              button.textContent = 'Error';
+              setTimeout(function() {
+                button.textContent = 'Copy';
+              }, 2000);
+            });
+          });
+        });
+      });
+    </script>
+
+    
+  </div>
+
+
+</div>
+
+
+
+
+
+</body>
+</html>
