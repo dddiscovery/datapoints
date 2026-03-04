@@ -138,6 +138,26 @@
         </svg>
       </a>
     </div>
+    <div class="about-post-underline"></div>
+
+    {% assign contribute_email = "yuxinlg@upenn.edu" %}
+    {% assign contribute_subject = "I'd like to contribute a Data Points post" %}
+    {% capture contribute_body %}Hey, I am [your name].
+
+I would like to contribute a Data Points blog post on [your topic].
+
+I would like to learn more about the process.{% endcapture %}
+    <div class="sidebar-contribute-cta">
+      <a
+        class="sidebar-contribute-button"
+        href="mailto:{{ contribute_email }}?subject={{ contribute_subject | uri_escape }}&body={{ contribute_body | uri_escape }}"
+      >
+        Want to contribute a blog post? Email us!
+        <svg class="sidebar-contribute-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+        </svg>
+      </a>
+    </div>
 
     <div class="about-post-underline"></div>
 
