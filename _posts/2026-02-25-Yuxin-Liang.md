@@ -5,7 +5,7 @@ subtitle: "combining manual curation with targeted LLM inference"
 authors: ["[Yuxin Liang](https://www.linkedin.com/in/yuxinliang/)"]
 author_pic: ["/assets/images/authors/YuxinL.jpeg"]
 author_title: ["Data Scientist at DDDI"]
-date: 2026-02-25
+date: 2026-03-03
 permalink: /llm-augmented-codebook/
 summary: "A structured workflow for completing metadata without surrendering control."
 ---
