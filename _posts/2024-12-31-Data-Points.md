@@ -8,11 +8,11 @@ permalink: /
 
 slides:
   - image: /assets/images/posts/title-welcome.png
-  - image: /assets/images/posts/title-header-km.png
+  - image: /assets/images/posts/banner_zrl.png
 #    text: Explore data science across fields
-    url: /Where-is-the-Information-in-Data/
-  - image: /assets/images/posts/title-header-ms.png
-    url: /off-the-shelf-ai
+    url: /dashboards-as-research-deliverables
+  - image: /assets/images/posts/banner_yxl.png
+    url: /llm-augmented-codebook
 
 
 about: |
@@ -24,16 +24,25 @@ about: |
 featured_posts:
 # from the latest post to the oldest post
 
-  # - image: /assets/images/posts/title_km_chatgpt.png
-  #   title: Where is the information in data?
-  #   tag: LLM Notes
-  #   url: /Where-is-the-Information-in-Data
-  #   author: Kieran Murphy
-  #   author_url: https://www.kieranamurphy.com/
-  #   date: February 03, 2025
-  #   description: An interactive tutorial about decomposing variation into distinctions worth making.
+  - image: /assets/images/posts/data_cover_zrl.png
+    title: Turning Fast-moving Crises into Structured, Revisitable Evidence
+    tag: Data Notes
+    url: /dashboards-as-research-deliverables
+    author: Zung-Ru Lin
+    author_url: https://zungru.com/
+    date: March 04, 2026
+    description: 'A narrative essay on how to keep sequence and evidence visible under polarization: turning fast-moving crises into structured, revisitable context'
 
-  - image: /assets/images/posts/1922.1133_web.jpeg
+  - image: /assets/images/posts/llm_cover_yxl.png
+    title: A Workflow for LLM-Augmented Codebook Generation
+    tag: LLM Notes
+    url: /llm-augmented-codebook
+    author: Yuxin Liang
+    author_url: https://www.linkedin.com/in/yuxinliang/
+    date: March 03, 2026
+    description: 'From Data to Documentation: Assisting Codebook Completion with LLMs'
+
+  - image: /assets/images/posts/data_cover_ms.png
     title: Accelerating science with 'off-the-shelf' models
     tag: Data Notes
     url: /off-the-shelf-ai
@@ -42,7 +51,7 @@ featured_posts:
     date: March 10, 2025
     description: A visual guide on how foundation models enhance computer vision research with small datasets.
 
-  - image: /assets/images/posts/Stage_Curtain_ Temple of Fame.jpeg
+  - image: /assets/images/posts/data_cover_km.png
     title: Where is the information in data?
     tag: Data Notes
     url: /Where-is-the-Information-in-Data
@@ -70,7 +79,17 @@ contribute_guide: |
   3. Work with our team to develop engaging visualizations and refine your narrative.
   4. Submit your draft for collaborative editing and technical review.
 
-  Contact us at **sas-ddd-admin@sas.upenn.edu** with subject line "Data Points submission" to discuss your ideas or submit a proposal. We look forward to featuring your work!
+  Want to contribute a blog post? Email us!
+
+contribute_contact:
+  email: yuxinlg@upenn.edu
+  subject: I'd like to contribute a Data Points post
+  body: |
+    Hey, I am [your name].
+
+    I would like to contribute a Data Points blog post on [your topic].
+
+    I would like to learn more about the process.
 
 
 Editorial_team:
@@ -92,7 +111,10 @@ Editorial_team:
     fellowship: Executive Director @DDDI
 
 contributor:
-  # placeholder
+    - name: Zung-Ru Lin
+      url: https://zungru.com/
+      image: /assets/images/authors/zung_ru_lin.png
+      fellowship: Chief Data Scientist & Co-PI of MLP @ PDRI-DevLab
 
 contact:
   email: sas-ddd-admin@sas.upenn.edu

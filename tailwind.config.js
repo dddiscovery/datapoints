@@ -9,20 +9,3 @@ module.exports = {
   plugins: [],
 }
 
-/* for default font */
-export default {
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: [
-          "Helvetica Neue",
-          "Helvetica",
-          "Arial",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif"
-        ],
-      },
-    },
-  },
-};

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
 
 .header {
@@ -88,9 +90,11 @@
 .main {
   display: flex;
   max-width: 1400px;
+  width: 100%;
   margin: 3rem auto 0;
   padding: 0 1rem;
   gap: 2rem;
+  box-sizing: border-box;
 }
 
 .author-info {
@@ -106,6 +110,7 @@
 
 .blog-content {
   flex: 3;
+  min-width: 0;
 }
 
 .about-post {
@@ -161,6 +166,94 @@
   margin-right: 1.875rem;
 }
 
+.left-toc {
+  margin-top: 1rem;
+  padding: 0.15rem 0 0.15rem 0.1rem;
+  width: 100%;
+  max-width: 250px;
+  position: sticky;
+  top: 6.5rem;
+}
+
+.left-toc--loading {
+  display: none;
+}
+
+.left-toc-title {
+  margin: 0 0 0.5rem 0.15rem;
+  color: #011f5b;
+  font-family: Optima, sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.left-toc-nav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-left: 0.7rem;
+}
+
+.left-toc-nav::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 1px;
+  border-left: 1px dashed rgba(1, 31, 91, 0.35);
+}
+
+.left-toc-link {
+  position: relative;
+  color: #666666;
+  text-decoration: none;
+  font-family: Optima, sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.26;
+  padding-left: 0.45rem;
+  transition: color 0.2s ease;
+}
+
+.left-toc-link::before {
+  content: "";
+  position: absolute;
+  left: -0.68rem;
+  top: 0.53em;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1.5px solid rgba(1, 31, 91, 0.38);
+  transform: translateY(-50%);
+  box-sizing: border-box;
+}
+
+.left-toc-link:hover {
+  color: #fc4375;
+}
+
+.left-toc-link.active {
+  color: #011f5b;
+}
+
+.left-toc-link.active::before {
+  background: #66bab7;
+  border-color: #66bab7;
+}
+
+.left-toc-link.level-h3 {
+  margin-left: 0.45rem;
+  font-size: 0.86rem;
+}
+
+@media (max-width: 1024px) {
+  .left-toc {
+    display: none !important;
+  }
+}
+
 /* About this post */
 .about-post-title {
   color: #990000;
@@ -213,6 +306,47 @@
 
 .social-share svg:hover {
   stroke: #fc4375;
+}
+
+.sidebar-contribute-cta {
+  margin: 0.7rem 0 0.4rem 0;
+}
+
+.sidebar-contribute-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-sizing: border-box;
+  padding: 0.58rem 1rem;
+  border: 1px solid #fc4375;
+  border-radius: 8px;
+  background: transparent;
+  color: #fc4375;
+  text-decoration: none;
+  font-family: Optima, sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  line-height: 1.3;
+  transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sidebar-contribute-button:hover {
+  color: #fc4375;
+  border-color: #fc4375;
+  box-shadow: 0 2px 8px rgba(252, 67, 117, 0.18);
+}
+
+.sidebar-contribute-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(102, 186, 183, 0.25);
+}
+
+.sidebar-contribute-arrow {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.1rem;
+  color: #66bab7;
+  flex-shrink: 0;
 }
 
 /* Subscription section */
@@ -274,10 +408,161 @@
 }
 
 .blog-content {
-  font-family: Palatino, URW Palladio L, serif;
-  font-size: 1.125rem; /* 15px */
+  font-family: "EB Garamond", serif;
+  font-size: 1.25rem; /* 15px */
   line-height: 1.5;
+  font-weight: 400;
   color: #1a1a1a;
+}
+
+.post-content .prelude {
+  font-size: 1.05rem;
+  color: #666666;
+  margin: 0.75rem 0 1.1rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(1, 31, 91, 0.18);
+  border-radius: 10px;
+  background: rgba(1, 31, 91, 0.04);
+  overflow: visible;
+}
+
+.post-content .dssg-callout {
+  margin: 0.1rem 0 1rem;
+  padding: 0.58rem 0.9rem;
+  border: 1px solid #fc4375;
+  border-radius: 10px;
+  background: rgba(252, 67, 117, 0.08);
+  color: #333333;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.blog-content .footnotes {
+  font-size: 1rem;
+  color: #666666;
+}
+
+.blog-content .footnotes ol,
+.blog-content .footnotes li,
+.blog-content .footnotes p {
+  color: #666666;
+}
+
+.blog-content .footnotes a {
+  color: #666666;
+}
+
+.blog-content .footnotes .reversefootnote {
+  font-size: 0.72rem;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+
+/* Keep native <details> behavior, but match post visual style */
+.blog-content details {
+  margin: 1rem 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid rgba(1, 31, 91, 0.2);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.blog-content details > summary {
+  cursor: pointer;
+  color: #011f5b;
+  font-family: Optima, sans-serif;
+  font-size: 1rem;
+}
+
+.blog-content details > summary::marker {
+  color: #66bab7;
+}
+
+.blog-content details[open] > summary {
+  margin-bottom: 0.75rem;
+}
+
+/* Use the same code and code-block styles inside/outside <details> */
+.blog-content code {
+  background: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.94rem;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  margin: 0 0.2rem;
+}
+
+.blog-content li code {
+  margin-bottom: 2px;
+  overflow-x: auto;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.blog-content pre {
+  background: #fafafa;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: auto;
+  max-height: 420px;
+  box-sizing: border-box;
+}
+
+.blog-content details pre {
+  margin: 0.75rem 0 0;
+}
+
+.copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-family: Optima, sans-serif;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+  background: #fff;
+  color: #fc4375;
+  border-color: #fc4375;
+}
+
+.copy-button.copied {
+  background: white;
+  color: #011f5b;
+  border-color: #011f5b;
+}
+
+.blog-content pre code {
+  padding: 0;
+  display: block;
+  min-width: 0;
+  font-size: 0.94rem;
+  background: transparent;
+  margin: 0;
+  white-space: inherit;
 }
 
 .reading-time-container {
@@ -286,3 +571,283 @@
   line-height: 1.5;
   color: #666666;
 }
+
+/* Reusable table styling for post content tables */
+.blog-content table.table-auto {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid rgba(1, 31, 91, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1.25rem 0;
+  font-size: 0.815rem;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.blog-content table.table-auto th,
+.blog-content table.table-auto td {
+  border-right: 1px solid rgba(1, 31, 91, 0.2);
+  border-bottom: 1px solid rgba(1, 31, 91, 0.2);
+  padding: 0.5rem 0.625rem;
+  text-align: left;
+  vertical-align: top;
+  max-width: 70ch;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.blog-content table.table-auto th:last-child,
+.blog-content table.table-auto td:last-child {
+  border-right: none;
+}
+
+.blog-content table.table-auto tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.blog-content table.table-auto thead th {
+  background-color: rgba(1, 31, 91, 0.08);
+  color: #011f5b;
+  font-weight: 600;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.blog-content table.table-auto tbody tr:nth-child(even) {
+  background-color: rgba(1, 31, 91, 0.03);
+}
+
+.blog-content .table-scroll-3 {
+  max-height: 185px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+  border-radius: 10px;
+}
+
+.blog-content .table-scroll-3 table.table-auto {
+  margin: 0;
+}
+
+.blog-content .table-scroll-3 table.table-auto thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.blog-content .table-scroll-wide {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.blog-content .table-scroll-wide table.table-auto {
+  width: max-content;
+  min-width: 1200px;
+  max-width: none;
+  table-layout: fixed;
+}
+
+.blog-content .table-scroll-wide table.table-auto th,
+.blog-content .table-scroll-wide table.table-auto td {
+  max-width: 70ch;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.blog-content .table-caption {
+  margin-top: -0.6rem;
+  margin-bottom: 1.1rem;
+  color: #666666;
+  text-align: center;
+  font-size: 0.78rem;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.blog-content .workflow-caption {
+  margin-top: 0.35rem;
+  margin-bottom: 1.1rem;
+  color: #666666;
+  text-align: center;
+  font-size: 0.78rem;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.blog-content .block-caption {
+  margin-top: -0.6rem;
+  margin-bottom: 1.1rem;
+  color: #666666;
+  text-align: center;
+  font-size: 0.78rem;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+.blog-content .block-caption + pre {
+  margin-top: 0;
+}
+
+.blog-content .block-showing {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 1rem;
+  border: 1px solid rgba(252, 67, 117, 0.2);
+  border-radius: 8px;
+  background: #fafafa;
+  margin: 1rem 0;
+}
+
+.blog-content .block-showing::-webkit-scrollbar {
+  width: 8px;
+}
+
+.blog-content .block-showing::-webkit-scrollbar-track {
+  background: rgba(1, 31, 91, 0.1);
+  border-radius: 4px;
+}
+
+.blog-content .block-showing::-webkit-scrollbar-thumb {
+  background: rgba(1, 31, 91, 0.5);
+  border-radius: 4px;
+}
+
+.blog-content .block-showing::-webkit-scrollbar-thumb:hover {
+  background: rgba(1, 31, 91, 0.7);
+}
+
+/* Simple workflow chart block */
+.blog-content .workflow-scroll-panel {
+  width: 100%;
+  max-width: 100%;
+  max-height: 520px;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.blog-content .workflow-chart {
+  margin: 1rem 0 1.25rem 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.blog-content .workflow-theme-box {
+  margin: 0 auto;
+  padding: 0.45rem 0.55rem 0.4rem;
+  border: 1px solid rgba(1, 31, 91, 0.2);
+  border-radius: 10px;
+  background: #ffffff;
+  width: fit-content;
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blog-content .workflow-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.625rem;
+}
+
+.blog-content .workflow-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.blog-content .workflow-step {
+  min-width: 6.25rem;
+  text-align: left;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(1, 31, 91, 0.2);
+  background: #ffffff;
+  color: #011f5b;
+  font-family: "Poppins", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+}
+
+.blog-content .workflow-step-title {
+  text-align: center;
+  font-family: "Poppins", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+}
+
+.blog-content .workflow-arrow {
+  color: #011f5b;
+  font-family: "Poppins", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.blog-content .workflow-theme {
+  order: -1;
+  margin: 0 0 0.25rem 0;
+  text-align: center;
+  color: #011f5b;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.blog-content .workflow-list {
+  margin: 0.2rem 0 0 0.8rem;
+  padding: 0;
+  color: #666666;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 400;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.blog-content .workflow-list li {
+  margin: 0.1rem 0;
+  font-weight: 400;
+  text-align: left;
+}
+
+.blog-content .workflow-list-no-bullets {
+  list-style: none;
+  margin-left: 0;
+}
+
+.blog-content .workflow-list code {
+  font-size: 0.62rem;
+  padding: 0.1rem 0.25rem;
+  margin: 0;
+}
+
+.blog-content .workflow-vertical-arrow {
+  color: #011f5b;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+

@@ -99,12 +99,17 @@
       <p class="author-title">{{ page.author_title[1] }}</p>
     </div>
 
+    <div id="left-toc" class="left-toc left-toc--loading" aria-label="On this page">
+      <div class="left-toc-title">On this page</div>
+      <nav id="left-toc-nav" class="left-toc-nav"></nav>
+    </div>
+    
     
   </div>
 
   <div class="vertical-divider"></div>
 
-  <div class="blog-content">
+  <div class="blog-content post-content">
     {{ content }}
   </div>
 
@@ -135,6 +140,26 @@
       <a href="#" onclick="copyPageUrl()" title="Copy link">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#011f5b" class="social-icon link-icon">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+        </svg>
+      </a>
+    </div>
+    <div class="about-post-underline"></div>
+
+    {% assign contribute_email = "yuxinlg@upenn.edu" %}
+    {% assign contribute_subject = "I'd like to contribute a Data Points post" %}
+    {% capture contribute_body %}Hey, I am [your name].
+
+I would like to contribute a Data Points blog post on [your topic].
+
+I would like to learn more about the process.{% endcapture %}
+    <div class="sidebar-contribute-cta">
+      <a
+        class="sidebar-contribute-button"
+        href="mailto:{{ contribute_email }}?subject={{ contribute_subject | uri_escape }}&body={{ contribute_body | uri_escape }}"
+      >
+        Want to contribute a blog post? Email us!
+        <svg class="sidebar-contribute-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
         </svg>
       </a>
     </div>
@@ -188,6 +213,105 @@
         navigator.clipboard.writeText(window.location.href);
         alert('Link copied to clipboard!');
       }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        function slugify(text) {
+          return text
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+        }
+
+        function ensureId(heading, used) {
+          if (heading.id) {
+            used.add(heading.id);
+            return heading.id;
+          }
+          const base = slugify(heading.textContent || 'section');
+          let id = base || 'section';
+          let i = 2;
+          while (used.has(id) || document.getElementById(id)) {
+            id = (base || 'section') + '-' + i;
+            i += 1;
+          }
+          heading.id = id;
+          used.add(id);
+          return id;
+        }
+
+        const toc = document.getElementById('left-toc');
+        const tocNav = document.getElementById('left-toc-nav');
+        const content = document.querySelector('.post-content');
+        if (toc && tocNav && content) {
+          const headings = Array.from(content.querySelectorAll('h2, h3'))
+            .filter(h => (h.textContent || '').trim().length > 0);
+          if (headings.length) {
+            const usedIds = new Set();
+            headings.forEach(h => ensureId(h, usedIds));
+
+            headings.forEach(h => {
+              const a = document.createElement('a');
+              a.className = 'left-toc-link level-' + h.tagName.toLowerCase();
+              a.href = '#' + h.id;
+              a.textContent = h.textContent.trim();
+              tocNav.appendChild(a);
+            });
+
+            const links = Array.from(tocNav.querySelectorAll('.left-toc-link'));
+            const byId = {};
+            links.forEach(link => {
+              byId[link.getAttribute('href').slice(1)] = link;
+            });
+
+            function setActive(id) {
+              links.forEach(link => link.classList.remove('active'));
+              if (id && byId[id]) byId[id].classList.add('active');
+            }
+
+            const observer = new IntersectionObserver(
+              entries => {
+                const visible = entries
+                  .filter(e => e.isIntersecting)
+                  .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (visible.length) setActive(visible[0].target.id);
+              },
+              { rootMargin: '0px 0px -70% 0px', threshold: 0.1 }
+            );
+
+            headings.forEach(h => observer.observe(h));
+            setActive(headings[0].id);
+            toc.classList.remove('left-toc--loading');
+          }
+        }
+
+        document.querySelectorAll('.blog-content pre').forEach(function(pre) {
+          const button = document.createElement('button');
+          button.className = 'copy-button';
+          button.textContent = 'Copy';
+          pre.appendChild(button);
+
+          button.addEventListener('click', function() {
+            const code = pre.querySelector('code') || pre;
+            const text = code.textContent;
+
+            navigator.clipboard.writeText(text).then(function() {
+              button.textContent = 'Copied!';
+              button.classList.add('copied');
+              setTimeout(function() {
+                button.textContent = 'Copy';
+                button.classList.remove('copied');
+              }, 2000);
+            }).catch(function() {
+              button.textContent = 'Error';
+              setTimeout(function() {
+                button.textContent = 'Copy';
+              }, 2000);
+            });
+          });
+        });
+      });
     </script>
 
     

@@ -62,7 +62,6 @@ title: Data Points
         <a class="slide-button next-button" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
-
     <div class="p-2"></div>
 
     <div class="content-section-blue" style="padding-top: 18px;">
@@ -113,6 +112,20 @@ title: Data Points
         <div class="content-text contribute-guide">
             {% capture guide_content %}{{ page.contribute_guide }}{% endcapture %}
             {{ guide_content | markdownify }}
+            {% if page.contribute_contact and page.contribute_contact.email %}
+            {% capture contribute_mail_body %}{{ page.contribute_contact.body | strip }}{% endcapture %}
+            <div class="contribute-contact-cta">
+                <a
+                    class="contribute-contact-button"
+                    href="mailto:{{ page.contribute_contact.email }}?subject={{ page.contribute_contact.subject | uri_escape }}&body={{ contribute_mail_body | uri_escape }}"
+                >
+                    Want to contribute a blog post? Email us!
+                    <svg class="contribute-contact-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                    </svg>
+                </a>
+            </div>
+            {% endif %}
             <p>For more details, check out our <a href="{{ '/contributor-guide' | relative_url }}"><span><b>Contributor Guide</b></span></a>.</p>
         </div>
     	<div class="p-3"></div>
@@ -141,6 +154,24 @@ title: Data Points
             <div class="scroll-indicator">
                 <div class="scroll-indicator-bar"></div>
             </div>
+
+            {% if page.contributor and page.contributor.size > 0 %}
+            <div class="people-sub-title">Contributor</div>
+            <div class="authors-container{% if page.contributor.size == 1 %} single-profile{% endif %}">
+                {% for member in page.contributor %}
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="{{ member.image | relative_url }}" alt="{{ member.name }}">
+                    </div>
+                    <div class="author-info">
+                        <div class="author-name"><a href="{{ member.url }}">{{ member.name }}</a></div>
+                        <div class="author-title">{{ member.title }}</div>
+                        <div class="author-fellowship">{{ member.fellowship }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
 
         </div>
     </div>
