@@ -2,10 +2,10 @@
 layout: blog
 title: "Research and Data: A Stream Through the Lens of the Contentious Politics"
 subtitle: "turning fast-moving crises into structured, revisitable evidence: dashboards + information extraction as research deliverables"
-authors: ["[Zung-Ru Lin](https://github.com/zungrulin)"]
-author_pic: ["/assets/images/logo/DP_logo_blue.png"]
+authors: ["[Zung-Ru Lin](https://github.com/lin61302)"]
+author_pic: ["/assets/images/authors/zung_ru_lin.png"]
 author_title: ["Co-PI of MLP & Chief Data Scientist @ PDRI-DevLab"]
-date: 2026-03-01
+date: 2026-03-03
 permalink: /Dashboards-as-Research-Deliverables/
 summary: "A narrative essay on how to keep sequence and evidence visible under polarization: turning fast-moving crises into structured, revisitable context."
 ---
