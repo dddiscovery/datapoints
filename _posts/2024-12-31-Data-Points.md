@@ -30,7 +30,7 @@ featured_posts:
     url: /llm-augmented-codebook
     author: Yuxin Liang
     author_url: https://www.linkedin.com/in/yuxinliang/
-    date: February 27, 2026
+    date: March 03, 2026
     description: 'From Data to Documentation: Assisting Codebook Completion with LLMs'
 
   - image: /assets/images/posts/data_cover_ms.png
