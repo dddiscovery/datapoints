@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "A Workflow for LLM-Augmented Codebook Genration"
+title: "A Workflow for LLM-Augmented Codebook Generation"
 subtitle: "combining manual curation with targeted LLM inference"
 authors: ["[Yuxin Liang](https://www.linkedin.com/in/yuxinliang/)"]
 author_pic: ["/assets/images/authors/YuxinL.jpeg"]

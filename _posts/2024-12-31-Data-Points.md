@@ -34,7 +34,7 @@ featured_posts:
     description: 'A narrative essay on how to keep sequence and evidence visible under polarization: turning fast-moving crises into structured, revisitable context'
 
   - image: /assets/images/posts/llm_cover_yxl.png
-    title: A Workflow for LLM-Augmented Codebook Genration
+    title: A Workflow for LLM-Augmented Codebook Generation
     tag: LLM Notes
     url: /llm-augmented-codebook
     author: Yuxin Liang
