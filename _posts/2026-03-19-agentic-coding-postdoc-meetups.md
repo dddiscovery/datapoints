@@ -2,7 +2,7 @@
 layout: blog
 title: "From MCP Servers to Peer Review Integrity: How Research Power Users Are Rethinking Agentic AI"
 subtitle: ""
-authors: ["DDDI AI Fellow Gathering"]
+authors: ["DDDI AI Fellow Meetup"]
 author_pic: ["/assets/images/authors/dddi.png"]
 author_title: ["Postdoctoral Researchers, DDDI"]
 date: 2026-03-19
