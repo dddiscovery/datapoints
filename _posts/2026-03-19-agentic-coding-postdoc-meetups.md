@@ -10,6 +10,8 @@ permalink: /agentic-coding-postdoc-meetups/
 summary: "Postdoctoral researchers across two sessions compared model selection strategies, built MCP servers live, and debated what agentic AI means for peer review integrity and student learning — here's what they found."
 ---
 
+**Disclaimer:** This post captures informal, off-the-cuff reflections from meeting attendees. The views discussed here are the personal opinions and preliminary assessments of the attendees, and should not be treated as peer-reviewed findings or vetted best practices.
+
 This post draws from discussions across the March 19 and March 20 sessions of the DDDI AI Fellow Gathering. Over nearly three hours, postdoctoral researchers from astrophysics, nursing, urban analytics, neuroscience, and education worked through what agentic AI actually looks like in practice — not the pitch, but the mechanics, the failure modes, and the harder questions underneath.
 
 ## Key Takeaways
