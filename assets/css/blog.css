@@ -115,6 +115,10 @@
 
 .about-post {
   flex: 1;
+  position: sticky;
+  top: 6.5rem;
+  align-self: flex-start;
+  height: fit-content;
 }
 
 .vertical-divider {
@@ -200,7 +204,7 @@
   position: absolute;
   left: 0.25rem;
   top: 0.25rem;
-  bottom: 0.25rem;
+  bottom: var(--toc-line-bottom, 0.7rem);
   width: 1px;
   border-left: 1px dashed rgba(1, 31, 91, 0.35);
 }
@@ -241,6 +245,19 @@
 .left-toc-link.active::before {
   background: #66bab7;
   border-color: #66bab7;
+}
+
+.post-content h2,
+.post-content h3 {
+  scroll-margin-top: 5rem;
+}
+
+.left-toc-link.level-h2 {
+  margin-top: 0.6rem;
+}
+
+.left-toc-link.level-h2:first-child {
+  margin-top: 0;
 }
 
 .left-toc-link.level-h3 {
@@ -441,6 +458,11 @@
 .blog-content .footnotes {
   font-size: 1rem;
   color: #666666;
+  margin-top: 2.5rem;
+}
+
+.blog-content .footnotes hr {
+  margin-bottom: 1rem;
 }
 
 .blog-content .footnotes ol,

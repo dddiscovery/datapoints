@@ -96,11 +96,11 @@ Editorial_team:
   - name: Kieran Murphy
     url: https://www.kieranamurphy.com/
     image: /assets/images/authors/kieran_murphy.jpg
-    fellowship: AI x Science Fellow
+    fellowship: Penn AI Fellow
   - name: Melanie Segado
     url: https://sites.google.com/view/melaniesegado
     image: /assets/images/authors/MelanieSegado.jpg
-    fellowship: AI x Science Fellow
+    fellowship: Penn AI Fellow
   - name: Yuxin Liang
     url: https://github.com/yuxinlg
     image: /assets/images/authors/yuxin_liang.jpg

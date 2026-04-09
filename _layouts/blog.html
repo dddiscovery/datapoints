@@ -259,6 +259,19 @@ I would like to learn more about the process.{% endcapture %}
               tocNav.appendChild(a);
             });
 
+            function updateTocLine() {
+              const allLinks = tocNav.querySelectorAll('.left-toc-link');
+              if (allLinks.length === 0) return;
+              const lastLink = allLinks[allLinks.length - 1];
+              const navRect = tocNav.getBoundingClientRect();
+              const lastRect = lastLink.getBoundingClientRect();
+              const dotOffset = 0.53 * parseFloat(getComputedStyle(lastLink).fontSize);
+              const lineBottom = navRect.bottom - lastRect.top - dotOffset;
+              tocNav.style.setProperty('--toc-line-bottom', Math.max(0, lineBottom) + 'px');
+            }
+            setTimeout(updateTocLine, 0);
+            window.addEventListener('resize', updateTocLine, { passive: true });
+
             const links = Array.from(tocNav.querySelectorAll('.left-toc-link'));
             const byId = {};
             links.forEach(link => {
@@ -283,6 +296,14 @@ I would like to learn more about the process.{% endcapture %}
             headings.forEach(h => observer.observe(h));
             setActive(headings[0].id);
             toc.classList.remove('left-toc--loading');
+
+            window.addEventListener('scroll', function() {
+              const scrollBottom = window.scrollY + window.innerHeight;
+              const docHeight = document.documentElement.scrollHeight;
+              if (scrollBottom >= docHeight - 80) {
+                setActive(headings[headings.length - 1].id);
+              }
+            }, { passive: true });
           }
         }
 
