@@ -70,7 +70,7 @@ The key caveat the group returned to: this pipeline assumes domain expertise. Ag
 
 ## Context Management: What Claude Loads Before You Type
 
-One of the more concrete March 19 discussions covered what's already in place before writing the first prompt: a global `claude.md` (cross-project coding standards), a local `.claude` folder (project-specific instructions), and an auto-generated `memory.md` built from prior sessions. A `skills.md` file can hold reusable task templates — one example shared was a NumPyro MCMC fitting template with preferred prior structures and chain initialization settings.
+One of the more concrete March 19 discussions covered what's already in place before writing the first prompt: a global `claude.md` (cross-project instructions — in Supranta's demo, coding standards), a local `.claude` folder (project-specific instructions), and an auto-generated `memory.md` built from prior sessions. A `skills.md` file can hold reusable task templates — one example shared was a NumPyro MCMC fitting template with preferred prior structures and chain initialization settings.
 
 Context rot — gradual quality degradation as token count climbs — affects all models 
 but differently. The practical rule: monitor usage and compact at around 60%, not 100%. For high-stakes generation, one-shotting (fresh context, one well-structured prompt) often beats iterative refinement in the same session. Research findings added a wrinkle: simply repeating a prompt verbatim twice yields roughly a 20% performance boost for non-reasoning models[^1], while elaborate initialization files have been shown to consistently reduce task success rates and increase inference cost by over 20%[^2][^3] — though attendees noted this may vary depending on task type and context structure.
@@ -91,9 +91,9 @@ The adversarial development pattern takes a complementary approach: run two agen
 
 The March 20 session expanded into territory without clean technical solutions.
 
-**Security and sensitive data.** HIPAA-compliant model instances exist through institutional partnerships, but documented cases of models escaping sandbox restrictions also exist. The guarantees are probabilistic. For genuinely sensitive data, the safer approach is physical separation — a dedicated machine — not folder-level permissions on a personal laptop.
+**Security and sensitive data.** HIPAA-compliant model instances exist through institutional partnerships, but reported cases of models escaping sandbox restrictions also exist. The guarantees are probabilistic. For genuinely sensitive data, the safer approach is physical separation — a dedicated machine — not folder-level permissions on a personal laptop.
 
-**Peer review integrity.** AI-generated reviews are already detectable: generically balanced, avoiding specific critique, missing the nuances that careful reading surfaces. With submission rates roughly doubling since 2022, reviewer fatigue creates real incentives to outsource. Some venues are beginning to act — [ICML](https://www.nature.com/articles/d41586-026-00893-2), for instance, used hidden watermarks in distributed papers to detect AI-generated reviews, resulting in 497 rejected submissions — but enforcement remains uneven, and the problem is accumulating faster than field-wide norms can respond.
+**Peer review integrity.** AI-generated reviews are already detectable: generically balanced, avoiding specific critique, missing the nuances that careful reading surfaces. With submission rates growing sharply in recent years, reviewer fatigue creates real incentives to outsource. Some venues are beginning to act — [ICLR](https://www.nature.com/articles/d41586-026-00893-2), for instance, used hidden watermarks in distributed papers to detect AI-generated reviews, resulting in 497 rejected submissions — but enforcement remains uneven, and the problem is accumulating faster than field-wide norms can respond.
 
 **Student learning and values.** Where is the line between eliminating obsolete skills and eliminating foundational ones? The concern wasn't AI tools per se but the incentives time pressure creates: students optimizing for output rather than understanding. Models trained to please users rather than serve scientific truth compound this — a model told to "forecast weather" may overfit if generalization isn't made explicit.
 
@@ -101,6 +101,6 @@ The March 20 session expanded into territory without clean technical solutions.
 
 The March 19 session was largely technical: which models, which interfaces, how to structure context. The March 20 session opened onto harder questions about research integrity, student formation, and what it means to think *with* AI rather than *through* it. Together, they suggest a community that has moved past novelty into more uncomfortable territory. The tools are capable enough that the limiting factor is increasingly not what they can do — but whether the researchers using them have thought carefully enough about what they actually want to accomplish.
 
-[^1]: Leviathan et al. (2025).["Prompt Repetition Improves Non-Reasoning LLM"](https://arxiv.org/abs/2512.14982).
+[^1]: Leviathan et al. (2025).["Prompt Repetition Improves Non-Reasoning LLMs"](https://arxiv.org/abs/2512.14982).
 [^2]: Gloaguen et al. (2026).["Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?"](https://arxiv.org/abs/2602.11988).
 [^3]: Lulla et al. (2026).["On the Impact of AGENTS.md Files on the Efficiency of AI Coding Agents"](https://arxiv.org/abs/2601.20404)
