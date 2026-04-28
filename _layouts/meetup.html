@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/meetup.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        processHtmlClass: 'tex2jax_process'
+      },
+      startup: {
+        pageReady: function() {
+          return MathJax.startup.defaultPageReady();
+        }
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <a href="{{ '/' | relative_url }}">
+      <img src="{{ '/assets/images/logo/DP_logo_blue.png' | relative_url }}" alt="Datapoints Logo" class="datapoints-logo">
+    </a>
+  </div>
+
+  <div class="content-section-blue">
+    <h1 class="blog-title">{{ page.title }}</h1>
+    <div class="title-underline"></div>
+    <p class="blog-description">{{ page.subtitle }}</p>
+
+    <div style="display: flex; justify-content: center; gap: 1rem; align-items: center;">
+      <div class="author-section">
+        {% assign author_display = page.authors | join: ", " %}
+        {{ author_display }}
+      </div>
+
+      <span style="color: #666666;">·</span>
+
+      <div class="reading-time-container">
+        {% include reading-time.html %}
+      </div>
+    </div>
+  </div>
+
+  <div class="date-container">
+    <div class="date-divider"></div>
+    {{ page.date | date: "%B %d, %Y" }}
+    <div class="date-divider"></div>
+  </div>
+
+  <div class="meetup-main">
+
+    <!-- Left: credits + sticky ToC -->
+    <div class="meetup-toc-col">
+
+      {% if page.organizers %}
+      <div class="meetup-credits-section">
+        <div class="meetup-credits-title">Organizers</div>
+        {% for person in page.organizers %}
+        <div class="meetup-credit-card">
+          <img src="{{ person.pic | relative_url }}" class="meetup-credit-pic" alt="{{ person.name }}">
+          <div class="meetup-credit-text">
+            <div class="meetup-credit-name">
+              {% if person.url and person.url != "" %}
+                <a href="{{ person.url }}" class="meetup-credit-link" target="_blank" rel="noopener noreferrer">{{ person.name }}</a>
+              {% else %}
+                {{ person.name }}
+              {% endif %}
+            </div>
+            <div class="meetup-credit-affil">{{ person.affiliation }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if page.editors %}
+      <div class="meetup-credits-section">
+        <div class="meetup-credits-title">Editors</div>
+        {% for person in page.editors %}
+        <div class="meetup-credit-card">
+          <img src="{{ person.pic | relative_url }}" class="meetup-credit-pic" alt="{{ person.name }}">
+          <div class="meetup-credit-text">
+            <div class="meetup-credit-name">
+              {% if person.url and person.url != "" %}
+                <a href="{{ person.url }}" class="meetup-credit-link" target="_blank" rel="noopener noreferrer">{{ person.name }}</a>
+              {% else %}
+                {{ person.name }}
+              {% endif %}
+            </div>
+            <div class="meetup-credit-affil">{{ person.affiliation }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if page.organizers or page.editors %}
+      <div class="meetup-credits-toc-divider"></div>
+      {% endif %}
+
+      <div id="left-toc" class="left-toc left-toc--loading" aria-label="On this page">
+        <div class="left-toc-title">On this page</div>
+        <nav id="left-toc-nav" class="left-toc-nav"></nav>
+      </div>
+
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <!-- Center: wider content with auto-injected disclaimer -->
+    <div class="blog-content post-content">
+      <div class="meetup-disclaimer">
+        <strong>Disclaimer:</strong> This post captures informal, off-the-cuff reflections from meeting attendees. The views discussed here are the personal opinions and preliminary assessments of the attendees, and should not be treated as peer-reviewed findings or vetted best practices.
+      </div>
+      {{ content }}
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <!-- Right: sticky scaled-down sidebar -->
+    <div class="meetup-sidebar">
+
+      <h3 class="about-post-title">Penn AI Fellows</h3>
+      <p class="about-post-text">
+        <a href="https://ai.upenn.edu/penn-ai-fellows" class="source-code-link meetup-fellows-link" target="_blank" rel="noopener noreferrer">Learn about the AI Fellows Program →</a>
+      </p>
+
+      <div class="about-post-underline"></div>
+
+      <h3 class="about-post-title">About this post</h3>
+      <p class="about-post-text">
+        Check our source code <a href="https://github.com/dddiscovery/datapoints" class="source-code-link">here</a>
+      </p>
+
+      <div class="about-post-underline"></div>
+
+      <h3 class="about-post-title">Share this post</h3>
+      <div class="social-share">
+        <!-- Bluesky -->
+        <a href="https://bsky.app/intent/compose?text={{ page.summary | url_encode }}%0A%0ADive%20in%3A%20https://dddiscovery.github.io/datapoints{{ page.permalink }}%0A%0AFrom%20DDDI%27s%20series%20scientific%20posts%0A%0A@upenndddi.bsky.social" target="_blank" rel="noopener noreferrer">
+          <img src="{{ '/assets/images/logo/Bluesky_Logo.png' | relative_url }}" alt="Share on Bluesky" class="social-icon">
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://dddiscovery.github.io/datapoints{{ page.permalink }}&title={{ page.title | url_encode }}" target="_blank" rel="noopener noreferrer">
+          <img src="{{ '/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png' | relative_url }}" alt="Share on LinkedIn" class="social-icon meetup-linkedin-icon">
+        </a>
+        <!-- Link icon -->
+        <a href="#" onclick="copyPageUrl()" title="Copy link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#011f5b" class="social-icon link-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="about-post-underline"></div>
+
+      {% assign contribute_email = "yuxinlg@upenn.edu" %}
+      {% assign contribute_subject = "I'd like to contribute a Data Points post" %}
+      {% capture contribute_body %}Hey, I am [your name].
+
+I would like to contribute a Data Points blog post on [your topic].
+
+I would like to learn more about the process.{% endcapture %}
+      <div class="sidebar-contribute-cta">
+        <a
+          class="sidebar-contribute-button"
+          href="mailto:{{ contribute_email }}?subject={{ contribute_subject | uri_escape }}&body={{ contribute_body | uri_escape }}"
+        >
+          Want to contribute a blog post? Email us!
+          <svg class="sidebar-contribute-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+          </svg>
+        </a>
+      </div>
+
+    </div><!-- end .meetup-sidebar -->
+
+  </div><!-- end .meetup-main -->
+
+
+  <script>
+    function copyPageUrl() {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      function slugify(text) {
+        return text
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+
+      function ensureId(heading, used) {
+        if (heading.id) {
+          used.add(heading.id);
+          return heading.id;
+        }
+        const base = slugify(heading.textContent || 'section');
+        let id = base || 'section';
+        let i = 2;
+        while (used.has(id) || document.getElementById(id)) {
+          id = (base || 'section') + '-' + i;
+          i += 1;
+        }
+        heading.id = id;
+        used.add(id);
+        return id;
+      }
+
+      const toc = document.getElementById('left-toc');
+      const tocNav = document.getElementById('left-toc-nav');
+      const content = document.querySelector('.post-content');
+      if (toc && tocNav && content) {
+        const headings = Array.from(content.querySelectorAll('h2, h3'))
+          .filter(h => (h.textContent || '').trim().length > 0);
+        if (headings.length) {
+          const usedIds = new Set();
+          headings.forEach(h => ensureId(h, usedIds));
+
+          headings.forEach(h => {
+            const a = document.createElement('a');
+            a.className = 'left-toc-link level-' + h.tagName.toLowerCase();
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            tocNav.appendChild(a);
+          });
+
+          function updateTocLine() {
+            const allLinks = tocNav.querySelectorAll('.left-toc-link');
+            if (allLinks.length === 0) return;
+            const lastLink = allLinks[allLinks.length - 1];
+            const navRect = tocNav.getBoundingClientRect();
+            const lastRect = lastLink.getBoundingClientRect();
+            const dotOffset = 0.53 * parseFloat(getComputedStyle(lastLink).fontSize);
+            const lineBottom = navRect.bottom - lastRect.top - dotOffset;
+            tocNav.style.setProperty('--toc-line-bottom', Math.max(0, lineBottom) + 'px');
+          }
+          setTimeout(updateTocLine, 0);
+          window.addEventListener('resize', updateTocLine, { passive: true });
+
+          const links = Array.from(tocNav.querySelectorAll('.left-toc-link'));
+          const byId = {};
+          links.forEach(link => {
+            byId[link.getAttribute('href').slice(1)] = link;
+          });
+
+          function setActive(id) {
+            links.forEach(link => link.classList.remove('active'));
+            if (id && byId[id]) byId[id].classList.add('active');
+          }
+
+          const observer = new IntersectionObserver(
+            entries => {
+              const visible = entries
+                .filter(e => e.isIntersecting)
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+              if (visible.length) setActive(visible[0].target.id);
+            },
+            { rootMargin: '0px 0px -70% 0px', threshold: 0.1 }
+          );
+
+          headings.forEach(h => observer.observe(h));
+          setActive(headings[0].id);
+          toc.classList.remove('left-toc--loading');
+
+          window.addEventListener('scroll', function() {
+            const scrollBottom = window.scrollY + window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            if (scrollBottom >= docHeight - 80) {
+              setActive(headings[headings.length - 1].id);
+            }
+          }, { passive: true });
+        }
+      }
+
+      document.querySelectorAll('.blog-content pre').forEach(function(pre) {
+        const button = document.createElement('button');
+        button.className = 'copy-button';
+        button.textContent = 'Copy';
+        pre.appendChild(button);
+
+        button.addEventListener('click', function() {
+          const code = pre.querySelector('code') || pre;
+          const text = code.textContent;
+
+          navigator.clipboard.writeText(text).then(function() {
+            button.textContent = 'Copied!';
+            button.classList.add('copied');
+            setTimeout(function() {
+              button.textContent = 'Copy';
+              button.classList.remove('copied');
+            }, 2000);
+          }).catch(function() {
+            button.textContent = 'Error';
+            setTimeout(function() {
+              button.textContent = 'Copy';
+            }, 2000);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

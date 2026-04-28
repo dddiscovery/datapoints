@@ -1,0 +1,289 @@
+/* =========================================================
+   meetup.css — styles specific to the meetup layout
+   Loaded after blog.css; overrides and extensions only.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Main layout: slim ToC | wide content | sticky sidebar
+   --------------------------------------------------------- */
+
+.meetup-main {
+  display: flex;
+  max-width: 1400px;
+  width: 100%;
+  margin: 3rem auto 0;
+  padding: 0 1rem;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+/* Left: slim ToC column */
+.meetup-toc-col {
+  flex: 0 0 180px;
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------
+   Credits (organizers / editors) in left sidebar
+   --------------------------------------------------------- */
+
+.meetup-credits-section {
+  margin-bottom: 0.75rem;
+}
+
+.meetup-credits-title {
+  display: table;
+  margin: 0 auto 0.45rem;
+  min-width: 5.6rem;
+  text-align: center;
+  font-family: Optima, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #011f5b;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-bottom: 0.3rem;
+  border-bottom: 1.5px solid #66bab7;
+}
+
+.meetup-credit-card {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.meetup-credit-pic {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.meetup-credit-text {
+  min-width: 0;
+}
+
+.meetup-credit-name {
+  font-family: Optima, sans-serif;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #011f5b;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.meetup-credit-affil {
+  font-family: Optima, sans-serif;
+  font-size: 0.76rem;
+  color: #666666;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.meetup-fellows-link {
+  color: #011f5b !important;
+}
+
+.meetup-fellows-link:hover {
+  color: #fc4375 !important;
+}
+
+.meetup-credit-link {
+  color: #011f5b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.meetup-credit-link:hover {
+  color: #fc4375;
+}
+
+.meetup-credits-toc-divider {
+  width: 100%;
+  height: 1px;
+  border-top: 1px dashed rgba(1, 31, 91, 0.25);
+  margin: 0.6rem 0 0.75rem;
+}
+
+.meetup-toc-col .left-toc {
+  max-width: 180px;
+  top: 6.5rem;
+}
+
+/* Center: content — wider than blog.html's flex: 3 */
+.meetup-main .blog-content {
+  flex: 4;
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------
+   Disclaimer block (auto-injected by layout)
+   --------------------------------------------------------- */
+
+.meetup-disclaimer {
+  margin: 0 0 1.5rem 0;
+  padding: 0.65rem 1rem;
+  border-left: 3px solid #fc4375;
+  background: rgba(252, 67, 117, 0.06);
+  border-radius: 0 8px 8px 0;
+  font-family: Optima, sans-serif;
+  font-size: 1.05rem;
+  color: #555555;
+  line-height: 1.55;
+}
+
+/* ---------------------------------------------------------
+   Key Takeaways box
+   --------------------------------------------------------- */
+
+.meetup-takeaways {
+  background: rgba(102, 186, 183, 0.05);
+  border: 1px solid #66bab7;
+  border-radius: 12px;
+  padding: 1.4rem 1.75rem 1.2rem;
+  margin: 1.25rem 0 1.75rem;
+  box-shadow: 0 4px 18px rgba(102, 186, 183, 0.15);
+  color: inherit;
+}
+
+.meetup-takeaways h2 {
+  color: #66bab7;
+  margin-top: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(102, 186, 183, 0.35);
+}
+
+.meetup-takeaways em {
+  color: #fc4375;
+  font-style: italic;
+  display: block;
+  margin-bottom: 0.9rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.meetup-takeaways ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.meetup-takeaways li {
+  color: #1a1a1a;
+  margin-bottom: 0.55rem;
+  line-height: 1.55;
+  font-family: "EB Garamond", serif;
+  font-size: 1.15rem;
+}
+
+.meetup-takeaways li::marker {
+  color: #66bab7;
+}
+
+.meetup-takeaways li code {
+  background: rgba(102, 186, 183, 0.12);
+  color: #1a1a1a;
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.88em;
+}
+
+/* ---------------------------------------------------------
+   Right sidebar: sticky, proportionally scaled down
+   --------------------------------------------------------- */
+
+.meetup-sidebar {
+  flex: 0 0 195px;
+  position: sticky;
+  top: 6.5rem;
+  align-self: flex-start;
+  height: fit-content;
+}
+
+.meetup-sidebar .about-post-title {
+  font-size: 1rem;
+}
+
+.meetup-sidebar .about-post-text {
+  font-size: 0.9rem;
+  text-indent: 0;
+  margin-top: -0.15rem;
+}
+
+.meetup-sidebar .about-post-underline {
+  max-width: 100%;
+  margin-top: 0.9rem;
+}
+
+.meetup-sidebar .social-share {
+  gap: 12px;
+  margin-left: 0;
+}
+
+.meetup-sidebar .social-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.meetup-sidebar .meetup-linkedin-icon {
+  width: 22px;
+  height: 18px;
+}
+
+.meetup-sidebar .sidebar-contribute-button {
+  font-size: 0.76rem;
+  padding: 0.45rem 0.7rem;
+  gap: 0.3rem;
+  line-height: 1.25;
+}
+
+.meetup-sidebar .sidebar-contribute-arrow {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+
+/* ---------------------------------------------------------
+   Responsive: collapse at 1200px
+   --------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+  .meetup-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .meetup-toc-col {
+    display: none !important;
+  }
+
+  .meetup-main .blog-content {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .meetup-sidebar {
+    position: static;
+    flex: unset;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .meetup-main .vertical-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .meetup-main {
+    padding: 0 0.5rem;
+  }
+
+  .meetup-sidebar {
+    max-width: 100%;
+  }
+}
