@@ -541,6 +541,9 @@ video {
 .relative {
   position: relative;
 }
+.sticky {
+  position: sticky;
+}
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -552,6 +555,9 @@ video {
 }
 .hidden {
   display: none;
+}
+.resize {
+  resize: both;
 }
 .gap-8 {
   gap: 2rem;

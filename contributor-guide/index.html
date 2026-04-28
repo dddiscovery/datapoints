@@ -116,8 +116,8 @@
 
   <p>Stores all blog post content in Markdown format.</p>
   <ul>
-    <li>Naming convention: <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-FirstName-LastName.md</code></li>
-    <li>Example: <code class="language-plaintext highlighter-rouge">2025-01-27-Yuxin-Liang.md</code></li>
+    <li>Naming convention: <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-FirstName-LastName.md</code>
+<!-- - Example: `2025-01-27-Yuxin-Liang.md` --></li>
   </ul>
 
   <h5 id="assets"><code class="language-plaintext highlighter-rouge">assets/</code></h5>
@@ -129,7 +129,7 @@
     <li><code class="language-plaintext highlighter-rouge">post_assets/</code>: Post-specific assets
       <ul>
         <li>Each post should have its own directory matching the .md filename</li>
-        <li>Example: If your post is <code class="language-plaintext highlighter-rouge">2025-01-27-Yuxin-Liang.md</code>, create <code class="language-plaintext highlighter-rouge">assets/post_assets/2025-01-27-Yuxin-Liang/</code></li>
+        <li>Example: If your post is <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-FirstName-LastName.md</code>, create <code class="language-plaintext highlighter-rouge">assets/post_assets/YYYY-MM-DD-FirstName-LastName/</code></li>
         <li>Store all post-specific settings, images, and other assets in this folder</li>
       </ul>
     </li>
@@ -142,7 +142,7 @@
   <h4 id="branch-structure">Branch Structure</h4>
   <ul>
     <li><code class="language-plaintext highlighter-rouge">main</code>: Production-ready code, final destination for completed posts</li>
-    <li><code class="language-plaintext highlighter-rouge">firstname-lastname-staging</code>: Personal development branch for each author</li>
+    <li><code class="language-plaintext highlighter-rouge">post/YYYY-MM-DD-FirstName-LastName</code>: Suggested personal development branch for each author</li>
   </ul>
 
   <h4 id="workflow">Workflow</h4>
@@ -151,7 +151,7 @@
       <p><strong>Create Your Branch</strong></p>
 
       <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create and switch to your personal staging branch</span>
-git checkout <span class="nt">-b</span> yuxin-liang-staging
+git checkout <span class="nt">-b</span> post/YYYY-MM-DD-FirstName-LastName
 </code></pre></div>      </div>
     </li>
     <li>
@@ -166,7 +166,7 @@ git checkout <span class="nt">-b</span> yuxin-liang-staging
     <li>
       <p><strong>Push to Your Branch</strong></p>
 
-      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin yuxin-liang-staging
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin post/YYYY-MM-DD-FirstName-LastName
 </code></pre></div>      </div>
     </li>
     <li>
@@ -196,37 +196,39 @@ git checkout <span class="nt">-b</span> yuxin-liang-staging
 
   <h4 id="prerequisites">Prerequisites</h4>
   <ol>
-    <li><strong>Install Ruby</strong>
+    <li>
+      <p><strong>Install Ruby</strong></p>
+
+      <p><span class="guide-os-label">For Windows:</span></p>
+
       <ul>
-        <li>For Windows:
-          <ul>
-            <li>Download and install Ruby from <a href="https://rubyinstaller.org/">RubyInstaller</a></li>
-            <li>Verify installation: <code class="language-plaintext highlighter-rouge">ruby -v</code></li>
-          </ul>
+        <li>Download and install Ruby from <a href="https://rubyinstaller.org/">RubyInstaller</a></li>
+        <li>Verify installation: <code class="language-plaintext highlighter-rouge">ruby -v</code></li>
+      </ul>
+
+      <p><span class="guide-os-label">For macOS:</span></p>
+
+      <ul>
+        <li>Ruby comes pre-installed, but it’s recommended to use a version manager</li>
+        <li>Install Homebrew if not already installed:
+          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
+</code></pre></div>          </div>
         </li>
-        <li>For macOS:
-          <ul>
-            <li>Ruby comes pre-installed, but it’s recommended to use a version manager</li>
-            <li>Install Homebrew if not already installed:
-              <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
-</code></pre></div>              </div>
-            </li>
-            <li>Install rbenv:
-              <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rbenv
+        <li>Install rbenv:
+          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rbenv
 rbenv init
-</code></pre></div>              </div>
-            </li>
-            <li>Install Ruby:
-              <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv <span class="nb">install </span>3.2.0
-rbenv global 3.2.0
-</code></pre></div>              </div>
-            </li>
-            <li>Verify installation: <code class="language-plaintext highlighter-rouge">ruby -v</code></li>
-          </ul>
+</code></pre></div>          </div>
         </li>
+        <li>Install Ruby:
+          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv <span class="nb">install </span>3.2.0
+rbenv global 3.2.0
+</code></pre></div>          </div>
+        </li>
+        <li>Verify installation: <code class="language-plaintext highlighter-rouge">ruby -v</code></li>
       </ul>
     </li>
-    <li><strong>Install Jekyll and Bundler</strong>
+    <li>
+      <p><strong>Install Jekyll and Bundler</strong></p>
       <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll bundler
 </code></pre></div>      </div>
     </li>
@@ -388,8 +390,8 @@ bundle <span class="nb">exec </span>jekyll serve <span class="nt">--host</span><
   <ol>
     <li><strong>Create a new branch for your post</strong>
       <ul>
-        <li>Branch naming convention: <code class="language-plaintext highlighter-rouge">post/YYYY-MM-DD-FirstName-LastName</code></li>
-        <li>Example: <code class="language-plaintext highlighter-rouge">post/2025-01-27-Yuxin-Liang</code></li>
+        <li>Branch naming convention: <code class="language-plaintext highlighter-rouge">post/YYYY-MM-DD-FirstName-LastName</code>
+<!-- - Example: `post/2025-01-27-Yuxin-Liang` --></li>
       </ul>
     </li>
     <li><strong>Create your blog post in <code class="language-plaintext highlighter-rouge">_posts/</code> following the naming convention</strong>
@@ -532,45 +534,36 @@ bundle <span class="nb">exec </span>jekyll serve <span class="nt">--host</span><
   <p>The blog features artwork from the public domain for both title images and other visual elements throughout the site:</p>
 
   <div class="credits-container">
+    <!-- 
+### Title Images
 
-    <h3 id="title-images">Title Images</h3>
+- *"Water-colour of the Battle of the Gods"*
+  - Artist: Unkown
+  - Selfmark: Bodleian Library MS.Chin.c.12(R)
+  - Source: Bodleian Libraries, University of Oxford
+  - Status: Public Domain
 
-    <ul>
-      <li><em>“Water-colour of the Battle of the Gods”</em>
-        <ul>
-          <li>Artist: Unkown</li>
-          <li>Selfmark: Bodleian Library MS.Chin.c.12(R)</li>
-          <li>Source: Bodleian Libraries, University of Oxford</li>
-          <li>Status: Public Domain</li>
-        </ul>
-      </li>
-    </ul>
+[//]: # "`assets/images/posts/1922.1133_web.jpeg`"
 
-    <ul>
-      <li><em>“Stag at Sharkey’s”</em>
-        <ul>
-          <li>Artist: George Bellows</li>
-          <li>Accession Number: 1922.1133</li>
-          <li>Source: The Cleveland Museum of Art</li>
-          <li>Status: Public Domain</li>
-        </ul>
-      </li>
-    </ul>
+- *"Stag at Sharkey's"*
+  - Artist: George Bellows
+  - Accession Number: 1922.1133
+  - Source: The Cleveland Museum of Art
+  - Status: Public Domain
 
-    <ul>
-      <li><em>“Stage Curtain: Temple of Fame”</em>
-        <ul>
-          <li>Artist: Henry Felice Giani</li>
-          <li>Accession Number: 1901-39-3181</li>
-          <li>Source: Cooper Hewitt</li>
-          <li>Status: Public Domain</li>
-        </ul>
-      </li>
-    </ul>
+[//]: # "`assets/images/posts/1922.1133_web.jpeg`"
 
-  </div>
 
-  <div class="credits-container">
+- *"Stage Curtain: Temple of Fame"*
+  - Artist: Henry Felice Giani
+  - Accession Number: 1901-39-3181
+  - Source: Cooper Hewitt 
+  - Status: Public Domain
+
+[//]: # "`assets/images/posts/Stage_Curtain_ Temple of Fame.jpeg`"
+</div>
+
+<div class="credits-container" markdown="1"> -->
 
     <h3 id="other-images">Other Images</h3>
     <ul>
