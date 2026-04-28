@@ -24,6 +24,15 @@ about: |
 featured_posts:
 # from the latest post to the oldest post
 
+  - image: /assets/images/posts/meetup_cover_april.png
+    title: 'From MCP Servers to Peer Review Integrity: How Researchers Are Rethinking Agentic AI'
+    tag: AI Fellow Meetup
+    url: /agentic-coding-postdoc-meetups
+    author: Penn AI Fellow Meetup
+    author_url: https://ai.upenn.edu/penn-ai-fellows
+    date: April 28, 2026
+    description: "Postdoctoral researchers across two sessions compared model selection strategies, built MCP servers live, and debated what agentic AI means for peer review integrity and student learning"
+
   - image: /assets/images/posts/data_cover_zrl.png
     title: Turning Fast-moving Crises into Structured, Revisitable Evidence
     tag: Data Notes

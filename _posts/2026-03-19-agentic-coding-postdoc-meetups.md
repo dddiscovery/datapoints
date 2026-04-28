@@ -5,7 +5,7 @@ subtitle: ""
 authors: ["Penn AI Fellow Meetup"]
 author_pic: ["/assets/images/authors/dddi.png"]
 author_title: ["Postdoctoral Researchers, DDDI"]
-date: 2026-03-19
+date: 2026-04-28
 permalink: /agentic-coding-postdoc-meetups/
 summary: "Postdoctoral researchers across two sessions compared model selection strategies, built MCP servers live, and debated what agentic AI means for peer review integrity and student learning — here's what they found."
 organizers:
