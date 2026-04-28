@@ -25,7 +25,7 @@ featured_posts:
 # from the latest post to the oldest post
 
   - image: /assets/images/posts/meetup_cover_april.png
-    title: 'From MCP Servers to Peer Review Integrity: How Researchers Are Rethinking Agentic AI'
+    title: 'From MCP Servers to Peer Review Integrity'
     tag: AI Fellow Meetup
     url: /agentic-coding-postdoc-meetups
     author: Penn AI Fellow Meetup

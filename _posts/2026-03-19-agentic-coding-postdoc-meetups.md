@@ -1,7 +1,7 @@
 ---
 layout: meetup
-title: "From MCP Servers to Peer Review Integrity: How Researchers Are Rethinking Agentic AI"
-subtitle: ""
+title: "From MCP Servers to Peer Review Integrity"
+subtitle: "How Researchers Are Rethinking Agentic AI"
 authors: ["Penn AI Fellow Meetup"]
 author_pic: ["/assets/images/authors/dddi.png"]
 author_title: ["Postdoctoral Researchers, DDDI"]
