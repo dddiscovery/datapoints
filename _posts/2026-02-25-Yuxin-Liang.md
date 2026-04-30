@@ -7,7 +7,9 @@ author_pic: ["/assets/images/authors/YuxinL.jpeg"]
 author_title: ["Data Scientist at DDDI"]
 date: 2026-03-03
 permalink: /llm-augmented-codebook/
+image: /assets/images/posts/llm_cover_yxl.png
 summary: "A structured workflow for completing metadata without surrendering control."
+category: llm
 ---
 
 Imagine you are a social science researcher. One day, you are excited to share a dataset you have collected/digitized/extracted/hand-coded with others in your field. Before doing so, however, you need to prepare a codebook for users who may lack the full research context. This step is particularly important in social science research, where data are often highly context-dependent. A well-prepared codebook explains the definition and source of each variable, provides sample values, and documents how missing values are coded—whether by you or by the original data provider.

@@ -7,6 +7,8 @@ author_pic: ["/assets/images/authors/melanie_segado.jpg"]
 author_title: ["Machine learning/Movement/Healthcare"]
 date: 2025-03-10
 permalink: /off-the-shelf-ai/
+image: /assets/images/posts/data_cover_ms.png
+category: data
 
 ---
 

@@ -22,23 +22,27 @@ title: Data Points
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet"> -->
 </head>
 <body>
+    <div class="site-header-wrap">
     <div class="logos">
         <a href="https://web.sas.upenn.edu/data-science/">
             <img src="{{ '/assets/images/logo/DDDI Logo/PennSAS-DDD_logo.png' | relative_url }}" alt="DDDI Logo" class="DDDI-logo">
         </a>
         <div class="divider"></div>
-        <img src="{{ '/assets/images/logo/DP_logo_blue.png' | relative_url }}" alt="DP Logo" class="datapoints-logo">
+        <a href="{{ '/' | relative_url }}">
+            <img src="{{ '/assets/images/logo/DP_logo_blue.png' | relative_url }}" alt="DP Logo" class="datapoints-logo">
+        </a>
     </div>
     
     <div class="header">
     <nav class="main-nav">
-        <a href="#about-section" class="nav-link">About</a>
-        <a href="#blog-section" class="nav-link">Blog</a>
+        <a href="{{ '/' | relative_url }}" class="nav-link nav-link--active">About</a>
+        <a href="{{ '/blog' | relative_url }}" class="nav-link">Blog</a>
         <a href="{{ '/contributor-guide' | relative_url }}" class="nav-link">Contributor Guide</a>
-        <a href="#people-section" class="nav-link">People</a>
-        <a href="#contact-section" class="nav-link">Contact us</a>
+        <a href="{{ '/#people-section' | relative_url }}" class="nav-link">People</a>
+        <a href="{{ '/#contact-section' | relative_url }}" class="nav-link">Contact us</a>
     </nav>
     <div class="divider-line"></div>
+    </div>
     </div>
 
 

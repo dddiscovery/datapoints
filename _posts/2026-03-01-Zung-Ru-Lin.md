@@ -8,7 +8,9 @@ author_pic: ["/assets/images/authors/zung_ru_lin.png"]
 author_title: ["Chief Data Scientist & Co-PI of MLP @ PDRI-DevLab"]
 date: 2026-03-04
 permalink: /dashboards-as-research-deliverables/
+image: /assets/images/posts/data_cover_zrl.png
 summary: "A narrative essay on how to keep sequence and evidence visible under polarization: turning fast-moving crises into structured, revisitable context."
+category: data
 ---
 
 <div class="prelude" markdown="1">

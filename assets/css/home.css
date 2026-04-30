@@ -6,6 +6,25 @@
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap");
 
+/* Cross-document view transitions */
+@view-transition {
+    navigation: auto;
+}
+
+/* Freeze the nav bar perfectly still during page transitions */
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+    animation-duration: 0s;
+}
+
+/* Snap the rest of the page in quickly — reduces perceived flash */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 80ms;
+    animation-timing-function: ease-in-out;
+}
+
 
 /* Basic styles for home page */
 .home-content {
@@ -56,7 +75,8 @@
 }
 /* Global Styles */
 body {
-    margin-top: 2rem;
+    margin: 0;
+    padding: 0;
     font-family: 'Crimson Text', serif;
 }
 /* 
@@ -73,18 +93,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0rem;
+    padding: 2rem 0 0;
     width: 100%;
     flex-wrap: wrap;
 }
 
-.header {
-    @apply md:sticky top-0
+.site-header-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    view-transition-name: site-header;
 }
 
 .header {
-    z-index: 1000;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 .divider {
@@ -120,6 +143,10 @@ body {
 }
 
 .nav-link:hover {
+    color: #fc4375;
+}
+
+.nav-link--active {
     color: #fc4375;
 }
 

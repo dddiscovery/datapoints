@@ -1,0 +1,138 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+    <title>{{ page.title }} | Data Points</title>
+    <link rel="stylesheet" href="{{ '/assets/css/blog-index.css' | relative_url }}">
+</head>
+<body>
+
+    <!-- ── Logos + Sticky nav wrapper ── -->
+    <div class="site-header-wrap">
+
+    <!-- ── Logos ── -->
+    <div class="logos">
+        <a href="https://web.sas.upenn.edu/data-science/">
+            <img src="{{ '/assets/images/logo/DDDI Logo/PennSAS-DDD_logo.png' | relative_url }}" alt="DDDI Logo" class="DDDI-logo">
+        </a>
+        <div class="divider"></div>
+        <a href="{{ '/' | relative_url }}">
+            <img src="{{ '/assets/images/logo/DP_logo_blue.png' | relative_url }}" alt="Data Points Logo" class="datapoints-logo">
+        </a>
+    </div>
+
+    <!-- ── Nav ── -->
+    <div class="header">
+        <nav class="main-nav">
+            <a href="{{ '/' | relative_url }}" class="nav-link">About</a>
+            <a href="{{ '/blog' | relative_url }}" class="nav-link nav-link--active">Blog</a>
+            <a href="{{ '/contributor-guide' | relative_url }}" class="nav-link">Contributor Guide</a>
+            <a href="{{ '/#people-section' | relative_url }}" class="nav-link">People</a>
+            <a href="{{ '/#contact-section' | relative_url }}" class="nav-link">Contact us</a>
+        </nav>
+        <div class="divider-line"></div>
+    </div>
+
+    </div><!-- /.site-header-wrap -->
+
+    <!-- ── Main layout: sidebar + posts ── -->
+    <div class="blog-layout">
+
+        <!-- ── Left sidebar ── -->
+        <aside class="blog-sidebar">
+            <nav class="blog-sidebar-nav">
+                {% for cat in page.categories %}
+                <button
+                    class="sidebar-cat-btn{% if forloop.first %} active{% endif %}"
+                    data-filter="{{ cat.id }}"
+                >{{ cat.label }}</button>
+                {% endfor %}
+            </nav>
+        </aside>
+
+        <!-- ── Posts list ── -->
+        <div class="blog-posts-list">
+            {% assign blog_posts = site.posts | where_exp: "post", "post.category != nil" | sort: "date" | reverse %}
+            {% for post in blog_posts %}
+            <article class="blog-content-section" data-category="{{ post.category }}">
+                {% if post.image %}
+                <div class="blog-image">
+                    <a href="{{ post.url | relative_url }}">
+                        <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+                    </a>
+                </div>
+                {% endif %}
+                <div class="blog-content">
+                    {% if post.category %}
+                    <div class="blog-tag-row">
+                        <span class="blog-tag">
+                            {%- if post.category == "data" -%}Data Notes
+                            {%- elsif post.category == "llm" -%}LLM Notes
+                            {%- elsif post.category == "meetup" -%}Meetup &amp; Events
+                            {%- else -%}{{ post.category }}{%- endif -%}
+                        </span>
+                        <span class="blog-tag-line"></span>
+                    </div>
+                    {% endif %}
+                    <h3 class="blog-title">
+                        <a href="{{ post.url | relative_url }}" class="blog-title-link">{{ post.title }}</a>
+                    </h3>
+                    <p class="blog-meta">
+                        By
+                        {% for author in post.authors %}
+                            {%- assign aname = author | split: '[' | last | split: ']' | first -%}
+                            {%- assign aurl  = author | split: '(' | last | split: ')' | first -%}
+                            {%- if aurl contains 'http' -%}
+                                <a href="{{ aurl }}">{{ aname }}</a>
+                            {%- else -%}
+                                {{ author }}
+                            {%- endif -%}
+                            {%- unless forloop.last -%}, {% endunless -%}
+                        {% endfor %}
+                        | {{ post.date | date: "%B %-d, %Y" }}
+                    </p>
+                    {% if post.summary and post.summary != "" %}
+                    <p class="blog-description">{{ post.summary }}</p>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+    </div><!-- /.blog-layout -->
+
+    <script>
+        (function () {
+            var btns  = Array.from(document.querySelectorAll('.sidebar-cat-btn'));
+            var cards = Array.from(document.querySelectorAll('.blog-content-section[data-category]'));
+
+            function filter(cat) {
+                btns.forEach(function (b) {
+                    b.classList.toggle('active', b.dataset.filter === cat);
+                });
+                cards.forEach(function (c) {
+                    c.style.display = (cat === 'all' || c.dataset.category === cat) ? '' : 'none';
+                });
+                history.replaceState(null, '', cat === 'all' ? location.pathname : '#' + cat);
+            }
+
+            btns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    filter(btn.dataset.filter);
+                });
+            });
+
+            /* Honour URL hash on load (e.g. /blog/#llm) */
+            var hash = window.location.hash.replace('#', '');
+            if (hash && ['data', 'llm', 'meetup'].indexOf(hash) !== -1) {
+                filter(hash);
+            }
+        })();
+    </script>
+
+</body>
+</html>

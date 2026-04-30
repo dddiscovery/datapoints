@@ -42,7 +42,7 @@ Contains universal HTML layouts used across the blog. These templates define the
 
 Stores all blog post content in Markdown format. 
 - Naming convention: `YYYY-MM-DD-FirstName-LastName.md`
-- Example: `2025-01-27-Yuxin-Liang.md`
+<!-- - Example: `2025-01-27-Yuxin-Liang.md` -->
 
 ##### `assets/`
 
@@ -51,7 +51,7 @@ Static assets organized in three main categories:
 - `images/`: Global images used throughout the blog
 - `post_assets/`: Post-specific assets
   - Each post should have its own directory matching the .md filename
-  - Example: If your post is `2025-01-27-Yuxin-Liang.md`, create `assets/post_assets/2025-01-27-Yuxin-Liang/`
+  - Example: If your post is `YYYY-MM-DD-FirstName-LastName.md`, create `assets/post_assets/YYYY-MM-DD-FirstName-LastName/`
   - Store all post-specific settings, images, and other assets in this folder
 </section>
 
@@ -61,14 +61,14 @@ Static assets organized in three main categories:
 
 #### Branch Structure
 - `main`: Production-ready code, final destination for completed posts
-- `firstname-lastname-staging`: Personal development branch for each author
+- `post/YYYY-MM-DD-FirstName-LastName`: Suggested personal development branch for each author
 
 #### Workflow
 1. **Create Your Branch**
 
    ```bash
    # Create and switch to your personal staging branch
-   git checkout -b yuxin-liang-staging
+   git checkout -b post/YYYY-MM-DD-FirstName-LastName
    ```
 
 2. **Development Process**
@@ -80,7 +80,7 @@ Static assets organized in three main categories:
 3. **Push to Your Branch**
 
    ```bash
-   git push origin yuxin-liang-staging
+   git push origin post/YYYY-MM-DD-FirstName-LastName
    ```
 
 4. **Final Review**
@@ -103,26 +103,30 @@ Static assets organized in three main categories:
 
 #### Prerequisites
 1. **Install Ruby**
-   - For Windows:
-     - Download and install Ruby from [RubyInstaller](https://rubyinstaller.org/)
-     - Verify installation: `ruby -v`
-   - For macOS:
-     - Ruby comes pre-installed, but it's recommended to use a version manager
-     - Install Homebrew if not already installed:
-       ```bash
-       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-       ```
-     - Install rbenv:
-       ```bash
-       brew install rbenv
-       rbenv init
-       ```
-     - Install Ruby:
-       ```bash
-       rbenv install 3.2.0
-       rbenv global 3.2.0
-       ```
-     - Verify installation: `ruby -v`
+
+   <span class="guide-os-label">For Windows:</span>
+
+   - Download and install Ruby from [RubyInstaller](https://rubyinstaller.org/)
+   - Verify installation: `ruby -v`
+
+   <span class="guide-os-label">For macOS:</span>
+
+   - Ruby comes pre-installed, but it's recommended to use a version manager
+   - Install Homebrew if not already installed:
+     ```bash
+     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+     ```
+   - Install rbenv:
+     ```bash
+     brew install rbenv
+     rbenv init
+     ```
+   - Install Ruby:
+     ```bash
+     rbenv install 3.2.0
+     rbenv global 3.2.0
+     ```
+   - Verify installation: `ruby -v`
 
 2. **Install Jekyll and Bundler**
    ```bash
@@ -242,7 +246,7 @@ After completing all content and styling, pushing changes to the `main` branch t
 
 1. **Create a new branch for your post**
    - Branch naming convention: `post/YYYY-MM-DD-FirstName-LastName`
-   - Example: `post/2025-01-27-Yuxin-Liang`
+   <!-- - Example: `post/2025-01-27-Yuxin-Liang` -->
 
 2. **Create your blog post in `_posts/` following the naming convention**
    - Create a new .md file named `YYYY-MM-DD-FirstName-LastName.md`
@@ -326,7 +330,7 @@ Science with style - research that reads like a page-turner. A collection of blo
 The blog features artwork from the public domain for both title images and other visual elements throughout the site:
 
 <div class="credits-container" markdown="1">
-
+<!-- 
 ### Title Images
 
 - *"Water-colour of the Battle of the Gods"*
@@ -355,7 +359,7 @@ The blog features artwork from the public domain for both title images and other
 [//]: # "`assets/images/posts/Stage_Curtain_ Temple of Fame.jpeg`"
 </div>
 
-<div class="credits-container" markdown="1">
+<div class="credits-container" markdown="1"> -->
 
 ### Other Images
 -  *"London Bridge"*

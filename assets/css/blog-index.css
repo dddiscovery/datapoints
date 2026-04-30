@@ -1,0 +1,413 @@
+---
+---
+
+/* ═══════════════════════════════════════════════
+   blog-index.css  —  /blog/ page
+   Self-contained: includes all shared header/nav
+   styles so no other stylesheet is required.
+   ═══════════════════════════════════════════════ */
+
+/* ── Fonts ────────────────────────────────────── */
+@font-face {
+    font-family: "EB Garamond";
+    src: url("../fonts/EBGaramond-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "EB Garamond";
+    src: url("../fonts/EBGaramond-Italic-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Faustina";
+    src: url("../fonts/Faustina-VariableFont_wght.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../fonts/Poppins-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Cross-document view transitions */
+@view-transition {
+    navigation: auto;
+}
+
+/* Freeze the nav bar perfectly still during page transitions */
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+    animation-duration: 0s;
+}
+
+/* Snap the rest of the page in quickly — reduces perceived flash */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 80ms;
+    animation-timing-function: ease-in-out;
+}
+
+/* ── Reset / Base ─────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Faustina', 'Crimson Text', serif;
+    background-color: #ffffff;
+    color: #011f5b;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ── Logos row ────────────────────────────────── */
+.logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0 0;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.DDDI-logo {
+    height: auto;
+    width: min(210px, 35vw);
+    max-height: 55px;
+}
+
+.divider {
+    width: 0.1rem;
+    height: 3rem;
+    background-color: #011f5b;
+    margin: 0 1.25rem;
+}
+
+.datapoints-logo {
+    height: auto;
+    width: min(200px, 30vw);
+}
+
+/* ── Sticky header wrapper ────────────────────── */
+.site-header-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    view-transition-name: site-header;
+}
+
+.header {
+    background-color: #ffffff;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 75px;
+    margin-top: 18px;
+}
+
+.nav-link {
+    font-family: "Poppins-SemiBold", "Poppins", Arial, sans-serif !important;
+    font-weight: 600 !important;
+    color: #011f5b;
+    text-decoration: none;
+    padding-top: 0.5rem;
+    margin: 0 1.25rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #fc4375;
+}
+
+.nav-link--active {
+    color: #fc4375;
+}
+
+.divider-line {
+    width: 100%;
+    height: 0.1rem;
+    background-color: #011f5b;
+    margin-top: 0.625rem;
+}
+
+/* ═══════════════════════════════════════════════
+   Blog layout: sidebar + posts list
+   ═══════════════════════════════════════════════ */
+
+.blog-layout {
+    display: flex;
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 2rem auto 0;
+    padding: 0 2rem 4rem;
+}
+
+/* ── Sidebar ──────────────────────────────────── */
+.blog-sidebar {
+    flex: 0 0 160px;
+    position: sticky;
+    top: 5.5rem;
+    height: fit-content;
+}
+
+.blog-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.sidebar-cat-btn {
+    font-family: "Poppins", Arial, sans-serif;
+    font-size: 0.95rem;
+    color: #4a5568;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    padding: 0.45rem 0.75rem;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.sidebar-cat-btn:hover {
+    color: #011f5b;
+    background-color: rgba(1, 31, 91, 0.06);
+}
+
+.sidebar-cat-btn.active {
+    color: #fc4375;
+    font-family: "Poppins-SemiBold", "Poppins", Arial, sans-serif;
+    font-weight: 600;
+}
+
+/* ── Posts list ───────────────────────────────── */
+.blog-posts-list {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ── Article card (matches home page style) ────── */
+.blog-content-section {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin: 0 0 24px 0;
+    padding: 0;
+}
+
+.blog-content-section + .blog-content-section {
+    border-top: 1px solid rgba(1, 31, 91, 0.15);
+    padding-top: 20px;
+}
+
+/* ── Card image ───────────────────────────────── */
+.blog-image {
+    flex: 0 0 auto;
+    width: 220px;
+    aspect-ratio: 1.618 / 1;
+    overflow: hidden;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+}
+
+.blog-image img:hover {
+    opacity: 0.88;
+}
+
+/* ── Card content ─────────────────────────────── */
+.blog-content {
+    flex: 1;
+    padding: 2px 0;
+}
+
+/* ── Tag ──────────────────────────────────────── */
+.blog-tag-row {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: max-content;
+    gap: 2px;
+    margin: 0 0 6px 0;
+}
+
+.blog-tag {
+    color: #666;
+    font-family: "Poppins", Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.blog-tag-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #66BAB7;
+}
+
+/* ── Title ────────────────────────────────────── */
+.blog-title {
+    margin: 0 0 8px 0;
+    font-family: "Poppins-SemiBold", Arial, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.blog-title-link {
+    color: #011f5b;
+    text-decoration: none;
+    font-size: 1.125rem;
+    transition: color 0.2s;
+}
+
+.blog-title-link:hover {
+    color: #fc4375;
+}
+
+/* ── Meta ─────────────────────────────────────── */
+.blog-meta {
+    color: #666;
+    font-size: 0.9125rem;
+    margin: 0 0 6px 0;
+    font-family: 'Faustina', serif;
+}
+
+.blog-meta a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.blog-meta a:hover {
+    color: #fc4375;
+}
+
+/* ── Description ──────────────────────────────── */
+.blog-description {
+    color: #333;
+    line-height: 1.45;
+    margin: 0;
+    font-family: 'Faustina', serif;
+    font-size: 1rem;
+}
+
+/* ═══════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════ */
+
+/* ── ≤900px: collapse sidebar above posts ──────── */
+@media (max-width: 900px) {
+    .blog-layout {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0 1.25rem 3rem;
+    }
+
+    .blog-sidebar {
+        flex: none;
+        position: static;
+        width: 100%;
+    }
+
+    .blog-sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+
+    .sidebar-cat-btn {
+        border: 1px solid rgba(1, 31, 91, 0.18);
+        border-radius: 20px;
+        padding: 0.3rem 0.9rem;
+        font-size: 0.875rem;
+    }
+
+    .sidebar-cat-btn.active {
+        background-color: rgba(252, 67, 117, 0.08);
+        border-color: #fc4375;
+    }
+
+    .blog-image {
+        width: 160px;
+    }
+}
+
+/* ── ≤600px: stack image above content ──────────── */
+@media (max-width: 600px) {
+    .blog-layout {
+        padding: 0 0.75rem 3rem;
+    }
+
+    .blog-content-section {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .blog-image {
+        width: 100%;
+        aspect-ratio: 2.5 / 1;
+    }
+
+    .main-nav {
+        gap: clamp(0.75rem, 4vw, 1.5rem);
+    }
+}
+
+/* ── ≤480px: hero, nav scaling ─────────────────── */
+@media (max-width: 480px) {
+    .logos {
+        padding: 1rem 0.75rem 0;
+    }
+
+    .blog-hero {
+        padding: 1.75rem 1rem 1.5rem;
+    }
+
+    .main-nav {
+        gap: 0.6rem;
+        margin-top: 12px;
+    }
+
+    .nav-link {
+        font-size: 0.78rem;
+        padding-top: 0.35rem;
+    }
+}
