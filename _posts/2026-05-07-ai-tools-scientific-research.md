@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: meetup
 title: "From Toy to Tool: AI in Physics Research — A Training Session at Penn"
 subtitle: ""
 authors: ["DDDI AI Fellow Gathering"]
@@ -8,17 +8,39 @@ author_title: ["Faculty, UPenn Physics"]
 date: 2026-05-07
 permalink: /ai-tools-scientific-research/
 summary: "Five UPenn physicists — from HEP theorists to experimentalists to astrophysicists — share their real AI workflows in a May 2026 training session organized by DDDI, covering symbolic computation, agentic coding, and the honest limits of trust."
+category: meetup
+organizers:
+  - name: "Bhuvnesh Jain"
+    affiliation:
+      - "Walter H. and Leonore C. Annenberg Professor in the Natural Sciences"
+      - "Co-Director of the Penn Center for Particle Cosmology"
+      - "Co-Director of the Penn Data Driven Discovery Initiative"
+    pic: "/assets/images/authors/Jain_Bhuvnesh.jpg"
+    url: "https://live-sas-physics.pantheon.sas.upenn.edu/people/standing-faculty/bhuvnesh-jain"
+editors:
+  - name: "Yuxin Liang"
+    affiliation: "Data Scientist @DDDI"
+    pic: "/assets/images/authors/YuxinL.jpeg"
+    url: https://github.com/yuxinlg
+  - name: Colin Twomey
+    affiliation: Executive Director @DDDI
+    pic: /assets/images/authors/colin_twomey.jpg
+    url: https://www.sas.upenn.edu/~crtwomey/
 ---
 
 ## About This Session
 
-On May 7, 2026, the Data Driven Discovery Initiative (DDDI) at the University of Pennsylvania hosted a training session for physics department researchers titled *Scientific Research with Claude Code and Other AI Tools*. Organized by DDDI director Mike Jarvis, the session gathered faculty, postdocs, and PhD students from across the department — high-energy theorists, experimentalists, and astrophysicists — for an afternoon of practitioner talks and hands-on exploration. The aim was practical: move past general awareness of AI tools and into specific, usable workflows from people using them that week.
+On May 7, 2026, the Data Driven Discovery Initiative (DDDI) at the University of Pennsylvania hosted a training session for physics department researchers titled *Scientific Research with Claude Code and Other AI Tools*. Organized by Bhuv Jain, the session gathered faculty, postdocs, and PhD students from across the department — high-energy theorists, experimentalists, and astrophysicists — for an afternoon of practitioner talks and hands-on exploration. The aim was practical: move past general awareness of AI tools and into specific, usable workflows from people using them that week.
 
 ## How the Session Was Structured
 
 Five researchers each gave a 10-minute talk on how they use AI in their own work, followed by Q&A. The afternoon closed with 45 minutes of guided hands-on exploration. The lineup covered the breadth of use cases from the broadest (AI across the full research lifecycle) to the most specific (commit-by-commit expert coding workflow with Codex). The format is worth replicating: no outside demos, no vendor pitches — just practitioners from within a department showing real examples, including failures.
 
+<div class="meetup-takeaways" markdown="1">
+
 ## Key Takeaways
+
+*The following reflect patterns and observations shared by attendees across two sessions — not empirically validated findings or universal best practices.*
 
 - Treat AI as a **cognitive partner**: give it context the way you'd brief a smart colleague who knows nothing about your project yet — explicit, detailed, generous with background.
 - **Run the same symbolic calculation across multiple parallel sessions** and verify numerically; only one of five attempts may actually be correct, and the wrong ones will claim to have verified themselves.
@@ -27,6 +49,8 @@ Five researchers each gave a 10-minute talk on how they use AI in their own work
 - **Context rot is real**: around 60% of a context window, quality degrades — scope sessions by task and restart or compact deliberately.
 - Start every coding task by iterating on the design first; ask the model to "ask me questions before you write any code."
 - The right question isn't "when will AI replace researchers?" — it's "what research becomes possible now that wasn't before?"
+
+</div>
 
 ## Bhuv Jain — AI as a Cognitive Partner: The Full Range of Use Cases
 
@@ -79,3 +103,5 @@ Two instructions he's added to his global Codex settings: "If you think I'm mist
 What made the afternoon work was the calibration it offered — not hype, not dismissal, but five researchers with different workflows and different skepticism levels being specific about what they actually do. The underlying question surfaced explicitly near the end: will AI replace physics researchers? The room's view was that it's the wrong frame. Spreadsheet software didn't eliminate accountants; it multiplied them. The more interesting questions are what new problems become tractable, whether PhDs can be done well in four years instead of five, and how departments think about the infrastructure — licensing, compute, training — that their researchers now need.
 
 A follow-up session on agentic workflows and Claude Code internals was being discussed before the room cleared.
+
+Check the talk slides [here](https://docs.google.com/presentation/d/1thLrhePZ4s8AeC3kDKFxJ9FlrtBUsEQxlD74t5VWKCo/edit?usp=sharing).

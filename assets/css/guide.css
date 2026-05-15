@@ -133,6 +133,7 @@ body {
     padding: 2rem 0.625rem;
     text-align: center;
     min-height: 10vh;
+    margin-top: 0;
 }
 
 .content-section-white {
@@ -461,6 +462,12 @@ table td:last-child {
 
 /* Media queries for responsive design */
 @media screen and (max-width: 768px) {
+    /* Remove the 10px padding-bottom that responsive.css adds to .header,
+       which would otherwise create a white gap between the nav and the blue box */
+    .header {
+        padding-bottom: 0;
+    }
+
     .toc-dropdown-btn {
         display: block;
     }
