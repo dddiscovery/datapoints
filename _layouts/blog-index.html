@@ -45,7 +45,7 @@
         <!-- ── Left sidebar ── -->
         <aside class="blog-sidebar">
             <nav class="blog-sidebar-nav">
-                {% for cat in page.categories %}
+                {% for cat in page.filter_tabs %}
                 <button
                     class="sidebar-cat-btn{% if forloop.first %} active{% endif %}"
                     data-filter="{{ cat.id }}"

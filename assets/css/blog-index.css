@@ -370,6 +370,20 @@ a {
     }
 }
 
+/* ── ≤767px: nav alignment (matches home + guide via responsive.css) ── */
+@media (max-width: 767px) {
+    .main-nav {
+        width: 100%;
+        gap: 15px;
+        padding: 0 5px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+}
+
 /* ── ≤600px: stack image above content ──────────── */
 @media (max-width: 600px) {
     .blog-layout {
@@ -383,31 +397,17 @@ a {
 
     .blog-image {
         width: 100%;
-        aspect-ratio: 2.5 / 1;
-    }
-
-    .main-nav {
-        gap: clamp(0.75rem, 4vw, 1.5rem);
+        aspect-ratio: 1.618 / 1;
     }
 }
 
-/* ── ≤480px: hero, nav scaling ─────────────────── */
+/* ── ≤480px: nav scaling ────────────────────────── */
 @media (max-width: 480px) {
-    .logos {
-        padding: 1rem 0.75rem 0;
-    }
-
-    .blog-hero {
-        padding: 1.75rem 1rem 1.5rem;
-    }
-
     .main-nav {
-        gap: 0.6rem;
-        margin-top: 12px;
+        gap: 10px;
     }
 
     .nav-link {
-        font-size: 0.78rem;
-        padding-top: 0.35rem;
+        font-size: 10px;
     }
 }

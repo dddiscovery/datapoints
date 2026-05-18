@@ -77,7 +77,7 @@
       <div class="meetup-credits-section">
         <div class="meetup-credits-title">Organizers</div>
         {% for person in page.organizers %}
-        <div class="meetup-credit-card">
+        <div class="meetup-credit-card{% if person.affiliation[0] %} meetup-credit-card--top{% endif %}">
           <img src="{{ person.pic | relative_url }}" class="meetup-credit-pic" alt="{{ person.name }}">
           <div class="meetup-credit-text">
             <div class="meetup-credit-name">
@@ -87,7 +87,13 @@
                 {{ person.name }}
               {% endif %}
             </div>
-            <div class="meetup-credit-affil">{{ person.affiliation }}</div>
+            <div class="meetup-credit-affil">
+              {% if person.affiliation[0] %}
+                {% for line in person.affiliation %}<span class="meetup-credit-affil-line">{{ line }}</span>{% endfor %}
+              {% else %}
+                {{ person.affiliation }}
+              {% endif %}
+            </div>
           </div>
         </div>
         {% endfor %}
@@ -98,7 +104,7 @@
       <div class="meetup-credits-section">
         <div class="meetup-credits-title">Editors</div>
         {% for person in page.editors %}
-        <div class="meetup-credit-card">
+        <div class="meetup-credit-card{% if person.affiliation[0] %} meetup-credit-card--top{% endif %}">
           <img src="{{ person.pic | relative_url }}" class="meetup-credit-pic" alt="{{ person.name }}">
           <div class="meetup-credit-text">
             <div class="meetup-credit-name">
@@ -108,7 +114,13 @@
                 {{ person.name }}
               {% endif %}
             </div>
-            <div class="meetup-credit-affil">{{ person.affiliation }}</div>
+            <div class="meetup-credit-affil">
+              {% if person.affiliation[0] %}
+                {% for line in person.affiliation %}<span class="meetup-credit-affil-line">{{ line }}</span>{% endfor %}
+              {% else %}
+                {{ person.affiliation }}
+              {% endif %}
+            </div>
           </div>
         </div>
         {% endfor %}
@@ -130,6 +142,11 @@
 
     <!-- Center: wider content with auto-injected disclaimer -->
     <div class="blog-content post-content">
+      {% if page.draft_note %}
+      <div class="meetup-disclaimer meetup-disclaimer--process">
+        <strong>Note on process:</strong> {{ page.draft_note }}
+      </div>
+      {% endif %}
       <div class="meetup-disclaimer">
         <strong>Disclaimer:</strong> This post captures informal, off-the-cuff reflections from meeting attendees. The views discussed here are the personal opinions and preliminary assessments of the attendees, and should not be treated as peer-reviewed findings or vetted best practices.
       </div>
