@@ -150,6 +150,11 @@
   line-height: 1.55;
 }
 
+.meetup-disclaimer--process {
+  border-left-color: #011f5b;
+  background: rgba(1, 31, 91, 0.04);
+}
+
 /* ---------------------------------------------------------
    Key Takeaways box
    --------------------------------------------------------- */

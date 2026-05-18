@@ -142,6 +142,11 @@
 
     <!-- Center: wider content with auto-injected disclaimer -->
     <div class="blog-content post-content">
+      {% if page.draft_note %}
+      <div class="meetup-disclaimer meetup-disclaimer--process">
+        <strong>Note on process:</strong> {{ page.draft_note }}
+      </div>
+      {% endif %}
       <div class="meetup-disclaimer">
         <strong>Disclaimer:</strong> This post captures informal, off-the-cuff reflections from meeting attendees. The views discussed here are the personal opinions and preliminary assessments of the attendees, and should not be treated as peer-reviewed findings or vetted best practices.
       </div>
