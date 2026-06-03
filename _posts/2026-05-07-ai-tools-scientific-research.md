@@ -1,7 +1,7 @@
 ---
 layout: meetup
-title: "AI for Research: From Toy to Tool"
-subtitle: "AI in Physics Research — A Training Session at Penn"
+title: "AI in Physics Research: From Toy to Tool"
+subtitle: "A Training Session at Penn"
 authors: ["Department of  Physics and Astronomy & DDDI"]
 author_pic: ["/assets/images/authors/dddi.png"]
 author_title: ["Collaborative Training Session"]
