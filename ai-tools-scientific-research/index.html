@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/datapoints/favicon.ico">
+
+  <title>From Toy to Tool</title>
+  <link rel="stylesheet" href="/datapoints/assets/css/blog.css">
+  <link rel="stylesheet" href="/datapoints/assets/css/meetup.css">
+  <link rel="stylesheet" href="/datapoints/assets/css/responsive.css">
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        processHtmlClass: 'tex2jax_process'
+      },
+      startup: {
+        pageReady: function() {
+          return MathJax.startup.defaultPageReady();
+        }
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <a href="/datapoints/">
+      <img src="/datapoints/assets/images/logo/DP_logo_blue.png" alt="Datapoints Logo" class="datapoints-logo">
+    </a>
+  </div>
+
+  <div class="content-section-blue">
+    <h1 class="blog-title">From Toy to Tool</h1>
+    <div class="title-underline"></div>
+    <p class="blog-description">AI in Physics Research — A Training Session at Penn</p>
+
+    <div style="display: flex; justify-content: center; gap: 1rem; align-items: center;">
+      <div class="author-section">
+        
+        Department of  Physics and Astronomy & DDDI
+      </div>
+
+      <span style="color: #666666;">·</span>
+
+      <div class="reading-time-container">
+        
+
+10 min read
+
+      </div>
+    </div>
+  </div>
+
+  <div class="date-container">
+    <div class="date-divider"></div>
+    May 07, 2026
+    <div class="date-divider"></div>
+  </div>
+
+  <div class="meetup-main">
+
+    <!-- Left: credits + sticky ToC -->
+    <div class="meetup-toc-col">
+
+      
+      <div class="meetup-credits-section">
+        <div class="meetup-credits-title">Organizers</div>
+        
+        <div class="meetup-credit-card meetup-credit-card--top">
+          <img src="/datapoints/assets/images/authors/Jain_Bhuvnesh.jpg" class="meetup-credit-pic" alt="Bhuvnesh Jain">
+          <div class="meetup-credit-text">
+            <div class="meetup-credit-name">
+              
+                <a href="https://live-sas-physics.pantheon.sas.upenn.edu/people/standing-faculty/bhuvnesh-jain" class="meetup-credit-link" target="_blank" rel="noopener noreferrer">Bhuvnesh Jain</a>
+              
+            </div>
+            <div class="meetup-credit-affil">
+              
+                <span class="meetup-credit-affil-line">Walter H. and Leonore C. Annenberg Professor in the Natural Sciences</span><span class="meetup-credit-affil-line">Co-Director of the Penn Center for Particle Cosmology</span><span class="meetup-credit-affil-line">Co-Director of the Penn Data Driven Discovery Initiative</span>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+
+      
+      <div class="meetup-credits-section">
+        <div class="meetup-credits-title">Editors</div>
+        
+        <div class="meetup-credit-card">
+          <img src="/datapoints/assets/images/authors/YuxinL.jpeg" class="meetup-credit-pic" alt="Yuxin Liang">
+          <div class="meetup-credit-text">
+            <div class="meetup-credit-name">
+              
+                <a href="https://github.com/yuxinlg" class="meetup-credit-link" target="_blank" rel="noopener noreferrer">Yuxin Liang</a>
+              
+            </div>
+            <div class="meetup-credit-affil">
+              
+                Data Scientist @DDDI
+              
+            </div>
+          </div>
+        </div>
+        
+        <div class="meetup-credit-card">
+          <img src="/datapoints/assets/images/authors/colin_twomey.jpg" class="meetup-credit-pic" alt="Colin Twomey">
+          <div class="meetup-credit-text">
+            <div class="meetup-credit-name">
+              
+                <a href="https://www.sas.upenn.edu/~crtwomey/" class="meetup-credit-link" target="_blank" rel="noopener noreferrer">Colin Twomey</a>
+              
+            </div>
+            <div class="meetup-credit-affil">
+              
+                Executive Director @DDDI
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+
+      
+      <div class="meetup-credits-toc-divider"></div>
+      
+
+      <div id="left-toc" class="left-toc left-toc--loading" aria-label="On this page">
+        <div class="left-toc-title">On this page</div>
+        <nav id="left-toc-nav" class="left-toc-nav"></nav>
+      </div>
+
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <!-- Center: wider content with auto-injected disclaimer -->
+    <div class="blog-content post-content">
+      
+      <div class="meetup-disclaimer meetup-disclaimer--process">
+        <strong>Note on process:</strong> First draft generated from the session transcript using Claude MCP; edited and verified by the editors.
+      </div>
+      
+      <div class="meetup-disclaimer">
+        <strong>Disclaimer:</strong> This post captures informal, off-the-cuff reflections from meeting attendees. The views discussed here are the personal opinions and preliminary assessments of the attendees, and should not be treated as peer-reviewed findings or vetted best practices.
+      </div>
+      <h2 id="about-this-session">About This Session</h2>
+
+<p>On May 7, 2026, the Department of Physics and Astronomy at Penn held a tutorial session focused on practical uses of AI in scientific research. Faculty, postdocs, and PhD students—including high-energy theorists, experimentalists, and astrophysicists—came together to exchange and demonstrate the specific AI workflows they were using, aiming to move beyond general awareness toward detailed, real-world examples and honest discussion.</p>
+
+<h2 id="how-the-session-was-structured">How the Session Was Structured</h2>
+
+<p>Five researchers each gave a 10-minute talk on how they use AI in their own work, followed by Q&amp;A. The afternoon closed with 45 minutes of guided hands-on exploration. The lineup covered the breadth of use cases from the broadest (AI across the full research lifecycle) to the most specific (commit-by-commit expert coding workflow with Codex).</p>
+
+<div class="meetup-takeaways">
+
+  <h2 id="key-takeaways">Key Takeaways</h2>
+
+  <p><em>The following reflect patterns and observations shared by attendees across two sessions — not empirically validated findings or universal best practices.</em></p>
+
+  <ul>
+    <li>Treat AI as a <strong>cognitive partner</strong>: give it context the way you’d brief a smart colleague who knows nothing about your project yet — explicit, detailed, generous with background.</li>
+    <li><strong>Run the same symbolic calculation across multiple parallel sessions</strong> and verify numerically; only one of five attempts may actually be correct, and the wrong ones will claim to have verified themselves.</li>
+    <li><strong>Match the task to the risk profile</strong>: exploratory code (visualizations, format translation, sanity checks) can be handed off with minimal checking; multi-step production workflows need decomposition and pull-request-level review.</li>
+    <li><strong>Literature synthesis in adjacent fields is genuinely useful</strong>; specific paper citations frequently hallucinate — verify every link before citing.</li>
+    <li><strong>Context rot is real</strong>: around 60% of a context window, quality degrades — scope sessions by task and restart or compact deliberately.</li>
+    <li>Start every coding task by iterating on the design first; ask the model to “ask me questions before you write any code.”</li>
+    <li>The right question isn’t “when will AI replace researchers?” — it’s “what research becomes possible now that wasn’t before?”</li>
+  </ul>
+
+</div>
+
+<h2 id="bhuv-jain--ai-as-a-cognitive-partner-the-full-range-of-use-cases">Bhuv Jain — AI as a Cognitive Partner: The Full Range of Use Cases</h2>
+
+<p>Bhuv Jain opened with the framing that anchored the rest of the day: the single most useful reframe for AI is to treat it not as a search engine or a code autocomplete, but as a <strong>cognitive partner</strong>. If you give it context — the way you’d brief a smart new collaborator who has just joined the project — the quality of its responses changes substantially.</p>
+
+<p>He ran through an impressively wide range of use cases: travel planning with neighborhood-level granularity, grant management by uploading award letters and monthly reports so the model could compute month-by-month spend-down projections, lecture note refinement, quiz question iteration, and drafting. The through-line was always the same: create a project or folder, upload everything relevant, describe your goals, iterate.</p>
+
+<p>On research specifically, Jain mapped the full lifecycle — formulating a project, sharpening a vague idea, literature search, planning the analysis, writing and debugging code, and writing the paper — and flagged where AI has already proven most valuable. Coding dominates at the moment; plot-making and paper-writing are not far behind. His practical advice: pay $20/month (the free tier silently downgrades to weaker models as you approach token limits), don’t agonize over which model to use (Claude, ChatGPT, and Gemini are comparable for most research tasks), and expect capabilities to take a meaningful step up every six months.</p>
+
+<h2 id="hayden-lee--using-ai-for-theoretical-research">Hayden Lee — Using AI for Theoretical Research</h2>
+
+<p>Hayden Lee, a high-energy theorist, opened with the benchmark data that has been circulating in the community: frontier models now solve more than 50% of problems from FrontierMath — a curated set of expert-level problems written by research mathematicians. Two years ago, the best models scored around 2%. His framing: the trend line matters more than any individual number, and the trajectory has crossed from AI as a toy to AI as a tool, now reaching something approximating PhD-level mathematical reasoning.</p>
+
+<h3 id="use-case-1-symbolic-computation">Use case 1: Symbolic computation</h3>
+
+<p>Lee needed to solve a recursion relation for partial wave coefficients in conformal field theory — a calculation Mathematica could handle but only in an unwieldy closed form involving gamma functions and Pochhammer symbols. He ran the same equation through five separate ChatGPT 5.2 Pro chat instances simultaneously. One produced a clean, correct rational expression after 18 minutes of reasoning. The other four produced plausible but wrong answers — and all four claimed to have verified their results numerically. He confirmed the correct one by checking it in Mathematica. The lesson: run parallel instances, verify independently, and treat any model’s claim of self-verification as noise.</p>
+
+<h3 id="use-case-2-pattern-recognition-at-scale">Use case 2: Pattern recognition at scale</h3>
+
+<p>Starting from a 6-particle one-loop scattering amplitude — a 100,000-term expression that occupied nearly a gigabyte of memory — Lee asked Claude Opus 4.6 to identify the symmetry structure of the monomials. The model correctly identified all orbit structures and stabilizer groups, reducing the problem to six independent terms and producing clear graph-theoretic diagrams of the sector decomposition.</p>
+
+<p>His summary of what LLMs are good at in theoretical work: tedious algebra, advanced calculus, elementary Mathematica, and endless iterations. What still needs babysitting: knowing what’s physically interesting, catching plausible-but-wrong formulas, and supplying physical intuition. His current workflow involves maintaining a dozen simultaneous chat windows and moving between them as each reasoning step completes — like a chess grandmaster running ten games at once.</p>
+
+<h2 id="dylan-rankin--experiment-data-analysis-and-the-limits-of-trust">Dylan Rankin — Experiment, Data Analysis, and the Limits of Trust</h2>
+
+<p>Dylan Rankin, a high-energy experimentalist, led with code comprehension as an underappreciated use case. If you want to add a feature to a large existing codebase — he used the example of adding Spearman correlation as a training metric to a model-monitoring repository — you can now ask Claude to read the repo, explain the architecture, identify which files need to change, implement the feature, and generate a test suite. An orientation task that would previously take hours of reading source code now takes minutes of conversation.</p>
+
+<p>His broader point was about calibrating trust. LLMs handle individual tasks well but struggle with long chains of interdependent reasoning, where a small wrong assumption compounds into something hard to debug — especially because the model will confidently assert correctness at each step. His recommendation: <strong>decompose complex workflows into manually-verified subtasks</strong>, establish a stable, understood codebase, then use agentic tools for incremental feature additions reviewed as pull requests.</p>
+
+<p>He closed with a pointed observation about fully autonomous analysis: an AI system had recently produced a complete LHC analysis with sensible-looking plots, but wrote in every caption that “data-simulation agreement is excellent” — because that’s what every paper it trained on said, regardless of what the plots actually showed.</p>
+
+<h2 id="supranta-boruah--exploratory-coding-with-claude-code">Supranta Boruah — Exploratory Coding with Claude Code</h2>
+
+<p>Supranta Boruah, a cosmologist, offered the most candid observation about AI-generated code: it is usually correct, but it is almost always <strong>verbose</strong>. A 14-line function comes back as 300 lines, with defensive checks for impossible edge cases and error handling that isn’t needed. For long-lived production code, that verbosity creates technical debt. But for exploratory research — iterating quickly over hypotheses, generating diagnostic plots, running sanity checks — it’s nearly ideal. The time from idea to running code collapses.</p>
+
+<p>His example project: comparing galaxy-halo occupation statistics across simulations with incompatible data formats. Code translation — paste in the format specification for simulation A, paste in the read logic for simulation B, ask it to adapt — is exactly what these tools handle well. He also flagged <strong>context rot</strong>: around 60% of a session’s context window, performance degrades noticeably. He monitors context usage in Claude Code with the <code class="language-plaintext highlighter-rouge">/context</code> command and either compacts memory or restarts sessions before quality drops.</p>
+
+<p>On literature: AI synthesizes adjacent-field research well, but will confidently hallucinate paper citations. Verify every link.</p>
+
+<h2 id="mike-jarvis--expert-level-coding-with-codex">Mike Jarvis — Expert-Level Coding with Codex</h2>
+
+<p>Mike Jarvis closed the talks with the most detailed workflow description of the session. He drew a distinction between exploratory code and what he called “expert-level” code: software maintained long-term, with users, semantic versioning, and a rigorous test suite. For this kind, he has moved entirely to Codex-mediated development. Since February, he no longer writes code without it.</p>
+
+<p>His standard commit workflow: describe the feature and its edge cases, ask the model to iterate on the design before writing anything (“ask me questions, let’s agree on the approach”), go back and forth two or three rounds, then let it work for 2–10 minutes. Then <code class="language-plaintext highlighter-rouge">git diff</code>: start with the tests, because they’re easiest to read and reveal whether the model understood the problem. He tightens tolerance parameters (models write tests at <code class="language-plaintext highlighter-rouge">RTOL=0.1</code> when he wants machine precision), adds edge cases, then reviews the implementation for unnecessary defensive code, overly clever algorithms, and doc-string accuracy.</p>
+
+<p>Two instructions he’s added to his global Codex settings: “If you think I’m mistaken, push back and tell me” — this has caught several cases where he was wrong about his own codebase — and “If you’re not sure about something, ask before you start.” The first reduces sycophancy. The second saves expensive context from code that needed to be thrown out.</p>
+
+<h2 id="what-this-session-was-really-about">What This Session Was Really About</h2>
+
+<p>What made the afternoon work was the calibration it offered: five researchers with different workflows and different skepticism levels being specific about what they actually do. The underlying question surfaced explicitly near the end: will AI replace physics researchers? The room’s view was that it’s the wrong frame. Spreadsheet software didn’t eliminate accountants; it multiplied them. The more interesting questions are what new problems become tractable, whether PhDs can be done well in four years instead of five, and how departments think about the infrastructure — licensing, compute, training — that their researchers now need.</p>
+
+<p>A follow-up session on agentic workflows and Claude Code internals was being discussed before the room cleared.</p>
+
+<p>Check the talk slides <a href="https://docs.google.com/presentation/d/1thLrhePZ4s8AeC3kDKFxJ9FlrtBUsEQxlD74t5VWKCo/edit?usp=sharing">here</a>.</p>
+
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <!-- Right: sticky scaled-down sidebar -->
+    <div class="meetup-sidebar">
+
+      <h3 class="about-post-title">Penn AI Fellows</h3>
+      <p class="about-post-text">
+        <a href="https://ai.upenn.edu/penn-ai-fellows" class="source-code-link meetup-fellows-link" target="_blank" rel="noopener noreferrer">Learn about the AI Fellows Program →</a>
+      </p>
+
+      <div class="about-post-underline"></div>
+
+      <h3 class="about-post-title">About this post</h3>
+      <p class="about-post-text">
+        Check our source code <a href="https://github.com/dddiscovery/datapoints" class="source-code-link">here</a>
+      </p>
+
+      <div class="about-post-underline"></div>
+
+      <h3 class="about-post-title">Share this post</h3>
+      <div class="social-share">
+        <!-- Bluesky -->
+        <a href="https://bsky.app/intent/compose?text=Five+Penn+physicists+%E2%80%94+from+HEP+theorists+to+experimentalists+to+astrophysicists+%E2%80%94+share+their+real+AI+workflows%2C+covering+symbolic+computation%2C+agentic+coding%2C+and+the+honest+limits+of+trust.%0A%0ADive%20in%3A%20https://dddiscovery.github.io/datapoints/ai-tools-scientific-research/%0A%0AFrom%20DDDI%27s%20series%20scientific%20posts%0A%0A@upenndddi.bsky.social" target="_blank" rel="noopener noreferrer">
+          <img src="/datapoints/assets/images/logo/Bluesky_Logo.png" alt="Share on Bluesky" class="social-icon">
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://dddiscovery.github.io/datapoints/ai-tools-scientific-research/&title=From+Toy+to+Tool" target="_blank" rel="noopener noreferrer">
+          <img src="/datapoints/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png" alt="Share on LinkedIn" class="social-icon meetup-linkedin-icon">
+        </a>
+        <!-- Link icon -->
+        <a href="#" onclick="copyPageUrl()" title="Copy link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#011f5b" class="social-icon link-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="about-post-underline"></div>
+
+      
+      
+      
+      <div class="sidebar-contribute-cta">
+        <a
+          class="sidebar-contribute-button"
+          href="mailto:yuxinlg@upenn.edu?subject=I'd%20like%20to%20contribute%20a%20Data%20Points%20post&body=Hey,%20I%20am%20[your%20name].%0A%0AI%20would%20like%20to%20contribute%20a%20Data%20Points%20blog%20post%20on%20[your%20topic].%0A%0AI%20would%20like%20to%20learn%20more%20about%20the%20process."
+        >
+          Want to contribute a blog post? Email us!
+          <svg class="sidebar-contribute-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+          </svg>
+        </a>
+      </div>
+
+    </div><!-- end .meetup-sidebar -->
+
+  </div><!-- end .meetup-main -->
+
+
+  <script>
+    function copyPageUrl() {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      function slugify(text) {
+        return text
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+
+      function ensureId(heading, used) {
+        if (heading.id) {
+          used.add(heading.id);
+          return heading.id;
+        }
+        const base = slugify(heading.textContent || 'section');
+        let id = base || 'section';
+        let i = 2;
+        while (used.has(id) || document.getElementById(id)) {
+          id = (base || 'section') + '-' + i;
+          i += 1;
+        }
+        heading.id = id;
+        used.add(id);
+        return id;
+      }
+
+      const toc = document.getElementById('left-toc');
+      const tocNav = document.getElementById('left-toc-nav');
+      const content = document.querySelector('.post-content');
+      if (toc && tocNav && content) {
+        const headings = Array.from(content.querySelectorAll('h2, h3'))
+          .filter(h => (h.textContent || '').trim().length > 0);
+        if (headings.length) {
+          const usedIds = new Set();
+          headings.forEach(h => ensureId(h, usedIds));
+
+          headings.forEach(h => {
+            const a = document.createElement('a');
+            a.className = 'left-toc-link level-' + h.tagName.toLowerCase();
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            tocNav.appendChild(a);
+          });
+
+          function updateTocLine() {
+            const allLinks = tocNav.querySelectorAll('.left-toc-link');
+            if (allLinks.length === 0) return;
+            const lastLink = allLinks[allLinks.length - 1];
+            const navRect = tocNav.getBoundingClientRect();
+            const lastRect = lastLink.getBoundingClientRect();
+            const dotOffset = 0.53 * parseFloat(getComputedStyle(lastLink).fontSize);
+            const lineBottom = navRect.bottom - lastRect.top - dotOffset;
+            tocNav.style.setProperty('--toc-line-bottom', Math.max(0, lineBottom) + 'px');
+          }
+          setTimeout(updateTocLine, 0);
+          window.addEventListener('resize', updateTocLine, { passive: true });
+
+          const links = Array.from(tocNav.querySelectorAll('.left-toc-link'));
+          const byId = {};
+          links.forEach(link => {
+            byId[link.getAttribute('href').slice(1)] = link;
+          });
+
+          function setActive(id) {
+            links.forEach(link => link.classList.remove('active'));
+            if (id && byId[id]) byId[id].classList.add('active');
+          }
+
+          const observer = new IntersectionObserver(
+            entries => {
+              const visible = entries
+                .filter(e => e.isIntersecting)
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+              if (visible.length) setActive(visible[0].target.id);
+            },
+            { rootMargin: '0px 0px -70% 0px', threshold: 0.1 }
+          );
+
+          headings.forEach(h => observer.observe(h));
+          setActive(headings[0].id);
+          toc.classList.remove('left-toc--loading');
+
+          window.addEventListener('scroll', function() {
+            const scrollBottom = window.scrollY + window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            if (scrollBottom >= docHeight - 80) {
+              setActive(headings[headings.length - 1].id);
+            }
+          }, { passive: true });
+        }
+      }
+
+      document.querySelectorAll('.blog-content pre').forEach(function(pre) {
+        const button = document.createElement('button');
+        button.className = 'copy-button';
+        button.textContent = 'Copy';
+        pre.appendChild(button);
+
+        button.addEventListener('click', function() {
+          const code = pre.querySelector('code') || pre;
+          const text = code.textContent;
+
+          navigator.clipboard.writeText(text).then(function() {
+            button.textContent = 'Copied!';
+            button.classList.add('copied');
+            setTimeout(function() {
+              button.textContent = 'Copy';
+              button.classList.remove('copied');
+            }, 2000);
+          }).catch(function() {
+            button.textContent = 'Error';
+            setTimeout(function() {
+              button.textContent = 'Copy';
+            }, 2000);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

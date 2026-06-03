@@ -869,7 +869,7 @@ body {
 .blog-content-section {
     display: flex;
     gap: 20px;
-    align-items: flex-start;
+    align-items: center;
     margin: 0 0 24px 0;
     padding: 0;
 }
