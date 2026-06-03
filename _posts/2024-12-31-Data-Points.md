@@ -25,7 +25,7 @@ featured_posts:
 # from the latest post to the oldest post
 
   - image: /assets/images/posts/meetup_cover_may.png
-    title: 'From Toy to Tool: AI in Physics Research — A Training Session at Penn'
+    title: 'AI for Research: From Toy to Tool'
     tag: AI Fellow Meetup
     url: /ai-tools-scientific-research
     author: Department of  Physics and Astronomy & DDDI
