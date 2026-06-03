@@ -8,7 +8,7 @@ author_title: ["Postdoctoral Researchers, DDDI"]
 date: 2026-04-28
 permalink: /agentic-coding-postdoc-meetups/
 image: /assets/images/posts/meetup_cover_april.png
-summary: "Postdoctoral researchers across two sessions compared model selection strategies, built MCP servers live, and debated what agentic AI means for peer review integrity and student learning — here's what they found."
+summary: "Postdoctoral researchers across two sessions compared model selection strategies, built MCP servers live, and debated what agentic AI means for peer review integrity and student learning."
 category: meetup
 draft_note: "First draft generated from the session transcript using Claude MCP; edited and verified by the editors."
 organizers:

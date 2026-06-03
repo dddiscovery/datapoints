@@ -1,13 +1,14 @@
 ---
 layout: meetup
-title: "From Toy to Tool: AI in Physics Research — A Training Session at Penn"
-subtitle: ""
-authors: ["Penn Physics × DDDI""]
+title: "From Toy to Tool"
+subtitle: "AI in Physics Research — A Training Session at Penn"
+authors: ["Department of  Physics and Astronomy & DDDI"]
 author_pic: ["/assets/images/authors/dddi.png"]
-author_title: ["Faculty, UPenn Physics"]
+author_title: ["Collaborative Training Session"]
 date: 2026-05-07
 permalink: /ai-tools-scientific-research/
-summary: "Five UPenn physicists — from HEP theorists to experimentalists to astrophysicists — share their real AI workflows in a May 2026 training session, covering symbolic computation, agentic coding, and the honest limits of trust."
+image: /assets/images/posts/meetup_cover_may.png
+summary: "Five Penn physicists — from HEP theorists to experimentalists to astrophysicists — share their real AI workflows, covering symbolic computation, agentic coding, and the honest limits of trust."
 category: meetup
 draft_note: "First draft generated from the session transcript using Claude MCP; edited and verified by the editors."
 organizers:
@@ -33,7 +34,7 @@ editors:
 ## About This Session
 
 
-On May 7, 2026, the Department of Physics and Astronomy at Penn held a sharing and discussion session focused on practical uses of AI in scientific research. Faculty, postdocs, and PhD students—including high-energy theorists, experimentalists, and astrophysicists—came together to exchange and demonstrate the specific AI workflows they were using, aiming to move beyond general awareness toward detailed, real-world examples and honest discussion.
+On May 7, 2026, the Department of Physics and Astronomy at Penn held a tutorial session focused on practical uses of AI in scientific research. Faculty, postdocs, and PhD students—including high-energy theorists, experimentalists, and astrophysicists—came together to exchange and demonstrate the specific AI workflows they were using, aiming to move beyond general awareness toward detailed, real-world examples and honest discussion.
 
 
 ## How the Session Was Structured

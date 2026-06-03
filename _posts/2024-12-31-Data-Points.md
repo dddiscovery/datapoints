@@ -24,6 +24,15 @@ about: |
 featured_posts:
 # from the latest post to the oldest post
 
+  - image: /assets/images/posts/meetup_cover_may.png
+    title: 'From Toy to Tool: AI in Physics Research — A Training Session at Penn'
+    tag: AI Fellow Meetup
+    url: /ai-tools-scientific-research
+    author: Department of  Physics and Astronomy & DDDI
+    author_url: https://live-sas-physics.pantheon.sas.upenn.edu/people
+    date: May 07, 2026
+    description: "Five Penn physicists — from HEP theorists to experimentalists to astrophysicists — share their real AI workflows in a May 2026 training session, covering symbolic computation, agentic coding, and the honest limits of trust"
+
   - image: /assets/images/posts/meetup_cover_april.png
     title: 'From MCP Servers to Peer Review Integrity'
     tag: AI Fellow Meetup
