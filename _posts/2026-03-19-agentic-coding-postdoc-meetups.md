@@ -29,7 +29,7 @@ editors:
   - name: "Yuxin Liang"
     affiliation: "Data Scientist @DDDI"
     pic: "/assets/images/authors/YuxinL.jpeg"
-    url: https://github.com/yuxinlg
+    url: https://yuxinlg.github.io/
   - name: Colin Twomey
     affiliation: Executive Director @DDDI
     pic: /assets/images/authors/colin_twomey.jpg

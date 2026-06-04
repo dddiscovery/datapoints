@@ -2,7 +2,7 @@
 layout: blog
 title: "A Workflow for LLM-Augmented Codebook Generation"
 subtitle: "combining manual curation with targeted LLM inference"
-authors: ["[Yuxin Liang](https://www.linkedin.com/in/yuxinliang/)"]
+authors: ["[Yuxin Liang](https://yuxinlg.github.io/)"]
 author_pic: ["/assets/images/authors/YuxinL.jpeg"]
 author_title: ["Data Scientist at DDDI"]
 date: 2026-03-03

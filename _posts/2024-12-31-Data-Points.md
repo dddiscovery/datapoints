@@ -28,7 +28,7 @@ featured_posts:
     title: 'AI in Physics Research: From Toy to Tool'
     tag: AI Fellow Meetup
     url: /ai-tools-scientific-research
-    author: Department of  Physics and Astronomy & DDDI
+    author: Department of  Physics and Astronomy
     author_url: https://live-sas-physics.pantheon.sas.upenn.edu/people
     date: May 07, 2026
     description: "Five Penn physicists — from HEP theorists to experimentalists to astrophysicists — share their real AI workflows in a May 2026 training session, covering symbolic computation, agentic coding, and the honest limits of trust"
@@ -56,7 +56,7 @@ featured_posts:
     tag: LLM Notes
     url: /llm-augmented-codebook
     author: Yuxin Liang
-    author_url: https://www.linkedin.com/in/yuxinliang/
+    author_url: https://yuxinlg.github.io/
     date: March 03, 2026
     description: 'From Data to Documentation: Assisting Codebook Completion with LLMs'
 
@@ -120,7 +120,7 @@ Editorial_team:
     image: /assets/images/authors/MelanieSegado.jpg
     fellowship: Penn AI Fellow
   - name: Yuxin Liang
-    url: https://github.com/yuxinlg
+    url: https://yuxinlg.github.io/
     image: /assets/images/authors/yuxin_liang.jpg
     fellowship: Data Scientist @DDDI
   - name: Colin Twomey
