@@ -1,16 +1,33 @@
 ---
-layout: blog
+layout: meetup
 title: "What Happens to Your Data When You Use AI?"
 subtitle: "A Researcher's Guide to Cloud Infrastructure and Privacy"
 authors: ["Melanie Segado"]
-author_pic: ["/assets/images/authors/melanie-segado.png"]
+author_pic: ["/assets/images/authors/MelanieSegado.jpg"]
 author_title: ["Penn AI Fellow"]
 date: 2026-06-17
 permalink: /cloud-ai-data-privacy/
 summary: "Melanie Segado, Penn AI Fellow, traces what happens to your data at every stage of a cloud AI pipeline — from on-device processing to distributed GPU clusters — and offers practical strategies for researchers working with sensitive data."
+category: llm
+draft_note: "First draft generated from the session recording transcript using Claude MCP; edited and verified by the organizer/instructors and editors."
+show_disclaimer: false
+instructors:
+  - name: "Melanie Segado"
+    affiliation: "Penn AI Fellow"
+    pic: "/assets/images/authors/MelanieSegado.jpg"
+    url: "https://sites.google.com/view/melaniesegado"
+editors:
+  - name: "Yuxin Liang"
+    affiliation: "Data Scientist @DDDI"
+    pic: "/assets/images/authors/YuxinL.jpeg"
+    url: https://yuxinlg.github.io/
+  - name: Colin Twomey
+    affiliation: Executive Director @DDDI
+    pic: /assets/images/authors/colin_twomey.jpg
+    url: https://www.sas.upenn.edu/~crtwomey/
 ---
 
-In this tutorial, Melanie Segado — Penn AI Fellow — walks through what actually happens to your data when you use AI tools: from the moment a photo is taken on your phone to the moment a query returns from a remote GPU cluster. Drawing on her own research with sensitive video data of infants at neuromotor risk, she maps out the physical, technical, and legal layers of cloud AI infrastructure — and offers practical strategies for researchers who need to think carefully about what they share, with whom, and under what conditions.
+This post adapts the structure and logic of Melanie Segado's tutorial on cloud AI and data privacy. Melanie, a Penn AI Fellow, walks through what actually happens to your data when you use AI tools, from the moment a photo is taken on your phone to the moment a query returns from a remote GPU cluster. Drawing on her own research with sensitive video data of infants at neuromotor risk, she maps out the physical, technical, and legal layers of cloud AI infrastructure and offers practical strategies for researchers who need to think carefully about what they share, with whom, and under what conditions.
 
 <div class="meetup-takeaways" markdown="1">
 
