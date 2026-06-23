@@ -10,7 +10,7 @@ permalink: /ai-tools-scientific-research/
 image: /assets/images/posts/meetup_cover_may.png
 summary: "Five Penn physicists — from HEP theorists to experimentalists to astrophysicists — share their real AI workflows, covering symbolic computation, agentic coding, and the honest limits of trust."
 category: meetup
-draft_note: "First draft generated from the session transcript using Claude MCP; edited and verified by the editors."
+draft_note: "First draft generated from the session recording transcript using Claude MCP; edited and verified by the organizer/instructors and editors."
 organizers:
  - name: "Bhuvnesh Jain"
    affiliation:

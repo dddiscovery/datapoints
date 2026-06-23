@@ -9,15 +9,25 @@ date: 2026-06-23
 permalink: /causal-inference-potential-outcomes/
 summary: "Carolina Torreblanca, Penn AI Fellow in Political Science, walks through the Potential Outcomes Framework from first principles — showing why causal claims in research headlines are harder than they look and how social scientists use randomization and quasi-experimental methods to build credible causal arguments."
 category: data
-draft_note: "First draft generated from the session transcript using Claude MCP; edited and verified by the editors."
+draft_note: "First draft generated from the session recording transcript using Claude MCP; edited and verified by the organizer/instructors and editors."
 instructors:
   - name: "Carolina Torreblanca"
     affiliation: "Penn AI Fellow, Department of Political Science"
     pic: "/assets/images/authors/caro_pic.jpg"
     url: "https://carolina-torreblanca.github.io/"
+editors:
+  - name: "Yuxin Liang"
+    affiliation: "Data Scientist @DDDI"
+    pic: "/assets/images/authors/YuxinL.jpeg"
+    url: https://yuxinlg.github.io/
+  - name: Colin Twomey
+    affiliation: Executive Director @DDDI
+    pic: /assets/images/authors/colin_twomey.jpg
+    url: https://www.sas.upenn.edu/~crtwomey/
+show_disclaimer: false
 ---
 
-In this tutorial, Carolina Torreblanca — Penn AI Fellow in the Department of Political Science at Penn — walks through the logic of causal inference from first principles. Starting from a misleading news headline, she builds up the Potential Outcomes Framework step by step and shows why isolating cause from correlation is genuinely hard — and how modern social science has developed rigorous tools to get there. No statistics background required.
+This post adapts the content and structure of [Carolina Torreblanca's tutorial session on causal inference](https://datascience.sas.upenn.edu/events/summer-hangouts-carolina-torreblanca) for [DDDI's Summer Hangouts 2026](https://datascience.sas.upenn.edu/events/data-science-summer-hangouts-series-2026). Carolina, a Penn AI Fellow in the Department of Political Science at Penn, walks through the subject from first principles. Starting from a misleading news headline, she builds up the Potential Outcomes Framework step by step and explains why isolating cause from correlation is genuinely hard, and how modern social science has developed rigorous tools to get there. No statistics background required.
 
 <div class="meetup-takeaways" markdown="1">
 

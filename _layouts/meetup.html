@@ -73,6 +73,33 @@
     <!-- Left: credits + sticky ToC -->
     <div class="meetup-toc-col">
 
+      {% if page.instructors %}
+      <div class="meetup-credits-section">
+        <div class="meetup-credits-title">Instructors</div>
+        {% for person in page.instructors %}
+        <div class="meetup-credit-card{% if person.affiliation[0] %} meetup-credit-card--top{% endif %}">
+          <img src="{{ person.pic | relative_url }}" class="meetup-credit-pic" alt="{{ person.name }}">
+          <div class="meetup-credit-text">
+            <div class="meetup-credit-name">
+              {% if person.url and person.url != "" %}
+                <a href="{{ person.url }}" class="meetup-credit-link" target="_blank" rel="noopener noreferrer">{{ person.name }}</a>
+              {% else %}
+                {{ person.name }}
+              {% endif %}
+            </div>
+            <div class="meetup-credit-affil">
+              {% if person.affiliation[0] %}
+                {% for line in person.affiliation %}<span class="meetup-credit-affil-line">{{ line }}</span>{% endfor %}
+              {% else %}
+                {{ person.affiliation }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
       {% if page.organizers %}
       <div class="meetup-credits-section">
         <div class="meetup-credits-title">Organizers</div>
@@ -127,7 +154,7 @@
       </div>
       {% endif %}
 
-      {% if page.organizers or page.editors %}
+      {% if page.instructors or page.organizers or page.editors %}
       <div class="meetup-credits-toc-divider"></div>
       {% endif %}
 
@@ -140,16 +167,18 @@
 
     <div class="vertical-divider"></div>
 
-    <!-- Center: wider content with auto-injected disclaimer -->
+    <!-- Center: wider content with optional disclaimers -->
     <div class="blog-content post-content">
       {% if page.draft_note %}
       <div class="meetup-disclaimer meetup-disclaimer--process">
         <strong>Note on process:</strong> {{ page.draft_note }}
       </div>
       {% endif %}
+      {% if page.show_disclaimer != false %}
       <div class="meetup-disclaimer">
         <strong>Disclaimer:</strong> This post captures informal, off-the-cuff reflections from meeting attendees. The views discussed here are the personal opinions and preliminary assessments of the attendees, and should not be treated as peer-reviewed findings or vetted best practices.
       </div>
+      {% endif %}
       {{ content }}
     </div>
 
