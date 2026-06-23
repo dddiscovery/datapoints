@@ -1,26 +1,37 @@
 ---
-layout: blog
-title: "Thinking Causally: The Potential Outcomes Framework for Social Scientists"
-subtitle: ""
+layout: meetup
+title: "Thinking Causally"
+subtitle: "The Potential Outcomes Framework for Social Scientists"
 authors: ["Carolina Torreblanca"]
-author_pic: ["/assets/images/authors/carolina-torreblanca.png"]
+author_pic: ["/assets/images/authors/caro_pic.jpg"]
 author_title: ["Penn AI Fellow, Department of Political Science, University of Pennsylvania"]
 date: 2026-06-23
 permalink: /causal-inference-potential-outcomes/
 summary: "Carolina Torreblanca, Penn AI Fellow in Political Science, walks through the Potential Outcomes Framework from first principles — showing why causal claims in research headlines are harder than they look and how social scientists use randomization and quasi-experimental methods to build credible causal arguments."
+category: data
+draft_note: "First draft generated from the session transcript using Claude MCP; edited and verified by the editors."
+instructors:
+  - name: "Carolina Torreblanca"
+    affiliation: "Penn AI Fellow, Department of Political Science"
+    pic: "/assets/images/authors/caro_pic.jpg"
+    url: "https://carolina-torreblanca.github.io/"
 ---
 
-In this tutorial, Carolina Torreblanca — Penn AI Fellow in the Department of Political Science at Penn — walks through the logic of causal inference from first principles. Starting with a real newspaper headline, she builds up the Potential Outcomes Framework step by step and shows why isolating cause from correlation is genuinely hard — and how modern social science has developed principled tools to get there. No statistics background required; familiarity with the idea of correlation is sufficient.
+In this tutorial, Carolina Torreblanca — Penn AI Fellow in the Department of Political Science at Penn — walks through the logic of causal inference from first principles. Starting from a misleading news headline, she builds up the Potential Outcomes Framework step by step and shows why isolating cause from correlation is genuinely hard — and how modern social science has developed rigorous tools to get there. No statistics background required.
+
+<div class="meetup-takeaways" markdown="1">
 
 ## Key Takeaways
 
-- Why the intuitive reading of causal claims in research headlines is usually wrong
-- How the Potential Outcomes Framework defines causation rigorously
-- Why individual causal effects are unobservable — and how to reframe that as a missing data problem
-- What the Average Treatment Effect is and when the simple group-comparison estimator is valid
-- Why randomization solves the identification problem so powerfully
-- What confounding and selection bias look like in practice, with concrete examples
-- Which quasi-experimental strategies are available when randomization is off the table
+- Most causal claims in research headlines rest on implicit comparisons that are hard to defend
+- The Potential Outcomes Framework defines causation as the difference between two worlds: one where treatment happened, one where it didn't
+- The Fundamental Problem of Causal Inference is a missing data problem: you can only ever observe one of those worlds
+- Shifting from individual to average treatment effects makes the problem tractable — but only if the two groups you're comparing are genuinely equivalent
+- Randomization is powerful precisely because it makes that equivalence credible in expectation
+- Confounding and selection bias are the two main ways observational comparisons go wrong
+- Quasi-experimental methods — RDD, DiD, IV — are tools for finding credible comparisons when randomization is off the table
+
+</div>
 
 <div class="workflow-scroll-panel">
 <div class="workflow-chart">
@@ -38,7 +49,7 @@ In this tutorial, Carolina Torreblanca — Penn AI Fellow in the Department of P
         <div class="workflow-step-title">Causality in Social Science</div>
         <ul class="workflow-list">
           <li>Not necessary or sufficient</li>
-          <li>Probabilistic statement</li>
+          <li>Probabilistic: makes Y more likely</li>
         </ul>
       </div>
     </div>
@@ -59,8 +70,8 @@ In this tutorial, Carolina Torreblanca — Penn AI Fellow in the Department of P
       <div class="workflow-step">
         <div class="workflow-step-title">Fundamental Problem</div>
         <ul class="workflow-list">
-          <li>Only one side ever observed</li>
-          <li>Counterfactual is missing</li>
+          <li>Only one potential outcome observed</li>
+          <li>Counterfactual always missing</li>
           <li>Reframe as missing data</li>
         </ul>
       </div>
@@ -70,7 +81,7 @@ In this tutorial, Carolina Torreblanca — Penn AI Fellow in the Department of P
         <ul class="workflow-list">
           <li>Target ATE, not individual τᵢ</li>
           <li>ATE = E[Y(1)] − E[Y(0)]</li>
-          <li>Plug-in estimator: Ȳ₁ − Ȳ₀</li>
+          <li>Plug-in: Ȳ₁ − Ȳ₀ (if groups are comparable)</li>
         </ul>
       </div>
     </div>
@@ -82,18 +93,18 @@ In this tutorial, Carolina Torreblanca — Penn AI Fellow in the Department of P
       <div class="workflow-step">
         <div class="workflow-step-title">Randomization</div>
         <ul class="workflow-list">
-          <li>Coin-flip assignment</li>
-          <li>Groups comparable in expectation</li>
-          <li>Plug-in estimator unbiased</li>
+          <li>Coin-flip makes groups comparable</li>
+          <li>Gold standard — but often impossible</li>
+          <li>Threats: confounding, selection bias</li>
         </ul>
       </div>
       <div class="workflow-arrow">→</div>
       <div class="workflow-step">
         <div class="workflow-step-title">Quasi-Experimental Methods</div>
         <ul class="workflow-list">
+          <li>Lottery / draft designs</li>
           <li>Regression Discontinuity (RDD)</li>
-          <li>Difference-in-Differences (DiD)</li>
-          <li>Instrumental Variables (IV)</li>
+          <li>Diff-in-Differences / IV</li>
         </ul>
       </div>
     </div>
@@ -107,78 +118,82 @@ In this tutorial, Carolina Torreblanca — Penn AI Fellow in the Department of P
 
 ### A Causal Headline
 
-Carolina opened with a headline from the Medical Journal of Australia: *"High social media use increases mental health risk in adolescents."* The paper followed 1,200 teenagers over a decade and found that those using social media more than two hours a day faced a higher risk of depression than lighter users.
+Carolina opened the session with a headline from the Medical Journal of Australia: *"High social media use increases mental health risk in adolescents."* The paper was substantial — it followed 1,200 teenagers over a decade and found that teens using social media more than two hours a day had a higher risk of depression than lighter users.
 
-The headline sounds decisive. But does this study establish that social media *causes* depression? This tension — between observing a correlation and claiming causation — is the central problem of empirical social science, and the starting point for the entire tutorial.
+Sounds conclusive. But notice the structure of the claim: heavy users are *more likely* to develop depression than lighter users. More likely *compared to what?* That question — what is the right comparison? — is the core of causal inference. The entire tutorial is an attempt to make it precise.
 
 ### Causality in Social Science
 
-Causality means different things across disciplines. Carolina outlined three frameworks to locate where social science sits:
+Different disciplines conceptualize causality differently. In the hard sciences, causality is often framed in terms of **necessary conditions** (oxygen is necessary for combustion — remove it and fire stops) or **sufficient conditions** (exceeding 100°C is sufficient for water to boil — do it and boiling follows). Social media passes neither test: many heavy users never become depressed (not sufficient), and many depressed people never used social media heavily (not necessary).
 
-- **Necessary condition** (hard sciences): oxygen is necessary for combustion — without it, no fire. Social media is not a necessary cause of depression; many heavy users are completely fine.
-- **Sufficient condition** (hard sciences): exceeding 100°C is sufficient for water to boil. Social media use is not sufficient for depression either — plenty of heavy users never become depressed.
-- **Probabilistic statement** (social sciences): social media use *makes depression more likely*. This is an inherent comparison: heavy users are more likely to develop depression than... whom?
-
-That final question — *compared to what?* — is the engine of causal inference in the social sciences.
+In the social sciences, causality is a **probabilistic statement**: treatment shifts the probability of an outcome. Social media use *makes depression more likely*. This is an inherently comparative claim — more likely than the counterfactual world in which the same person didn't use social media heavily. Nailing down that counterfactual is the challenge.
 
 ## Potential Outcomes Framework
 
 ### Potential Outcomes
 
-To answer "compared to what?" rigorously, Carolina introduced the **Potential Outcomes Framework**, developed by Neyman in the 1920s and formalized by Rubin in the 1970s. Neyman's original application was, fittingly, fertilizer use.
+The rigorous answer to "compared to what?" comes from the **Potential Outcomes Framework**, rooted in Neyman's 1920s dissertation on fertilizer use and developed further by Rubin in the 1970s.
 
-The core idea: for any unit — a plot of land, a person, a country — imagine **two potential outcomes**:
+The idea is simple: for any unit — a plot of land, a person, a country — imagine two potential outcomes existing simultaneously in parallel worlds:
 
-- **Y(1)**: the yield if fertilizer *is* applied
-- **Y(0)**: the yield if fertilizer is *not* applied
+- **Y(1)**: the outcome *if* the unit receives treatment (fertilizer applied; teen uses social media heavily)
+- **Y(0)**: the outcome *if* the unit does not receive treatment (no fertilizer; teen is a light user)
 
-The causal effect of fertilizer on a single plot is the difference between these two potential outcomes:
+The causal effect of treatment on unit *i* is the difference:
 
-```
-τᵢ = Y(1)ᵢ − Y(0)ᵢ
-```
+<div class="equation-block">
 
-Simple to define. Impossible to observe. That gap is the whole problem.
+$$
+\tau_i = Y(1)_i - Y(0)_i
+$$
+
+</div>
+
+This is what Carolina called the multiverse definition of causality: τᵢ is the gap between two parallel worlds — the one that happened, and the one that didn't. Simple to write. Impossible to observe.
 
 ### Fundamental Problem
 
-When the farmer applies fertilizer, they observe Y(1). When they don't, they observe Y(0). **They can never observe both outcomes for the same plot at the same time.** This is Holland's Fundamental Problem of Causal Inference: only one side of the counterfactual comparison is ever observable.
+Here is the core obstacle. When the farmer applies fertilizer, they observe Y(1) for that plot. When they don't, they observe Y(0). **They can never observe both for the same plot at the same time.** Only one branch of the multiverse is ever accessible.
 
-Carolina reframed this as a **missing data problem**. Picture a table: rows are plots of land, columns are Y(1) and Y(0). For each row, exactly one cell is filled in — whichever treatment was actually chosen. Individual causal effects require both cells; they can never be recovered.
+Carolina named this Holland's **Fundamental Problem of Causal Inference** and reframed it as a missing data problem. Imagine a table with one row per unit and two columns: Y(1) and Y(0). For every row, exactly one cell is filled — whichever potential outcome was realized by the treatment actually received. The other cell is permanently blank. Individual causal effects are row-level subtractions; with half the table missing, they cannot be computed.
 
 ### Average Treatment Effect
 
-The move that makes progress possible: instead of individual causal effects, target the **Average Treatment Effect (ATE)** — the average of τᵢ across all units in the population.
+The move that makes progress possible is to shift the target. Instead of individual causal effects τᵢ, aim for the **Average Treatment Effect (ATE)** — the average of τᵢ across all units:
 
-By linearity of expectations, the ATE equals the difference of two population-level averages:
+<div class="equation-block">
 
-```
-ATE = E[Y(1)] − E[Y(0)]
-```
+$$
+\text{ATE} = \mathbb{E}[Y(1)] - \mathbb{E}[Y(0)]
+$$
 
-These are still averages over unobserved potential outcomes. But now a tempting shortcut appears: compute the average outcome among treated units (Ȳ₁) and the average among untreated units (Ȳ₀), and use their difference as the estimate.
+</div>
 
-The plug-in estimator Ȳ₁ − Ȳ₀ is a valid estimate of the ATE only if the treated and untreated groups are **identical in expectation** on everything that matters — that is, if treated units would have had the same average outcome as untreated units, had they not been treated. This is a counterfactual claim. It can never be directly verified. The entire practice of causal inference is about making this claim as **plausible** as possible.
+By linearity of expectations, this is the difference between two population averages. And now there's a tempting shortcut: compute the observed average outcome among treated units (Ȳ₁) and the observed average among untreated units (Ȳ₀), and use Ȳ₁ − Ȳ₀ as the estimate.
+
+This plug-in estimator is valid — but only under a critical condition. The treated and untreated groups must be **identical in expectation** on every characteristic that matters: they must look the same, on average, in the counterfactual world where neither received treatment. In other words, untreated units must be a plausible stand-in for what treated units *would have looked like* had they not been treated — and vice versa.
+
+This is a counterfactual claim. It cannot be directly tested. Making it credible is the entire job of causal inference.
 
 ## Identification Strategies
 
 ### Randomization
 
-The most compelling way to satisfy that requirement is **randomization**. If treatment assignment is determined by a coin flip, the Central Limit Theorem guarantees that the two groups will be identical in expectation on every pre-treatment characteristic — observed *and* unobserved.
+The most powerful tool for making that claim credible is **randomization**. If treatment is assigned by a coin flip, then by the Central Limit Theorem and the law of large numbers, treated and untreated groups will be identical in expectation on every pre-treatment characteristic — observed *and* unobserved. The coin doesn't know which plots are sunnier, which teenagers are genetically predisposed to depression, or which farmers are more skilled. It allocates blindly, producing groups that are comparable on everything.
 
-Back to the farmer: flip a coin to decide which plots get fertilizer. The treated and untreated plots will, on average, be equally sunny, equally sloped, equally everything. Randomization doesn't guarantee identical groups in any single experiment, but it produces them *in expectation* — and that's enough to justify the plug-in estimator as an unbiased estimate of the ATE. This is why randomized controlled trials are the gold standard in medicine, economics, and policy evaluation.
+This is why randomized controlled trials are the gold standard. Randomization doesn't just control for the confounders you thought of — it controls for the ones you didn't.
 
-Many of the most important causal questions in social science cannot be randomized — for ethical, logistical, or political reasons: victimization and political participation, wars and national identity, immigration and native wages. Carolina flagged a real debate here: some researchers argue it's better to have a *narrow but credible* causal answer than to make vague causal claims about big questions. Her own view is more pluralistic — don't abandon either rigor or ambition, but be honest about what your design can actually establish.
+The problem is that many of the most important questions in social science cannot be randomized. You can't randomly assign victimization to study its effect on political participation. You can't randomize wars to study their effect on national identity. You can't randomly relocate immigrants to study wage effects without raising serious ethical concerns. Carolina flagged the debate this creates: some researchers argue it's better to answer narrow questions credibly than to attempt big questions without the machinery to answer them properly. Her own view is that this is a false choice — rigorous *and* ambitious work is possible, but it requires being honest about what your design can and cannot establish.
 
-When randomization isn't available, two threats undermine the plug-in estimator.
+When randomization isn't available, two threats to the plug-in estimator become salient.
 
-**Confounding** is a third variable that causes both the treatment and the outcome, producing a spurious association. Wine drinkers show a 21% lower risk of cardiovascular death than beer or spirit drinkers — but wine is expensive, and class shapes both the decision to drink wine *and* health outcomes. Museum visitors appear to live longer — but museum visits require time and money, confounding the relationship with income and education.
+**Confounding** arises when a hidden third variable causes both the treatment and the outcome, creating a spurious association. Wine drinkers live 21% longer than beer and spirits drinkers in observational data — but wine is expensive, and class affects both beverage choice and longevity. The correlation is real; the causal story is wrong. Museum visitors appear to have lower mortality — but visiting museums requires time and disposable income, both of which also predict better health. In both cases, plugging Ȳ₁ − Ȳ₀ into the ATE formula gives a biased answer because the two groups weren't alike to begin with.
 
-**Selection bias** occurs when the sample is conditioned on a variable that is itself affected by the treatment. Carolina's example: in NBA data, taller players score *fewer* points on average, seemingly contradicting everything we know about basketball. But NBA players are not a random sample — short players only make the league if they compensate with extraordinary skill. Conditioning on "made the NBA" inverts the usual height–performance relationship.
+**Selection bias** is subtler. It arises when the sample is conditioned on a variable that is itself a consequence of the treatment, distorting the observed relationship. Carolina's example: in NBA data, taller players score *fewer* points per game on average. This seems absurd — height obviously helps in basketball. But NBA players aren't a random sample of tall and short people. Short players only survive the selection process if they compensate with extraordinary skill. Conditioning on "reached the NBA" creates a sample where the height–skill relationship is inverted, making height appear to hurt performance.
 
 ### Quasi-Experimental Methods
 
-When randomization is off the table, researchers look for settings where nature or policy introduced *as-if* random variation in who received treatment.
+When randomization is off the table, the empirical strategy is to find settings where nature, history, or policy introduced *as-if* random variation in treatment assignment — and exploit that variation to justify a credible comparison.
 
 <div class="workflow-scroll-panel">
 <div class="workflow-chart">
@@ -188,7 +203,7 @@ When randomization is off the table, researchers look for settings where nature 
         <div class="workflow-step-title" style="color: #fc4357;">Randomization not feasible</div>
         <ul class="workflow-list">
           <li>Ethical constraints</li>
-          <li>Logistical barriers</li>
+          <li>Logistical or political barriers</li>
         </ul>
       </div>
       <div class="workflow-arrow">→</div>
@@ -196,7 +211,7 @@ When randomization is off the table, researchers look for settings where nature 
         <div class="workflow-step-title">Find as-if random variation</div>
         <ul class="workflow-list">
           <li>Nature or policy creates near-random assignment</li>
-          <li>Justify comparability in a narrow band</li>
+          <li>Defend comparability in a narrow window</li>
         </ul>
       </div>
     </div>
@@ -208,18 +223,18 @@ When randomization is off the table, researchers look for settings where nature 
       <div class="workflow-step">
         <div class="workflow-step-title">Lottery / Draft Design</div>
         <ul class="workflow-list">
-          <li>Random assignment by chance event</li>
+          <li>Genuine randomness from external event</li>
           <li>Example: 1969 Vietnam draft lottery</li>
-          <li>Effect: military service → earnings</li>
+          <li>Estimates: military service → later earnings</li>
         </ul>
       </div>
       <div class="workflow-arrow">→</div>
       <div class="workflow-step">
         <div class="workflow-step-title">Regression Discontinuity</div>
         <ul class="workflow-list">
-          <li>Compare just above/below a cutoff</li>
-          <li>Assignment near-random at threshold</li>
-          <li>Tradeoff: local estimate only</li>
+          <li>Compare units just above/below a threshold</li>
+          <li>Assignment near-random at the cutoff</li>
+          <li>Tradeoff: local estimate near threshold only</li>
         </ul>
       </div>
       <div class="workflow-arrow">→</div>
@@ -227,8 +242,8 @@ When randomization is off the table, researchers look for settings where nature 
         <div class="workflow-step-title">Diff-in-Differences / IV</div>
         <ul class="workflow-list">
           <li>DiD: before/after × treated/control</li>
-          <li>IV: instrument isolates exogenous variation</li>
-          <li>Both require strong assumptions</li>
+          <li>IV: instrument with no direct effect on Y</li>
+          <li>Both rest on strong, untestable assumptions</li>
         </ul>
       </div>
     </div>
@@ -238,15 +253,15 @@ When randomization is off the table, researchers look for settings where nature 
 </div>
 <div class="workflow-caption">Figure 2: Quasi-experimental methods — finding credible comparisons when randomization is off the table</div>
 
-The main toolkit:
+The main toolkit, with one canonical example each:
 
-- **Lottery/Draft designs**: the 1969 Vietnam draft lottery assigned draft order by birthday — a genuinely random instrument. Researchers use lottery position to estimate the effect of military service on later earnings, sidestepping the problem that volunteers differ from non-volunteers in ways that affect earnings.
-- **Regression Discontinuity (RDD)**: compares units just above and just below an arbitrary cutoff (a test score threshold, an age limit). Near the cutoff, assignment is essentially accidental — making the two groups valid counterfactuals for each other.
-- **Difference-in-Differences (DiD)**: compares before/after changes in a treated group against before/after changes in an untreated control group, canceling out stable confounders.
-- **Instrumental Variables (IV)**: finds a variable that affects treatment but has no direct path to the outcome — using it as a lever to isolate exogenous variation in the treatment.
+- **Lottery/Draft designs**: the 1969 Vietnam draft lottery assigned induction order by birthday — a genuinely random process. Researchers use lottery number as an instrument to estimate the causal effect of military service on later earnings, sidestepping the selection problem that volunteers and non-volunteers differ in ways correlated with earnings.
+- **Regression Discontinuity (RDD)**: compares units just above and just below an arbitrary threshold — a scholarship cutoff, a voting age, a policy income limit. Near the threshold, which side of the line you fall on is effectively accidental, making the two groups credible counterfactuals for each other. The cost: estimates are local to the threshold and may not generalize.
+- **Difference-in-Differences (DiD)**: compares the before/after change in a treated group against the before/after change in an untreated control group. By differencing twice, stable pre-existing differences between groups cancel out. The core assumption — that trends would have been parallel in the absence of treatment — is untestable but often defensible.
+- **Instrumental Variables (IV)**: finds a variable that affects treatment but has no direct effect on the outcome except through treatment. Using the instrument as a lever isolates the portion of treatment variation that is as-if random.
 
-Each method rests on a different set of assumptions to justify the core claim: that the comparison being drawn is a plausible stand-in for the unobservable counterfactual.
+What all these methods share: they are different arguments for why the comparison being drawn is *plausible* — why the untreated group is a reasonable stand-in for the counterfactual treated group. None of them prove it. They make the case.
 
-The session returned to its opening headline: does social media *cause* depression in teenagers? Carolina's analysis of the study's design points to real concerns. Heavy and light users likely differ in unobserved ways — predisposition to depression, family environment, degree of social isolation — that also affect mental health. The comparison may be confounded, or even causally reversed: struggling teens may seek out more social media, not the other way around.
+Returning to the opening headline: do heavy social media users provide a valid counterfactual for light users? Almost certainly not. Heavy and light users likely differ in unobserved ways — genetic predisposition to depression, family stability, peer networks, sleep habits — that independently affect mental health. Worse, the relationship may run in the opposite direction: struggling teens may turn to social media *because* they are struggling, not the other way around. The researchers' longitudinal design is richer than a simple cross-section, but without a credible source of exogenous variation in usage, the causal story remains contested.
 
-The lesson isn't that causal claims are impossible — it's that they require a defensible design. Causal inference is the art of making a specific counterfactual comparison *explicit* and *plausible*. Whether you're running a randomized trial, exploiting a policy discontinuity, or modeling the full data-generating process, the question is always the same: why should I believe that your comparison group is a valid stand-in for the world that didn't happen? For researchers working with AI systems — evaluating model interventions, measuring the effect of prompting strategies, or interpreting observational patterns in model behavior — that question is just as central as it is in any social science study.
+The lesson Carolina left the room with is not that causal inference is hopeless — it's that it is demanding. Every causal claim rests on an untestable assumption about what the world would have looked like had treatment not occurred. The researcher's job is to make that assumption as explicit, as narrow, and as defensible as possible. The entire toolkit of modern empirical social science — from RCTs to RDDs to structural models — is machinery for that one task.
