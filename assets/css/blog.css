@@ -114,7 +114,7 @@
 }
 
 .about-post {
-  flex: 1;
+  flex: 0 0 195px;
   position: sticky;
   top: 6.5rem;
   align-self: flex-start;
@@ -274,17 +274,17 @@
 /* About this post */
 .about-post-title {
   color: #990000;
-  font-size: 1.25em;
+  font-size: 1rem;
   font-weight: bold;
   font-family: Optima, sans-serif;
 }
 
 .about-post-text {
-  font-size: 1.125em;
+  font-size: 0.9rem;
   font-weight: 400;
   color: #011f5b;
-  margin-top: -0.3125rem;
-  text-indent: 1rem;
+  margin-top: -0.15rem;
+  text-indent: 0;
   font-family: 'Crimson Text', serif;
 }
 
@@ -299,22 +299,22 @@
 }
 
 .about-post-underline {
-  max-width: 25rem;
-  margin-top: 1.25rem;
+  max-width: 100%;
+  margin-top: 0.9rem;
   background-color: rgba(1, 31, 91, 0.7);
   height: 0.0625rem;
 }
 
 .social-share {
   display: flex;
-  gap: 20px;
+  gap: 12px;
   align-items: center;
-  margin-left: 1rem;
+  margin-left: 0;
 }
 
 .social-icon {
-  width: 21px;
-  height: 21px;
+  width: 18px;
+  height: 18px;
   transition: stroke 0.3s ease;
 }
 .social-share svg {
@@ -332,9 +332,9 @@
 .sidebar-contribute-button {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.3rem;
   box-sizing: border-box;
-  padding: 0.58rem 1rem;
+  padding: 0.45rem 0.7rem;
   border: 1px solid #fc4375;
   border-radius: 8px;
   background: transparent;
@@ -342,8 +342,8 @@
   text-decoration: none;
   font-family: Optima, sans-serif;
   font-weight: 600;
-  font-size: 0.88rem;
-  line-height: 1.3;
+  font-size: 0.76rem;
+  line-height: 1.25;
   transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -359,8 +359,8 @@
 }
 
 .sidebar-contribute-arrow {
-  width: 1rem;
-  height: 1rem;
+  width: 0.85rem;
+  height: 0.85rem;
   margin-left: 0.1rem;
   color: #66bab7;
   flex-shrink: 0;
@@ -524,6 +524,18 @@
   max-width: 100%;
   display: inline-block;
   vertical-align: middle;
+}
+
+/* Display equations — use with MathJax ($$...$$) inside .equation-block */
+.blog-content .equation-block {
+  text-align: center;
+  margin: 1.75rem auto;
+  padding: 0.25rem 0;
+  overflow-x: auto;
+}
+
+.blog-content .equation-block mjx-container[display="true"] {
+  margin: 0 auto !important;
 }
 
 .blog-content pre {
