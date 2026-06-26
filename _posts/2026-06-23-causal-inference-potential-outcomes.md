@@ -1,14 +1,15 @@
 ---
 layout: meetup
-title: "Thinking Causally"
-subtitle: "The Potential Outcomes Framework for Social Scientists"
+title: "Thinking Causally in Social Science"
+subtitle: "The Potential Outcomes Framework"
 authors: ["Carolina Torreblanca"]
 author_pic: ["/assets/images/authors/caro_pic.jpg"]
 author_title: ["Penn AI Fellow, Department of Political Science, University of Pennsylvania"]
 date: 2026-06-23
 permalink: /causal-inference-potential-outcomes/
-summary: "Carolina Torreblanca, Penn AI Fellow in Political Science, walks through the Potential Outcomes Framework from first principles — showing why causal claims in research headlines are harder than they look and how social scientists use randomization and quasi-experimental methods to build credible causal arguments."
+summary: "A walkthrough of the Potential Outcomes Framework from first principles, exploring why causal claims are harder than they look and how social scientists build credible arguments."
 category: data
+image: /assets/images/posts/data_cover_ct.png
 draft_note: "First draft generated from the session recording transcript using Claude MCP; edited and verified by the organizer/instructors and editors."
 instructors:
   - name: "Carolina Torreblanca"
@@ -71,9 +72,9 @@ This post adapts the content and structure of [Carolina Torreblanca's tutorial s
       <div class="workflow-step">
         <div class="workflow-step-title">Potential Outcomes</div>
         <ul class="workflow-list">
-          <li>Y(1): outcome if treated</li>
-          <li>Y(0): outcome if untreated</li>
-          <li>τᵢ = Y(1)ᵢ − Y(0)ᵢ</li>
+          <li>$Y(1)$: outcome if treated</li>
+          <li>$Y(0)$: outcome if untreated</li>
+          <li>$\tau_i = Y_i(1) - Y_i(0)$</li>
         </ul>
       </div>
       <div class="workflow-arrow">→</div>
@@ -89,9 +90,9 @@ This post adapts the content and structure of [Carolina Torreblanca's tutorial s
       <div class="workflow-step">
         <div class="workflow-step-title">Average Treatment Effect</div>
         <ul class="workflow-list">
-          <li>Target ATE, not individual τᵢ</li>
-          <li>ATE = E[Y(1)] − E[Y(0)]</li>
-          <li>Plug-in: Ȳ₁ − Ȳ₀ (if groups are comparable)</li>
+          <li>Target ATE, not individual $\tau_i$</li>
+          <li>$\text{ATE} = \mathbb{E}[Y(1)] - \mathbb{E}[Y(0)]$</li>
+          <li>Plug-in: $\bar{Y}_1 - \bar{Y}_0$ (if groups are comparable)</li>
         </ul>
       </div>
     </div>
@@ -146,40 +147,40 @@ The rigorous answer to "compared to what?" comes from the **Potential Outcomes F
 
 The idea is simple: for any unit — a plot of land, a person, a country — imagine two potential outcomes existing simultaneously in parallel worlds:
 
-- **Y(1)**: the outcome *if* the unit receives treatment (fertilizer applied; teen uses social media heavily)
-- **Y(0)**: the outcome *if* the unit does not receive treatment (no fertilizer; teen is a light user)
+- **$Y_i(1)$**: the outcome *if* the unit receives treatment (fertilizer applied; teen uses social media heavily)
+- **$Y_i(0)$**: the outcome *if* the unit does not receive treatment (no fertilizer; teen is a light user)
 
 The causal effect of treatment on unit *i* is the difference:
 
 <div class="equation-block">
 
 $$
-\tau_i = Y(1)_i - Y(0)_i
+\tau_i = Y_i(1) - Y_i(0)
 $$
 
 </div>
 
-This is what Carolina called the multiverse definition of causality: τᵢ is the gap between two parallel worlds — the one that happened, and the one that didn't. Simple to write. Impossible to observe.
+This is what Carolina called the multiverse definition of causality: $\tau_i$ is the gap between two parallel worlds — the one that happened, and the one that didn't. Simple to write. Impossible to observe.
 
 ### Fundamental Problem
 
-Here is the core obstacle. When the farmer applies fertilizer, they observe Y(1) for that plot. When they don't, they observe Y(0). **They can never observe both for the same plot at the same time.** Only one branch of the multiverse is ever accessible.
+Here is the core obstacle. When the farmer applies fertilizer, they observe $Y_i(1)$ for that plot. When they don't, they observe $Y_i(0)$. **They can never observe both for the same plot at the same time.** Only one branch of the multiverse is ever accessible.
 
-Carolina named this Holland's **Fundamental Problem of Causal Inference** and reframed it as a missing data problem. Imagine a table with one row per unit and two columns: Y(1) and Y(0). For every row, exactly one cell is filled — whichever potential outcome was realized by the treatment actually received. The other cell is permanently blank. Individual causal effects are row-level subtractions; with half the table missing, they cannot be computed.
+Carolina named this Holland's **Fundamental Problem of Causal Inference** and reframed it as a missing data problem. Imagine a table with one row per unit and two columns: $Y_i(1)$ and $Y_i(0)$. For every row, exactly one cell is filled — whichever potential outcome was realized by the treatment actually received. The other cell is permanently blank. Individual causal effects are row-level subtractions; with half the table missing, they cannot be computed.
 
 ### Average Treatment Effect
 
-The move that makes progress possible is to shift the target. Instead of individual causal effects τᵢ, aim for the **Average Treatment Effect (ATE)** — the average of τᵢ across all units:
+The move that makes progress possible is to shift the target. Instead of individual causal effects $\tau_i$, aim for the **Average Treatment Effect (ATE)** — the average of $\tau_i$ across all units:
 
 <div class="equation-block">
 
 $$
-\text{ATE} = \mathbb{E}[Y(1)] - \mathbb{E}[Y(0)]
+\text{ATE} = \mathbb{E}[Y_i(1)] - \mathbb{E}[Y_i(0)]
 $$
 
 </div>
 
-By linearity of expectations, this is the difference between two population averages. And now there's a tempting shortcut: compute the observed average outcome among treated units (Ȳ₁) and the observed average among untreated units (Ȳ₀), and use Ȳ₁ − Ȳ₀ as the estimate.
+By linearity of expectations, this is the difference between two population averages. And now there's a tempting shortcut: compute the observed average outcome among treated units ($\bar{Y}_1$) and the observed average among untreated units ($\bar{Y}_0$), and use $\bar{Y}_1 - \bar{Y}_0$ as the estimate.
 
 This plug-in estimator is valid — but only under a critical condition. The treated and untreated groups must be **identical in expectation** on every characteristic that matters: they must look the same, on average, in the counterfactual world where neither received treatment. In other words, untreated units must be a plausible stand-in for what treated units *would have looked like* had they not been treated — and vice versa.
 
@@ -197,7 +198,7 @@ The problem is that many of the most important questions in social science canno
 
 When randomization isn't available, two threats to the plug-in estimator become salient.
 
-**Confounding** arises when a hidden third variable causes both the treatment and the outcome, creating a spurious association. Wine drinkers live 21% longer than beer and spirits drinkers in observational data — but wine is expensive, and class affects both beverage choice and longevity. The correlation is real; the causal story is wrong. Museum visitors appear to have lower mortality — but visiting museums requires time and disposable income, both of which also predict better health. In both cases, plugging Ȳ₁ − Ȳ₀ into the ATE formula gives a biased answer because the two groups weren't alike to begin with.
+**Confounding** arises when a hidden third variable causes both the treatment and the outcome, creating a spurious association. Wine drinkers live 21% longer than beer and spirits drinkers in observational data — but wine is expensive, and class affects both beverage choice and longevity. The correlation is real; the causal story is wrong. Museum visitors appear to have lower mortality — but visiting museums requires time and disposable income, both of which also predict better health. In both cases, plugging $\bar{Y}_1 - \bar{Y}_0$ into the ATE formula gives a biased answer because the two groups weren't alike to begin with.
 
 **Selection bias** is subtler. It arises when the sample is conditioned on a variable that is itself a consequence of the treatment, distorting the observed relationship. Carolina's example: in NBA data, taller players score *fewer* points per game on average. This seems absurd — height obviously helps in basketball. But NBA players aren't a random sample of tall and short people. Short players only survive the selection process if they compensate with extraordinary skill. Conditioning on "reached the NBA" creates a sample where the height–skill relationship is inverted, making height appear to hurt performance.
 
