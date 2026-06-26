@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/datapoints/favicon.ico">
+
+  <title>Thinking Causally in Social Science</title>
+  <link rel="stylesheet" href="/datapoints/assets/css/blog.css">
+  <link rel="stylesheet" href="/datapoints/assets/css/meetup.css">
+  <link rel="stylesheet" href="/datapoints/assets/css/responsive.css">
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        processHtmlClass: 'tex2jax_process'
+      },
+      startup: {
+        pageReady: function() {
+          return MathJax.startup.defaultPageReady();
+        }
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <a href="/datapoints/">
+      <img src="/datapoints/assets/images/logo/DP_logo_blue.png" alt="Datapoints Logo" class="datapoints-logo">
+    </a>
+  </div>
+
+  <div class="content-section-blue">
+    <h1 class="blog-title">Thinking Causally in Social Science</h1>
+    <div class="title-underline"></div>
+    <p class="blog-description">The Potential Outcomes Framework</p>
+
+    <div style="display: flex; justify-content: center; gap: 1rem; align-items: center;">
+      <div class="author-section">
+        
+        Carolina Torreblanca
+      </div>
+
+      <span style="color: #666666;">·</span>
+
+      <div class="reading-time-container">
+        
+
+14 min read
+
+      </div>
+    </div>
+  </div>
+
+  <div class="date-container">
+    <div class="date-divider"></div>
+    June 23, 2026
+    <div class="date-divider"></div>
+  </div>
+
+  <div class="meetup-main">
+
+    <!-- Left: credits + sticky ToC -->
+    <div class="meetup-toc-col">
+
+      
+      <div class="meetup-credits-section">
+        <div class="meetup-credits-title">Instructors</div>
+        
+        <div class="meetup-credit-card">
+          <img src="/datapoints/assets/images/authors/caro_pic.jpg" class="meetup-credit-pic" alt="Carolina Torreblanca">
+          <div class="meetup-credit-text">
+            <div class="meetup-credit-name">
+              
+                <a href="https://carolina-torreblanca.github.io/" class="meetup-credit-link" target="_blank" rel="noopener noreferrer">Carolina Torreblanca</a>
+              
+            </div>
+            <div class="meetup-credit-affil">
+              
+                Penn AI Fellow, Department of Political Science
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+
+      
+
+      
+      <div class="meetup-credits-section">
+        <div class="meetup-credits-title">Editors</div>
+        
+        <div class="meetup-credit-card">
+          <img src="/datapoints/assets/images/authors/YuxinL.jpeg" class="meetup-credit-pic" alt="Yuxin Liang">
+          <div class="meetup-credit-text">
+            <div class="meetup-credit-name">
+              
+                <a href="https://yuxinlg.github.io/" class="meetup-credit-link" target="_blank" rel="noopener noreferrer">Yuxin Liang</a>
+              
+            </div>
+            <div class="meetup-credit-affil">
+              
+                Data Scientist @DDDI
+              
+            </div>
+          </div>
+        </div>
+        
+        <div class="meetup-credit-card">
+          <img src="/datapoints/assets/images/authors/colin_twomey.jpg" class="meetup-credit-pic" alt="Colin Twomey">
+          <div class="meetup-credit-text">
+            <div class="meetup-credit-name">
+              
+                <a href="https://www.sas.upenn.edu/~crtwomey/" class="meetup-credit-link" target="_blank" rel="noopener noreferrer">Colin Twomey</a>
+              
+            </div>
+            <div class="meetup-credit-affil">
+              
+                Executive Director @DDDI
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+
+      
+      <div class="meetup-credits-toc-divider"></div>
+      
+
+      <div id="left-toc" class="left-toc left-toc--loading" aria-label="On this page">
+        <div class="left-toc-title">On this page</div>
+        <nav id="left-toc-nav" class="left-toc-nav"></nav>
+      </div>
+
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <!-- Center: wider content with optional disclaimers -->
+    <div class="blog-content post-content">
+      
+      <div class="meetup-disclaimer meetup-disclaimer--process">
+        <strong>Note on process:</strong> First draft generated from the session recording transcript using Claude MCP; edited and verified by the organizer/instructors and editors.
+      </div>
+      
+      
+      <p>This post adapts the content and structure of <a href="https://datascience.sas.upenn.edu/events/summer-hangouts-carolina-torreblanca">Carolina Torreblanca’s tutorial session on causal inference</a> for <a href="https://datascience.sas.upenn.edu/events/data-science-summer-hangouts-series-2026">DDDI’s Summer Hangouts 2026</a>. Carolina, a Penn AI Fellow in the Department of Political Science at Penn, walks through the subject from first principles. Starting from a misleading news headline, she builds up the Potential Outcomes Framework step by step and explains why isolating cause from correlation is genuinely hard, and how modern social science has developed rigorous tools to get there. No statistics background required.</p>
+
+<div class="meetup-takeaways">
+
+  <h2 id="key-takeaways">Key Takeaways</h2>
+
+  <ul>
+    <li>Most causal claims in research headlines rest on implicit comparisons that are hard to defend</li>
+    <li>The Potential Outcomes Framework defines causation as the difference between two worlds: one where treatment happened, one where it didn’t</li>
+    <li>The Fundamental Problem of Causal Inference is a missing data problem: you can only ever observe one of those worlds</li>
+    <li>Shifting from individual to average treatment effects makes the problem tractable — but only if the two groups you’re comparing are genuinely equivalent</li>
+    <li>Randomization is powerful precisely because it makes that equivalence credible in expectation</li>
+    <li>Confounding and selection bias are the two main ways observational comparisons go wrong</li>
+    <li>Quasi-experimental methods — RDD, DiD, IV — are tools for finding credible comparisons when randomization is off the table</li>
+  </ul>
+
+</div>
+
+<div class="workflow-scroll-panel">
+<div class="workflow-chart">
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">A Causal Headline</div>
+        <ul class="workflow-list">
+          <li>Social media → depression?</li>
+          <li>Compared to whom?</li>
+        </ul>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Causality in Social Science</div>
+        <ul class="workflow-list">
+          <li>Not necessary or sufficient</li>
+          <li>Probabilistic: makes Y more likely</li>
+        </ul>
+      </div>
+    </div>
+    <div class="workflow-theme">Motivation</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">Potential Outcomes</div>
+        <ul class="workflow-list">
+          <li>$Y(1)$: outcome if treated</li>
+          <li>$Y(0)$: outcome if untreated</li>
+          <li>$\tau_i = Y_i(1) - Y_i(0)$</li>
+        </ul>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Fundamental Problem</div>
+        <ul class="workflow-list">
+          <li>Only one potential outcome observed</li>
+          <li>Counterfactual always missing</li>
+          <li>Reframe as missing data</li>
+        </ul>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Average Treatment Effect</div>
+        <ul class="workflow-list">
+          <li>Target ATE, not individual $\tau_i$</li>
+          <li>$\text{ATE} = \mathbb{E}[Y(1)] - \mathbb{E}[Y(0)]$</li>
+          <li>Plug-in: $\bar{Y}_1 - \bar{Y}_0$ (if groups are comparable)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="workflow-theme">Potential Outcomes Framework</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">Randomization</div>
+        <ul class="workflow-list">
+          <li>Coin-flip makes groups comparable</li>
+          <li>Gold standard — but often impossible</li>
+          <li>Threats: confounding, selection bias</li>
+        </ul>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Quasi-Experimental Methods</div>
+        <ul class="workflow-list">
+          <li>Lottery / draft designs</li>
+          <li>Regression Discontinuity (RDD)</li>
+          <li>Diff-in-Differences / IV</li>
+        </ul>
+      </div>
+    </div>
+    <div class="workflow-theme">Identification Strategies</div>
+  </div>
+</div>
+</div>
+<div class="workflow-caption">Figure 1: From causal question to credible estimate</div>
+
+<h2 id="motivation">Motivation</h2>
+
+<h3 id="a-causal-headline">A Causal Headline</h3>
+
+<p>Carolina opened the session with a headline from the Medical Journal of Australia: <em>“High social media use increases mental health risk in adolescents.”</em> The paper was substantial — it followed 1,200 teenagers over a decade and found that teens using social media more than two hours a day had a higher risk of depression than lighter users.</p>
+
+<p>Sounds conclusive. But notice the structure of the claim: heavy users are <em>more likely</em> to develop depression than lighter users. More likely <em>compared to what?</em> That question — what is the right comparison? — is the core of causal inference. The entire tutorial is an attempt to make it precise.</p>
+
+<h3 id="causality-in-social-science">Causality in Social Science</h3>
+
+<p>Different disciplines conceptualize causality differently. In the hard sciences, causality is often framed in terms of <strong>necessary conditions</strong> (oxygen is necessary for combustion — remove it and fire stops) or <strong>sufficient conditions</strong> (exceeding 100°C is sufficient for water to boil — do it and boiling follows). Social media passes neither test: many heavy users never become depressed (not sufficient), and many depressed people never used social media heavily (not necessary).</p>
+
+<p>In the social sciences, causality is a <strong>probabilistic statement</strong>: treatment shifts the probability of an outcome. Social media use <em>makes depression more likely</em>. This is an inherently comparative claim — more likely than the counterfactual world in which the same person didn’t use social media heavily. Nailing down that counterfactual is the challenge.</p>
+
+<h2 id="potential-outcomes-framework">Potential Outcomes Framework</h2>
+
+<h3 id="potential-outcomes">Potential Outcomes</h3>
+
+<p>The rigorous answer to “compared to what?” comes from the <strong>Potential Outcomes Framework</strong>, rooted in Neyman’s 1920s dissertation on fertilizer use and developed further by Rubin in the 1970s.</p>
+
+<p>The idea is simple: for any unit — a plot of land, a person, a country — imagine two potential outcomes existing simultaneously in parallel worlds:</p>
+
+<ul>
+  <li><strong>$Y_i(1)$</strong>: the outcome <em>if</em> the unit receives treatment (fertilizer applied; teen uses social media heavily)</li>
+  <li><strong>$Y_i(0)$</strong>: the outcome <em>if</em> the unit does not receive treatment (no fertilizer; teen is a light user)</li>
+</ul>
+
+<p>The causal effect of treatment on unit <em>i</em> is the difference:</p>
+
+<div class="equation-block">
+
+$$
+\tau_i = Y_i(1) - Y_i(0)
+$$
+
+</div>
+
+<p>This is what Carolina called the multiverse definition of causality: $\tau_i$ is the gap between two parallel worlds — the one that happened, and the one that didn’t. Simple to write. Impossible to observe.</p>
+
+<h3 id="fundamental-problem">Fundamental Problem</h3>
+
+<p>Here is the core obstacle. When the farmer applies fertilizer, they observe $Y_i(1)$ for that plot. When they don’t, they observe $Y_i(0)$. <strong>They can never observe both for the same plot at the same time.</strong> Only one branch of the multiverse is ever accessible.</p>
+
+<p>Carolina named this Holland’s <strong>Fundamental Problem of Causal Inference</strong> and reframed it as a missing data problem. Imagine a table with one row per unit and two columns: $Y_i(1)$ and $Y_i(0)$. For every row, exactly one cell is filled — whichever potential outcome was realized by the treatment actually received. The other cell is permanently blank. Individual causal effects are row-level subtractions; with half the table missing, they cannot be computed.</p>
+
+<h3 id="average-treatment-effect">Average Treatment Effect</h3>
+
+<p>The move that makes progress possible is to shift the target. Instead of individual causal effects $\tau_i$, aim for the <strong>Average Treatment Effect (ATE)</strong> — the average of $\tau_i$ across all units:</p>
+
+<div class="equation-block">
+
+$$
+\text{ATE} = \mathbb{E}[Y_i(1)] - \mathbb{E}[Y_i(0)]
+$$
+
+</div>
+
+<p>By linearity of expectations, this is the difference between two population averages. And now there’s a tempting shortcut: compute the observed average outcome among treated units ($\bar{Y}_1$) and the observed average among untreated units ($\bar{Y}_0$), and use $\bar{Y}_1 - \bar{Y}_0$ as the estimate.</p>
+
+<p>This plug-in estimator is valid — but only under a critical condition. The treated and untreated groups must be <strong>identical in expectation</strong> on every characteristic that matters: they must look the same, on average, in the counterfactual world where neither received treatment. In other words, untreated units must be a plausible stand-in for what treated units <em>would have looked like</em> had they not been treated — and vice versa.</p>
+
+<p>This is a counterfactual claim. It cannot be directly tested. Making it credible is the entire job of causal inference.</p>
+
+<h2 id="identification-strategies">Identification Strategies</h2>
+
+<h3 id="randomization">Randomization</h3>
+
+<p>The most powerful tool for making that claim credible is <strong>randomization</strong>. If treatment is assigned by a coin flip, then by the Central Limit Theorem and the law of large numbers, treated and untreated groups will be identical in expectation on every pre-treatment characteristic — observed <em>and</em> unobserved. The coin doesn’t know which plots are sunnier, which teenagers are genetically predisposed to depression, or which farmers are more skilled. It allocates blindly, producing groups that are comparable on everything.</p>
+
+<p>This is why randomized controlled trials are the gold standard. Randomization doesn’t just control for the confounders you thought of — it controls for the ones you didn’t.</p>
+
+<p>The problem is that many of the most important questions in social science cannot be randomized. You can’t randomly assign victimization to study its effect on political participation. You can’t randomize wars to study their effect on national identity. You can’t randomly relocate immigrants to study wage effects without raising serious ethical concerns. Carolina flagged the debate this creates: some researchers argue it’s better to answer narrow questions credibly than to attempt big questions without the machinery to answer them properly. Her own view is that this is a false choice — rigorous <em>and</em> ambitious work is possible, but it requires being honest about what your design can and cannot establish.</p>
+
+<p>When randomization isn’t available, two threats to the plug-in estimator become salient.</p>
+
+<p><strong>Confounding</strong> arises when a hidden third variable causes both the treatment and the outcome, creating a spurious association. Wine drinkers live 21% longer than beer and spirits drinkers in observational data — but wine is expensive, and class affects both beverage choice and longevity. The correlation is real; the causal story is wrong. Museum visitors appear to have lower mortality — but visiting museums requires time and disposable income, both of which also predict better health. In both cases, plugging $\bar{Y}_1 - \bar{Y}_0$ into the ATE formula gives a biased answer because the two groups weren’t alike to begin with.</p>
+
+<p><strong>Selection bias</strong> is subtler. It arises when the sample is conditioned on a variable that is itself a consequence of the treatment, distorting the observed relationship. Carolina’s example: in NBA data, taller players score <em>fewer</em> points per game on average. This seems absurd — height obviously helps in basketball. But NBA players aren’t a random sample of tall and short people. Short players only survive the selection process if they compensate with extraordinary skill. Conditioning on “reached the NBA” creates a sample where the height–skill relationship is inverted, making height appear to hurt performance.</p>
+
+<h3 id="quasi-experimental-methods">Quasi-Experimental Methods</h3>
+
+<p>When randomization is off the table, the empirical strategy is to find settings where nature, history, or policy introduced <em>as-if</em> random variation in treatment assignment — and exploit that variation to justify a credible comparison.</p>
+
+<div class="workflow-scroll-panel">
+<div class="workflow-chart">
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title" style="color: #fc4357;">Randomization not feasible</div>
+        <ul class="workflow-list">
+          <li>Ethical constraints</li>
+          <li>Logistical or political barriers</li>
+        </ul>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Find as-if random variation</div>
+        <ul class="workflow-list">
+          <li>Nature or policy creates near-random assignment</li>
+          <li>Defend comparability in a narrow window</li>
+        </ul>
+      </div>
+    </div>
+    <div class="workflow-theme">Starting Point</div>
+  </div>
+  <div class="workflow-vertical-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-theme-box">
+    <div class="workflow-row">
+      <div class="workflow-step">
+        <div class="workflow-step-title">Lottery / Draft Design</div>
+        <ul class="workflow-list">
+          <li>Genuine randomness from external event</li>
+          <li>Example: 1969 Vietnam draft lottery</li>
+          <li>Estimates: military service → later earnings</li>
+        </ul>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Regression Discontinuity</div>
+        <ul class="workflow-list">
+          <li>Compare units just above/below a threshold</li>
+          <li>Assignment near-random at the cutoff</li>
+          <li>Tradeoff: local estimate near threshold only</li>
+        </ul>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-step-title">Diff-in-Differences / IV</div>
+        <ul class="workflow-list">
+          <li>DiD: before/after × treated/control</li>
+          <li>IV: instrument with no direct effect on Y</li>
+          <li>Both rest on strong, untestable assumptions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="workflow-theme">Quasi-Experimental Toolkit</div>
+  </div>
+</div>
+</div>
+<div class="workflow-caption">Figure 2: Quasi-experimental methods — finding credible comparisons when randomization is off the table</div>
+
+<p>The main toolkit, with one canonical example each:</p>
+
+<ul>
+  <li><strong>Lottery/Draft designs</strong>: the 1969 Vietnam draft lottery assigned induction order by birthday — a genuinely random process. Researchers use lottery number as an instrument to estimate the causal effect of military service on later earnings, sidestepping the selection problem that volunteers and non-volunteers differ in ways correlated with earnings.</li>
+  <li><strong>Regression Discontinuity (RDD)</strong>: compares units just above and just below an arbitrary threshold — a scholarship cutoff, a voting age, a policy income limit. Near the threshold, which side of the line you fall on is effectively accidental, making the two groups credible counterfactuals for each other. The cost: estimates are local to the threshold and may not generalize.</li>
+  <li><strong>Difference-in-Differences (DiD)</strong>: compares the before/after change in a treated group against the before/after change in an untreated control group. By differencing twice, stable pre-existing differences between groups cancel out. The core assumption — that trends would have been parallel in the absence of treatment — is untestable but often defensible.</li>
+  <li><strong>Instrumental Variables (IV)</strong>: finds a variable that affects treatment but has no direct effect on the outcome except through treatment. Using the instrument as a lever isolates the portion of treatment variation that is as-if random.</li>
+</ul>
+
+<p>What all these methods share: they are different arguments for why the comparison being drawn is <em>plausible</em> — why the untreated group is a reasonable stand-in for the counterfactual treated group. None of them prove it. They make the case.</p>
+
+<p>Returning to the opening headline: do heavy social media users provide a valid counterfactual for light users? Almost certainly not. Heavy and light users likely differ in unobserved ways — genetic predisposition to depression, family stability, peer networks, sleep habits — that independently affect mental health. Worse, the relationship may run in the opposite direction: struggling teens may turn to social media <em>because</em> they are struggling, not the other way around. The researchers’ longitudinal design is richer than a simple cross-section, but without a credible source of exogenous variation in usage, the causal story remains contested.</p>
+
+<p>The lesson Carolina left the room with is not that causal inference is hopeless — it’s that it is demanding. Every causal claim rests on an untestable assumption about what the world would have looked like had treatment not occurred. The researcher’s job is to make that assumption as explicit, as narrow, and as defensible as possible. The entire toolkit of modern empirical social science — from RCTs to RDDs to structural models — is machinery for that one task.</p>
+
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <!-- Right: sticky scaled-down sidebar -->
+    <div class="meetup-sidebar">
+
+      <h3 class="about-post-title">Penn AI Fellows</h3>
+      <p class="about-post-text">
+        <a href="https://ai.upenn.edu/penn-ai-fellows" class="source-code-link meetup-fellows-link" target="_blank" rel="noopener noreferrer">Learn about the AI Fellows Program →</a>
+      </p>
+
+      <div class="about-post-underline"></div>
+
+      <h3 class="about-post-title">About this post</h3>
+      <p class="about-post-text">
+        Check our source code <a href="https://github.com/dddiscovery/datapoints" class="source-code-link">here</a>
+      </p>
+
+      <div class="about-post-underline"></div>
+
+      <h3 class="about-post-title">Share this post</h3>
+      <div class="social-share">
+        <!-- Bluesky -->
+        <a href="https://bsky.app/intent/compose?text=A+walkthrough+of+the+Potential+Outcomes+Framework+from+first+principles%2C+exploring+why+causal+claims+are+harder+than+they+look+and+how+social+scientists+build+credible+arguments.%0A%0ADive%20in%3A%20https://dddiscovery.github.io/datapoints/causal-inference-potential-outcomes/%0A%0AFrom%20DDDI%27s%20series%20scientific%20posts%0A%0A@upenndddi.bsky.social" target="_blank" rel="noopener noreferrer">
+          <img src="/datapoints/assets/images/logo/Bluesky_Logo.png" alt="Share on Bluesky" class="social-icon">
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://dddiscovery.github.io/datapoints/causal-inference-potential-outcomes/&title=Thinking+Causally+in+Social+Science" target="_blank" rel="noopener noreferrer">
+          <img src="/datapoints/assets/images/logo/LinkedIn-Logos/LI-In-Bug.png" alt="Share on LinkedIn" class="social-icon meetup-linkedin-icon">
+        </a>
+        <!-- Link icon -->
+        <a href="#" onclick="copyPageUrl()" title="Copy link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#011f5b" class="social-icon link-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="about-post-underline"></div>
+
+      
+      
+      
+      <div class="sidebar-contribute-cta">
+        <a
+          class="sidebar-contribute-button"
+          href="mailto:yuxinlg@upenn.edu?subject=I'd%20like%20to%20contribute%20a%20Data%20Points%20post&body=Hey,%20I%20am%20[your%20name].%0A%0AI%20would%20like%20to%20contribute%20a%20Data%20Points%20blog%20post%20on%20[your%20topic].%0A%0AI%20would%20like%20to%20learn%20more%20about%20the%20process."
+        >
+          Want to contribute a blog post? Email us!
+          <svg class="sidebar-contribute-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+          </svg>
+        </a>
+      </div>
+
+    </div><!-- end .meetup-sidebar -->
+
+  </div><!-- end .meetup-main -->
+
+
+  <script>
+    function copyPageUrl() {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      function slugify(text) {
+        return text
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+
+      function ensureId(heading, used) {
+        if (heading.id) {
+          used.add(heading.id);
+          return heading.id;
+        }
+        const base = slugify(heading.textContent || 'section');
+        let id = base || 'section';
+        let i = 2;
+        while (used.has(id) || document.getElementById(id)) {
+          id = (base || 'section') + '-' + i;
+          i += 1;
+        }
+        heading.id = id;
+        used.add(id);
+        return id;
+      }
+
+      const toc = document.getElementById('left-toc');
+      const tocNav = document.getElementById('left-toc-nav');
+      const content = document.querySelector('.post-content');
+      if (toc && tocNav && content) {
+        const headings = Array.from(content.querySelectorAll('h2, h3'))
+          .filter(h => (h.textContent || '').trim().length > 0);
+        if (headings.length) {
+          const usedIds = new Set();
+          headings.forEach(h => ensureId(h, usedIds));
+
+          headings.forEach(h => {
+            const a = document.createElement('a');
+            a.className = 'left-toc-link level-' + h.tagName.toLowerCase();
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            tocNav.appendChild(a);
+          });
+
+          function updateTocLine() {
+            const allLinks = tocNav.querySelectorAll('.left-toc-link');
+            if (allLinks.length === 0) return;
+            const lastLink = allLinks[allLinks.length - 1];
+            const navRect = tocNav.getBoundingClientRect();
+            const lastRect = lastLink.getBoundingClientRect();
+            const dotOffset = 0.53 * parseFloat(getComputedStyle(lastLink).fontSize);
+            const lineBottom = navRect.bottom - lastRect.top - dotOffset;
+            tocNav.style.setProperty('--toc-line-bottom', Math.max(0, lineBottom) + 'px');
+          }
+          setTimeout(updateTocLine, 0);
+          window.addEventListener('resize', updateTocLine, { passive: true });
+
+          const links = Array.from(tocNav.querySelectorAll('.left-toc-link'));
+          const byId = {};
+          links.forEach(link => {
+            byId[link.getAttribute('href').slice(1)] = link;
+          });
+
+          function setActive(id) {
+            links.forEach(link => link.classList.remove('active'));
+            if (id && byId[id]) byId[id].classList.add('active');
+          }
+
+          const observer = new IntersectionObserver(
+            entries => {
+              const visible = entries
+                .filter(e => e.isIntersecting)
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+              if (visible.length) setActive(visible[0].target.id);
+            },
+            { rootMargin: '0px 0px -70% 0px', threshold: 0.1 }
+          );
+
+          headings.forEach(h => observer.observe(h));
+          setActive(headings[0].id);
+          toc.classList.remove('left-toc--loading');
+
+          window.addEventListener('scroll', function() {
+            const scrollBottom = window.scrollY + window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            if (scrollBottom >= docHeight - 80) {
+              setActive(headings[headings.length - 1].id);
+            }
+          }, { passive: true });
+        }
+      }
+
+      document.querySelectorAll('.blog-content pre').forEach(function(pre) {
+        const button = document.createElement('button');
+        button.className = 'copy-button';
+        button.textContent = 'Copy';
+        pre.appendChild(button);
+
+        button.addEventListener('click', function() {
+          const code = pre.querySelector('code') || pre;
+          const text = code.textContent;
+
+          navigator.clipboard.writeText(text).then(function() {
+            button.textContent = 'Copied!';
+            button.classList.add('copied');
+            setTimeout(function() {
+              button.textContent = 'Copy';
+              button.classList.remove('copied');
+            }, 2000);
+          }).catch(function() {
+            button.textContent = 'Error';
+            setTimeout(function() {
+              button.textContent = 'Copy';
+            }, 2000);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
