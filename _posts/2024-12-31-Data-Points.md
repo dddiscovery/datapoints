@@ -8,11 +8,13 @@ permalink: /
 
 slides:
   - image: /assets/images/posts/title-welcome.png
+  - image: /assets/images/posts/banner_ct.png
+    url: /causal-inference-potential-outcomes
   - image: /assets/images/posts/banner_zrl.png
 #    text: Explore data science across fields
     url: /dashboards-as-research-deliverables
-  - image: /assets/images/posts/banner_yxl.png
-    url: /llm-augmented-codebook
+  # - image: /assets/images/posts/banner_yxl.png
+  #   url: /llm-augmented-codebook
 
 
 about: |
@@ -23,6 +25,15 @@ about: |
 
 featured_posts:
 # from the latest post to the oldest post
+
+  - image: /assets/images/posts/data_cover_ct.png
+    title: Thinking Causally in Social Science
+    tag: Data Notes
+    url: /causal-inference-potential-outcomes
+    author: Carolina Torreblanca
+    author_url: "https://carolina-torreblanca.github.io/"
+    date: June 23, 2026
+    description: 'A walkthrough of the Potential Outcomes Framework from first principles, exploring why causal claims are harder than they look and how social scientists build credible arguments'
 
   - image: /assets/images/posts/meetup_cover_may.png
     title: 'AI in Physics Research: From Toy to Tool'
@@ -60,23 +71,23 @@ featured_posts:
     date: March 03, 2026
     description: 'From Data to Documentation: Assisting Codebook Completion with LLMs'
 
-  - image: /assets/images/posts/data_cover_ms.png
-    title: Accelerating science with 'off-the-shelf' models
-    tag: Data Notes
-    url: /off-the-shelf-ai
-    author: Melanie Segado
-    author_url: https://sites.google.com/view/melaniesegado
-    date: March 10, 2025
-    description: A visual guide on how foundation models enhance computer vision research with small datasets.
+  # - image: /assets/images/posts/data_cover_ms.png
+  #   title: Accelerating science with 'off-the-shelf' models
+  #   tag: Data Notes
+  #   url: /off-the-shelf-ai
+  #   author: Melanie Segado
+  #   author_url: https://sites.google.com/view/melaniesegado
+  #   date: March 10, 2025
+  #   description: A visual guide on how foundation models enhance computer vision research with small datasets.
 
-  - image: /assets/images/posts/data_cover_km.png
-    title: Where is the information in data?
-    tag: Data Notes
-    url: /Where-is-the-Information-in-Data
-    author: Kieran Murphy
-    author_url: https://www.kieranamurphy.com/
-    date: February 03, 2025
-    description: An interactive tutorial about decomposing variation into distinctions worth making.
+  # - image: /assets/images/posts/data_cover_km.png
+  #   title: Where is the information in data?
+  #   tag: Data Notes
+  #   url: /Where-is-the-Information-in-Data
+  #   author: Kieran Murphy
+  #   author_url: https://www.kieranamurphy.com/
+  #   date: February 03, 2025
+  #   description: An interactive tutorial about decomposing variation into distinctions worth making.
   
 
 
@@ -111,10 +122,10 @@ contribute_contact:
 
 
 Editorial_team:
-  - name: Kieran Murphy
-    url: https://www.kieranamurphy.com/
-    image: /assets/images/authors/kieran_murphy.jpg
-    fellowship: Penn AI Fellow
+  # - name: Kieran Murphy
+  #   url: https://www.kieranamurphy.com/
+  #   image: /assets/images/authors/kieran_murphy.jpg
+  #   fellowship: Penn AI Fellow
   - name: Melanie Segado
     url: https://sites.google.com/view/melaniesegado
     image: /assets/images/authors/MelanieSegado.jpg
@@ -133,6 +144,10 @@ contributor:
       url: https://zungru.com/
       image: /assets/images/authors/zung_ru_lin.png
       fellowship: Chief Data Scientist & Co-PI of MLP @ PDRI-DevLab
+    - name: Carolina Torreblanca
+      url: https://carolina-torreblanca.github.io/
+      image: /assets/images/authors/caro_pic.jpg
+      fellowship: Penn AI Fellow, Department of Political Science
 
 contact:
   email: sas-ddd-admin@sas.upenn.edu
